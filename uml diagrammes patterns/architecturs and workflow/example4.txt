@@ -1,156 +1,171 @@
-<svg viewBox="0 0 997 997" xmlns="http://www.w3.org/2000/svg">
+<svg xmlns="http://www.w3.org/2000/svg" width="924" height="576" viewBox="0 0 924 576" font-family="Helvetica, Arial, sans-serif">
+  <!-- ============ DEFS ============ -->
   <defs>
-    <marker id="ga" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto-start-reverse">
-      <polygon points="0,0.5 8,4 0,7.5" fill="#666666"/>
+    <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#666"/>
     </marker>
-    <!-- small vertical "cycle" double-arrow glyph -->
-    <g id="cyc">
-      <path d="M -4 -14 C 8 -10 8 -4 4 2" fill="none" stroke="#777" stroke-width="1.2" marker-end="url(#ga)"/>
-      <path d="M 4 14 C -8 10 -8 4 -4 -2" fill="none" stroke="#777" stroke-width="1.2" marker-end="url(#ga)"/>
-    </g>
   </defs>
 
-  <style>
-    .bg{fill:#edeff3;}
-    .blue-box{fill:#b9d4f1;stroke:#333333;stroke-width:1.3;}
-    .white-box{fill:#f7f8fa;stroke:#333333;stroke-width:1.2;}
-    .yellow-box{fill:#f8ec8e;stroke:#333333;stroke-width:1.2;}
-    .pink-cyl{fill:#f6cdd4;stroke:#8b4049;stroke-width:1.4;}
-    .green-box{fill:#a9e7a0;stroke:#333333;stroke-width:1.2;}
-    .llm-box{fill:#4caf50;stroke:#222222;stroke-width:1.4;}
-    .pill{fill:#f5d33d;stroke:#333333;stroke-width:1.3;}
-    .tan-box{fill:#f2d6a7;stroke:#333333;stroke-width:1.2;}
-    .teal-badge{fill:#17a589;stroke:#222222;stroke-width:1.2;}
-    .orange-badge{fill:#e67e22;stroke:#222222;stroke-width:1.2;}
-    .dline{stroke:#7a7a7a;stroke-width:1.1;fill:none;marker-start:url(#ga);marker-end:url(#ga);}
-    .sline{stroke:#7a7a7a;stroke-width:1.1;fill:none;marker-end:url(#ga);}
-    .t{font-family:Verdana,'DejaVu Sans',sans-serif;font-size:12px;font-weight:bold;fill:#111111;text-anchor:middle;dominant-baseline:middle;}
-    .tb{font-family:Verdana,'DejaVu Sans',sans-serif;font-size:13px;font-weight:bold;fill:#1878d6;text-anchor:middle;dominant-baseline:middle;}
-    .ts{font-family:Verdana,'DejaVu Sans',sans-serif;font-size:9.5px;fill:#111111;text-anchor:middle;dominant-baseline:middle;}
-    .tl{font-family:Verdana,'DejaVu Sans',sans-serif;font-size:13px;fill:#111111;}
-    .tbx{font-family:Verdana,'DejaVu Sans',sans-serif;font-size:12px;font-weight:bold;fill:#111111;text-anchor:middle;dominant-baseline:middle;}
-  </style>
+  <!-- ============ BACKGROUND ============ -->
+  <rect x="0" y="0" width="924" height="576" fill="#edeff2"/>
 
-  <rect class="bg" width="997" height="997"/>
+  <!-- ============ AGENT COLLABORATION CALLOUT ============ -->
+  <rect x="80" y="71" width="80" height="46" fill="#ffffff" stroke="#111" stroke-width="1"/>
+  <path d="M126 117 L140 141 L148 117 Z" fill="#ffffff" stroke="#111" stroke-width="1"/>
+  <text x="101" y="90" font-size="8" fill="#111">Agent</text>
+  <text x="90" y="101" font-size="8" fill="#111">Collaboration</text>
+  <!-- callout arrows -->
+  <path d="M152 128 L206 78" fill="none" stroke="#666" stroke-width="1" marker-end="url(#ar)"/>
+  <path d="M137 142 L79 231" fill="none" stroke="#666" stroke-width="1" marker-end="url(#ar)"/>
 
-  <!-- ================= LONG CONNECTORS ================= -->
-  <path d="M 168 145 L 228 127" class="dline"/>
-  <path d="M 120 199 L 80 408" class="dline"/>
-  <path d="M 143 515 L 231 515" class="dline"/>
-  <path d="M 82 600 L 231 897" class="dline"/>
-  <path d="M 554 395 L 654 283" class="dline"/>
-  <path d="M 554 418 L 654 650" class="dline"/>
-  <path d="M 554 662 L 654 372" class="dline"/>
-  <path d="M 554 678 L 654 756" class="dline"/>
+  <!-- ============ SHARED MEMORY CYLINDER ============ -->
+  <path d="M14 253 v74 a58 14 0 0 0 116 0 v-74" fill="#f6c9d2" stroke="#a34d5e" stroke-width="1.2"/>
+  <ellipse cx="72" cy="253" rx="58" ry="14" fill="#f6c9d2" stroke="#a34d5e" stroke-width="1.2"/>
+  <text x="72" y="306" font-size="11" font-weight="bold" fill="#1878d8" text-anchor="middle">Shared memory</text>
 
-  <!-- ================= LEFT : SHARED MEMORY ================= -->
-  <path d="M 14 440 L 14 575 A 64.5 25 0 0 0 143 575 L 143 440" class="pink-cyl"/>
-  <ellipse cx="78.5" cy="440" rx="64.5" ry="25" class="pink-cyl"/>
-  <text x="78" y="527" class="tb">Shared memory</text>
+  <!-- shared memory <-> agent1 container (bidirectional curved) -->
+  <path d="M134 297 C160 291 186 291 211 297" fill="none" stroke="#666" stroke-width="1" marker-end="url(#ar)"/>
+  <path d="M211 309 C186 315 160 315 134 309" fill="none" stroke="#666" stroke-width="1" marker-end="url(#ar)"/>
+  <!-- shared memory <-> agent3 (bidirectional) -->
+  <path d="M77 355 L209 519" fill="none" stroke="#666" stroke-width="1" marker-end="url(#ar)"/>
+  <path d="M206 529 L75 365" fill="none" stroke="#666" stroke-width="1" marker-end="url(#ar)"/>
 
-  <!-- ================= AGENT 2 ================= -->
-  <text x="230" y="22" class="tl">Agent 2</text>
-  <rect x="233" y="82" width="318" height="83" class="blue-box"/>
-  <text x="392" y="124" class="tb">Agent 2</text>
+  <!-- ============ AGENT 2 ============ -->
+  <text x="215" y="21" font-size="10" fill="#111">Agent 2</text>
+  <rect x="215" y="48" width="293" height="48" fill="#b9d2f2" stroke="#333" stroke-width="1"/>
+  <text x="361" y="76" font-size="11" font-weight="bold" fill="#1878d8" text-anchor="middle">Agent 2</text>
+  <!-- double curved arrow Agent2 <-> container -->
+  <path d="M357 101 C350 114 350 128 357 141" fill="none" stroke="#666" stroke-width="1" marker-end="url(#ar)"/>
+  <path d="M365 141 C372 128 372 114 365 101" fill="none" stroke="#666" stroke-width="1" marker-end="url(#ar)"/>
 
-  <!-- Agent Collaboration callout -->
-  <rect x="84" y="120" width="84" height="62" class="white-box"/>
-  <polygon points="135,182 152,232 118,182" fill="#ffffff" stroke="#333333" stroke-width="1.2"/>
-  <text x="126" y="146" class="ts">Agent</text>
-  <text x="126" y="162" class="ts">Collaboration</text>
+  <!-- ============ AGENT 1 CONTAINER ============ -->
+  <text x="215" y="136" font-size="10" fill="#111">Agent 1</text>
+  <rect x="215" y="148" width="306" height="304" rx="6" fill="#c3d7f2"/>
 
-  <!-- cycle Agent2 <-> Agent1 -->
-  <use href="#cyc" x="392" y="207"/>
+  <!-- Memory -->
+  <rect x="230" y="167" width="75" height="29" fill="#ececec" stroke="#444" stroke-width="1"/>
+  <text x="267" y="185" font-size="10" font-weight="bold" fill="#111" text-anchor="middle">Memory</text>
+  <!-- Goals -->
+  <rect x="320" y="167" width="97" height="29" fill="#fcfcfc" stroke="#444" stroke-width="1"/>
+  <text x="368" y="185" font-size="10" font-weight="bold" fill="#111" text-anchor="middle">Goals</text>
+  <!-- Reason -->
+  <rect x="230" y="219" width="75" height="33" fill="#ececec" stroke="#444" stroke-width="1"/>
+  <text x="267" y="239" font-size="10" font-weight="bold" fill="#111" text-anchor="middle">Reason</text>
+  <!-- Agent 1 yellow core -->
+  <rect x="320" y="218" width="97" height="33" fill="#f6ee9b" stroke="#666" stroke-width="1"/>
+  <text x="368" y="239" font-size="10" font-weight="bold" fill="#1878d8" text-anchor="middle">Agent 1</text>
+  <!-- Sense -->
+  <rect x="437" y="219" width="76" height="33" fill="#fcfcfc" stroke="#444" stroke-width="1"/>
+  <text x="475" y="239" font-size="10" font-weight="bold" fill="#111" text-anchor="middle">Sense</text>
+  <!-- Plan -->
+  <rect x="320" y="268" width="97" height="33" fill="#f8f8f8" stroke="#444" stroke-width="1"/>
+  <text x="368" y="288" font-size="10" font-weight="bold" fill="#111" text-anchor="middle">Plan</text>
+  <!-- Coordinate -->
+  <rect x="320" y="320" width="97" height="33" fill="#fcfcfc" stroke="#444" stroke-width="1"/>
+  <text x="368" y="340" font-size="10" font-weight="bold" fill="#111" text-anchor="middle">Coordinate</text>
+  <!-- Act -->
+  <rect x="320" y="376" width="97" height="35" fill="#fcfcfc" stroke="#444" stroke-width="1"/>
+  <text x="368" y="397" font-size="10" font-weight="bold" fill="#111" text-anchor="middle">Act</text>
+  <!-- Tools -->
+  <rect x="429" y="376" width="84" height="35" fill="#fcfcfc" stroke="#444" stroke-width="1"/>
+  <text x="471" y="397" font-size="10" font-weight="bold" fill="#111" text-anchor="middle">Tools</text>
+  <!-- LLM green speech bubble -->
+  <rect x="237" y="277" width="46" height="63" fill="#43bd49" stroke="#177a1e" stroke-width="1.2"/>
+  <path d="M256 340 L264 353 L272 340 Z" fill="#43bd49" stroke="#177a1e" stroke-width="1.2"/>
+  <text x="260" y="312" font-size="9" fill="#111" text-anchor="middle">LLM</text>
 
-  <!-- ================= AGENT 1 CONTAINER ================= -->
-  <text x="237" y="228" class="tl">Agent 1</text>
-  <rect x="233" y="255" width="330" height="527" rx="4" fill="#b9d4f1"/>
+  <!-- internal arrows -->
+  <path d="M293 197 C305 204 316 210 328 217" fill="none" stroke="#666" stroke-width="1" marker-end="url(#ar)"/>
+  <path d="M336 215 C324 208 313 202 301 195" fill="none" stroke="#666" stroke-width="1" marker-end="url(#ar)"/>
+  <line x1="368" y1="197" x2="368" y2="217" stroke="#666" stroke-width="1" marker-start="url(#ar)" marker-end="url(#ar)"/>
+  <line x1="306" y1="236" x2="319" y2="236" stroke="#666" stroke-width="1" marker-start="url(#ar)" marker-end="url(#ar)"/>
+  <line x1="418" y1="235" x2="436" y2="235" stroke="#666" stroke-width="1" marker-start="url(#ar)" marker-end="url(#ar)"/>
+  <line x1="368" y1="252" x2="368" y2="267" stroke="#666" stroke-width="1" marker-end="url(#ar)"/>
+  <line x1="368" y1="302" x2="368" y2="319" stroke="#666" stroke-width="1" marker-end="url(#ar)"/>
+  <line x1="368" y1="354" x2="368" y2="375" stroke="#666" stroke-width="1" marker-end="url(#ar)"/>
+  <line x1="418" y1="393" x2="428" y2="393" stroke="#666" stroke-width="1" marker-start="url(#ar)" marker-end="url(#ar)"/>
+  <!-- Reason <-> LLM loop -->
+  <path d="M262 254 C257 261 257 268 262 275" fill="none" stroke="#666" stroke-width="1" marker-end="url(#ar)"/>
+  <path d="M271 275 C276 268 276 261 271 254" fill="none" stroke="#666" stroke-width="1" marker-end="url(#ar)"/>
+  <!-- LLM <-> Plan -->
+  <path d="M284 292 C296 288 306 285 318 282" fill="none" stroke="#666" stroke-width="1" marker-end="url(#ar)"/>
+  <path d="M318 292 C306 296 296 299 284 302" fill="none" stroke="#666" stroke-width="1" marker-end="url(#ar)"/>
+  <!-- LLM <-> Coordinate -->
+  <path d="M284 318 C296 322 306 325 318 328" fill="none" stroke="#666" stroke-width="1" marker-end="url(#ar)"/>
+  <path d="M318 338 C306 335 296 332 284 328" fill="none" stroke="#666" stroke-width="1" marker-end="url(#ar)"/>
 
-  <rect x="250" y="283" width="82" height="54" class="white-box"/>
-  <text x="291" y="311" class="t">Memory</text>
-  <rect x="349" y="283" width="106" height="54" class="white-box"/>
-  <text x="402" y="311" class="t">Goals</text>
-  <rect x="250" y="380" width="82" height="54" class="white-box"/>
-  <text x="291" y="408" class="t">Reason</text>
-  <rect x="349" y="380" width="106" height="54" class="yellow-box"/>
-  <text x="402" y="408" class="tb">Agent 1</text>
-  <rect x="472" y="380" width="82" height="54" class="white-box"/>
-  <text x="513" y="408" class="t">Sense</text>
-  <rect x="349" y="465" width="106" height="54" class="white-box"/>
-  <text x="402" y="493" class="t">Plan</text>
-  <rect x="349" y="553" width="106" height="54" class="white-box"/>
-  <text x="402" y="581" class="t">Coordinate</text>
-  <rect x="349" y="648" width="106" height="54" class="white-box"/>
-  <text x="402" y="676" class="t">Act</text>
-  <rect x="466" y="648" width="88" height="54" class="white-box"/>
-  <text x="510" y="676" class="t">Tools</text>
+  <!-- ============ AGENT 3 ============ -->
+  <path d="M357 456 C350 470 350 489 357 503" fill="none" stroke="#666" stroke-width="1" marker-end="url(#ar)"/>
+  <path d="M365 503 C372 489 372 470 365 456" fill="none" stroke="#666" stroke-width="1" marker-end="url(#ar)"/>
+  <text x="205" y="486" font-size="10" fill="#111">Agent 3</text>
+  <rect x="215" y="510" width="293" height="43" fill="#b9d2f2" stroke="#333" stroke-width="1"/>
+  <text x="361" y="536" font-size="11" font-weight="bold" fill="#1878d8" text-anchor="middle">Agent 3</text>
 
-  <!-- LLM speech bubble -->
-  <rect x="256" y="480" width="55" height="105" class="llm-box"/>
-  <polygon points="275,585 300,606 288,585" class="llm-box"/>
-  <text x="283" y="532" class="ts" style="font-weight:bold;">LLM</text>
+  <!-- ============ DIGITAL BUSINESS CONTEXT ============ -->
+  <rect x="608" y="20" width="158" height="23" rx="4" fill="#12b597" stroke="#0d8d74" stroke-width="1"/>
+  <text x="616" y="35" font-size="10" font-weight="bold" fill="#111">Digital Business  Context</text>
+  <rect x="607" y="48" width="281" height="230" rx="8" fill="none" stroke="#35b8a8" stroke-width="1.6" stroke-dasharray="7 5"/>
+  <!-- Un-Structured Data cylinder -->
+  <path d="M634 86 v25 a66 13 0 0 0 132 0 v-25" fill="#f6c9d2" stroke="#a34d5e" stroke-width="1.2"/>
+  <ellipse cx="700" cy="86" rx="66" ry="13" fill="#f6c9d2" stroke="#a34d5e" stroke-width="1.2"/>
+  <text x="700" y="107" font-size="10" font-weight="bold" fill="#1878d8" text-anchor="middle">Un-Structured Data</text>
+  <!-- Vector Stores cylinder -->
+  <path d="M797 97 v32 a40 11 0 0 0 80 0 v-32" fill="#f6c9d2" stroke="#a34d5e" stroke-width="1.2"/>
+  <ellipse cx="837" cy="97" rx="40" ry="11" fill="#f6c9d2" stroke="#a34d5e" stroke-width="1.2"/>
+  <text x="837" y="116" font-size="9" font-weight="bold" fill="#1878d8" text-anchor="middle">Vector</text>
+  <text x="837" y="128" font-size="9" font-weight="bold" fill="#1878d8" text-anchor="middle">Stores</text>
+  <!-- green context rect -->
+  <rect x="622" y="146" width="156" height="40" fill="#a8e6b0" stroke="#43a047" stroke-width="1.2"/>
+  <text x="700" y="170" font-size="10" fill="#111" text-anchor="middle">digital business context</text>
+  <!-- Knowledge Graphs cylinder -->
+  <path d="M636 224 v25 a65 13 0 0 0 130 0 v-25" fill="#f6c9d2" stroke="#a34d5e" stroke-width="1.2"/>
+  <ellipse cx="701" cy="224" rx="65" ry="13" fill="#f6c9d2" stroke="#a34d5e" stroke-width="1.2"/>
+  <text x="701" y="245" font-size="10" font-weight="bold" fill="#1878d8" text-anchor="middle">Knowledge Graphs</text>
+  <!-- Structured Data cylinder -->
+  <path d="M790 211 v31 a41 11 0 0 0 82 0 v-31" fill="#f6c9d2" stroke="#a34d5e" stroke-width="1.2"/>
+  <ellipse cx="831" cy="211" rx="41" ry="11" fill="#f6c9d2" stroke="#a34d5e" stroke-width="1.2"/>
+  <text x="831" y="228" font-size="9" font-weight="bold" fill="#1878d8" text-anchor="middle">Structured</text>
+  <text x="831" y="240" font-size="9" font-weight="bold" fill="#1878d8" text-anchor="middle">Data</text>
+  <!-- internal arrows -->
+  <path d="M696 126 C690 132 690 138 696 144" fill="none" stroke="#666" stroke-width="1" marker-end="url(#ar)"/>
+  <path d="M704 144 C710 138 710 132 704 126" fill="none" stroke="#666" stroke-width="1" marker-end="url(#ar)"/>
+  <path d="M696 188 C690 194 690 200 696 206" fill="none" stroke="#666" stroke-width="1" marker-end="url(#ar)"/>
+  <path d="M704 206 C710 200 710 194 704 188" fill="none" stroke="#666" stroke-width="1" marker-end="url(#ar)"/>
+  <path d="M830 141 C815 150 800 156 782 161" fill="none" stroke="#666" stroke-width="1" marker-end="url(#ar)"/>
+  <path d="M784 152 C802 147 818 141 833 133" fill="none" stroke="#666" stroke-width="1" marker-end="url(#ar)"/>
+  <path d="M826 200 C810 192 796 186 782 179" fill="none" stroke="#666" stroke-width="1" marker-end="url(#ar)"/>
+  <path d="M784 187 C800 194 814 201 828 208" fill="none" stroke="#666" stroke-width="1" marker-end="url(#ar)"/>
 
-  <!-- inner connectors -->
-  <path d="M 315 337 L 362 378" class="dline"/>
-  <path d="M 402 337 L 402 378" class="dline"/>
-  <path d="M 332 407 L 347 407" class="dline"/>
-  <path d="M 455 407 L 470 407" class="dline"/>
-  <path d="M 402 434 L 402 463" class="sline"/>
-  <path d="M 402 519 L 402 551" class="sline"/>
-  <path d="M 402 607 L 402 646" class="sline"/>
-  <path d="M 455 675 L 464 675" class="dline"/>
-  <use href="#cyc" x="289" y="457" transform="scale(1)"/>
-  <path d="M 310 505 L 347 495" class="dline"/>
-  <path d="M 310 555 L 347 570" class="dline"/>
+  <!-- ============ PHYSICAL ENVIRONMENT CONTEXT ============ -->
+  <rect x="608" y="298" width="185" height="24" rx="4" fill="#f28c2c" stroke="#b95f10" stroke-width="1"/>
+  <text x="616" y="314" font-size="10" font-weight="bold" fill="#111">Physical Environment  Context</text>
+  <rect x="607" y="327" width="281" height="231" rx="8" fill="none" stroke="#e89a4a" stroke-width="1.6" stroke-dasharray="7 5"/>
+  <!-- device 1 -->
+  <rect x="692" y="354" width="105" height="29" rx="14" fill="#f7d21d" stroke="#1a1a1a" stroke-width="1.2"/>
+  <text x="744" y="372" font-size="10" font-weight="bold" fill="#111" text-anchor="middle">device 1</text>
+  <!-- physical environment -->
+  <rect x="665" y="406" width="159" height="46" fill="#f6c88e" stroke="#96602a" stroke-width="1.2"/>
+  <text x="744" y="433" font-size="10" fill="#111" text-anchor="middle">physical environment</text>
+  <!-- device n -->
+  <rect x="692" y="474" width="105" height="29" rx="14" fill="#f7d21d" stroke="#1a1a1a" stroke-width="1.2"/>
+  <text x="744" y="492" font-size="10" font-weight="bold" fill="#111" text-anchor="middle">device n</text>
+  <!-- double curved arrows -->
+  <path d="M740 385 C734 391 734 398 740 404" fill="none" stroke="#666" stroke-width="1" marker-end="url(#ar)"/>
+  <path d="M748 404 C754 398 754 391 748 385" fill="none" stroke="#666" stroke-width="1" marker-end="url(#ar)"/>
+  <path d="M740 453 C734 459 734 466 740 472" fill="none" stroke="#666" stroke-width="1" marker-end="url(#ar)"/>
+  <path d="M748 472 C754 466 754 459 748 453" fill="none" stroke="#666" stroke-width="1" marker-end="url(#ar)"/>
 
-  <!-- ================= AGENT 3 ================= -->
-  <use href="#cyc" x="392" y="838"/>
-  <text x="222" y="836" class="tl">Agent 3</text>
-  <rect x="233" y="882" width="318" height="80" class="blue-box"/>
-  <text x="392" y="922" class="tb">Agent 3</text>
-
-  <!-- ================= DIGITAL BUSINESS CONTEXT ================= -->
-  <rect x="658" y="30" width="173" height="42" rx="6" class="teal-badge"/>
-  <text x="744" y="52" class="tbx">Digital Business Context</text>
-  <rect x="658" y="82" width="307" height="400" rx="8" fill="none" stroke="#17a589" stroke-width="2" stroke-dasharray="9 7"/>
-
-  <path d="M 688 145 L 688 190 A 72.5 20 0 0 0 833 190 L 833 145" class="pink-cyl"/>
-  <ellipse cx="760.5" cy="145" rx="72.5" ry="20" class="pink-cyl"/>
-  <text x="760" y="178" class="tb" style="font-size:11px;">Un-Structured Data</text>
-
-  <path d="M 866 160 L 866 215 A 42.5 15 0 0 0 951 215 L 951 160" class="pink-cyl"/>
-  <ellipse cx="908.5" cy="160" rx="42.5" ry="15" class="pink-cyl"/>
-  <text x="908" y="186" class="tb" style="font-size:11px;">Vector</text>
-  <text x="908" y="202" class="tb" style="font-size:11px;">Stores</text>
-
-  <rect x="676" y="242" width="172" height="80" class="green-box"/>
-  <text x="762" y="283" class="t" style="font-weight:normal;">digital business context</text>
-
-  <path d="M 688 385 L 688 432 A 72.5 20 0 0 0 833 432 L 833 385" class="pink-cyl"/>
-  <ellipse cx="760.5" cy="385" rx="72.5" ry="20" class="pink-cyl"/>
-  <text x="760" y="417" class="tb" style="font-size:11px;">Knowledge Graphs</text>
-
-  <path d="M 858 362 L 858 420 A 45 17 0 0 0 948 420 L 948 362" class="pink-cyl"/>
-  <ellipse cx="903" cy="362" rx="45" ry="17" class="pink-cyl"/>
-  <text x="903" y="388" class="tb" style="font-size:11px;">Structured</text>
-  <text x="903" y="404" class="tb" style="font-size:11px;">Data</text>
-
-  <use href="#cyc" x="762" y="226"/>
-  <use href="#cyc" x="762" y="344"/>
-  <path d="M 880 232 L 850 268" class="dline"/>
-  <path d="M 872 352 L 850 312" class="dline"/>
-
-  <!-- ================= PHYSICAL ENVIRONMENT CONTEXT ================= -->
-  <rect x="658" y="518" width="208" height="42" rx="6" class="orange-badge"/>
-  <text x="762" y="540" class="tbx">Physical Environment Context</text>
-  <rect x="658" y="570" width="307" height="395" rx="8" fill="none" stroke="#e67e22" stroke-width="2" stroke-dasharray="9 7"/>
-
-  <rect x="748" y="612" width="120" height="53" rx="26" class="pill"/>
-  <text x="808" y="639" class="t">device 1</text>
-  <use href="#cyc" x="808" y="684"/>
-  <rect x="718" y="702" width="180" height="80" class="tan-box"/>
-  <text x="808" y="742" class="t" style="font-weight:normal;">physical environment</text>
-  <use href="#cyc" x="808" y="801"/>
-  <rect x="748" y="820" width="120" height="53" rx="26" class="pill"/>
-  <text x="808" y="847" class="t">device n</text>
+  <!-- ============ CROSS ARROWS (Sense/Tools <-> contexts) ============ -->
+  <!-- Sense <-> Digital -->
+  <path d="M516 227 L599 166" fill="none" stroke="#666" stroke-width="1" marker-end="url(#ar)"/>
+  <path d="M601 174 L518 235" fill="none" stroke="#666" stroke-width="1" marker-end="url(#ar)"/>
+  <!-- Sense <-> Physical -->
+  <path d="M516 241 L601 378" fill="none" stroke="#666" stroke-width="1" marker-end="url(#ar)"/>
+  <path d="M603 386 L518 249" fill="none" stroke="#666" stroke-width="1" marker-end="url(#ar)"/>
+  <!-- Tools <-> Digital -->
+  <path d="M516 383 L601 208" fill="none" stroke="#666" stroke-width="1" marker-end="url(#ar)"/>
+  <path d="M603 216 L518 391" fill="none" stroke="#666" stroke-width="1" marker-end="url(#ar)"/>
+  <!-- Tools <-> Physical -->
+  <path d="M516 396 L601 428" fill="none" stroke="#666" stroke-width="1" marker-end="url(#ar)"/>
+  <path d="M601 436 L516 404" fill="none" stroke="#666" stroke-width="1" marker-end="url(#ar)"/>
 </svg>
