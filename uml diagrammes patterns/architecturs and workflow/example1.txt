@@ -1,0 +1,160 @@
+<svg viewBox="0 0 2320 1560" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Open V arrowhead -->
+    <marker id="arrowOpen" markerWidth="24" markerHeight="24" refX="20" refY="12" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M 3 3 L 21 12 L 3 21" fill="none" stroke="#111111" stroke-width="3" stroke-linecap="round"/>
+    </marker>
+    <!-- Pink crosshatch (Task B) -->
+    <pattern id="crossPink" width="14" height="14" patternUnits="userSpaceOnUse">
+      <rect width="14" height="14" fill="#fdf1f3"/>
+      <path d="M 0 0 L 14 14 M 14 0 L 0 14" stroke="#e8b4c0" stroke-width="1.6"/>
+    </pattern>
+    <!-- Yellow crosshatch (Task C) -->
+    <pattern id="crossYellow" width="14" height="14" patternUnits="userSpaceOnUse">
+      <rect width="14" height="14" fill="#fdfbea"/>
+      <path d="M 0 0 L 14 14 M 14 0 L 0 14" stroke="#d9cf7a" stroke-width="1.6"/>
+    </pattern>
+  </defs>
+
+  <style>
+    .bg { fill: #f4f5f9; }
+    .title { font-family: Verdana, 'DejaVu Sans', sans-serif; font-size: 46px; font-weight: bold; fill: #d62b2b; text-anchor: middle; }
+    .panel-title { font-family: 'JetBrains Mono', Consolas, monospace; font-size: 46px; fill: #f2595d; text-anchor: middle; }
+    .panel { fill: none; stroke: #4a80c4; stroke-width: 3; stroke-dasharray: 14 10; }
+    .node { stroke-width: 3; }
+    .blk { stroke: #111111; }
+    .org { stroke: #e0870f; fill: #ffffff; }
+    .blu { stroke: #2f74c0; fill: #ffffff; }
+    .grn { stroke: #3a9446; fill: #ffffff; }
+    .line { stroke: #111111; stroke-width: 3; fill: none; stroke-linecap: round; }
+    .txt { font-family: 'JetBrains Mono', Consolas, monospace; font-size: 26px; fill: #111111; text-anchor: middle; dominant-baseline: middle; }
+    .txt-orange { fill: #e0870f; }
+    .txt-blue { fill: #2f74c0; }
+    .txt-green { fill: #3a9446; }
+    .lbl { font-family: 'JetBrains Mono', Consolas, monospace; font-size: 27px; fill: #111111; text-anchor: middle; dominant-baseline: middle; }
+  </style>
+
+  <rect class="bg" width="2320" height="1560"/>
+
+  <!-- Main title -->
+  <text x="1140" y="70" class="title">Work With Language Models</text>
+
+  <!-- Panels -->
+  <rect x="28" y="155" width="950" height="1390" rx="24" class="panel"/>
+  <rect x="1020" y="155" width="1272" height="1390" rx="24" class="panel"/>
+  <text x="515" y="245" class="panel-title">Workflow</text>
+  <text x="1660" y="240" class="panel-title">Agent</text>
+
+  <!-- ============ WORKFLOW SIDE ============ -->
+  <g id="workflow">
+    <!-- Start -->
+    <rect x="452" y="458" width="148" height="76" rx="14" class="node org"/>
+    <text x="526" y="498" class="txt txt-orange">Start</text>
+    <path d="M 526 534 L 526 620" class="line" marker-end="url(#arrowOpen)"/>
+
+    <!-- Task A -->
+    <rect x="215" y="630" width="610" height="88" rx="14" class="node blk" fill="#f8c3cc"/>
+    <text x="520" y="676" class="txt">Task A: Process with LLM</text>
+    <path d="M 526 718 L 526 800" class="line" marker-end="url(#arrowOpen)"/>
+
+    <!-- Decision diamond -->
+    <path d="M 513 824 Q 526 812 539 824 L 661 933 Q 674 945 661 957 L 539 1066 Q 526 1078 513 1066 L 391 957 Q 378 945 391 933 Z"
+          class="node blu" stroke-linejoin="round"/>
+    <text x="526" y="947" class="txt txt-blue">Decision</text>
+
+    <!-- Yes / No arrows -->
+    <path d="M 455 1010 L 272 1205" class="line" marker-end="url(#arrowOpen)"/>
+    <text x="345" y="1122" class="lbl">Yes</text>
+    <path d="M 600 1010 L 768 1205" class="line" marker-end="url(#arrowOpen)"/>
+    <text x="692" y="1122" class="lbl">No</text>
+
+    <!-- Task B (pink crosshatch) -->
+    <rect x="65" y="1215" width="465" height="95" rx="14" class="node blk" fill="url(#crossPink)"/>
+    <text x="297" y="1264" class="txt">Task B: Generate with LLM</text>
+
+    <!-- Task C (yellow crosshatch) -->
+    <rect x="595" y="1215" width="295" height="95" rx="14" class="node blk" fill="url(#crossYellow)"/>
+    <text x="742" y="1264" class="txt">Task C: No LLM</text>
+
+    <!-- To End -->
+    <path d="M 300 1310 L 456 1432" class="line" marker-end="url(#arrowOpen)"/>
+    <path d="M 790 1310 L 604 1432" class="line" marker-end="url(#arrowOpen)"/>
+
+    <!-- End -->
+    <rect x="467" y="1410" width="124" height="80" rx="14" class="node org"/>
+    <text x="529" y="1452" class="txt txt-orange">End</text>
+  </g>
+
+  <!-- ============ AGENT SIDE ============ -->
+  <g id="agent">
+    <!-- Input -->
+    <rect x="1495" y="315" width="130" height="95" rx="16" class="node org"/>
+    <text x="1560" y="364" class="txt txt-orange">Input</text>
+
+    <!-- Environment -->
+    <rect x="1095" y="445" width="275" height="88" rx="14" class="node blk" fill="#92cbf6"/>
+    <text x="1232" y="491" class="txt">Environment</text>
+
+    <!-- Environment Provides Input -->
+    <path d="M 1232 445 L 1232 380" class="line"/>
+    <path d="M 1310 362 L 1483 362" class="line" marker-end="url(#arrowOpen)"/>
+    <text x="1228" y="362" class="lbl">Provides</text>
+
+    <!-- Input Receives Agent -->
+    <path d="M 1560 410 L 1560 583" class="line" marker-end="url(#arrowOpen)"/>
+    <text x="1560" y="500" class="lbl">Receives</text>
+
+    <!-- Agent -->
+    <rect x="1495" y="595" width="140" height="90" rx="16" class="node blk" fill="#f8e59b"/>
+    <text x="1565" y="642" class="txt">Agent</text>
+
+    <!-- Memory -->
+    <rect x="2030" y="590" width="180" height="90" rx="14" class="node blk" fill="#a9e8b0"/>
+    <text x="2120" y="637" class="txt">Memory</text>
+
+    <!-- Memory Informs Agent -->
+    <path d="M 2030 637 L 1647 637" class="line" marker-end="url(#arrowOpen)"/>
+    <text x="1838" y="634" class="lbl">Informs</text>
+
+    <!-- Agent Acts on Environment -->
+    <path d="M 1495 640 L 1232 640 L 1232 545" class="line" marker-end="url(#arrowOpen)"/>
+    <text x="1232" y="622" class="lbl">Acts on</text>
+
+    <!-- Agent Uses LLM -->
+    <path d="M 1560 685 L 1560 853" class="line" marker-end="url(#arrowOpen)"/>
+    <text x="1560" y="770" class="lbl">Uses</text>
+
+    <!-- Large Language Model -->
+    <rect x="1335" y="865" width="465" height="95" rx="14" class="node blk" fill="#f5b8d0"/>
+    <text x="1567" y="914" class="txt">Large Language Model</text>
+
+    <!-- Generates Plan -->
+    <path d="M 1567 960 L 1567 1133" class="line" marker-end="url(#arrowOpen)"/>
+    <text x="1567" y="1063" class="lbl">Generates</text>
+
+    <!-- Plan -->
+    <rect x="1512" y="1150" width="110" height="90" rx="16" class="node blu"/>
+    <text x="1567" y="1197" class="txt txt-blue">Plan</text>
+
+    <!-- Executes -->
+    <path d="M 1567 1240 L 1567 1393" class="line" marker-end="url(#arrowOpen)"/>
+    <text x="1567" y="1322" class="lbl">Executes</text>
+
+    <!-- ExecuteAction -->
+    <rect x="1410" y="1405" width="315" height="90" rx="14" class="node grn"/>
+    <text x="1567" y="1452" class="txt txt-green">ExecuteAction</text>
+
+    <!-- Feeds back Feedback -->
+    <path d="M 1725 1450 L 1772 1450" class="line"/>
+    <text x="1780" y="1447" class="lbl" style="text-anchor:start;">Feeds back</text>
+    <path d="M 1950 1450 L 1988 1450" class="line" marker-end="url(#arrowOpen)"/>
+
+    <!-- Feedback -->
+    <rect x="2000" y="1405" width="210" height="90" rx="14" class="node blk" fill="#7fe9cd"/>
+    <text x="2105" y="1452" class="txt">Feedback</text>
+
+    <!-- Updates Memory -->
+    <path d="M 2105 1405 L 2120 692" class="line" marker-end="url(#arrowOpen)"/>
+    <text x="2098" y="1040" class="lbl" style="text-anchor:end;">Updates</text>
+  </g>
+</svg>

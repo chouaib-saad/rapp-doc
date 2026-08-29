@@ -1,0 +1,126 @@
+% Modèle entités associations des schémas centraux (figure 3.7)
+\begin{tikzpicture}[x=1cm, y=1cm]
+
+  \tikzset{
+    ent/.style={draw=black, fill=white, rectangle split, rectangle split parts=2,
+                rectangle split draw splits=true, text width=32mm,
+                inner sep=2.5pt, font=\sffamily\tiny},
+    rel/.style={draw=black, fill=figGrisTresClair, diamond, aspect=2.2,
+                inner sep=1pt, font=\sffamily\tiny, align=center}
+  }
+  \newcommand{\nomcl}[1]{\makebox[\linewidth][c]{\textbf{#1}}}
+  \newcommand{\pk}[1]{\underline{#1}}
+
+  % ── Schéma conversation ───────────────────────────────────
+  \node[ent] (cli) at (0,4.4) {
+    \nomcl{Client}
+    \nodepart{two}
+      \pk{id\_client}\\ nom\\ msisdn\\ type\_abonnement\\ langue
+  };
+  \node[ent] (ses) at (5.6,4.4) {
+    \nomcl{SessionAppel}
+    \nodepart{two}
+      \pk{id\_session}\\ \textit{id\_client}\\ canal, langue\\ debut, duree\\ issue
+  };
+  \node[ent] (tur) at (11.2,4.4) {
+    \nomcl{TourDeParole}
+    \nodepart{two}
+      \pk{id\_tour}\\ \textit{id\_session}\\ locuteur\\ texte\_masque\\ sentiment
+  };
+
+  \node[rel] (r1) at (2.8,4.4) {possède};
+  \node[rel] (r2) at (8.4,4.4) {contient};
+  \draw (cli.east) -- node[card, above] {1,1} (r1.west);
+  \draw (r1.east) -- node[card, above] {0,n} (ses.west);
+  \draw (ses.east) -- node[card, above] {1,1} (r2.west);
+  \draw (r2.east) -- node[card, above] {1,n} (tur.west);
+
+  % ── Schéma décision et exécution ──────────────────────────
+  \node[ent] (dec) at (0,0.4) {
+    \nomcl{Decision}
+    \nodepart{two}
+      \pk{id\_decision}\\ \textit{id\_session}\\ action\_proposee\\ confiance
+  };
+  \node[ent] (ver) at (5.6,0.4) {
+    \nomcl{Verdict}
+    \nodepart{two}
+      \pk{id\_verdict}\\ \textit{id\_decision}\\ resultat\\ id\_regle\\ justification
+  };
+  \node[ent] (acn) at (11.2,0.4) {
+    \nomcl{Action}
+    \nodepart{two}
+      \pk{id\_action}\\ \textit{id\_verdict}\\ identite\_operation\\ statut, reference
+  };
+
+  \node[rel] (r3) at (2.8,0.4) {motive};
+  \node[rel] (r4) at (8.4,0.4) {autorise};
+  \draw (dec.east) -- node[card, above] {1,1} (r3.west);
+  \draw (r3.east) -- node[card, above] {1,1} (ver.west);
+  \draw (ver.east) -- node[card, above] {1,1} (r4.west);
+  \draw (r4.east) -- node[card, above] {0,n} (acn.west);
+
+  \node[rel] (r5) at (5.6,2.4) {déclenche};
+  \draw (ses.south) -- node[card, right] {1,1} (r5.north);
+  \draw (r5.south) -- node[card, right] {0,n} (ver.north);
+
+  % ── Schéma audit ──────────────────────────────────────────
+  \node[ent] (aud) at (11.2,-3.6) {
+    \nomcl{EntreeAudit}
+    \nodepart{two}
+      \pk{id\_entree}\\ contenu\\ empreinte\_precedente\\ empreinte
+  };
+  \node[rel] (r6) at (11.2,-1.6) {consigne};
+  \draw (acn.south) -- node[card, right] {1,1} (r6.north);
+  \draw (r6.south) -- node[card, right] {1,1} (aud.north);
+
+  % ── Schéma routage et escalade ────────────────────────────
+  \node[ent] (con) at (0,-3.6) {
+    \nomcl{Conseiller}
+    \nodepart{two}
+      \pk{id\_conseiller}\\ nom\\ specialite\\ disponible
+  };
+  \node[ent] (cre) at (5.6,-3.6) {
+    \nomcl{Creneau}
+    \nodepart{two}
+      \pk{id\_creneau}\\ \textit{id\_conseiller}\\ debut, fin\\ reserve
+  };
+  \node[rel] (r7) at (2.8,-3.6) {offre};
+  \draw (con.east) -- node[card, above] {1,1} (r7.west);
+  \draw (r7.east) -- node[card, above] {0,n} (cre.west);
+
+  \node[ent] (rap) at (5.6,-7.0) {
+    \nomcl{Rappel}
+    \nodepart{two}
+      \pk{id\_rappel}\\ \textit{id\_creneau}, \textit{id\_client}\\ etat\\ planifie\_le
+  };
+  \node[rel] (r8) at (5.6,-5.3) {réserve};
+  \draw (cre.south) -- node[card, right] {0,1} (r8.north);
+  \draw (r8.south) -- node[card, right] {1,1} (rap.north);
+
+  \node[ent] (esc) at (0,-7.0) {
+    \nomcl{Escalade}
+    \nodepart{two}
+      \pk{id\_escalade}\\ \textit{id\_session}\\ motif\\ synthese, resolution
+  };
+  \node[rel] (r9) at (2.8,-7.0) {aboutit à};
+  \draw (esc.east) -- node[card, above] {0,1} (r9.west);
+  \draw (r9.east) -- node[card, above] {0,1} (rap.west);
+
+  % ── Schéma ticketing ──────────────────────────────────────
+  \node[ent] (tic) at (11.2,-7.0) {
+    \nomcl{Ticket}
+    \nodepart{two}
+      \pk{id\_ticket}\\ id\_externe\\ \textit{id\_client}\\ categorie, etat\\ priorite
+  };
+  \node[rel] (r10) at (8.4,-7.0) {ouvre};
+  \draw (rap.east) -- node[card, above] {0,n} (r10.west);
+  \draw (r10.east) -- node[card, above] {0,n} (tic.west);
+
+  % ── Renvoi de la session vers l'escalade ──────────────────
+  \draw (ses.west) -- (3.55,4.4) -- (3.55,2.0) -- (-2.35,2.0)
+        -- (-2.35,-7.0) node[card, left, pos=0.55] {0,1} -- (esc.west);
+
+  \node[note, text width=104mm, anchor=north, align=center] at (5.6,-8.85)
+       {Les attributs soulignés sont les identifiants, les attributs en italique sont les clés étrangères.\\Le texte des tours de parole est masqué avant d'être écrit.};
+
+\end{tikzpicture}

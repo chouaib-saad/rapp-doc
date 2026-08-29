@@ -1,0 +1,65 @@
+% Répartition du budget de latence par étape (figure 4.2)
+\begin{tikzpicture}[x=1cm, y=1cm]
+
+  % Échelle : 1 cm pour 100 ms
+  \def\S{0.01}
+
+  \tikzset{
+    seg/.style={draw=black},
+    lg/.style={font=\sffamily\tiny, anchor=west}
+  }
+
+  % ── Axe des abscisses ─────────────────────────────────────
+  \draw[->] (0,-2.9) -- (21.5,-2.9);
+  \foreach \ms in {0,250,500,750,1000,1250,1500,1750,2000}{
+    \draw ({\ms*\S},-2.9) -- ({\ms*\S},-3.05);
+    \node[font=\sffamily\tiny, anchor=north] at ({\ms*\S},-3.08) {\ms};
+  }
+  \node[font=\sffamily\tiny\itshape, anchor=north] at (10.75,-3.60) {millisecondes};
+
+  % ── Barre 1 : échange sans recherche documentaire ─────────
+  % motifs distincts par étape, sans couleur
+  \def\ya{-0.35}
+  \def\hb{0.72}
+  \fill[figGrisClair, seg]   (0,\ya) rectangle ({250*\S},\ya-\hb);
+  \fill[white, seg]          ({250*\S},\ya) rectangle ({450*\S},\ya-\hb);
+  \fill[figGrisTresClair, seg]({450*\S},\ya) rectangle ({495*\S},\ya-\hb);
+  \fill[figGrisMoyen, seg]   ({495*\S},\ya) rectangle ({1045*\S},\ya-\hb);
+  \fill[white, seg]          ({1045*\S},\ya) rectangle ({1245*\S},\ya-\hb);
+  \fill[figGrisClair, seg]   ({1245*\S},\ya) rectangle ({1320*\S},\ya-\hb);
+  \node[font=\sffamily\tiny, anchor=east] at (-0.15,\ya-0.36) {Sans recherche};
+  \node[font=\sffamily\tiny\bfseries, anchor=west] at ({1320*\S+0.15},\ya-0.36) {1,0 à 1,6 s};
+
+  % ── Barre 2 : échange avec recherche documentaire ─────────
+  \def\yb{-1.45}
+  \fill[figGrisClair, seg]   (0,\yb) rectangle ({250*\S},\yb-\hb);
+  \fill[white, seg]          ({250*\S},\yb) rectangle ({450*\S},\yb-\hb);
+  \fill[figGrisTresClair, seg]({450*\S},\yb) rectangle ({495*\S},\yb-\hb);
+  \fill[pattern=north east lines, seg] ({495*\S},\yb) rectangle ({770*\S},\yb-\hb);
+  \fill[figGrisMoyen, seg]   ({770*\S},\yb) rectangle ({1320*\S},\yb-\hb);
+  \fill[white, seg]          ({1320*\S},\yb) rectangle ({1520*\S},\yb-\hb);
+  \fill[figGrisClair, seg]   ({1520*\S},\yb) rectangle ({1595*\S},\yb-\hb);
+  \node[font=\sffamily\tiny, anchor=east] at (-0.15,\yb-0.36) {Avec recherche};
+  \node[font=\sffamily\tiny\bfseries, anchor=west] at ({1595*\S+0.15},\yb-0.36) {1,2 à 2,0 s};
+
+  % ── Seuil de perception ───────────────────────────────────
+  \draw[dashed, line width=0.7pt] ({1500*\S},0.35) -- ({1500*\S},-2.9);
+  \node[font=\sffamily\tiny\itshape, anchor=south, align=center] at ({1500*\S},0.42)
+       {seuil au delà duquel\\l'attente devient perceptible};
+
+  % ── Légende ───────────────────────────────────────────────
+  \def\yl{-4.35}
+  \foreach \x/\y/\st/\lbl in {
+      0/0/{figGrisClair}/{Détection de fin d'énoncé et gigue réseau},
+      10.6/0/{white}/{Transcription et synthèse vocale},
+      0/1/{figGrisTresClair}/{Assemblage du contexte},
+      10.6/1/{figGrisMoyen}/{Raisonnement}}
+    {
+      \fill[\st, draw=black] (\x,{\yl-\y*0.58}) rectangle (\x+0.42,{\yl-\y*0.58+0.30});
+      \node[lg] at (\x+0.52,{\yl-\y*0.58+0.15}) {\lbl};
+    }
+  \fill[pattern=north east lines, draw=black] (0,\yl-1.16) rectangle (0.42,\yl-0.86);
+  \node[lg] at (0.52,\yl-1.01)
+       {Récupération documentaire, présente uniquement lorsque la demande l'appelle};
+
+\end{tikzpicture}

@@ -1,0 +1,80 @@
+% Chronogramme d'un échange conversationnel complet (figure 4.6)
+\begin{tikzpicture}[x=1cm, y=1cm]
+
+  % Échelle : 1 cm pour 100 ms
+  \def\S{0.01}
+  \def\H{0.42}
+
+  \tikzset{bande/.style={draw=black}}
+
+  % ── Axe du temps ──────────────────────────────────────────
+  \draw[->] (0,-6.15) -- (19.2,-6.15);
+  \foreach \ms in {0,200,400,600,800,1000,1200,1400,1600,1800}{
+    \draw ({\ms*\S},-6.15) -- ({\ms*\S},-6.30);
+    \node[font=\sffamily\tiny, anchor=north] at ({\ms*\S},-6.33) {\ms};
+  }
+  \node[font=\sffamily\tiny\itshape, anchor=north] at (9.0,-6.85) {millisecondes depuis le début de l'énoncé};
+
+  % ── Bandes par composant ──────────────────────────────────
+  \foreach \i/\lbl in {
+      0/{Client},
+      1/{Transport},
+      2/{Détection d'activité},
+      3/{Transcription},
+      4/{Agent},
+      5/{Recherche documentaire},
+      6/{Synthèse vocale}}
+    {
+      \node[font=\sffamily\tiny, anchor=east] at (-0.2,{-\i*0.8}) {\lbl};
+      \draw[figGrisMoyen, line width=0.3pt] (0,{-\i*0.8}) -- (19.0,{-\i*0.8});
+    }
+
+  % Client parle, puis écoute
+  \fill[figGrisClair, bande] (0,{0+\H/2}) rectangle ({250*\S},{0-\H/2});
+  \node[font=\sffamily\tiny] at ({125*\S},0) {parle};
+  \fill[figGrisMoyen, bande] ({1180*\S},{0+\H/2}) rectangle ({1800*\S},{0-\H/2});
+  \node[font=\sffamily\tiny] at ({1490*\S},0) {entend la réponse};
+
+  % Transport
+  \fill[figGrisTresClair, bande] (0,{-0.8+\H/2}) rectangle ({1800*\S},{-0.8-\H/2});
+  \node[font=\sffamily\tiny] at ({900*\S},-0.8) {canal temps réel maintenu};
+
+  % Détection d'activité
+  \fill[figGrisClair, bande] ({250*\S},{-1.6+\H/2}) rectangle ({500*\S},{-1.6-\H/2});
+  \node[font=\sffamily\tiny, anchor=west] at ({510*\S},-1.6) {silence de 250 ms, fin de tour};
+
+  % Transcription : commence pendant que le client parle
+  \fill[pattern=north east lines, bande] (0,{-2.4+\H/2}) rectangle ({250*\S},{-2.4-\H/2});
+  \fill[figGrisClair, bande] ({250*\S},{-2.4+\H/2}) rectangle ({620*\S},{-2.4-\H/2});
+  \node[font=\sffamily\tiny, anchor=west] at ({630*\S},-2.4) {stabilisation};
+
+  % Agent : génération anticipée puis génération confirmée
+  \fill[pattern=north east lines, bande] ({430*\S},{-3.2+\H/2}) rectangle ({620*\S},{-3.2-\H/2});
+  \fill[figGrisMoyen, bande] ({620*\S},{-3.2+\H/2}) rectangle ({1080*\S},{-3.2-\H/2});
+  \node[font=\sffamily\tiny, anchor=west] at ({1090*\S},-3.2) {raisonnement};
+
+  % Recherche documentaire, conditionnelle
+  \fill[figGrisClair, bande, densely dashed] ({660*\S},{-4.0+\H/2}) rectangle ({930*\S},{-4.0-\H/2});
+  \node[font=\sffamily\tiny, anchor=west] at ({940*\S},-4.0) {trois filtres successifs};
+
+  % Synthèse vocale : premiers fragments avant la fin de la génération
+  \fill[figGrisMoyen, bande] ({1020*\S},{-4.8+\H/2}) rectangle ({1180*\S},{-4.8-\H/2});
+  \fill[figGrisClair, bande] ({1180*\S},{-4.8+\H/2}) rectangle ({1620*\S},{-4.8-\H/2});
+  \node[font=\sffamily\tiny, anchor=west] at ({1630*\S},-4.8) {fragments suivants};
+
+  % ── Repères ───────────────────────────────────────────────
+  \draw[dashed, line width=0.6pt] ({250*\S},0.45) -- ({250*\S},-5.65);
+  \node[font=\sffamily\tiny\itshape, anchor=south, align=center] at ({250*\S},0.5) {fin de\\l'énoncé};
+
+  \draw[dashed, line width=0.6pt] ({1180*\S},0.45) -- ({1180*\S},-5.65);
+  \node[font=\sffamily\tiny\itshape, anchor=south, align=center] at ({1180*\S},0.5) {début de la\\réponse audible};
+
+  \draw[{Latex[length=1.6mm]}-{Latex[length=1.6mm]}] ({250*\S},-5.5) -- ({1180*\S},-5.5);
+  \node[font=\sffamily\tiny\bfseries, fill=white, inner sep=1pt] at ({715*\S},-5.5) {délai perçu};
+
+  % ── Légende des recouvrements ─────────────────────────────
+  \fill[pattern=north east lines, draw=black] (0,-7.5) rectangle (0.42,-7.2);
+  \node[font=\sffamily\tiny, anchor=west] at (0.52,-7.35)
+       {Traitement recouvrant l'étape précédente : c'est ce recouvrement qui rend le délai perçu inférieur à la somme des durées.};
+
+\end{tikzpicture}

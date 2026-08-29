@@ -1,0 +1,44 @@
+% Orchestration des agents et transitions (figure 3.15)
+\begin{tikzpicture}[x=1cm, y=1cm]
+
+  \tikzset{ag/.style={fbox, text width=30mm, align=center, minimum height=12mm}}
+
+  \node[ag, fill=figGrisTresClair] (acc) at (0,0)
+       {\textbf{Agent d'accueil}\\\textit{ouverture, identification\\de la nature de la demande}};
+
+  \node[ag] (fac) at (6.6, 2.9)
+       {\textbf{Agent de facturation}\\\textit{solde, facture,\\règlement, report}};
+  \node[ag] (cpt) at (6.6, 0)
+       {\textbf{Agent de gestion\\de compte}\\\textit{forfait, recharge,\\itinérance, ligne}};
+  \node[ag] (tec) at (6.6,-2.9)
+       {\textbf{Agent technique}\\\textit{carte SIM, réseau,\\connectivité}};
+
+  \node[ag, fill=figGrisTresClair] (sup) at (13.0,0)
+       {\textbf{Agent de supervision}\\\textit{hors domaine,\\pilotage des escalades}};
+
+  % ── Transitions ───────────────────────────────────────────
+  \draw[flux] (acc.east) -- node[etiq, above, pos=0.55] {facturation} (fac.west);
+  \draw[flux] (acc.east) -- node[etiq, above, pos=0.55] {compte} (cpt.west);
+  \draw[flux] (acc.east) -- node[etiq, above, pos=0.55] {technique} (tec.west);
+
+  \draw[flux] (fac.east) -- node[etiq, above, pos=0.5] {hors domaine} (sup.north west);
+  \draw[flux] (cpt.east) -- (sup.west);
+  \draw[flux] (tec.east) -- node[etiq, above, pos=0.5] {escalade} (sup.south west);
+
+  \draw[flux] (acc.north) -- (0,3.9) -- node[etiq, above, pos=0.5] {demande manifestement hors périmètre} (13.0,3.9) -- (sup.north);
+
+  % ── Ce qui accompagne le passage de relais ────────────────
+  \node[note, text width=44mm, anchor=north] (n1) at (3.3,-4.5)
+       {Le contexte déjà constitué accompagne le transfert : le client ne se réidentifie pas et ne reformule pas sa demande.};
+  \draw[dependance] (n1.north) -- (3.3,-1.45);
+
+  \node[note, text width=44mm, anchor=north] (n2) at (10.0,-4.5)
+       {Un garde fou borne le nombre de passages, afin que deux agents ne se renvoient pas indéfiniment une demande.};
+  \draw[dependance] (n2.north) -- (10.0,-1.45);
+
+  % ── Phrase de transition déterministe ─────────────────────
+  \node[note, text width=40mm, anchor=west] (n3) at (14.9,2.9)
+       {À chaque transition, une phrase fixée par langue est énoncée au client. Elle n'est pas produite par le modèle.};
+  \draw[dependance] (n3.west) -- (8.7,2.9);
+
+\end{tikzpicture}

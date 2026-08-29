@@ -1,0 +1,78 @@
+% Diagramme de déploiement de la plateforme (figure 4.5)
+\begin{tikzpicture}[x=1cm, y=1cm]
+
+  \tikzset{
+    ct/.style={fbox, text width=32mm, align=center, minimum height=8mm,
+               font=\sffamily\tiny},
+    hote/.style={draw=black, line width=0.7pt}
+  }
+
+  % ── Postes clients ────────────────────────────────────────
+  \node[ct, minimum height=10mm] (nav1) at (0, 4.3) {\textbf{Navigateur}\\portail client};
+  \node[ct, minimum height=10mm] (nav2) at (0, 2.3) {\textbf{Navigateur}\\console d'administration};
+  \node[etiquettezone, anchor=south] at (0,5.35) {Postes clients};
+  \draw[hote] (-1.9,1.5) rectangle (1.9,5.15);
+
+  % ── Hôte d'infrastructure ─────────────────────────────────
+  \node[ct, fill=figGrisTresClair] (lk)  at (5.9, 5.1) {Serveur temps réel\\\textit{7880}};
+  \node[ct, fill=figGrisTresClair] (pg)  at (5.9, 3.9) {Base relationnelle\\\textit{5432}};
+  \node[ct, fill=figGrisTresClair] (qd)  at (5.9, 2.7) {Index documentaire\\\textit{6333}};
+  \node[ct, fill=figGrisTresClair] (mn)  at (5.9, 1.5) {Stockage d'objets\\\textit{9000}};
+  \node[ct, fill=figGrisTresClair] (rd)  at (5.9, 0.3) {Cache\\\textit{6379}};
+  \node[ct, fill=figGrisTresClair] (ot)  at (5.9,-0.9) {Collecteur de télémétrie\\\textit{4317}};
+  \node[etiquettezone, anchor=south] at (5.9,5.95) {Services d'infrastructure, 6 conteneurs};
+  \draw[hote] (3.95,-1.55) rectangle (7.85,5.75);
+
+  % ── Hôte applicatif ───────────────────────────────────────
+  \node[ct] (aw)  at (11.2, 5.1) {Processus agent\\\textit{sans port}};
+  \node[ct] (tk)  at (11.2, 3.9) {Service de jetons\\\textit{8107}};
+  \node[ct] (api) at (11.2, 2.7) {Interface applicative\\\textit{8108}};
+  \node[ct] (ctx) at (11.2, 1.5) {Contexte\\\textit{8101}};
+  \node[ct] (kno) at (11.2, 0.3) {Connaissance\\\textit{8102}};
+  \node[ct] (dec) at (11.2,-0.9) {Décision\\\textit{8103}};
+  \node[ct] (pol) at (11.2,-2.1) {Politique\\\textit{8104}};
+
+  \node[ct] (exe) at (15.0, 5.1) {Exécution\\\textit{8105}};
+  \node[ct] (not) at (15.0, 3.9) {Notification\\\textit{8106}};
+  \node[ct] (m1)  at (15.0, 2.7) {Passerelle documentaire\\\textit{8201}};
+  \node[ct] (m2)  at (15.0, 1.5) {Passerelle tickets\\\textit{8202}};
+  \node[ct] (m3)  at (15.0, 0.3) {Passerelle messagerie\\\textit{8203}};
+  \node[ct] (sim) at (15.0,-0.9) {Simulateurs métier\\\textit{8109 à 8111}};
+  \node[ct] (km)  at (15.0,-2.1) {Modèles locaux\\\textit{sans port}};
+
+  \node[etiquettezone, anchor=south] at (13.1,5.95) {Services applicatifs, 16 conteneurs};
+  \draw[hote] (9.25,-2.75) rectangle (16.95,5.75);
+
+  % ── Observabilité ─────────────────────────────────────────
+  \node[ct, fill=figGrisTresClair] (prom) at (20.3,-0.9) {Prometheus\\\textit{9090}};
+  \node[ct, fill=figGrisTresClair] (graf) at (20.3,-2.1) {Grafana\\\textit{3001}};
+  \node[etiquettezone, anchor=north] at (20.3,-2.75) {Observabilité, 2 conteneurs};
+  \draw[hote] (18.35,-2.65) rectangle (22.25,-0.25);
+
+  % ── Systèmes externes ─────────────────────────────────────
+  \node[ct, fill=figGrisClair] (glpi) at (20.3, 3.3) {Système de gestion\\de tickets};
+  \node[ct, fill=figGrisClair] (ops)  at (20.3, 1.5) {Systèmes métier\\de l'opérateur};
+  \node[etiquettezone, anchor=south] at (20.3,4.35) {Systèmes externes};
+  \draw[hote, dashed] (18.35,0.75) rectangle (22.25,4.15);
+
+  % ── Liaisons ──────────────────────────────────────────────
+  \draw[assoc] (nav1.east) -- node[etiq, above, pos=0.5] {temps réel} (lk.west);
+  \draw[assoc] (nav2.east) -- node[etiq, above, pos=0.5] {requêtes} (3.95,2.3) -- (9.25,2.7) -- (api.west);
+  \draw[assoc] (lk.east) -- node[etiq, above, pos=0.5] {session} (aw.west);
+  \draw[assoc] (pg.east) -- (ctx.west);
+  \draw[assoc] (qd.east) -- (kno.west);
+  \draw[assoc] (mn.east) -- (kno.west);
+  \draw[assoc] (ot.east) -- (pol.west);
+
+  \draw[assoc] (m2.east) -- (glpi.west);
+  \draw[assoc] (exe.east) -- (ops.west);
+  \draw[assoc] (not.east) -- (ops.west);
+
+  % Prometheus interroge chaque service sur son point /metrics.
+  \draw[dependance] (prom.west) -- node[etiq, above, pos=0.55] {/metrics} (16.95,-0.9);
+  \draw[dependance] (graf.north) -- (prom.south);
+
+  \node[note, text width=64mm, anchor=north, align=center] at (10.5,-3.5)
+       {Le processus agent est le seul composant à n'exposer aucun port d'écoute pour les requêtes\\métier : il se déclare auprès du serveur temps réel. Il expose en revanche ses métriques,\\comme les douze autres services instrumentés.};
+
+\end{tikzpicture}

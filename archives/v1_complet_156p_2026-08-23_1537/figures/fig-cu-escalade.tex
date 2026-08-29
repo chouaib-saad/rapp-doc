@@ -1,0 +1,37 @@
+% Cas d'utilisation détaillé : escalader vers un conseiller humain (figure 2.6)
+\begin{tikzpicture}[x=1cm, y=1cm]
+
+  \draw[line width=0.7pt] (2.15,-3.55) rectangle (11.55,2.55);
+  \node[font=\sffamily\small\bfseries, anchor=north] at (6.85,2.42) {La plateforme};
+
+  \acteur{cli}{(0,-0.4)}{Client}
+  \acteur{cons}{(13.6,-0.4)}{Conseiller}
+
+  \node[cu, minimum width=34mm] (principal) at (4.55,-0.4)
+       {Escalader vers un\\conseiller humain};
+
+  \node[cu, minimum width=32mm] (inc1) at (9.25, 1.65) {Constituer\\le dossier};
+  \node[cu, minimum width=32mm] (inc2) at (9.25, 0.30) {Rechercher un\\conseiller disponible};
+
+  \node[cu, minimum width=32mm] (ext1) at (9.25,-1.35) {Transférer l'appel};
+  \node[cu, minimum width=32mm] (ext2) at (9.25,-2.75) {Planifier un rappel};
+
+  \draw[assoc] (cli-droite) -- (principal.west);
+  \draw[assoc] (cons-gauche) -- (ext1.east);
+  \draw[assoc] (cons-gauche) -- (ext2.east);
+
+  \draw[dependance] (principal) -- node[etiq, pos=0.55] {$\ll$ include $\gg$} (inc1);
+  \draw[dependance] (principal) -- node[etiq, pos=0.55] {$\ll$ include $\gg$} (inc2);
+
+  \draw[dependance] (ext1) -- node[etiq, pos=0.5] {$\ll$ extend $\gg$} (principal);
+  \draw[dependance] (ext2) -- node[etiq, pos=0.45] {$\ll$ extend $\gg$} (principal);
+
+  % Acteur secondaire
+  \node[fbox, minimum width=30mm, align=center] (notif) at (4.55,-4.85)
+       {$\ll$ système $\gg$\\Service de notification};
+  \draw[assoc] (ext2.west) -- ++(-0.4,0) |- (notif.east);
+
+  \node[note, text width=38mm, anchor=south] at (6.85,3.05)
+       {Les deux cas étendus sont exclusifs :\\le rappel n'est proposé que si aucun\\conseiller n'est disponible, ou si le\\transfert a échoué.};
+
+\end{tikzpicture}

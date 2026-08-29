@@ -1,0 +1,39 @@
+{\reset@font\mtcSfont\mtc@string\contentsline{section}{\noexpand \leavevmode \numberline {2.1}Identification des acteurs}{\reset@font\mtcSfont 17}{section.2.1}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {2.1.1}Acteurs principaux}{\reset@font\mtcSSfont 17}{subsection.2.1.1}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {2.1.2}Acteurs secondaires}{\reset@font\mtcSSfont 18}{subsection.2.1.2}}
+{\reset@font\mtcSfont\mtc@string\contentsline{section}{\noexpand \leavevmode \numberline {2.2}Besoins fonctionnels}{\reset@font\mtcSfont 19}{section.2.2}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {2.2.1}Conduite de la conversation}{\reset@font\mtcSSfont 19}{subsection.2.2.1}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {2.2.2}Construction du contexte client}{\reset@font\mtcSSfont 19}{subsection.2.2.2}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {2.2.3}Ancrage documentaire des réponses}{\reset@font\mtcSSfont 19}{subsection.2.2.3}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {2.2.4}Traitement des actions sensibles}{\reset@font\mtcSSfont 19}{subsection.2.2.4}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {2.2.5}Gestion des tickets}{\reset@font\mtcSSfont 20}{subsection.2.2.5}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {2.2.6}Escalade et rappel}{\reset@font\mtcSSfont 20}{subsection.2.2.6}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {2.2.7}Espace client}{\reset@font\mtcSSfont 20}{subsection.2.2.7}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {2.2.8}Supervision et administration}{\reset@font\mtcSSfont 20}{subsection.2.2.8}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {2.2.9}Récapitulatif}{\reset@font\mtcSSfont 21}{subsection.2.2.9}}
+{\reset@font\mtcSfont\mtc@string\contentsline{section}{\noexpand \leavevmode \numberline {2.3}Besoins non fonctionnels}{\reset@font\mtcSfont 21}{section.2.3}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {2.3.1}Performance et comportement temps réel}{\reset@font\mtcSSfont 21}{subsection.2.3.1}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {2.3.2}Fiabilité et disponibilité}{\reset@font\mtcSSfont 22}{subsection.2.3.2}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {2.3.3}Robustesse et tolérance aux pannes}{\reset@font\mtcSSfont 22}{subsection.2.3.3}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {2.3.4}Sécurité et confidentialité}{\reset@font\mtcSSfont 22}{subsection.2.3.4}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {2.3.5}Traçabilité et auditabilité}{\reset@font\mtcSSfont 22}{subsection.2.3.5}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {2.3.6}Extensibilité et maintenabilité}{\reset@font\mtcSSfont 22}{subsection.2.3.6}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {2.3.7}Passage à l'échelle}{\reset@font\mtcSSfont 23}{subsection.2.3.7}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {2.3.8}Interopérabilité et portabilité}{\reset@font\mtcSSfont 23}{subsection.2.3.8}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {2.3.9}Testabilité}{\reset@font\mtcSSfont 23}{subsection.2.3.9}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {2.3.10}Ergonomie}{\reset@font\mtcSSfont 23}{subsection.2.3.10}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {2.3.11}Récapitulatif}{\reset@font\mtcSSfont 23}{subsection.2.3.11}}
+{\reset@font\mtcSfont\mtc@string\contentsline{section}{\noexpand \leavevmode \numberline {2.4}Diagrammes de cas d'utilisation}{\reset@font\mtcSfont 24}{section.2.4}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {2.4.1}Diagramme de cas d'utilisation général}{\reset@font\mtcSSfont 24}{subsection.2.4.1}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {2.4.2}Cas d'utilisation : obtenir une réponse documentaire}{\reset@font\mtcSSfont 25}{subsection.2.4.2}}
+{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode \numberline {2.4.2.1}Diagramme du cas}{\reset@font\mtcSSSfont 25}{subsubsection.2.4.2.1}}
+{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode \numberline {2.4.2.2}Description textuelle}{\reset@font\mtcSSSfont 25}{subsubsection.2.4.2.2}}
+{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode \numberline {2.4.2.3}Diagramme de séquence système}{\reset@font\mtcSSSfont 27}{subsubsection.2.4.2.3}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {2.4.3}Cas d'utilisation : exécuter une opération sensible}{\reset@font\mtcSSfont 27}{subsection.2.4.3}}
+{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode \numberline {2.4.3.1}Diagramme du cas}{\reset@font\mtcSSSfont 27}{subsubsection.2.4.3.1}}
+{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode \numberline {2.4.3.2}Description textuelle}{\reset@font\mtcSSSfont 27}{subsubsection.2.4.3.2}}
+{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode \numberline {2.4.3.3}Diagramme de séquence système}{\reset@font\mtcSSSfont 29}{subsubsection.2.4.3.3}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {2.4.4}Cas d'utilisation : escalader vers un conseiller humain}{\reset@font\mtcSSfont 29}{subsection.2.4.4}}
+{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode \numberline {2.4.4.1}Diagramme du cas}{\reset@font\mtcSSSfont 29}{subsubsection.2.4.4.1}}
+{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode \numberline {2.4.4.2}Description textuelle}{\reset@font\mtcSSSfont 29}{subsubsection.2.4.4.2}}
+{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode \numberline {2.4.4.3}Diagramme de séquence système}{\reset@font\mtcSSSfont 31}{subsubsection.2.4.4.3}}

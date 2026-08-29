@@ -1,0 +1,241 @@
+% ============================================================
+% figures/styles.tex
+% Styles communs à toutes les figures vectorielles du rapport.
+%
+% Règles visuelles, tirées de images_patterns_accepted/readme.txt :
+%   - strictement monochrome : noir, blanc, nuances de gris
+%   - fond blanc
+%   - typographie propre et lisible, sans empattement pour les
+%     figures afin de les distinguer du corps du texte
+%   - angles nets, alignements réguliers, espacement uniforme
+%   - notation UML respectée, chaque type de diagramme gardant
+%     son identité propre
+% ============================================================
+
+\usetikzlibrary{
+  shapes.geometric,
+  shapes.multipart,
+  shapes.misc,
+  arrows.meta,
+  positioning,
+  calc,
+  fit,
+  backgrounds,
+  patterns,
+  decorations.pathreplacing,
+  chains,
+  matrix
+}
+
+% ── Nuances de gris ─────────────────────────────────────────
+\definecolor{figGrisTresClair}{gray}{0.94}
+\definecolor{figGrisClair}{gray}{0.86}
+\definecolor{figGrisMoyen}{gray}{0.70}
+\definecolor{figGrisFonce}{gray}{0.45}
+
+% ── Réglages généraux ───────────────────────────────────────
+\tikzset{
+  every picture/.style={
+    line width=0.5pt,
+    font=\sffamily\scriptsize
+  },
+  %
+  % ── Boîtes génériques ─────────────────────────────────────
+  fbox/.style={
+    draw=black, fill=white, rectangle,
+    minimum height=7mm, minimum width=22mm,
+    inner sep=2pt, align=center
+  },
+  fboxg/.style={fbox, fill=figGrisTresClair},
+  fboxgg/.style={fbox, fill=figGrisClair},
+  fboxtitre/.style={fbox, fill=figGrisClair, font=\sffamily\scriptsize\bfseries},
+  %
+  % ── Zones de regroupement ─────────────────────────────────
+  zone/.style={
+    draw=figGrisFonce, dashed, rounded corners=2pt,
+    inner sep=3mm
+  },
+  zonepleine/.style={
+    draw=black, rounded corners=2pt, inner sep=3mm, fill=figGrisTresClair
+  },
+  etiquettezone/.style={
+    font=\sffamily\scriptsize\itshape, text=black, fill=white, inner sep=1pt
+  },
+  %
+  % ── UML : cas d'utilisation ───────────────────────────────
+  cu/.style={
+    draw=black, fill=white, ellipse,
+    minimum width=30mm, minimum height=9mm,
+    inner sep=1pt, align=center
+  },
+  %
+  % ── UML : classes ─────────────────────────────────────────
+  classe/.style={
+    draw=black, fill=white,
+    rectangle split, rectangle split parts=3,
+    rectangle split draw splits=true,
+    minimum width=28mm, inner sep=2pt,
+    text width=28mm, align=left,
+    every one node part/.style={font=\sffamily\scriptsize\bfseries, align=center}
+  },
+  classe2/.style={
+    draw=black, fill=white,
+    rectangle split, rectangle split parts=2,
+    rectangle split draw splits=true,
+    minimum width=28mm, inner sep=2pt,
+    text width=28mm, align=left,
+    every one node part/.style={font=\sffamily\scriptsize\bfseries, align=center}
+  },
+  classetitre/.style={
+    draw=black, fill=figGrisTresClair, rectangle,
+    minimum width=28mm, inner sep=3pt, align=center,
+    font=\sffamily\scriptsize\bfseries
+  },
+  interface/.style={
+    classe2, fill=figGrisTresClair
+  },
+  %
+  % ── UML : activités ───────────────────────────────────────
+  action/.style={
+    draw=black, fill=white, rectangle, rounded corners=3pt,
+    minimum height=7mm, minimum width=26mm,
+    inner sep=2pt, align=center
+  },
+  decision/.style={
+    draw=black, fill=white, diamond, aspect=2.4,
+    inner sep=1pt, align=center, minimum height=7mm
+  },
+  debut/.style={
+    draw=black, fill=black, circle, minimum size=3mm, inner sep=0pt
+  },
+  fin/.style={
+    draw=black, fill=white, circle, minimum size=4mm, inner sep=0pt,
+    path picture={\fill (path picture bounding box.center) circle (1.1mm);}
+  },
+  barre/.style={
+    draw=black, fill=black, rectangle,
+    minimum width=30mm, minimum height=1.2mm, inner sep=0pt
+  },
+  %
+  % ── UML : états ───────────────────────────────────────────
+  etat/.style={
+    draw=black, fill=white, rectangle, rounded corners=4pt,
+    minimum height=8mm, minimum width=26mm,
+    inner sep=2pt, align=center
+  },
+  %
+  % ── UML : composants et déploiement ───────────────────────
+  composant/.style={
+    draw=black, fill=white, rectangle,
+    minimum height=9mm, minimum width=30mm,
+    inner sep=3pt, align=center
+  },
+  noeud/.style={
+    draw=black, fill=white, rectangle,
+    minimum height=10mm, minimum width=30mm,
+    inner sep=3pt, align=center
+  },
+  paquetage/.style={
+    draw=black, fill=white, rectangle,
+    minimum height=10mm, minimum width=30mm,
+    inner sep=3pt, align=center
+  },
+  %
+  % ── UML : séquence ────────────────────────────────────────
+  entete/.style={
+    draw=black, fill=figGrisTresClair, rectangle,
+    minimum height=7mm, minimum width=24mm,
+    inner sep=2pt, align=center, font=\sffamily\scriptsize\bfseries
+  },
+  ligne/.style={draw=black, dashed, dash pattern=on 1.6pt off 1.6pt},
+  activation/.style={draw=black, fill=figGrisClair, minimum width=2.4mm, inner sep=0pt},
+  %
+  % ── Flèches ───────────────────────────────────────────────
+  flux/.style={-{Latex[length=2mm, width=1.4mm]}, draw=black},
+  fluxep/.style={-{Latex[length=2.4mm, width=1.8mm]}, draw=black, line width=0.9pt},
+  assoc/.style={draw=black},
+  dirige/.style={-{Straight Barb[length=1.6mm]}, draw=black},
+  dependance/.style={-{Straight Barb[length=1.6mm]}, draw=black, dashed,
+                     dash pattern=on 1.8pt off 1.8pt},
+  heritage/.style={-{Triangle[open, length=2.6mm, width=2.6mm]}, draw=black},
+  realisation/.style={-{Triangle[open, length=2.6mm, width=2.6mm]}, draw=black, dashed,
+                      dash pattern=on 1.8pt off 1.8pt},
+  composition/.style={{Diamond[length=2.6mm, width=1.8mm]}-, draw=black},
+  agregation/.style={{Diamond[open, length=2.6mm, width=1.8mm]}-, draw=black},
+  message/.style={-{Latex[length=1.8mm, width=1.3mm]}, draw=black},
+  retour/.style={-{Latex[length=1.8mm, width=1.3mm]}, draw=black, dashed,
+                 dash pattern=on 1.6pt off 1.6pt},
+  %
+  % ── Étiquettes ────────────────────────────────────────────
+  % align est indispensable : sans lui, un \\ dans un libellé de
+  % noeud provoque une erreur de compilation.
+  etiq/.style={font=\sffamily\tiny, fill=white, inner sep=1pt, align=center},
+  etiqi/.style={font=\sffamily\tiny\itshape, fill=white, inner sep=1pt, align=center},
+  card/.style={font=\sffamily\tiny, inner sep=1.5pt, align=center},
+  note/.style={
+    draw=black, fill=figGrisTresClair, rectangle,
+    inner sep=3pt, align=left, font=\sffamily\tiny\itshape,
+    rounded corners=1pt
+  }
+}
+
+% ── Acteur UML : bonhomme filaire ───────────────────────────
+% Usage : \acteur{nom_du_noeud}{position}{libellé}
+\newcommand{\acteur}[3]{%
+  \begin{scope}[shift={#2}]
+    \draw (0,0.62) circle (0.155);
+    \draw (0,0.465) -- (0,0.06);
+    \draw (-0.22,0.36) -- (0.22,0.36);
+    \draw (0,0.06) -- (-0.19,-0.30);
+    \draw (0,0.06) -- (0.19,-0.30);
+    \node[font=\sffamily\scriptsize, align=center, anchor=north] at (0,-0.36) {#3};
+    \coordinate (#1) at (0,0.2);
+    \coordinate (#1-bas) at (0,-0.36);
+    \coordinate (#1-droite) at (0.28,0.2);
+    \coordinate (#1-gauche) at (-0.28,0.2);
+  \end{scope}%
+}
+
+% ── Symbole de composant UML (petit rectangle à onglets) ────
+\newcommand{\symbcomposant}[1]{%
+  \begin{scope}[shift={#1}, scale=0.9]
+    \draw (0,0) rectangle (0.34,0.24);
+    \draw (-0.07,0.045) rectangle (0.10,0.095);
+    \draw (-0.07,0.145) rectangle (0.10,0.195);
+  \end{scope}%
+}
+
+% ── Onglet de paquetage UML ─────────────────────────────────
+% À appeler APRÈS avoir posé le noeud, qui conserve ses ancres.
+% Usage : \node[fbox, minimum height=11mm] (p) {...}; \ongletPaquet{p}
+\newcommand{\ongletPaquet}[1]{%
+  \draw[fill=white]
+    ([yshift=-0.2pt]#1.north west) rectangle
+    ([xshift=13mm, yshift=3.4mm]#1.north west);
+}
+
+% ── Icône de composant, posée dans le coin d'un noeud ───────
+\newcommand{\iconeComposant}[1]{%
+  \symbcomposant{($(#1.north east)+(-0.58,-0.44)$)}%
+}
+
+% ── Interface fournie (boule) et requise (demi-cercle) ──────
+% Usage : \interfaceFournie{depuis}{vers} pose la boule au bout.
+\newcommand{\interfaceFournie}[2]{%
+  \draw (#1) -- (#2);
+  \draw[fill=white] (#2) circle (1.15mm);%
+}
+\newcommand{\interfaceRequise}[3]{%
+  % #1 point de départ, #2 point d'accroche, #3 angle d'ouverture
+  \draw (#1) -- (#2);
+  \draw ([shift={(#3:1.7mm)}]#2) arc (#3:{#3+230}:1.7mm);%
+}
+
+% ── Noeud de déploiement UML (boîte en perspective) ─────────
+% Usage : \node[noeud] (n) {...}; \perspective{n}
+\newcommand{\perspective}[1]{%
+  \draw ([shift={(0.22,0.22)}]#1.north west) -- ([shift={(0.22,0.22)}]#1.north east)
+        -- ([shift={(0.22,0.22)}]#1.south east) -- (#1.south east);
+  \draw (#1.north west) -- ([shift={(0.22,0.22)}]#1.north west);
+  \draw (#1.north east) -- ([shift={(0.22,0.22)}]#1.north east);%
+}

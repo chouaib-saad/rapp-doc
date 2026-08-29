@@ -1,0 +1,377 @@
+% ============================================================
+% Chapitre 2 : Spécification des besoins
+% ============================================================
+\chapter{Spécification des besoins}
+
+\begin{spacing}{1.2}
+\minitoc
+\thispagestyle{MyStyle}
+\end{spacing}
+\newpage
+
+\section*{Introduction}
+
+Le chapitre précédent a fixé les objectifs du projet. Ce chapitre les traduit en spécifications exploitables. Nous identifions d'abord les acteurs qui interagissent avec la plateforme, car c'est de leurs attentes respectives que découlent les fonctionnalités attendues. Nous formulons ensuite les besoins fonctionnels, puis les besoins non fonctionnels qui fixent les critères de qualité auxquels le système doit satisfaire. Le chapitre se termine par les cas d'utilisation, présentés sous forme de diagrammes puis détaillés pour les trois plus déterminants d'entre eux.
+
+\section{Identification des acteurs}
+
+Un acteur désigne une entité extérieure au système qui interagit avec lui pour en obtenir un service. Nous distinguons les acteurs principaux, qui utilisent directement la plateforme, des acteurs secondaires, qui sont des systèmes tiers sollicités par elle.
+
+\subsection{Acteurs principaux}
+
+Quatre acteurs principaux ont été retenus. Les trois derniers correspondent à une hiérarchie de responsabilités croissantes, chaque niveau disposant des droits du niveau inférieur augmentés des siens.
+
+\begin{itemize}
+  \item \textbf{Le client.} Abonné de l'opérateur. Il s'adresse à la plateforme pour obtenir une information ou faire réaliser une opération sur sa ligne. Il interagit principalement par la voix, et accède par ailleurs à un portail où il retrouve sa situation, ses demandes et l'historique de ses échanges.
+  \item \textbf{Le conseiller.} Agent du service client. Il prend en charge les conversations qui lui sont transmises par la plateforme et traite les demandes de rappel qui lui sont attribuées. Il dispose du niveau de droits le plus bas parmi les profils internes.
+  \item \textbf{Le superviseur.} Responsable de la supervision opérationnelle. Il observe l'activité de la plateforme, consulte les conversations et les décisions prises, suit les indicateurs et organise la disponibilité des conseillers.
+  \item \textbf{L'administrateur.} Responsable de la configuration et de la gouvernance du système. Il gère les comptes, les règles métier, les référentiels et la base documentaire, et dispose des moyens de contrôle de l'intégrité des enregistrements.
+\end{itemize}
+
+\subsection{Acteurs secondaires}
+
+La plateforme ne détient pas les données métier de l'opérateur : elle les consulte et agit sur elles au travers de systèmes tiers, qui constituent autant d'acteurs secondaires.
+
+\begin{itemize}
+  \item \textbf{Le système de gestion de tickets.} Il demeure la référence pour tout ce qui concerne les tickets. La plateforme y crée, consulte, met à jour et clôture les tickets des clients.
+  \item \textbf{Les systèmes métier de l'opérateur.} Ils portent la facturation et les soldes, la supervision du réseau et le provisionnement des services. La plateforme les interroge pour construire le contexte du client et leur adresse les actions approuvées.
+  \item \textbf{Le service de notification.} Il achemine les confirmations et les avis destinés aux clients comme aux conseillers.
+\end{itemize}
+
+Le tableau \ref{tab:acteurs} récapitule le rôle de chaque acteur et son mode d'interaction avec la plateforme.
+
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.25}
+\begin{tabular}{|p{2.6cm}|p{2.2cm}|p{4.4cm}|p{4.6cm}|}
+\hline
+\textbf{Acteur} & \textbf{Type} & \textbf{Responsabilité principale} & \textbf{Mode d'interaction} \\
+\hline
+Client & Principal & Exprimer une demande et obtenir sa résolution & Conversation vocale ou textuelle, portail client \\
+\hline
+Conseiller & Principal & Traiter les conversations transmises et les rappels attribués & Console de supervision, reprise d'appel \\
+\hline
+Superviseur & Principal & Observer l'activité, suivre les indicateurs, organiser les disponibilités & Console de supervision \\
+\hline
+Administrateur & Principal & Configurer les règles, les référentiels et la base documentaire, contrôler l'intégrité & Console d'administration \\
+\hline
+Système de gestion de tickets & Secondaire & Détenir la référence des tickets & Interface de programmation applicative \\
+\hline
+Systèmes métier de l'opérateur & Secondaire & Détenir les données de facturation, de réseau et de provisionnement & Interfaces de service internes \\
+\hline
+Service de notification & Secondaire & Acheminer les confirmations et les avis & Interface de service interne \\
+\hline
+\end{tabular}
+\caption{Acteurs de la plateforme et modes d'interaction}
+\label{tab:acteurs}
+\end{table}
+
+\section{Besoins fonctionnels}
+
+Les besoins fonctionnels décrivent ce que le système doit faire. Nous les avons regroupés par domaine et identifiés individuellement, afin que chacun puisse être suivi jusqu'au chapitre de réalisation.
+
+\subsection{Conduite de la conversation}
+
+La plateforme doit permettre au client d'engager un échange parlé ou écrit et de le mener à son terme sans contrainte de formulation. Elle doit conserver le fil de la conversation d'un tour de parole au suivant, de sorte que le client n'ait jamais à répéter une information déjà donnée. Elle doit identifier l'intention exprimée et, lorsque la demande demeure ambiguë, poser une question de clarification unique et précise plutôt qu'une série de questions fermées. Elle doit accepter d'être interrompue à tout moment et reprendre la main sans perdre l'état de l'échange. Elle doit enfin pouvoir changer de langue en cours de conversation à la demande du client.
+
+\subsection{Construction du contexte client}
+
+La plateforme doit reconstituer automatiquement la situation du client au moment où il s'adresse à elle : son profil, son abonnement, sa situation de facturation, ses demandes récentes et l'historique de ses échanges antérieurs. Cette reconstitution doit être conditionnelle plutôt que systématique, chaque élément n'étant sollicité que lorsque la nature de la demande le justifie, afin de ne pas alourdir inutilement le traitement.
+
+\subsection{Ancrage documentaire des réponses}
+
+La plateforme doit répondre aux questions documentaires en s'appuyant sur la documentation propre à l'opérateur, et non sur les connaissances générales du modèle de langue. Lorsque cette documentation ne contient pas de réponse à la question posée, le système doit le signaler explicitement au client plutôt que produire une réponse vraisemblable. La base documentaire doit pouvoir être alimentée et mise à jour par l'administrateur sans intervention sur le code.
+
+\subsection{Traitement des actions sensibles}
+
+Toute opération engageant le compte du client doit être précédée d'une vérification d'identité, puis soumise à un jeu de règles métier produisant un verdict explicite. Ce verdict doit prendre l'une des trois valeurs suivantes : autorisée, refusée, ou à transmettre à un conseiller. Il doit être accompagné de l'identifiant de la règle qui l'a motivé et d'une justification lisible. Une action autorisée doit être exécutée une fois et une seule, y compris en cas de reprise ou de tentative concurrente. Le résultat doit être confirmé verbalement au client.
+
+\subsection{Gestion des tickets}
+
+La plateforme doit pouvoir consulter les tickets existants d'un client, en créer de nouveaux, les mettre à jour et les clôturer lorsque le problème est résolu. Elle doit connaître l'historique des tickets du client afin d'éviter la création de doublons et de tenir compte des difficultés déjà signalées.
+
+\subsection{Escalade et rappel}
+
+La plateforme doit reconnaître les situations qui appellent une intervention humaine, qu'elles résultent d'une règle métier, d'une demande explicite du client ou d'un mécontentement persistant. Lorsqu'un conseiller est disponible, elle doit lui transférer la conversation. Dans le cas contraire, elle doit proposer un rappel, négocier un créneau compatible avec les disponibilités réelles des conseillers, réserver ce créneau et en informer le client. Dans les deux cas, le conseiller concerné doit recevoir le dossier de l'échange.
+
+\subsection{Espace client}
+
+Le client doit disposer d'un espace personnel lui permettant de consulter son profil, sa situation de facturation, ses demandes, ses rappels programmés et l'historique de ses conversations. Il doit également pouvoir consulter et effacer les informations que la plateforme conserve de ses échanges antérieurs, et n'accéder en aucun cas aux données d'un autre client.
+
+\subsection{Supervision et administration}
+
+Les profils internes doivent disposer des moyens d'observer et de gouverner le système. Cela recouvre la consultation des conversations et de leurs transcriptions, l'inspection des décisions et des verdicts rendus, le suivi des indicateurs d'activité, la gestion des conseillers et de leurs disponibilités, l'administration des règles métier et des référentiels, la gestion de la base documentaire et le contrôle de l'intégrité du registre des opérations.
+
+\subsection{Récapitulatif}
+
+La figure \ref{fig:carte-besoins} récapitule ces besoins sous forme de carte, un bloc par domaine. Cette vue d'ensemble sert de repère pour la suite du rapport : la conception du chapitre suivant s'organise autour des mêmes domaines.
+
+\figureTikz{Carte des besoins fonctionnels par domaine}{carte-besoins}{fig-carte-besoins}
+
+\section{Besoins non fonctionnels}
+
+Les besoins non fonctionnels expriment les propriétés de qualité attendues du système. Nous avons écarté les formulations générales pour ne retenir que les exigences réellement structurantes pour ce projet, chacune étant rattachée à la propriété qu'elle impose à l'architecture.
+
+\subsection{Performance et comportement temps réel}
+
+C'est l'exigence dominante. Un échange parlé n'est perçu comme naturel que si la réponse survient dans le rythme d'une conversation ordinaire. Cette exigence se décline en un budget de temps réparti entre les étapes du traitement : détection de fin de tour de parole, transcription, raisonnement, récupération documentaire, synthèse vocale et acheminement. Aucune étape ne peut être considérée isolément, puisque le dépassement de l'une consomme la marge de toutes les autres.
+
+\subsection{Fiabilité et disponibilité}
+
+La défaillance d'un fournisseur externe ne doit pas interrompre une conversation en cours. Le système doit prévoir, pour chaque étape dépendant d'un service tiers, une solution de repli capable de prendre le relais sans que le client en perçoive autre chose qu'une variation de qualité.
+
+\subsection{Robustesse et tolérance aux pannes}
+
+Le système doit continuer à fonctionner de manière dégradée mais correcte lorsqu'un composant non essentiel à l'échange devient indisponible. En particulier, une défaillance de la couche d'enregistrement ne doit jamais compromettre la conversation elle même. À l'inverse, aucune défaillance ne doit être silencieuse : elle doit rester visible pour le diagnostic.
+
+\subsection{Sécurité et confidentialité}
+
+L'accès aux fonctions du système doit être conditionné à une authentification, puis à une autorisation fondée sur le rôle. Un client ne doit pouvoir accéder qu'à ses propres données. Les opérations sensibles doivent exiger une vérification d'identité distincte de la simple ouverture de session. Les données personnelles doivent être masquées partout où leur valeur exacte n'est pas nécessaire. En l'absence d'information d'autorisation exploitable, le système doit refuser plutôt qu'autoriser.
+
+\subsection{Traçabilité et auditabilité}
+
+Tout acte ayant une conséquence pour un client doit laisser une trace exploitable indiquant qui a agi, sur quoi, à quel moment, avec quel résultat et en vertu de quelle règle. Ces traces doivent être organisées de telle sorte qu'une modification rétroactive soit détectable et non simplement découragée.
+
+\subsection{Extensibilité et maintenabilité}
+
+Le remplacement d'un fournisseur de transcription, de synthèse vocale ou de modèle de langue ne doit pas se propager au delà de la couche qui l'intègre. L'ajout d'un domaine métier ou d'une nouvelle capacité ne doit pas imposer la révision des composants existants. Les règles métier doivent rester indépendantes de toute bibliothèque tierce.
+
+\subsection{Passage à l'échelle}
+
+La plateforme doit prendre en charge plusieurs conversations simultanées, chacune disposant de son propre état, sans interférence entre elles. Les opérations concurrentes menées au sein d'une même conversation doivent être isolées les unes des autres.
+
+\subsection{Interopérabilité et portabilité}
+
+Les échanges avec les systèmes de l'opérateur et avec le système de gestion de tickets doivent reposer sur des interfaces standard. L'ensemble doit être déployable sous forme de conteneurs, indépendamment du système hôte.
+
+\subsection{Testabilité}
+
+Les composants portant une garantie du système doivent pouvoir être vérifiés isolément et de manière reproductible. Cette exigence conditionne directement la conception : elle impose que la logique de décision soit exempte d'effets de bord.
+
+\subsection{Ergonomie}
+
+L'interaction principale étant vocale, la qualité perçue tient à la nature de l'échange : formulations brèves, absence d'énumérations lues à voix haute, prise en compte immédiate des interruptions. Les interfaces destinées aux profils internes doivent privilégier la lisibilité de l'information opérationnelle.
+
+\subsection{Récapitulatif}
+
+Le tableau \ref{tab:bnf} associe à chaque besoin non fonctionnel la propriété architecturale qui en découle.
+
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{|p{1.3cm}|p{3.7cm}|p{8.9cm}|}
+\hline
+\textbf{Réf.} & \textbf{Exigence} & \textbf{Propriété imposée à l'architecture} \\
+\hline
+BNF01 & Performance temps réel & Budget de latence réparti par étape et mesuré de bout en bout. \\
+\hline
+BNF02 & Fiabilité et disponibilité & Chaîne de repli pour chaque dépendance externe de la chaîne vocale. \\
+\hline
+BNF03 & Robustesse & Découplage de l'enregistrement et de la conversation ; aucune défaillance silencieuse. \\
+\hline
+BNF04 & Sécurité et confidentialité & Authentification, autorisation par rôle, isolation des données, vérification d'identité renforcée, masquage, refus par défaut. \\
+\hline
+BNF05 & Traçabilité & Enregistrement de chaque acte conséquent et détection des altérations rétroactives. \\
+\hline
+BNF06 & Extensibilité & Dépendances externes confinées derrière des interfaces internes. \\
+\hline
+BNF07 & Maintenabilité & Règles métier indépendantes de toute bibliothèque tierce. \\
+\hline
+BNF08 & Passage à l'échelle & État par conversation et isolation des opérations concurrentes. \\
+\hline
+BNF09 & Interopérabilité & Interfaces standard vers les systèmes tiers. \\
+\hline
+BNF10 & Portabilité & Déploiement conteneurisé de l'ensemble des composants. \\
+\hline
+BNF11 & Testabilité & Logique de décision déterministe et exempte d'effets de bord. \\
+\hline
+BNF12 & Ergonomie & Réponses brèves adaptées à l'oral et prise en compte immédiate des interruptions. \\
+\hline
+\end{tabular}
+\caption{Besoins non fonctionnels et propriétés architecturales associées}
+\label{tab:bnf}
+\end{table}
+
+\section{Diagrammes de cas d'utilisation}
+
+\subsection{Diagramme de cas d'utilisation général}
+
+Le diagramme de la figure \ref{fig:cu-general} présente une vue d'ensemble des cas d'utilisation de la plateforme et de leur répartition entre les acteurs. Le client y accède aux cas relevant de la conversation et de son espace personnel. Les profils internes accèdent aux cas de supervision et d'administration, selon la hiérarchie de droits établie plus haut. Les systèmes tiers apparaissent en acteurs secondaires des cas qui les sollicitent.
+
+\figureTikz{Diagramme de cas d'utilisation général de la plateforme}{cu-general}{fig-cu-general}
+
+Trois cas d'utilisation structurent l'ensemble du système et méritent un traitement détaillé. Le premier couvre le trajet complet d'une question documentaire, de la parole du client jusqu'à la réponse ancrée dans la documentation. Le deuxième couvre l'exécution d'une opération engageant le compte du client, qui concentre l'essentiel des garanties de sûreté de la plateforme. Le troisième couvre le passage à un conseiller humain, qui constitue la frontière entre l'autonomie du système et l'intervention humaine. Chacun fait l'objet d'un diagramme, d'une description textuelle et d'un diagramme de séquence système décrivant son scénario nominal.
+
+\subsection{Cas d'utilisation : obtenir une réponse documentaire}
+
+\subsubsection{Diagramme du cas}
+
+Ce cas d'utilisation, présenté à la figure \ref{fig:cu-doc}, décrit la situation la plus fréquente : le client pose une question portant sur les offres, les procédures ou les conditions de service, et attend une réponse exacte.
+
+\figureTikz{Diagramme du cas d'utilisation Obtenir une réponse documentaire}{cu-doc}{fig-cu-doc}
+
+\subsubsection{Description textuelle}
+
+Le tableau \ref{tab:cu-doc} détaille le déroulement de ce cas.
+
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.25}
+\begin{tabular}{|p{3.0cm}|p{11.5cm}|}
+\hline
+\multicolumn{2}{|c|}{\textbf{Cas d'utilisation : obtenir une réponse documentaire}} \\
+\hline
+\textbf{Acteur principal} & Client \\
+\hline
+\textbf{Acteurs secondaires} & Aucun \\
+\hline
+\textbf{Objectif} & Obtenir une réponse exacte à une question portant sur les offres, les procédures ou les conditions de service. \\
+\hline
+\textbf{Préconditions} & Une conversation est établie entre le client et la plateforme. La base documentaire est disponible et indexée. \\
+\hline
+\textbf{Postconditions} & Le client a reçu soit une réponse ancrée dans la documentation, soit l'indication explicite que l'information n'est pas disponible. L'échange est enregistré. \\
+\hline
+\textbf{Scénario nominal} &
+1. Le client formule sa question à l'oral. \newline
+2. Le système transcrit la parole et identifie l'intention documentaire. \newline
+3. Le système interroge la base documentaire avec une requête dérivée de la question. \newline
+4. Le système reçoit les passages pertinents accompagnés de leur source. \newline
+5. Le système formule une réponse brève, fondée uniquement sur ces passages. \newline
+6. Le système énonce la réponse et propose au client d'en obtenir le détail. \newline
+7. L'échange est consigné dans le journal de conversation. \\
+\hline
+\textbf{Alternative A : demande ambiguë} & À l'étape 2, si l'intention ne peut être déterminée avec certitude, le système pose une question de clarification unique, puis reprend à l'étape 1. \\
+\hline
+\textbf{Alternative B : absence de réponse} & À l'étape 4, si aucun passage ne satisfait les critères de pertinence, le système indique au client qu'il ne dispose pas de cette information et lui propose une prise en charge alternative. Le cas se termine. \\
+\hline
+\textbf{Alternative C : interruption} & À toute étape postérieure à 5, le client peut interrompre l'énoncé. Le système cesse de parler immédiatement et traite le nouveau tour de parole. \\
+\hline
+\end{tabular}
+\caption{Description textuelle du cas Obtenir une réponse documentaire}
+\label{tab:cu-doc}
+\end{table}
+
+\subsubsection{Diagramme de séquence système}
+
+La figure \ref{fig:seq-doc} représente le scénario nominal sous forme d'échanges entre le client et le système, considéré ici comme une boîte noire.
+
+\figureTikz{Diagramme de séquence système du cas Obtenir une réponse documentaire}{seq-doc}{fig-seq-doc}
+
+\subsection{Cas d'utilisation : exécuter une opération sensible}
+
+\subsubsection{Diagramme du cas}
+
+Ce cas, présenté à la figure \ref{fig:cu-action}, concentre les garanties de sûreté de la plateforme. Il couvre toute opération produisant un effet sur le compte du client, qu'il s'agisse d'un règlement, d'un report d'échéance, d'une recharge, d'un changement de forfait ou d'une opération sur la carte SIM ou sur la ligne.
+
+\figureTikz{Diagramme du cas d'utilisation Exécuter une opération sensible}{cu-action}{fig-cu-action}
+
+\subsubsection{Description textuelle}
+
+Le tableau \ref{tab:cu-action} détaille ce cas, qui est le plus contraint de la plateforme.
+
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.25}
+\begin{tabular}{|p{3.0cm}|p{11.5cm}|}
+\hline
+\multicolumn{2}{|c|}{\textbf{Cas d'utilisation : exécuter une opération sensible}} \\
+\hline
+\textbf{Acteur principal} & Client \\
+\hline
+\textbf{Acteurs secondaires} & Systèmes métier de l'opérateur \\
+\hline
+\textbf{Objectif} & Faire exécuter une opération produisant un effet sur le compte du client, avec la garantie qu'elle est autorisée, exécutée une seule fois et consignée. \\
+\hline
+\textbf{Préconditions} & Une conversation est établie. Le client est rattaché à un compte. L'opération demandée figure parmi les opérations reconnues par le système. \\
+\hline
+\textbf{Postconditions} & L'opération a été exécutée et confirmée, ou refusée avec un motif, ou transmise à un conseiller. Dans tous les cas, un verdict motivé et une trace vérifiable ont été enregistrés. \\
+\hline
+\textbf{Scénario nominal} &
+1. Le client exprime la demande d'opération. \newline
+2. Le système récapitule l'opération et sollicite une confirmation verbale explicite. \newline
+3. Le client confirme. \newline
+4. Le système vérifie l'identité du client si cette vérification n'est pas déjà valide. \newline
+5. Le système constitue le contexte de la décision à partir de la situation vérifiée du client. \newline
+6. Le système soumet l'opération aux règles métier, qui rendent un verdict motivé. \newline
+7. Le verdict étant favorable, le système transmet l'opération au système métier concerné, en garantissant qu'une reprise éventuelle ne produira pas de seconde exécution. \newline
+8. Le système consigne l'opération et son verdict dans le registre. \newline
+9. Le système confirme le résultat au client à l'oral. \\
+\hline
+\textbf{Alternative A : identité non confirmée} & À l'étape 4, si la vérification échoue après le nombre d'essais autorisé, l'opération est abandonnée, le client en est informé, et le refus est consigné. \\
+\hline
+\textbf{Alternative B : opération refusée} & À l'étape 6, si le verdict est défavorable, le système énonce au client le motif du refus dans des termes compréhensibles. L'opération n'est pas transmise. Le verdict est consigné. \\
+\hline
+\textbf{Alternative C : transmission à un conseiller} & À l'étape 6, si le verdict impose une intervention humaine, le système engage le cas d'utilisation d'escalade en transmettant le contexte constitué. \\
+\hline
+\textbf{Alternative D : reprise} & Si la même opération est présentée une seconde fois pour la même conversation, le système restitue le résultat de la première exécution sans exécuter à nouveau. \\
+\hline
+\end{tabular}
+\caption{Description textuelle du cas Exécuter une opération sensible}
+\label{tab:cu-action}
+\end{table}
+
+\subsubsection{Diagramme de séquence système}
+
+La figure \ref{fig:seq-action} représente le scénario nominal de ce cas. Elle met en évidence la confirmation verbale, la vérification d'identité et le caractère bloquant du verdict, qui conditionne toute transmission au système métier.
+
+\figureTikz{Diagramme de séquence système du cas Exécuter une opération sensible}{seq-action}{fig-seq-action}
+
+\subsection{Cas d'utilisation : escalader vers un conseiller humain}
+
+\subsubsection{Diagramme du cas}
+
+Ce cas, présenté à la figure \ref{fig:cu-escalade}, décrit le passage de la prise en charge automatique à la prise en charge humaine. Il peut être déclenché par une règle métier, par une demande explicite du client ou par la constatation d'un mécontentement persistant au fil de la conversation.
+
+\figureTikz{Diagramme du cas d'utilisation Escalader vers un conseiller humain}{cu-escalade}{fig-cu-escalade}
+
+\subsubsection{Description textuelle}
+
+Le tableau \ref{tab:cu-escalade} détaille ce cas.
+
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.25}
+\begin{tabular}{|p{3.0cm}|p{11.5cm}|}
+\hline
+\multicolumn{2}{|c|}{\textbf{Cas d'utilisation : escalader vers un conseiller humain}} \\
+\hline
+\textbf{Acteur principal} & Client \\
+\hline
+\textbf{Acteurs secondaires} & Conseiller, service de notification \\
+\hline
+\textbf{Objectif} & Confier la demande à un conseiller humain, immédiatement si possible, à une échéance convenue sinon, sans perte du contexte déjà constitué. \\
+\hline
+\textbf{Préconditions} & Une conversation est établie. Une condition d'escalade est satisfaite. \\
+\hline
+\textbf{Postconditions} & La conversation a été transférée à un conseiller, ou un rappel a été réservé sur un créneau réel et le conseiller concerné en a été avisé. Le dossier de l'échange est disponible dans les deux cas. \\
+\hline
+\textbf{Scénario nominal} &
+1. Le système constate la condition d'escalade et l'annonce au client. \newline
+2. Le système constitue le dossier de l'échange : demande exprimée, éléments compris, opérations tentées et verdicts rendus. \newline
+3. Le système recherche un conseiller disponible correspondant au domaine de la demande. \newline
+4. Un conseiller étant disponible, le système le réserve. \newline
+5. Le système transfère l'appel vers ce conseiller. \newline
+6. Le conseiller prend en charge la conversation, muni du dossier. \\
+\hline
+\textbf{Alternative A : aucun conseiller disponible} & À l'étape 3, si aucun conseiller n'est disponible, le système en informe le client et lui propose un rappel. Il présente des créneaux issus des disponibilités réelles, convient d'un créneau avec le client, le réserve, puis confirme l'horaire retenu. Le conseiller concerné est avisé avec le dossier. \\
+\hline
+\textbf{Alternative B : échec du transfert} & À l'étape 5, si le transfert échoue, le conseiller réservé est libéré, le client en est informé sans ambiguïté, et le système bascule sur la proposition de rappel décrite en alternative A. \\
+\hline
+\textbf{Alternative C : refus du rappel} & Si le client décline la proposition de rappel, le système clôt l'échange en récapitulant ce qui a été fait et en indiquant les moyens de contact disponibles. \\
+\hline
+\end{tabular}
+\caption{Description textuelle du cas Escalader vers un conseiller humain}
+\label{tab:cu-escalade}
+\end{table}
+
+\subsubsection{Diagramme de séquence système}
+
+La figure \ref{fig:seq-escalade} représente le scénario nominal et son alternative principale, la planification d'un rappel.
+
+\figureTikz{Diagramme de séquence système du cas Escalader vers un conseiller humain}{seq-escalade}{fig-seq-escalade}
+
+\section*{Conclusion}
+
+Ce chapitre a transformé les objectifs du projet en spécifications exploitables. Nous avons identifié quatre acteurs principaux, organisés selon une hiérarchie de droits, et trois familles d'acteurs secondaires correspondant aux systèmes que la plateforme sollicite sans les posséder. Nous avons ensuite formulé trente quatre besoins fonctionnels répartis en huit domaines, puis douze besoins non fonctionnels dont chacun impose une propriété identifiée à l'architecture. Les cas d'utilisation ont enfin été présentés dans leur ensemble, et détaillés pour les trois qui structurent le système : la réponse documentaire, l'opération sensible et l'escalade vers un conseiller.
+
+Ces trois cas font apparaître une même exigence sous des formes différentes. La réponse documentaire impose que le système sache reconnaître les limites de ce qu'il sait. L'opération sensible impose qu'il sache reconnaître les limites de ce qu'il a le droit de faire. L'escalade impose qu'il sache reconnaître les limites de ce qu'il peut traiter seul. Le chapitre suivant montre comment l'architecture de la solution répond à ces trois exigences, en présentant d'abord la vue statique du système, puis sa vue dynamique, avant de détailler la conception de la couche agentique et celle du contrôle d'accès.

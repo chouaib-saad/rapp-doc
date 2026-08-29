@@ -1,0 +1,57 @@
+% Gestion de la concurrence et des ressources (figure 4.4)
+\begin{tikzpicture}[x=1cm, y=1cm]
+
+  \tikzset{
+    sess/.style={fbox, text width=26mm, align=center, minimum height=9mm,
+                 font=\sffamily\tiny},
+    proc/.style={fboxg, text width=26mm, align=center, minimum height=11mm,
+                 font=\sffamily\tiny}
+  }
+
+  % ── Conversations simultanées ─────────────────────────────
+  \node[sess] (c1) at (0, 4.6) {Conversation A};
+  \node[sess] (c2) at (0, 3.0) {Conversation B};
+  \node[sess] (c3) at (0, 1.4) {Conversation C};
+
+  \node[proc] (p1) at (4.3, 4.6) {\textbf{Processus agent}\\état propre};
+  \node[proc] (p2) at (4.3, 3.0) {\textbf{Processus agent}\\état propre};
+  \node[proc] (p3) at (4.3, 1.4) {\textbf{Processus agent}\\état propre};
+
+  \foreach \a/\b in {c1/p1, c2/p2, c3/p3}{ \draw[flux] (\a) -- (\b); }
+
+  \node[etiquettezone, anchor=south] at (2.15,5.55) {Isolation par processus};
+  \draw[zone] (-1.55,0.75) rectangle (5.85,5.35);
+
+  % ── Chemin critique de la parole ──────────────────────────
+  \node[fboxtitre, text width=30mm, align=center, minimum height=9mm] (voix) at (9.6,4.6)
+       {Chemin de la parole\\\textit{temps réel}};
+  \draw[flux] (p1.east) -- (voix.west);
+
+  % ── Chemin d'enregistrement, découplé ─────────────────────
+  \node[fbox, text width=24mm, align=center] (file) at (9.6,2.6) {File d'attente\\\textit{coût constant}};
+  \node[fbox, text width=24mm, align=center] (bg)   at (9.6,1.1) {Traitement\\d'arrière plan};
+  \draw[flux] (p1.south east) -- (file.west);
+  \draw[flux] (file) -- (bg);
+
+  \draw[draw=figGrisFonce, dashed] (7.35,0.35) -- (18.6,0.35);
+  \node[font=\sffamily\tiny\itshape, anchor=south east] at (18.5,0.42) {chemin d'enregistrement, asynchrone};
+  \node[font=\sffamily\tiny\itshape, anchor=north east] at (18.5,0.28) {chemin de la parole, jamais bloqué};
+
+  % ── Base de données et ses garanties ──────────────────────
+  \node[fbox, text width=42mm, align=center, minimum height=8mm] (u) at (14.8,3.5)
+       {\textbf{Contrainte d'unicité}\\sur l'identité d'opération\\\textit{exécution au plus une fois, même sous concurrence}};
+  \node[fbox, text width=42mm, align=center, minimum height=8mm] (v) at (14.8,1.6)
+       {\textbf{Verrou de sérialisation}\\des écritures d'audit\\\textit{une chaîne d'empreintes cohérente}};
+  \node[fbox, text width=42mm, align=center, minimum height=8mm] (s) at (14.8,-0.3)
+       {\textbf{Transaction imbriquée}\\pour les projections\\\textit{un échec secondaire n'annule pas l'acte}};
+
+  \node[etiquettezone, anchor=south] at (14.8,4.55) {Garanties portées par la base};
+  \draw[zone] (12.35,-1.05) rectangle (17.25,4.35);
+
+  \draw[flux] (bg.east) -- (12.35,1.6);
+
+  % ── Note sur le choix assumé ──────────────────────────────
+  \node[note, text width=76mm, anchor=north, align=center] at (8.6,-1.75)
+       {Si la base devient indisponible, l'écriture est signalée puis abandonnée et la conversation se\\poursuit. Perdre l'enregistrement d'un tour est regrettable ; interrompre l'appel d'un client\\parce qu'un journal ne peut pas être écrit serait bien pire.};
+
+\end{tikzpicture}

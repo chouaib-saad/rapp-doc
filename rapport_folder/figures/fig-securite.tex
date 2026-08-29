@@ -1,0 +1,56 @@
+% Modèle de sécurité de la plateforme (figure 3.17)
+\begin{tikzpicture}[x=1cm, y=1cm]
+
+  \node[fbox, text width=26mm, align=center] (usr) at (4.6, 6.4) {Utilisateur};
+
+  \node[fboxtitre, text width=44mm, align=center, minimum height=9mm] (auth) at (4.6, 4.9)
+       {Authentification centralisée\\\textit{session revalidée à chaque requête}};
+  \draw[flux] (usr) -- (auth);
+
+  % ── Deux espaces distincts ────────────────────────────────
+  \node[fbox, text width=30mm, align=center] (pc) at (0.4, 3.0) {Portail client};
+  \node[fbox, text width=30mm, align=center] (ca) at (8.8, 3.0) {Console\\d'administration};
+  \draw[flux] (auth.south) -- ++(0,-0.35) -| node[etiq, above, pos=0.25] {rôle client} (pc.north);
+  \draw[flux] (auth.south) -- ++(0,-0.35) -| node[etiq, above, pos=0.25] {rôles internes} (ca.north);
+
+  % ── Frontière réelle ──────────────────────────────────────
+  \node[fboxtitre, text width=52mm, align=center, minimum height=9mm] (srv) at (4.6, 1.2)
+       {Autorisation côté serveur\\\textit{la frontière réelle, appliquée à chaque appel}};
+  \draw[flux] (pc.south) -- ++(0,-0.4) -| (srv.north);
+  \draw[flux] (ca.south) -- ++(0,-0.4) -| (srv.north);
+
+  \node[note, text width=40mm, anchor=west] (n1) at (11.0,1.2)
+       {Le contrôle réalisé dans l'interface améliore l'expérience mais ne protège rien : les fonctions serveur sont atteignables indépendamment de la page qui les appelle.};
+  \draw[dependance] (n1.west) -- (srv.east);
+
+  % ── Séparation des ressources ─────────────────────────────
+  \node[fbox, text width=30mm, align=center] (own) at (0.4,-0.6) {Données propres\\au client};
+  \node[fbox, text width=30mm, align=center] (adm) at (8.8,-0.6) {Ressources\\d'administration};
+  \draw[flux] (srv.south) -- ++(0,-0.35) -| (own.north);
+  \draw[flux] (srv.south) -- ++(0,-0.35) -| (adm.north);
+
+  % ── Frontière interne des opérations sensibles ────────────
+  \draw[draw=black, line width=0.7pt] (-0.6,-6.9) rectangle (9.8,-1.75);
+  \node[font=\sffamily\tiny\bfseries, anchor=north west] at (-0.45,-1.9)
+       {Frontière interne des opérations sensibles};
+
+  \node[decision, minimum width=20mm] (dsens) at (4.6,-2.85) {opération\\sensible ?};
+  \draw[flux] (own.south) -- ++(0,-0.6) -| (dsens.north);
+
+  \node[fbox, text width=26mm, align=center] (direct) at (0.8,-4.4) {Exécution directe};
+  \draw[flux] (dsens.west) -- node[etiq, above, pos=0.35] {non} (0.8,-2.85) -- (direct.north);
+
+  \node[fbox, text width=24mm, align=center] (v1) at (7.3,-3.9) {Vérification d'identité};
+  \node[fbox, text width=24mm, align=center] (v2) at (7.3,-4.7) {Décision};
+  \node[fbox, text width=24mm, align=center] (v3) at (7.3,-5.5) {Politique};
+  \node[fbox, text width=24mm, align=center] (v4) at (7.3,-6.3) {Exécution et audit};
+
+  \draw[flux] (dsens.east) -- node[etiq, above, pos=0.35] {oui} (7.3,-2.85) -- (v1.north);
+  \draw[flux] (v1) -- (v2);
+  \draw[flux] (v2) -- (v3);
+  \draw[flux] (v3) -- (v4);
+
+  \node[note, text width=38mm, anchor=north west] at (-0.4,-5.35)
+       {Être connecté à son espace ne suffit pas à autoriser une opération sur un compte. Les deux frontières sont indépendantes.};
+
+\end{tikzpicture}

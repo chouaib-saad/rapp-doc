@@ -1,0 +1,56 @@
+<!-- 1. Participant Box -->
+<g id="participant-shape">
+  <rect x="-48" y="-18" width="96" height="36" fill="#ffffff" stroke="#000000" stroke-width="1.5"/>
+  <text x="0" y="5" font-family="sans-serif" font-size="14" text-anchor="middle" fill="#000000">Participant</text>
+</g>
+
+<!-- 2. Actor -->
+<g id="actor-shape">
+  <circle cx="0" cy="-22" r="8" fill="#ffffff" stroke="#000000" stroke-width="1.5"/>
+  <line x1="0" y1="-14" x2="0" y2="12" stroke="#000000" stroke-width="1.5"/>
+  <line x1="-16" y1="-2" x2="16" y2="-2" stroke="#000000" stroke-width="1.5"/>
+  <line x1="0" y1="12" x2="-14" y2="32" stroke="#000000" stroke-width="1.5"/>
+  <line x1="0" y1="12" x2="14" y2="32" stroke="#000000" stroke-width="1.5"/>
+</g>
+
+<!-- 3. Boundary -->
+<g id="boundary-shape">
+  <line x1="-22" y1="-18" x2="-22" y2="18" stroke="#000000" stroke-width="1.5"/>
+  <line x1="-22" y1="0" x2="-5" y2="0" stroke="#000000" stroke-width="1.5"/>
+  <circle cx="12" cy="0" r="16" fill="#ffffff" stroke="#000000" stroke-width="1.5"/>
+</g>
+
+<!-- 4. Control -->
+<g id="control-shape">
+  <circle cx="0" cy="5" r="16" fill="#ffffff" stroke="#000000" stroke-width="1.5"/>
+  <path d="M -12 -6 Q 0 -28 14 -6" fill="none" stroke="#000000" stroke-width="1.5"/>
+  <polygon points="14,-6 18,-15 8,-13" fill="#000000"/>
+</g>
+
+<!-- 5. Entity -->
+<g id="entity-shape">
+  <circle cx="0" cy="-5" r="16" fill="#ffffff" stroke="#000000" stroke-width="1.5"/>
+  <line x1="-16" y1="18" x2="16" y2="18" stroke="#000000" stroke-width="1.5"/>
+</g>
+
+<!-- 6. Database -->
+<g id="database-shape">
+  <path d="M -20 -12 L -20 22 A 20 9 0 0 0 20 22 L 20 -12" fill="#ffffff" stroke="#000000" stroke-width="1.5"/>
+  <ellipse cx="0" cy="-12" rx="20" ry="9" fill="#ffffff" stroke="#000000" stroke-width="1.5"/>
+</g>
+
+<!-- 7. Collections -->
+<g id="collections-shape">
+  <rect x="-42" y="-22" width="96" height="32" fill="#ffffff" stroke="#000000" stroke-width="1.5"/>
+  <rect x="-50" y="-14" width="96" height="32" fill="#ffffff" stroke="#000000" stroke-width="1.5"/>
+  <text x="-2" y="6" font-family="sans-serif" font-size="14" text-anchor="middle" fill="#000000">Collections</text>
+</g>
+
+<!-- 8. Queue -->
+<g id="queue-shape">
+  <rect x="-35" y="-16" width="70" height="32" fill="#ffffff" stroke="none"/>
+  <path d="M -35 -16 L 35 -16 M -35 16 L 35 16" stroke="#000000" stroke-width="1.5"/>
+  <path d="M -35 -16 A 10 16 0 0 0 -35 16" fill="none" stroke="#000000" stroke-width="1.5"/>
+  <ellipse cx="35" cy="0" rx="10" ry="16" fill="#ffffff" stroke="#000000" stroke-width="1.5"/>
+  <text x="0" y="5" font-family="sans-serif" font-size="14" text-anchor="middle" fill="#000000">Queue</text>
+</g>

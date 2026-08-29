@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="500" viewBox="0 0 600 500">
+<rect width="600" height="500" fill="#FFFFFF"/>
+<defs>
+<style>
+text{font-family:Arial,Helvetica,sans-serif;font-weight:bold;}
+.stereo{font-size:11px;fill:#111111;text-anchor:middle;}
+.nname{font-size:12px;fill:#111111;text-anchor:middle;}
+.wtext .stereo,.wtext .nname{fill:#FFFFFF;}
+.aname{font-size:10px;fill:#111111;text-anchor:middle;}
+.face{stroke:#111111;stroke-width:1.3;stroke-linejoin:round;}
+.art{fill:#C4F061;stroke:#222222;stroke-width:1.3;}
+.link{fill:none;stroke:#111111;stroke-width:1.5;}
+.dash{fill:none;stroke:#333333;stroke-width:1.3;stroke-dasharray:5,4;}
+.arrow{fill:none;stroke:#333333;stroke-width:1.3;}
+</style>
+</defs>
+
+<!-- ===================== CONNECTIONS ===================== -->
+<path d="M305 85 L212 120" class="link"/>
+<path d="M143 200 L157 262" class="link"/>
+<path d="M367 265 L278 305" class="link"/>
+<path d="M278 375 L367 397" class="link"/>
+
+<!-- ===================== NODE: PDA (light blue 3D) ===================== -->
+<polygon points="305,25 315,15 435,15 425,25" fill="#A5DCF2" class="face"/>
+<polygon points="425,25 435,15 435,77 425,87" fill="#4FB2DD" class="face"/>
+<rect x="305" y="25" width="120" height="62" fill="#6EC6EA" class="face"/>
+<text x="365" y="43" class="stereo">&lt;&lt;device&gt;&gt;</text>
+<text x="365" y="60" class="nname">PDA</text>
+
+<!-- ===================== NODE: Web Server (pale yellow 3D) ===================== -->
+<polygon points="40,97 50,87 220,87 210,97" fill="#FBFBDF" class="face"/>
+<polygon points="210,97 220,87 220,190 210,200" fill="#E9E9A9" class="face"/>
+<rect x="40" y="97" width="170" height="103" fill="#F6F6C9" class="face"/>
+<text x="125" y="116" class="stereo">&lt;&lt;device&gt;&gt;</text>
+<text x="125" y="133" class="nname">Web Server</text>
+<rect x="68" y="152" width="112" height="36" class="art"/>
+<g transform="translate(161,156)"><path d="M0 0 h7 l4 4 v9 h-11 z" fill="#FFFFFF" stroke="#222222" stroke-width="1"/><path d="M7 0 v4 h4" fill="none" stroke="#222222" stroke-width="1"/></g>
+<text x="118" y="167" class="aname">&lt;&lt;artifact&gt;&gt;</text>
+<text x="124" y="181" class="aname">Web Site</text>
+
+<!-- ===================== NODE: Terminal (steel-teal 3D, white text) ===================== -->
+<polygon points="367,170 377,160 537,160 527,170" fill="#6FA3BC" class="face"/>
+<polygon points="527,170 537,160 537,263 527,273" fill="#2F6B88" class="face"/>
+<rect x="367" y="170" width="160" height="103" fill="#47809E" class="face"/>
+<g class="wtext">
+<text x="447" y="189" class="stereo">&lt;&lt;device&gt;&gt;</text>
+<text x="447" y="206" class="nname">Terminal</text>
+</g>
+<rect x="395" y="225" width="112" height="38" class="art"/>
+<g transform="translate(497,229)"><path d="M0 0 h7 l4 4 v9 h-11 z" fill="#FFFFFF" stroke="#222222" stroke-width="1"/><path d="M7 0 v4 h4" fill="none" stroke="#222222" stroke-width="1"/></g>
+<text x="445" y="241" class="aname">&lt;&lt;artifact&gt;&gt;</text>
+<text x="451" y="256" class="aname">IMSClient.jar</text>
+
+<!-- ===================== NODE: Application Server (light blue 3D) ===================== -->
+<polygon points="78,262 88,252 278,252 268,262" fill="#A5DCF2" class="face"/>
+<polygon points="268,262 278,252 278,430 268,440" fill="#4FB2DD" class="face"/>
+<rect x="78" y="262" width="190" height="178" fill="#6EC6EA" class="face"/>
+<text x="173" y="284" class="stereo">&lt;&lt;device&gt;&gt;</text>
+<text x="173" y="301" class="nname">Application Server</text>
+<rect x="118" y="320" width="110" height="36" class="art"/>
+<g transform="translate(211,324)"><path d="M0 0 h7 l4 4 v9 h-11 z" fill="#FFFFFF" stroke="#222222" stroke-width="1"/><path d="M7 0 v4 h4" fill="none" stroke="#222222" stroke-width="1"/></g>
+<text x="168" y="335" class="aname">&lt;&lt;artifact&gt;&gt;</text>
+<text x="173" y="350" class="aname">IMS.jar</text>
+<!-- dashed dependency IMS.jar -> ORM.jar -->
+<path d="M173 356 L173 384" class="dash"/>
+<path d="M168 384 L173 392 L178 384" class="arrow"/>
+<rect x="118" y="392" width="110" height="38" class="art"/>
+<g transform="translate(211,396)"><path d="M0 0 h7 l4 4 v9 h-11 z" fill="#FFFFFF" stroke="#222222" stroke-width="1"/><path d="M7 0 v4 h4" fill="none" stroke="#222222" stroke-width="1"/></g>
+<text x="168" y="407" class="aname">&lt;&lt;artifact&gt;&gt;</text>
+<text x="173" y="422" class="aname">ORM.jar</text>
+
+<!-- ===================== NODE: DB Server (orange 3D) ===================== -->
+<polygon points="367,355 377,345 567,345 557,355" fill="#FBCF9F" class="face"/>
+<polygon points="557,355 567,345 567,455 557,465" fill="#F29A4B" class="face"/>
+<rect x="367" y="355" width="190" height="110" fill="#F9B26A" class="face"/>
+<text x="462" y="376" class="stereo">&lt;&lt;device&gt;&gt;</text>
+<text x="462" y="393" class="nname">DB Server</text>
+<rect x="397" y="420" width="140" height="36" class="art"/>
+<g transform="translate(520,424)"><path d="M0 0 h7 l4 4 v9 h-11 z" fill="#FFFFFF" stroke="#222222" stroke-width="1"/><path d="M7 0 v4 h4" fill="none" stroke="#222222" stroke-width="1"/></g>
+<text x="462" y="435" class="aname">&lt;&lt;artifact&gt;&gt;</text>
+<text x="467" y="450" class="aname">MySQL Server</text>
+</svg>

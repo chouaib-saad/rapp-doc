@@ -1,0 +1,192 @@
+
+<svg xmlns="http://www.w3.org/2000/svg" width="805" height="488" viewBox="0 0 805 488" role="img" aria-label="Diagramme de séquence Client, Plateforme et Systèmes métier">
+  <defs>
+    <filter id="shadow" x="-20%" y="-20%" width="150%" height="160%">
+      <feDropShadow dx="3" dy="3" stdDeviation="2" flood-color="#777777" flood-opacity="0.45"/>
+    </filter>
+    <marker id="arrow-forward" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L9,4.5 L0,9 Z" fill="#a50046"/>
+    </marker>
+    <marker id="arrow-return" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L9,4.5 L0,9 Z" fill="#198b26"/>
+    </marker>
+    <style>
+      .background {
+        fill: #fffdf7;
+      }
+      .outer-border {
+        fill: none;
+        stroke: #333333;
+        stroke-width: 1.4;
+      }
+      .participant {
+        stroke: #a50046;
+        stroke-width: 1.5;
+        filter: url(#shadow);
+      }
+      .participant-text {
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 12px;
+        font-weight: 700;
+        fill: #111111;
+        text-anchor: middle;
+        dominant-baseline: middle;
+      }
+      .lifeline {
+        stroke: #a50046;
+        stroke-width: 1.1;
+        stroke-dasharray: 4 4;
+      }
+      .activation {
+        fill: #d8d8d8;
+        stroke: #333333;
+        stroke-width: 1;
+      }
+      .message-forward {
+        fill: none;
+        stroke: #a50046;
+        stroke-width: 1.2;
+        marker-end: url(#arrow-forward);
+      }
+      .message-return {
+        fill: none;
+        stroke: #198b26;
+        stroke-width: 1.2;
+        marker-end: url(#arrow-return);
+      }
+      .message-return-dashed {
+        fill: none;
+        stroke: #198b26;
+        stroke-width: 1.2;
+        stroke-dasharray: 4 4;
+        marker-end: url(#arrow-return);
+      }
+      .label {
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 9px;
+        fill: #111111;
+        text-anchor: middle;
+        dominant-baseline: middle;
+      }
+      .fragment {
+        fill: none;
+        stroke: #a50046;
+        stroke-width: 1.2;
+      }
+      .fragment-tab {
+        fill: #f1a7c1;
+        stroke: #a50046;
+        stroke-width: 1.1;
+      }
+      .fragment-word {
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 10px;
+        font-weight: 700;
+        fill: #111111;
+        text-anchor: middle;
+        dominant-baseline: middle;
+      }
+      .condition {
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 9px;
+        font-style: italic;
+        fill: #111111;
+        dominant-baseline: middle;
+      }
+      .separator {
+        stroke: #a50046;
+        stroke-width: 1.1;
+        stroke-dasharray: 6 5;
+      }
+      .callout {
+        fill: #fff4a6;
+        stroke: #a50046;
+        stroke-width: 1.2;
+        filter: url(#shadow);
+      }
+      .callout-text {
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 9px;
+        font-style: italic;
+        fill: #111111;
+      }
+    </style>
+  </defs>
+
+  <rect class="background" x="0" y="0" width="805" height="488"/>
+  <rect class="outer-border" x="10" y="11" width="778" height="466"/>
+
+  <rect class="participant" x="21" y="22" width="98" height="27" fill="#a9e5ef"/>
+  <text class="participant-text" x="70" y="35.5">Client</text>
+
+  <rect class="participant" x="266" y="22" width="106" height="27" fill="#a9efb0"/>
+  <text class="participant-text" x="319" y="35.5">: Plateforme</text>
+
+  <rect class="participant" x="474" y="22" width="129" height="27" fill="#a9e5ef"/>
+  <text class="participant-text" x="538.5" y="35.5">: Systèmes métier</text>
+
+  <line class="lifeline" x1="70" y1="49" x2="70" y2="466"/>
+  <line class="lifeline" x1="319" y1="49" x2="319" y2="466"/>
+  <line class="lifeline" x1="539" y1="49" x2="539" y2="466"/>
+
+  <rect class="activation" x="65" y="68" width="10" height="386"/>
+  <rect class="activation" x="315" y="75" width="10" height="371"/>
+  <rect class="activation" x="534" y="81" width="10" height="224"/>
+
+  <line class="message-forward" x1="70" y1="75" x2="319" y2="75"/>
+  <text class="label" x="194.5" y="68">demande d’opération</text>
+
+  <line class="message-return" x1="319" y1="99" x2="70" y2="99"/>
+  <text class="label" x="194.5" y="92">récapitulatif et demande de confirmation</text>
+
+  <line class="message-forward" x1="70" y1="123" x2="319" y2="123"/>
+  <text class="label" x="194.5" y="116">confirmation explicite</text>
+
+  <rect class="fragment" x="22" y="145" width="583" height="77"/>
+  <rect class="fragment-tab" x="22" y="145" width="43" height="20"/>
+  <text class="fragment-word" x="43.5" y="155">opt</text>
+  <text class="condition" x="74" y="155">[identité non vérifiée ou expirée]</text>
+
+  <line class="message-return" x1="319" y1="175" x2="70" y2="175"/>
+  <text class="label" x="194.5" y="168">demande des quatre derniers chiffres</text>
+
+  <line class="message-forward" x1="70" y1="201" x2="319" y2="201"/>
+  <text class="label" x="194.5" y="194">éléments d’identification</text>
+
+  <rect class="fragment" x="22" y="239" width="583" height="183"/>
+  <rect class="fragment-tab" x="22" y="239" width="43" height="20"/>
+  <text class="fragment-word" x="43.5" y="249">alt</text>
+  <text class="condition" x="74" y="249">[verdict autorisé]</text>
+
+  <line class="message-forward" x1="319" y1="273" x2="539" y2="273"/>
+  <text class="label" x="429" y="266">opération, référencée au verdict</text>
+
+  <line class="message-return-dashed" x1="539" y1="303" x2="319" y2="303"/>
+  <text class="label" x="429" y="296">référence d’exécution</text>
+
+  <line class="message-return" x1="319" y1="327" x2="70" y2="327"/>
+  <text class="label" x="194.5" y="320">confirmation orale du résultat</text>
+
+  <line class="separator" x1="22" y1="345" x2="605" y2="345"/>
+  <text class="condition" x="74" y="356">[verdict refusé]</text>
+
+  <line class="message-return" x1="319" y1="373" x2="70" y2="373"/>
+  <text class="label" x="194.5" y="366">motif du refus, en termes compréhensibles</text>
+
+  <line class="separator" x1="22" y1="387" x2="605" y2="387"/>
+  <text class="condition" x="74" y="398">[verdict imposant une intervention humaine]</text>
+
+  <line class="message-return" x1="319" y1="413" x2="70" y2="413"/>
+  <text class="label" x="194.5" y="406">annonce du passage à un conseiller</text>
+
+  <rect class="callout" x="620" y="247" width="153" height="44" rx="3"/>
+  <text class="callout-text" x="625" y="257">
+    <tspan x="625" dy="0">Aucune opération n’atteint</tspan>
+    <tspan x="625" dy="10">les systèmes métier sans un</tspan>
+    <tspan x="625" dy="10">verdict favorable préalable,</tspan>
+    <tspan x="625" dy="10">déjà persistant et identifié.</tspan>
+  </text>
+</svg>
+
+
+

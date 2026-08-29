@@ -1,0 +1,84 @@
+{\reset@font\mtcSfont\mtc@string\contentsline{section}{\noexpand \leavevmode \numberline {4.1}Technologies}{\reset@font\mtcSfont 63}{section.4.1}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {4.1.1}Principe de sélection}{\reset@font\mtcSSfont 63}{subsection.4.1.1}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {4.1.2}Technologies par couche}{\reset@font\mtcSSfont 63}{subsection.4.1.2}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {4.1.3}Le rôle de la couche temps réel}{\reset@font\mtcSSfont 64}{subsection.4.1.3}}
+{\reset@font\mtcSfont\mtc@string\contentsline{section}{\noexpand \leavevmode \numberline {4.2}Outils d'implémentation}{\reset@font\mtcSfont 65}{section.4.2}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {4.2.1}Environnement matériel}{\reset@font\mtcSSfont 65}{subsection.4.2.1}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {4.2.2}Environnement logiciel}{\reset@font\mtcSSfont 66}{subsection.4.2.2}}
+{\reset@font\mtcSfont\mtc@string\contentsline{section}{\noexpand \leavevmode \numberline {4.3}La chaîne de traitement temps réel}{\reset@font\mtcSfont 67}{section.4.3}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {4.3.1}Vue d'ensemble et principe du budget}{\reset@font\mtcSSfont 67}{subsection.4.3.1}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {4.3.2}Établissement de la session et transport}{\reset@font\mtcSSfont 67}{subsection.4.3.2}}
+{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode \numberline {4.3.2.1}Rôle}{\reset@font\mtcSSSfont 67}{subsubsection.4.3.2.1}}
+{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode \numberline {4.3.2.2}Réalisation}{\reset@font\mtcSSSfont 67}{subsubsection.4.3.2.2}}
+{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode \numberline {4.3.2.3}Ce que le choix a coûté}{\reset@font\mtcSSSfont 68}{subsubsection.4.3.2.3}}
+{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode \numberline {4.3.2.4}Sortie vers la téléphonie}{\reset@font\mtcSSSfont 68}{subsubsection.4.3.2.4}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {4.3.3}Détection de fin d'énoncé et gestion des tours de parole}{\reset@font\mtcSSfont 68}{subsection.4.3.3}}
+{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode \numberline {4.3.3.1}Rôle}{\reset@font\mtcSSSfont 68}{subsubsection.4.3.3.1}}
+{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode \numberline {4.3.3.2}Réalisation}{\reset@font\mtcSSSfont 69}{subsubsection.4.3.3.2}}
+{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode \numberline {4.3.3.3}Génération anticipée}{\reset@font\mtcSSSfont 69}{subsubsection.4.3.3.3}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {4.3.4}Transcription de la parole}{\reset@font\mtcSSfont 69}{subsection.4.3.4}}
+{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode \numberline {4.3.4.1}Rôle et métriques}{\reset@font\mtcSSSfont 69}{subsubsection.4.3.4.1}}
+{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode \numberline {4.3.4.2}Réalisation}{\reset@font\mtcSSSfont 69}{subsubsection.4.3.4.2}}
+{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode \numberline {4.3.4.3}Chaîne de repli}{\reset@font\mtcSSSfont 70}{subsubsection.4.3.4.3}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {4.3.5}Raisonnement}{\reset@font\mtcSSfont 70}{subsection.4.3.5}}
+{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode \numberline {4.3.5.1}Rôle et critères de sélection}{\reset@font\mtcSSSfont 70}{subsubsection.4.3.5.1}}
+{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode \numberline {4.3.5.2}Le compromis évité}{\reset@font\mtcSSSfont 71}{subsubsection.4.3.5.2}}
+{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode \numberline {4.3.5.3}Réalisation}{\reset@font\mtcSSSfont 71}{subsubsection.4.3.5.3}}
+{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode \numberline {4.3.5.4}Travaux sur l'exécution locale}{\reset@font\mtcSSSfont 72}{subsubsection.4.3.5.4}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {4.3.6}Récupération documentaire sous contrainte temps réel}{\reset@font\mtcSSfont 72}{subsection.4.3.6}}
+{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode \numberline {4.3.6.1}Le problème particulier de cette étape}{\reset@font\mtcSSSfont 72}{subsubsection.4.3.6.1}}
+{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode \numberline {4.3.6.2}Encodage des textes}{\reset@font\mtcSSSfont 73}{subsubsection.4.3.6.2}}
+{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode \numberline {4.3.6.3}Recherche en trois filtres}{\reset@font\mtcSSSfont 73}{subsubsection.4.3.6.3}}
+{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode \numberline {4.3.6.4}Ce que le choix a coûté}{\reset@font\mtcSSSfont 74}{subsubsection.4.3.6.4}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {4.3.7}Synthèse vocale}{\reset@font\mtcSSfont 74}{subsection.4.3.7}}
+{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode \numberline {4.3.7.1}Rôle et métrique déterminante}{\reset@font\mtcSSSfont 74}{subsubsection.4.3.7.1}}
+{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode \numberline {4.3.7.2}Une exigence éliminatoire}{\reset@font\mtcSSSfont 74}{subsubsection.4.3.7.2}}
+{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode \numberline {4.3.7.3}Réalisation}{\reset@font\mtcSSSfont 75}{subsubsection.4.3.7.3}}
+{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode \numberline {4.3.7.4}Une mesure inattendue}{\reset@font\mtcSSSfont 75}{subsubsection.4.3.7.4}}
+{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode \numberline {4.3.7.5}Positionnement des fournisseurs retenus}{\reset@font\mtcSSSfont 75}{subsubsection.4.3.7.5}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {4.3.8}Gestion des interruptions et budget global}{\reset@font\mtcSSfont 76}{subsection.4.3.8}}
+{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode \numberline {4.3.8.1}Interruption}{\reset@font\mtcSSSfont 76}{subsubsection.4.3.8.1}}
+{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode \numberline {4.3.8.2}Budget de latence}{\reset@font\mtcSSSfont 76}{subsubsection.4.3.8.2}}
+{\reset@font\mtcSfont\mtc@string\contentsline{section}{\noexpand \leavevmode \numberline {4.4}Concurrence et gestion des ressources}{\reset@font\mtcSfont 78}{section.4.4}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {4.4.1}Deux échelles de concurrence}{\reset@font\mtcSSfont 78}{subsection.4.4.1}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {4.4.2}Isolation des conversations}{\reset@font\mtcSSfont 78}{subsection.4.4.2}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {4.4.3}Isolation des opérations concurrentes}{\reset@font\mtcSSfont 78}{subsection.4.4.3}}
+{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode \numberline {4.4.3.1}L'identité d'opération}{\reset@font\mtcSSSfont 78}{subsubsection.4.4.3.1}}
+{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode \numberline {4.4.3.2}Ce que l'identité ne doit pas contenir}{\reset@font\mtcSSSfont 78}{subsubsection.4.4.3.2}}
+{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode \numberline {4.4.3.3}Garantie sous concurrence réelle}{\reset@font\mtcSSSfont 79}{subsubsection.4.4.3.3}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {4.4.4}Ordonnancement des écritures d'audit}{\reset@font\mtcSSfont 79}{subsection.4.4.4}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {4.4.5}Isolation des écritures secondaires}{\reset@font\mtcSSfont 79}{subsection.4.4.5}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {4.4.6}Découplage de l'enregistrement conversationnel}{\reset@font\mtcSSfont 80}{subsection.4.4.6}}
+{\reset@font\mtcSfont\mtc@string\contentsline{section}{\noexpand \leavevmode \numberline {4.5}Architecture physique et évolution temporelle}{\reset@font\mtcSfont 81}{section.4.5}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {4.5.1}Topologie de déploiement}{\reset@font\mtcSSfont 81}{subsection.4.5.1}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {4.5.2}Chaîne d'observabilité}{\reset@font\mtcSSfont 81}{subsection.4.5.2}}
+{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode \numberline {4.5.2.1}Une instrumentation qui ne dépend de rien}{\reset@font\mtcSSSfont 81}{subsubsection.4.5.2.1}}
+{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode \numberline {4.5.2.2}Collecte et restitution}{\reset@font\mtcSSSfont 82}{subsubsection.4.5.2.2}}
+{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode \numberline {4.5.2.3}Trois décisions de conception}{\reset@font\mtcSSSfont 82}{subsubsection.4.5.2.3}}
+{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode \numberline {4.5.2.4}L'identifiant de corrélation}{\reset@font\mtcSSSfont 83}{subsubsection.4.5.2.4}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {4.5.3}Une protection au démarrage}{\reset@font\mtcSSfont 83}{subsection.4.5.3}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {4.5.4}Évolution temporelle d'un échange}{\reset@font\mtcSSfont 84}{subsection.4.5.4}}
+{\reset@font\mtcSfont\mtc@string\contentsline{section}{\noexpand \leavevmode \numberline {4.6}Interfaces de l'application}{\reset@font\mtcSfont 84}{section.4.6}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {4.6.1}Portail client}{\reset@font\mtcSSfont 84}{subsection.4.6.1}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {4.6.2}Console d'administration et de supervision}{\reset@font\mtcSSfont 85}{subsection.4.6.2}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {4.6.3}Systèmes intégrés et environnement d'exécution}{\reset@font\mtcSSfont 87}{subsection.4.6.3}}
+{\reset@font\mtcSfont\mtc@string\contentsline{section}{\noexpand \leavevmode \numberline {4.7}Vérification et évaluation}{\reset@font\mtcSfont 88}{section.4.7}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {4.7.1}Principe retenu}{\reset@font\mtcSSfont 88}{subsection.4.7.1}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {4.7.2}Familles de vérifications}{\reset@font\mtcSSfont 89}{subsection.4.7.2}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {4.7.3}Vérification par injection de défaillance}{\reset@font\mtcSSfont 89}{subsection.4.7.3}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {4.7.4}Contrôle d'intégrité}{\reset@font\mtcSSfont 89}{subsection.4.7.4}}
+{\reset@font\mtcSfont\mtc@string\contentsline{section}{\noexpand \leavevmode \numberline {4.8}Résultats et statistiques}{\reset@font\mtcSfont 90}{section.4.8}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {4.8.1}Statut des mesures présentées}{\reset@font\mtcSSfont 90}{subsection.4.8.1}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {4.8.2}Qualité de la recherche documentaire}{\reset@font\mtcSSfont 90}{subsection.4.8.2}}
+{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode \numberline {4.8.2.1}Le problème du seuil unique}{\reset@font\mtcSSSfont 90}{subsubsection.4.8.2.1}}
+{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode \numberline {4.8.2.2}L'inversion qui a imposé une évaluation conjointe}{\reset@font\mtcSSSfont 91}{subsubsection.4.8.2.2}}
+{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode \numberline {4.8.2.3}Coût de la solution retenue}{\reset@font\mtcSSSfont 92}{subsubsection.4.8.2.3}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {4.8.3}Volumétrie du système réalisé}{\reset@font\mtcSSfont 93}{subsection.4.8.3}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {4.8.4}Comportement en situation de défaillance}{\reset@font\mtcSSfont 93}{subsection.4.8.4}}
+{\reset@font\mtcSfont\mtc@string\contentsline{section}{\noexpand \leavevmode \numberline {4.9}Problèmes rencontrés}{\reset@font\mtcSfont 94}{section.4.9}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {4.9.1}Une dégradation silencieuse de la recherche documentaire}{\reset@font\mtcSSfont 94}{subsection.4.9.1}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {4.9.2}L'inversion des scores de similarité}{\reset@font\mtcSSfont 95}{subsection.4.9.2}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {4.9.3}Un modèle de mécontentement à la fois trop sensible et trop indulgent}{\reset@font\mtcSSfont 95}{subsection.4.9.3}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {4.9.4}Un risque de confusion entre services}{\reset@font\mtcSSfont 96}{subsection.4.9.4}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {4.9.5}Une identité d'opération trop inclusive}{\reset@font\mtcSSfont 96}{subsection.4.9.5}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {4.9.6}La contrainte de mémoire et ses conséquences}{\reset@font\mtcSSfont 96}{subsection.4.9.6}}

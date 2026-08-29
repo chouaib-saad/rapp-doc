@@ -1,0 +1,109 @@
+% Séparation entre réponses pertinentes et bruit selon la méthode (figure 4.7)
+\begin{tikzpicture}[x=1cm, y=1cm]
+
+  % Les macros d'échelle rendent une expression NUE : chaque
+  % emploi la place lui-même entre accolades, ce qui autorise
+  % une arithmétique supplémentaire sans imbriquer les groupes.
+  \def\Y#1{(#1-0.75)*36}
+  \def\Z#1{#1*6.1}
+
+  % ══════════════════════════════════════════════════════════
+  % Panneau de gauche : comparaison par représentations
+  % indépendantes. Valeurs réellement mesurées sur le corpus.
+  % ══════════════════════════════════════════════════════════
+  \begin{scope}[shift={(0,0)}]
+
+    \draw[->] (0,-0.2) -- (0,6.6);
+    \foreach \s in {0.76,0.80,0.84,0.88,0.92}{
+      \draw (-0.12,{\Y{\s}}) -- (0,{\Y{\s}});
+      \node[font=\sffamily\tiny, anchor=east] at (-0.16,{\Y{\s}}) {\s};
+    }
+    \node[font=\sffamily\tiny\itshape, anchor=south, rotate=90] at (-1.05,3.2)
+      {score de proximité};
+    \draw[->] (0,-0.2) -- (6.4,-0.2);
+
+    % Plafond du bruit mesuré, question de contrôle hors domaine
+    \draw[dashed, line width=0.7pt] (0,{\Y{0.7880}}) -- (6.4,{\Y{0.7880}});
+    \node[font=\sffamily\tiny\itshape, anchor=west, fill=white, inner sep=1pt]
+      at (2.35,{\Y{0.7880}}) {plafond du bruit mesuré, 0,7880};
+
+    % Réponses correctes
+    \foreach \x/\s/\lbl in {0.9/0.8953/{en}, 2.0/0.8606/{fr}, 3.1/0.8310/{ar}}{
+      \fill (\x,{\Y{\s}}) circle (1.5pt);
+      \node[font=\sffamily\tiny, anchor=south] at (\x,{\Y{\s}+0.14}) {\lbl};
+    }
+
+    % Bruit hors domaine
+    \fill[white, draw=black] (4.6,{\Y{0.8411}}) circle (1.5pt);
+    \node[font=\sffamily\tiny, anchor=west] at (4.75,{\Y{0.8411}}) {bruit};
+    \fill[white, draw=black] (5.7,{\Y{0.7880}}) circle (1.5pt);
+
+    % L'inversion, mise en évidence
+    \draw[{Latex[length=1.5mm]}-{Latex[length=1.5mm]}, line width=0.7pt]
+      (3.4,{\Y{0.8310}}) -- (4.4,{\Y{0.8411}});
+    \node[font=\sffamily\tiny\bfseries, anchor=south, fill=white, inner sep=1pt]
+      at (3.9,{\Y{0.8411}+0.22}) {inversion};
+
+    \node[font=\sffamily\tiny\bfseries, anchor=north] at (3.2,-0.5)
+      {Représentations indépendantes};
+    \node[font=\sffamily\tiny\itshape, anchor=north, align=center, text width=56mm]
+      at (3.2,-0.92)
+      {Le bruit hors domaine dépasse la réponse correcte en arabe. Aucun seuil ne sépare les deux distributions.};
+
+  \end{scope}
+
+  % ══════════════════════════════════════════════════════════
+  % Panneau de droite : évaluation conjointe
+  % ══════════════════════════════════════════════════════════
+  \begin{scope}[shift={(9.9,0)}]
+
+    \draw[->] (0,-0.2) -- (0,6.6);
+    \foreach \s in {0.0,0.2,0.4,0.6,0.8,1.0}{
+      \draw (-0.12,{\Z{\s}}) -- (0,{\Z{\s}});
+      \node[font=\sffamily\tiny, anchor=east] at (-0.16,{\Z{\s}}) {\s};
+    }
+    \node[font=\sffamily\tiny\itshape, anchor=south, rotate=90] at (-1.05,3.2)
+      {pertinence calibrée};
+    \draw[->] (0,-0.2) -- (6.4,-0.2);
+
+    % Seuil retenu
+    \draw[dashed, line width=0.7pt] (0,{\Z{0.30}}) -- (6.4,{\Z{0.30}});
+    \node[font=\sffamily\tiny\itshape, anchor=west, fill=white, inner sep=1pt]
+      at (2.75,{\Z{0.30}}) {seuil retenu, 0,30};
+
+    % Réponses correctes, nettement au dessus
+    \foreach \x/\s/\lbl in {0.9/0.94/{en}, 2.0/0.91/{fr}, 3.1/0.88/{ar}}{
+      \fill (\x,{\Z{\s}}) circle (1.5pt);
+      \node[font=\sffamily\tiny, anchor=south] at (\x,{\Z{\s}+0.14}) {\lbl};
+    }
+
+    % Bruit, ramené près de zéro
+    \fill[white, draw=black] (4.6,{\Z{0.06}}) circle (1.5pt);
+    \fill[white, draw=black] (5.7,{\Z{0.03}}) circle (1.5pt);
+    \node[font=\sffamily\tiny, anchor=west] at (4.75,{\Z{0.17}}) {bruit};
+
+    % Marge de séparation
+    \draw[{Latex[length=1.5mm]}-{Latex[length=1.5mm]}, line width=0.7pt]
+      (6.05,{\Z{0.06}}) -- (6.05,{\Z{0.88}});
+    \node[font=\sffamily\tiny\bfseries, rotate=90, anchor=south, fill=white, inner sep=1pt]
+      at (6.05,{\Z{0.42}}) {marge nette};
+
+    \node[font=\sffamily\tiny\bfseries, anchor=north] at (3.2,-0.5)
+      {Évaluation conjointe question passage};
+    \node[font=\sffamily\tiny\itshape, anchor=north, align=center, text width=56mm]
+      at (3.2,-0.92)
+      {La lecture simultanée des deux textes ramène le bruit près de zéro et un seuil redevient opérant.};
+
+  \end{scope}
+
+  % ── Légende commune ───────────────────────────────────────
+  \fill (0.6,-2.75) circle (1.5pt);
+  \node[font=\sffamily\tiny, anchor=west] at (0.85,-2.75) {réponse correcte, par langue};
+
+  \fill[white, draw=black] (6.4,-2.75) circle (1.5pt);
+  \node[font=\sffamily\tiny, anchor=west] at (6.65,-2.75) {question hors domaine};
+
+  \node[font=\sffamily\tiny\itshape, anchor=west] at (11.6,-2.75)
+       {panneau de gauche : valeurs mesurées sur le corpus réel};
+
+\end{tikzpicture}

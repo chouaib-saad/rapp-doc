@@ -1,0 +1,60 @@
+% Diagramme de séquence du traitement d'un tour de parole (figure 3.8)
+\begin{tikzpicture}[x=1cm, y=1cm]
+
+  \def\xA{0}     \def\xB{3.1}  \def\xC{6.2}
+  \def\xD{9.5}   \def\xE{13.0} \def\xF{16.2}
+  \def\ybas{-9.4}
+
+  \node[entete, minimum width=20mm] (A) at (\xA,0) {Client};
+  \node[entete, minimum width=24mm] (B) at (\xB,0) {: Détection\\d'activité};
+  \node[entete, minimum width=24mm] (C) at (\xC,0) {: Transcription};
+  \node[entete, minimum width=24mm] (D) at (\xD,0) {: Agent actif};
+  \node[entete, minimum width=26mm] (E) at (\xE,0) {: Capacité\\documentaire};
+  \node[entete, minimum width=24mm] (F) at (\xF,0) {: Synthèse\\vocale};
+
+  \foreach \x in {\xA,\xB,\xC,\xD,\xE,\xF}{ \draw[ligne] (\x,-0.55) -- (\x,\ybas); }
+
+  \fill[figGrisClair, draw=black] (\xA-0.12,-1.0) rectangle (\xA+0.12,-9.1);
+  \fill[figGrisClair, draw=black] (\xC-0.12,-1.0) rectangle (\xC+0.12,-2.6);
+  \fill[figGrisClair, draw=black] (\xD-0.12,-2.9) rectangle (\xD+0.12,-6.6);
+  \fill[figGrisClair, draw=black] (\xF-0.12,-6.9) rectangle (\xF+0.12,-8.8);
+
+  % ── Parole et transcription en continu ────────────────────
+  \draw[message] (\xA,-1.0) -- node[etiq, above] {flux audio} (\xC,-1.0);
+  \draw[message] (\xA,-1.55) -- node[etiq, above] {} (\xB,-1.55);
+  \node[etiq] at (1.55,-1.42) {trame audio};
+  \draw[message] (\xB,-2.1) -- node[etiq, above] {silence de 250 ms, fin de tour} (\xC,-2.1);
+  \draw[message] (\xC,-2.6) -- node[etiq, above] {transcription stabilisée} (\xD,-2.6);
+
+  % ── Génération anticipée ──────────────────────────────────
+  \draw[draw=black] (\xA-1.05,-3.15) rectangle (\xF+1.35,-4.05);
+  \fill[figGrisClair, draw=black] (\xA-1.05,-3.15) rectangle (\xA+0.05,-3.50);
+  \node[font=\sffamily\tiny\bfseries] at (\xA-0.50,-3.325) {opt};
+  \node[etiqi, anchor=west] at (\xA+0.25,-3.34) {[transcription suffisamment stable, génération anticipée]};
+
+  % ── Recherche documentaire conditionnelle ─────────────────
+  \draw[draw=black] (\xA-1.05,-4.35) rectangle (\xF+1.35,-6.05);
+  \fill[figGrisClair, draw=black] (\xA-1.05,-4.35) rectangle (\xA+0.05,-4.70);
+  \node[font=\sffamily\tiny\bfseries] at (\xA-0.50,-4.525) {opt};
+  \node[etiqi, anchor=west] at (\xA+0.25,-4.54) {[la demande appelle une recherche]};
+
+  \fill[figGrisClair, draw=black] (\xE-0.12,-5.15) rectangle (\xE+0.12,-5.75);
+  \draw[message] (\xD,-5.15) -- node[etiq, above] {requête} (\xE,-5.15);
+  \draw[retour]  (\xE,-5.75) -- node[etiq, above] {passages et source} (\xD,-5.75);
+
+  % ── Réponse et restitution ────────────────────────────────
+  \draw[message] (\xD,-6.6) -- node[etiq, above] {réponse formulée} (\xF,-6.6);
+  \draw[message] (\xF,-7.25) -- node[etiq, above] {premier fragment audio} (\xA,-7.25);
+  \draw[message] (\xF,-7.80) -- node[etiq, above] {fragments suivants} (\xA,-7.80);
+
+  % ── Traitement parallèle, hors chemin critique ────────────
+  \draw[draw=black] (\xA-1.05,-8.15) rectangle (\xF+1.35,-9.05);
+  \fill[figGrisClair, draw=black] (\xA-1.05,-8.15) rectangle (\xA+0.05,-8.50);
+  \node[font=\sffamily\tiny\bfseries] at (\xA-0.50,-8.325) {par};
+  \node[etiqi, anchor=west] at (\xA+0.25,-8.34) {[hors du chemin de parole]};
+  \draw[message] (\xD-0.12,-8.80) -- node[etiq, above] {évaluation du sentiment, puis journalisation du tour} (\xF+1.15,-8.80);
+
+  \node[note, text width=54mm, anchor=north west] at (\xF+1.85,-3.2)
+       {L'enregistrement du tour est utile mais non essentiel à la conversation. Le placer sur le chemin critique ferait dépendre la fluidité de l'échange de la disponibilité du stockage.};
+
+\end{tikzpicture}

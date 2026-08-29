@@ -1,0 +1,1599 @@
+Please write the ultimate prompt that focus in all details on it make it the best version it can be and make the ai module focus  in all details on it and respect all rules and all guardrails and instructions given and rules that the agent should follow :
+
+
+Now you understand how the hole system we have, how everything works how he behave and work and understand each single fonctionnality and feature now your role is to write the final year project he have to be the pro ultimate cersion written carefully and step by step u have to take care of each line and each word u write and write it carefully each line each section and each paragraph should be written the perfect way the best wah and should be mimic the given references ive give u previously u have to mimic and follow the same write pattern but with our own version of it with our own touch and fingerprint each line of the report should be written the best version carefully and verified before submit and give the output u should not relay just for your own training data u have to search in all resources and search in web and give real and concret references u have to be creative the report should be profesional and human written and not something to be written by ai something perfect no hollucinations no wrong phrases or mistakes no ai generated content u have to take care and review each single line you write and ensure that's the best choice it can be each word must be in it's perfect and right place
+
+
+You have to respect alsl that :
+We gonna write this report in chapters we gonna write each time a chapter at time to focus on it the best way it can be and do not write in general so each chapter take the time and the focus he deserves and written carefully with no single piece of mistake, 0 fault, clean version
+
+- before start write each chapter u have to ask me a questions so every section every paragraph is sure of it no ambiguities, no misunderstanding everything should be sure about it no invention no hollucinations just u are sure with what u are written u are guided u not write things from everywhere and bulshit so ask questions if you are not sure ask for clarifications ask if u have ambiguities to get everything u want so everything must be mesured and calculated and precise, not writen by chance or randomly
+
+For now give all the care and focus on content generation for pictures diagrams and architectures and diagrams make placeholders we will back to them later but for now we have to focus just for text content give 10000 to the text content so everyline written perfectly and alligned to the other content take care of the content for pictured just make titles and place holders
+
+
+We have to have a clean sommaire nothing by chance everything must be calculated and mesured from the beginning no things by chance also do not repeat same ideas and same thing each thing must be mentioned right in its exact place no redondancy
+
+Do not dive in technical details and give snippet codes stay oriented academic stay profesional and   pedagogic you already learn the pattern from the old repports I've given no explicit code content talk about behaviours, workflows strategies give this system the repport book she deserve the time and the efforts and months of hard work spending worth it make everything profesional and detaild and architectured make this work deserve the pain and the time i spent on it explain the work the piplines, the logic the research 
+
+Talk about ech component and the realtime systeme and the RTC so each component should mimic the realtime behaviour and workflow each composent should create latency and new hops that make the system not realtime each component must be mesuref and each component of the agent system must be realtime supporter so the latency should be mesuref and calculated so we stay in realtime because each composant can cause a battleneck or effet de bord and that can broke the hole system or cause systeme to crash => this is one of all thing i just lention that so to mention it in the right section it's not the main concept of the project and the report we gonna write 
+We have also the STT and the TTS also the llm and  rag etc.. Each part should contains the parts he deserves  courbes and comparaisons and something why we take efforts on it and how much it takes time not just some api we call and pass! Talk about it's features talk how we use it talk about mesurements and why we choose this instead of others make courbes comparaisons and studies so this would be something worth mentioned and talk about not just a random text and stuff everything most be for a reason and justified with studies numberd and chiffres because teachers love things touchable he loves concret chiffres and numbers and training courbes etc.. 
+also that the tts and stt most support reatime streaming (and not batch) u could also explain the difference between them !
+
+Sometimes u have to make the work deserve more than it is in reality make for every part every chapter it's personnality and sometimes overate things and make it impressive more than it is in reality but the logical and mesured way not in absolute but give each part and section the light he deserves the better way and the right way 
+
+Focus in each part of the piplines talk about the work we've made in each step for example in stt (talk about measurements and metrics like diarisation, Real-Time Factor (RTF) , WER etc..) for llm talk about (ttft, inference, also must be capable with good context window talk about context window, and all relivent metrics that can explain this work the best way etc..) for tts also give metrics like WEV (word error right) give some equations to mesure that make something that explain everything with science and research !  give a light for everypart mentions everything the right the best way and highlight for ezch part the metrics and the mesurement of each tool not just we use that and pass! Everything must be mesured, compared and studied carefully and focus on it and give it the time it deserves with architecture and diagram and comparaison table depend of what the section or the part needs focus in each part in each section not just generated text and bulshit everything must be organised and writed the most best way select only the best choicd for everything do not generate and place u have to generate the best output in the best place and position and section and give it the parts and the contdnt this part should contains
+
+also for livekit we use it that's true but we have to focus more about the project livekit it's a framework we use it to help stabize the real time part and make the orchestration etc..?(verify that) But we gonna focus more on core system and features and implementations this livekit should not steal the lights from us! And the project be like just implementation of libraries and apis! We have to show the engineering side the piplines the workflow the architectural side the effort of months we put content must reflect all the effort we did not just we build we implement etc.. You have to make the reader got impressd! Said wow what an amazing work what an organisation what a great work and effort not : yeah he build a classic system with implementation of ready to use tools and api keys! 
+we are using LiveKit to support the realtime execution environment and
+coordination of multiple agents
+LiveKit role
+•  Explain why LiveKit is used.
+•  Do not present LiveKit as if it built the entire application for the
+project.
+•  Present LiveKit as an open source realtime communication/
+service framework that helps manage:
+Realtime audio.
+Concurrency.
+Audio buffering.
+Realtime communication.
+Resource management.
+Multi user interactions.
+•  The project remains responsible for:
+Agent logic.
+Business logic.
+Tools.
+RAG.
+Memory.
+Ticketing.
+Guardrails.
+Orchestration.
+Data management.
+Integrations etc.. (and more..)
+•  Make it clear that LiveKit is a framework used to solve difficult
+realtime infrastructure concerns rather than the complete solution.
+•  Explain that implementing these capabilities from scratch would
+require significant work.
+•  Show the actual engineering work performed around the
+framework.
+•  Do not reduce the project to simply integrating a few LiveKit
+libraries.
+•  Explain how the project uses LiveKit to solve concrete system
+problems.
+•  Consider LiveKit's role in:
+Resource management.
+Concurrency.
+Realtime audio.
+Buffering.
+Agent execution.
+•  Explain how multiple agents can be orchestrated through the
+realtime environment
+focus also on how agent capable to handle multiple things at runtime how the agent capable to identify user intent in real time and understand how should do and act and whats the action he should do and how the agent receive in runtime and realtime :
+User context.
+Conversation context.
+   Customer data.
+   Tickets history (in demand)
+   Retrieved knowledge (in demand)
+   Business rules.
+   Available tools (in demand for each agent)
+other things that the agent could use or inject to it's context etc..
+
+
+
+
+
+You have to explain Agent communications the long and short term memories the context of the agent the communication protocol you have to show the guardrails and the instructions and personas
+
+We have to focus on each sub system architecture and give it a small highlight with use case or two the main onces rag system and its architecture and xhy we use this and not other, the researches wve made, the complete workflow from ingedtion and storage as embedded in vector db to retrieval and semantic search and information extraction and injection as contexte in realtime (verify that), the mcp protocol how it works and why we use and where, the tools 
+
+Also highlight a small part about networking and connexion establishment for rtc communication between client and server give it some light also talk about interruption handling  Support realtime audio buffering and management.
+•  Handle interruptions correctly also talk about, asynchronous tool execution, Support realtime context updates through asynchronous, and also some synchronous operations and give an ullistrations on them and explain the difference between them smoothly and optimalistic, highlight also about Network communication and connexion establishment and where we use that and why? (web RTC) 
+
+
+
+and talk about it a little and make it impressive make them said wow complete project this engineer student talk about everything architectural side, software engineering, ai and agentic systems and also networking wow that's so impressive and that's a lot of efforts
+also we can talk about how resosurce management work such as ram and cpu etc also •  Handle concurrent conversations and concurrent agent execution.
+.. (we already also have Otel (open telemetry) to mesure performance , analyze software's performance and behavior)
+
+
+how to optimize memory ressources and buffer and if there is threads? or concurency or some critical ressources , semaphore..
+  Explicitly address concurrency management
+Manage:
+CPU.
+RAM.
+Buffers.
+Channels.
+Agent workers.
+•  Dynamically start or stop agents when necessary to optimize
+resource usage.
+•  Handle concurrent operations within a single call.
+•  Example: if two payments happen during the same call, each
+payment must have its own unique key/identifier.
+•  Ensure operations cannot accidentally overwrite or interfere with
+one another.
+•  Explain how concurrent operations are isolated.
+•  Optimize system resource usage while maintaining realtime
+performance
+
+
+
+
+We gonna negociate for everything you ask things give your options and prepositions and i give u my point of view, answers and guide u throw all of that also the sommaire of the repport we have to negociate of it from the beginning so everything on it would be mesured and predectible no chance for hollucination and invention and randomless content everything  locked in  and confirmed and predicted nothing with chance! 
+
+
+Also we have to focus on training things mention that we train some models but results did not be so impressive because realtime no tolerance also, Monitor overall response time and talk about the realtime response how should be and when things would be considered like realtime or not (depending on time latency
+
+also this needs a lot of ressources but mention some efforts of testing and training models in local like llama (mention a version of it)
+
+
+Llm must be capable with tool calling also mention other metrics have to be in the llm selected model to use it in realtime also for agentic system such as tool calling, instructions following and inference time, ttft (time to first token etc..)
+
+Also we should highlite the engineering and architecturzl side we have to explain and show how this system designed  design patterns, clean principals, hexagonal architecture with scalability and adapters, single responsability segregation, DDD (domain driven design), Bounded Context (Clear borders around a specific part of a software system where a particular model and language apply, keeping large systems organized),Entities and Value Objects ?, Aggregates? , CQRS etc.. And all best practices in software engineering and system architecturing and system design and design solution do not mention that explecitely but implecitely in smooth way in the best moments and right places
+
+Do not make content redondant in several sections and parts so each part section and chapter contains exactly its sepicifc parts and sections and content  
+
+Stay focused and ask questions and make everything perfect and profesional do not invent just give concrete and real content that deserves to read and to see fully completed architecturally and explain the best and the best way 
+
+
+don't forget to put each time in the right place the place holder of uml diagram that could be one of these depend of the thing we've describe or made because each diagram can describe and talk about the same thing in another angle or view [diagramme de sequence , use case diagram , class diagram , paquetage diagram , deployment diagram , etat transition ,diagramme de compostants] also the architectures the pipelines, the workflow, the flux data 
+
+
+make sure to not dive deep in technical depth make it pedagogique and worth reading some things must not mentions expilicitely but must be mentioned smoothly and behind the lines make each chapter makes you want to learn the other with a lot of exciting and patience make thing professional detaild worth to mention and not boring each line each section, each chapter should have a vibe a worth reading , a story to tell an information to give the effective and perfect way and i mean perfect so everything must be clean , and professional and the best way it can be u have to invest time on this because this is the face of our system the The fruit of months of hard work He is the face of system project this report must deserve each hour each day each month we spent on it so u have to take care of every detail and take your time in writing it the best way it can be with 0 error 0 misunderstanding !
+
+you have also to demonstrate the agentic ai in the best way it can be make a highlit about agentic systems and how this work and wrok flow and also explanation diagram or architecture .. the thing that could be better and explain the right way our project (placeholder for now)
+no bulshits informations and boring things just things impressive and facts that make things worth reading and spent time on reading it , make a special touch in this repport that the juries member see on this something different something professional and complete in all views and angles and worth reading the complete project! 
+highlight the workflow the agentic ai system the full workflow and pipline each part should explain the right and smooth way separately? (maybe in some cases u have to determine the right way and the best way for that)
+also we have a complete pipline and workflows u have to explain all of that each time the best way it can be each workflow can be explained in the right time and best place when we need and when we reach it's fonctionnalities etc.. 
+for example we have the RAG provides relevant knowledge.
+•  Memory provides historical context.
+•  Business rules constrain actions.
+•  Guardrails control unsafe or unauthorized decisions.
+•  Tools execute approved actions.
+•  This forms a controlled pipeline from understanding to execution
+
+before we do anything we have to negociate about the "table of contents" (list of chapters and the subsections should be contained in the repport book everything should be sure and decisions locked in and predictble and not random made or by chance we should negociate in everything on it and enleve all things that have ambiguities and uncertainty things!
+
+
+stay progressive and explain things step by step do not talk about everything from the beginning will talk step by step for the project like a story telling not all in one , We don't want reveal everything from the beginning stay easquilibred about features explannations and core it things weve already mention above we have to make everything the right best way and stay equilibrated between project bisuness logic and requirements and the things we work on , researchs , mitrics , workflows and diagrams that explains some defficult and complexe piplines and workflows 
+
+
+do not use academic words and statement just apply it don't mention this explicitely like academic , pedagogic , engineering project , software engineering and all these keywords that's just apply that without mention such things like that explicitely !, keep the content clear and easy to understand not complexed phrases and words, also stay clear and provide the information the right way it can be, avoid long stories or narrative descriptions also do not overexplain obvious information, The report should remain interesting and readable throughout,•  Avoid making the reader tired, frustrated, or overwhelmed, Every section should communicate useful information,  Do not repeat the same information across multiple chapters.
+•  Do not explain the same component repeatedly.
+•  Do not introduce the entire system again in every chapter.
+•  Once an important concept has been properly introduced, refer to
+it appropriately instead of rewriting the same explanation.
+•  Do not expose everything from the beginning.
+•  Progressively introduce information according to the report
+structure.
+•  Each chapter should have its own specific information and
+purpose.
+•  Avoid saying everything in one chapter and then repeating it later.
+•  Keep information distributed logically across chapters.
+
+
+also 
+
+ Do not put scripts and code blocks.
+•  Do not fill chapters with code snippets.
+•  Avoid unnecessary code blocks.
+•  The report should not look like a GitHub repository or developer
+documentation or a technical document so keep academic but informations must be give the best and the right way ! 
+
+ Use diagrams, architectures, courbes , graphs ,representations, tables, or concise
+explanations instead of codes 
+
+
+Avoid strange, exaggerated, or marketing-like names for the
+system.
+•  Avoid unnecessarily complicated names such as "Agentic AI
+Voice Platform" when they make the report sound unnatural.
+
+
+
+
+ Prefer smooth and professional terminology such as:
+the system
+the platform
+our system
+our platform
+the solution
+the proposed solution
+etc..
+depending on the context use the right word 
+
+ Keep terminology consistent throughout the report
+
+
+
+Avoid terms that make the project sound like an unfinished
+experiment.
+•  Avoid unnecessarily emphasizing:
+"MVP"
+"first version"
+"first prototype"
+Similar terms suggesting an incomplete or preliminary
+product.
+
+
+•  Use more professional and academic fluent and clear formulations when discussing development stages
+•  Present the developed solution as a serious engineering project
+rather than constantly emphasizing that it is an early prototype.
+
+
+
+do not hallucinateuse just Reliable information from verified references/examples
+the right place and in the best place
+ Clearly identify information that still needs to be provided instead
+of guessing
+
+ Do not force information into chapters where it does not belong.
+•  Do not repeat general explanations just to fill pages.
+•  Avoid "filler" content.
+
+
+
+Do not reveal everything immediately.
+•  Maintain a controlled information flow.
+•  Each chapter should prepare the reader for the next one.
+•  Keep the document smooth, coherent, and engaging.
+•  Avoid making the report boring through excessive explanations(just when we need it in some parts and comparaisons or bunchmarking or results of experiencing or tests)
+•  Avoid overwhelming the reader with technical information.
+•  Make the document easy to follow from beginning to end.
+
+
+
+The report should feel human written.
+•  Avoid repetitive AI patterns.
+•  Avoid generic statements that could apply to any project.
+•  Avoid artificial transitions and unnecessary formalism.
+•  Avoid robotic descriptions.
+•  Avoid exaggerated claims.
+•  Use natural academic phrasing
+
+ each part section , chapter should communicate the work with clarity, purpose,
+and genuine understanding.
+
+
+
+  Do not generate or permanently insert final figures during the
+initial chapter writing.
+•  Use placeholders for visual elements.
+•  Add the actual figures later when the corresponding chapter is
+completed and validated.
+
+
+Visual placeholders should cover relevant elements such as:
+Images.
+Figures.
+Schemas.
+UML diagrams.
+Conceptual diagrams.
+Class diagrams. (for example in the right place u mention the agents and features of this (we will discuss later about sections and table of content of the repport book) we can make a class diagram explain the base agent and it's inheritance for other agents the base agent have things commun between agents (but for now all diagrams and illustrations are placeholders))
+Sequence diagrams.
+Component diagrams.
+Deployment diagrams.
+Use case diagrams.
+Activity diagrams.
+architecture
+etc..
+=> (for each type of diagram you have to explain thing with another angle each part can have some diagrams to explain things more because it's the right and the best professional and academic way to explain concepts and make them more undersable and make th reader understand things more better.
+you have to use each diagram for the best case and to explain the right thing as the diagram invent to here is a table explain why and when each diagram used :
+{{{
+Diagram Name,Type,The Angle / Viewpoint,The Core Question it Answers
+Use Case,Behavioral,User-centric view of features,Who uses the system and what can they do?
+Sequence,Behavioral,Time-based interaction view,In what exact order do system parts communicate?
+Activity,Behavioral,Procedural flow view,How does the logic flow step-by-step from start to finish?
+State Machine,Behavioral,Object lifecycle view,What conditions (states) can an object be in?
+Class,Structural,Blueprint view of the code,How are the entities built and related to each other?
+Component,Structural,Modular architecture view,How do the big software modules wire together?
+Deployment,Structural,Physical hardware topology view,Where does the compiled software actually run?
+}}}
+  Define each agent's specific:
+Role.
+Capabilities.
+Tools.
+Context.
+Rules.
+Responsibilities.
+we can also :
+Explain how agents work internally.
+•  Explain what an agent worker is.
+•  Explain how agents are started and stopped.
+•  Dynamically activate or deactivate agents when necessary.
+•  Manage agent lifecycle to improve resource efficiency and
+performance.
+also  Explain the orchestration logic of agents 
+
+
+
+
+ The placeholder should clearly indicate what visual needs to be
+inserted and where.
+•  Visual elements should be added according to the content of the
+specific chapter in the best and right place and best position 
+
+
+
+
+  Avoid AI looking formatting and unnecessary decorative
+characters.
+•  Do not use:
+__
+unnecessary hyphens
+em dashes
+tildes
+strange AI generated symbols
+other unnecessary special characters
+•  Keep formatting clean and professional.
+•  Use normal academic punctuation and formatting.
+•  Avoid stylistic patterns that make the text looks like AI
+generated
+
+
+ Titles and section names
+•  Titles must be professional, academic, natural, and relevant.
+•  Avoid strange or marketing oriented titles.
+•  Avoid unnecessarily complex titles.
+•  Titles should clearly communicate the purpose of the section.
+•  Keep naming consistent throughout the report.
+•  Do not use titles simply because they sound impressive.
+•  Choose titles based on the actual content and role of the section.
+
+
+
+•  Do not explain results before explaining the corresponding work.
+•  Do not repeat previously established information.
+•  Information should be distributed according to its relevance.
+•  Every section should have a pre-defined purpose.
+
+
+•  The report should feel like it was written by someone who deeply
+understands what he did and know what he doing !
+•  Write with clarity, precision, and purpose.
+ Avoid robotic or automatically generated writing patterns.
+•  Avoid generic AI style, filler, and artificial phrasing.
+  The final document should feel humanized, coherent, and
+carefully crafted.
+•  Make each part pleasant to read.
+•  Do not make the report boring.
+•  Keep explanations understandable without oversimplifying
+•  Do not overwhelm the reader by exposing everything at once! (but each part must be well explained in the best and right way)
+
+•  Do not reintroduce the entire system in every chapter.
+•  Once a concept has been properly introduced, do not explain it
+again unnecessarily.
+ Do not "burn everything" at the beginning of the report.
+•  Preserve relevant information for the chapter where it belongs
+
+
+
+  This is not a technical documentation manual.
+•  Keep technical content limited to what is academically necessary.
+•  Explain technical concepts only when they help the reader
+understand:
+The system.
+Its architecture.
+Its operation.
+A development decision.
+A specific component.
+A relevant implementation.
+
+
+  When introducing an important system component or technical
+layer, provide a clear visual representation when useful.
+explain it with a visual elemnt like diagram or graph to explain its architecture or it's workflow 
+Keep diagrams simple and directly related to the explanation.
+•  Use visual elements strategically rather than excessively.
+•  Example:
+When introducing the RAG layer, briefly introduce the RAG
+architecture and include a figure showing its functionality.
+•  The same principle applies to other major architectural
+components
+
+
+
+
+for example:
+when explaining some concepts like :
+ for the Agents
+identigy it why we use it whats it's purpose give it's consept and how it works and it's compostants (Keep the explanation short and clear)
+the Represent the agent's reasoning pipeline conceptually as:
+LLM(brain?) → Plan → Decision → Action / Tools etc.. (adapt it for our case and system but give the main pipeline in generale and our use case after that if needed..)
+•  The LLM acts as the reasoning component?
+•  The agent determines what needs to be done.
+•  A plan defines how the objective should be achieved.
+  A decision determines whether and how the action should be
+executed.(tools,mcps,api call etc..)
+•  Tools execute the actual operation.
+•  Guardrails must constrain the agent's decisions.
+•  The system should not rely entirely on uncontrolled LLM behavior.
+•  Introduce deterministic behavior wherever possible (things that not have to be decided by the llm and should be done deterministically such us critical operations and also authentification behaviours and decisions that contains sensible data)
+•  Reduce:
+Hallucinations.
+Random behavior.
+Invalid decisions.
+Unexpected tool calls.
+Inconsistent agent behavior.
+•  Use structured decisions such as:
+authorised
+refused
+escalate
+
+
+
+also an illustration (graph / diagram ..) if needed..
+
+
+
+ for the LLM
+Briefly explain what an LLM is explain it's concepts and metrics and why we use it as a brain to our core system (explains the inference  ,ttft , context window , harness? , memory , tokens input and output and (time to first token) the weights , the open source models and private commercialized onces and advantages (security , privacy , ressources) explain limitations and tool calling also explain the rate limits etc..
+Explain how it works at the level necessary for the report.  (Keep the explanation short and clear)
+ Long term and short term memory and the context and how we pass it to the agent 
+also everything must be controlled so the The system should not rely entirely on uncontrolled LLM behavior.(guardrails)
+also we have :  Store the rule_id responsible for a decision so that the origin of the
+decision can be traced. (for logs and journalisation and tracing)
+•  The system should combine LLM capabilities with deterministic
+business rules !
+
+also a diagram or graph for explannation
+
+
+for the rag :
+. RAG and knowledge base
+•  Build a RAG system for customer queries (questions , faqs , offres etc..)
+•  The agent should answer questions using the knowledge base.
+•  Use vector search for semantic retrieval.
+•  PostgreSQL can contain the knowledge data.
+•  Use pgvector/qdrant for similarity search? (we have to verify against our system)
+•  Knowledge should be available to the agent through its context. (injected)
+•  Explain why RAG was selected(the models used , the pipeline of it , the steps so the answer the customer and  retrieval steps also the ingestion of files and converting it to chunks etc..)
+talk about why retrieval should be low latency and how we did to ensure that in our systeme (to ensure realtime criteria..)
+•  Discuss RAG in terms of:
+Knowledge grounding.
+Optimization.
+Retrieval accuracy.
+Reducing hallucinations.
+Keeping information external to the LLM.
+context just injected and stored in chunks (we use postgres , minio , redis ..)
+
+
+
+same way for MCP servers and other components that have to mention and explain carefully  etc..
+for example for mcp we must mentions that :
+  Consider using a booking service through Docker/MCP.
+•  Integrate MCP services through the adapter/tool architecture.
+•  The agent should not directly manipulate infrastructure; it should
+interact through controlled tools.
+Use tools to allow agents to interact with external services.
+•  Support MCP based integrations.
+•  Mention FastMCP (how we integrate mcp with our system u have to verify that against the system too) as part of the technical architecture/report.
+•  Use Docker based MCP services where useful.
+•  Docker can provide a large set of MCP services.
+•  Consider using a booking service through Docker/MCP.
+etc..
+
+  Apply the same principle to other technologies and components:
+Introduce them when they become relevant.
+Explain their role.
+Keep the explanation clear and clean and perfect.
+Avoid unnecessary theory but give numbers and chiffres when it's needed
+
+
+agent persona and how agents works communicate and collaborate , how tools call and how pass context from an agent to another and other features .. make this overrated and explained like something impressive as fuck
+also mention that it's a multi agents orchestration system 
+also we made  agent to agent interaction.
+and define specialized agents with specific responsibilities depending on the business domain
+also explain what the agent compositions and the workflow with a diagram or a graph that explain it's lifecyle the best way it can be 
+
+
+ensure to review the generated content and correct it if something weired or not well structured or have mistakes or wrong informations etc..
+
+
+ Do not make important assumptions when the information is
+ambiguous.
+If there is uncertainty or confusions Ask the user for clarification before making a decision that could
+affect the current content or section we are working on
+
+
+also we gonna make reference section at the button of the repport book so at the end we gonna make references for more details for somethings we are introduced and give toute au long des chapitres que nous avons ecrit
+
+
+for the context : Agent context and memory
+•  Maintain an explicit agent context.
+•  Define how context is constructed.
+•  Define how context is passed to agents.
+•  Maintain conversation context between turns.
+•  Support inheritance of conversation context where appropriate.
+•  Explain how context is passed between agents.
+•  Maintain relevant customer context.
+•  The agent should have access to information such as:
+Customer profile.
+Previous interactions.
+Previous tickets.
+Current tickets.
+Relevant knowledge.
+Conversation history.
+•  The agent should remember previous customer interactions when
+appropriate.
+Explore short term and long term memory concepts where
+relevant.
+•  Explain the role of memory without overloading the main report
+with theory
+
+
+limitaions and llm model selection :
+
+•  Select the LLM according to capabilities, business logic, context
+handling, and performance, not only resource consumption.
+•  Consider models such as:
+Llama.
+NVIDIA Nemotron.
+GPT 4o mini.
+•  Explain why the selected model is appropriate.
+•  The selected model should have sufficient:
+Reasoning capabilities.
+Context retention.
+Tool use capabilities.
+Response quality.
+Performance.
+•  Avoid selecting an excessively weak model simply because it
+consumes fewer resources.
+•  Weak models may:
+Hallucinate more.
+Lose context.
+Produce weaker decisions.
+Fail to follow complex instructions.
+•  Hosted models were also considered/tested.
+•  Hosted solutions may introduce:
+Usage limits.
+Rate limits.
+Token per second limitations.
+•  Model selection should therefore consider practical system
+constraints
+
+
+
+also we should highlt on the AI engineering concepts:
+•  Consider the progression from:
+Prompt engineering.
+Context engineering.
+AI harness / harness engineering.
+•  Prompt engineering focuses on how instructions are given to the
+model.
+•  Context engineering focuses on what information is provided to
+the model and how memory/context is managed.
+•  AI harness engineering concerns the surrounding system that
+controls the model, tools, context, execution, validation, and
+behavior.
+•  Avoid relying on a single LLM call with an oversized prompt.
+•  A "one shot LLM" approach is insufficient for the complexity of the
+system.
+•  The surrounding architecture must control and guide the LLM.
+
+
+
+
+ also we have to consider and talk about 
+Guardrails and deterministic behavior
+•  Implement guardrails around LLM behavior.
+•  Guardrails should control:
+Actions.
+Permissions.
+Tool usage.
+Escalation.
+Sensitive operations.
+Business rules.
+•  Implement deterministic rules to reduce LLM randomness.
+•  Guardrails should provide predictable behavior when the LLM is
+uncertain or incorrect.
+•  Admin users should be able to manage:
+Guardrails.
+Policies.
+Usage rules.
+•  Decisions should be traceable through a rule_id.
+•  The system should be able to explicitly return:
+Authorised.
+Refused.
+Escalate.
+•  Consider an LLM powered content filter where appropriate.
+•  Evaluate the agent regularly to ensure that guardrails and
+decisions work correctly (tests and evaluations like unit tests)
+
+
+
+also we have to take in consideration the testing part that is so important to improve the agent answers and behaviours and control it's actions and improve it's output and acting :
+11. Evaluation and testing
+•  Implement systematic evaluation and testing.
+•  Evaluate the quality of:
+Agent responses.
+Tool calls.
+Decisions.
+RAG answers.
+Guardrails.
+Escalation behavior.
+Voice interactions.
+•  Test deterministic behavior.
+•  Test hallucination prevention.
+•  Test concurrent execution.
+•  Test external service failures.
+•  Test fallback behavior.
+•  Test adapter replacement.
+•  Test real and simulated services.
+•  Use evaluations to improve output quality.
+•  Monitor response time and system performance
+
+
+
+
+
+
+also we have to talk about the  Fallback strategy because the system most have a fallback system (a short circuit for worst cases and risks that can happens on realtime and production system when a service is down)
+•  Implement a clear fallback chain.
+•  Define what happens when:
+An LLM fails.
+A tool fails.
+An external service is unavailable.
+An advisor is unavailable.
+A realtime operation fails.
+•  Fallbacks should be explicit and deterministic.
+•  Do not silently hide failures.
+•  The system should preserve a reliable user experience while
+exposing failures for diagnosis
+
+
+
+
+also we have the Authentication and identity :
+Authentication and identity management must be clearly
+separated from agent logic (for security raisons must be deterministic..)
+HMAC can be used for identity verification between trusted
+components.
+•  Customer identity should be reliably linked across:
+User account.
+Customer record.
+GLPI user.
+Tickets.
+Conversations.
+etc..
+
+
+
+
+also we have our ticketing system  Ticketing system and GLPI
+•  Build a ticketing system integrated with GLPI.
+•  The agent should:
+Create tickets.
+Read tickets.
+Check ticket status.
+Access previous customer tickets.
+Update tickets where authorized.
+Close tickets when the customer problem is resolved.
+•  The agent should know the customer's previous ticket history.
+•  Admins should be able to:
+View tickets.
+Modify tickets.
+Update ticket state.
+Manage ticket related information.
+Every new customer should receive a corresponding GLPI user ID
+when the integration requires it
+also we may talk about glpi mirror (postgres chache for ticketing)(we can name it with another profesional and more impressive and overratede name not just it's a mirror (postgres chache for ticketing) for our glpi system that's not proffesional):
+  Connect to a real GLPI instance through its REST API.
+•  Maintain a local mirror/cache of relevant GLPI data.
+•  The GLPI system remains the authoritative live system.
+•  The mirror is a cache, not the source of truth.
+•  Operations should hit GLPI first.
+•  After successful operations, update/reconcile the local mirror.
+•  Ticket status reads should come from the live GLPI system when
+required.
+•  Reconcile the live GLPI state with the local mirror(postgres chache for ticketing).
+•  Maintain consistency between GLPI and the mirror.
+•  The mirror exists for:
+Performance.
+Local access.
+Read optimization.
+Reduced dependency on repeated external calls.
+•  Never treat the mirror as more authoritative than GLPI.
+also some other details :
+ Every customer should have:
+An application/customer user ID.
+A corresponding GLPI user ID.
+•  When creating a customer, call an ensure customer GLPI user
+operation.
+•  This operation creates the GLPI user if necessary.
+•  When the customer interacts with the agent and ticketing
+functionality is required:
+The system identifies the customer.
+Ensures the corresponding GLPI user exists.
+Associates the ticket with that GLPI user.
+•  Maintain synchronization between the customer account and GLPI
+identity
+also we are applying CQRS on our ticketing system here is how :
+ CQRS in ticketing
+•  Use the CQRS pattern for the ticketing system.
+•  Separate:
+Commands / writes.
+Queries / reads.
+•  Use projections or dedicated read models for efficient ticket
+queries.
+•  The ticketing read side can rely on projections derived from the
+authoritative GLPI state.
+•  Keep the write path and read path conceptually separated
+
+
+
+
+
+ **Callback scheduling
+•  Build a callback scheduling mechanism.
+•  Maintain a table for supervisors/advisors.
+•  Maintain another table for their availability/time slots.
+•  Availability can cover 24/7 depending on the configured schedule.
+•  The agent manager negotiates the callback time with the user.
+•  The system should propose a time according to advisor
+availability.
+•  If an available slot exists on the same day:
+Propose a same day appointment.
+•  If no suitable same day slot exists:
+Propose a slot on the following day.
+•  Reserve the selected slot.
+•  Send an email containing the callback details.
+•  The admin dashboard should allow management of advisor
+availability.
+Admin dashboard → exposes the operational history, tickets,
+knowledge, schedules, guardrails, users, and system status (and other mitrics u can see them on the project our source of truth)
+•  Callback information should be stored for later tracking
+the agent can reserve time depend of disponibilities when a user want a callback the agent search for available advisor for a specific problem (network , sim , account etc. (depending on advisor speciality also maybe general when no specialist disponible) and reserve a timeslot for callback depending on advisor disponibilities and free times 
+also:
+Escalation and human handoff
+•  Implement escalation routing.
+•  The agent must recognize situations that require a human advisor.
+•  If an advisor is available:
+Transfer the conversation/call to the advisor.
+Use SIP where required for the transfer.
+•  If no advisor is available:
+Offer the customer a callback.
+Notify the advisor who can handle the request.
+Schedule a callback.
+•  Advisor availability must be managed from the admin dashboard.
+•  Escalation should be controlled by business rules and guardrails.
+•  Escalation is one of the possible structured outcomes of an agent
+decision
+
+
+
+
+
+also we build a ui for cutomer portal and admin dashboard to manage the systeme (we can make some interfaces later for them in the "Realisation" section to show them between our realisations 
+also here is some features we have on the admin & client portals (not all of them you have to check the system so you know exactly what we have and what still messing so you mention all of them (the most important highlight onces not everything, not account and faq and about me etc.. but the core features..) even if there are still partially done or complete or even missing.. :
+ User application
+•  Users should have an account.
+•  Users should be able to:
+Log in.
+Access their account.
+Interact with the voice agent.
+View relevant information.
+Potentially manage their tickets/callbacks depending on the
+final scope.
+•  User identity should be verified before sensitive operations.
+24. Admin dashboard
+•  Build an administration dashboard.
+•  Admins should be able to:
+Approve requests.
+Decline requests.
+Check statuses.
+Manage users.
+View customer interactions.
+Manage tickets.
+Manage knowledge base content.
+Add knowledge files.
+Manage advisor availability.
+Manage callback schedules.
+Manage guardrails.
+Manage usage policies.
+•  The dashboard should expose operational information needed to
+supervise the system.
+25. Call history and analytics
+•  Store end of call information for each user.
+•  The admin dashboard should display call history.
+•  Store:
+Call duration.
+Date.
+Time.
+User UID.
+Phone number.
+User name.
+Total tokens consumed.
+Transcript.
+Transcript summary.
+Keywords.
+•  Generate transcript summaries after calls.
+•  Use summaries for future personalization and context.
+•  Use call history for administration, monitoring, and analysis
+
+
+
+also we have Sentiment detection
+•  Implement sentiment detection.
+•  Use the detected sentiment to influence how messages are
+represented.
+•  Represent sentiment visually through the message color in the
+interface.
+•  Sentiment information can support customer interaction analysis
+the user sentiments and intentions can affect the agent decision not just the business rules or the guardrails and user intent but also user behaviours and intentions(happy,frustrated,mad, etc..) can lead to a different decision (calm user , handoff etc..)
+
+
+email and notifications (u have to verify against the current real system):
+Email and notifications
+•  Support email notifications where required.
+•  Use MailHog where appropriate for development/testing.
+•  Send callback confirmation emails containing:
+Appointment details.
+Time.
+Relevant information.
+•  Notify advisors when an escalation/callback requires their
+intervention
+
+we have to make a section maybe? for tools and services used on the system such as livekit , minio , opentelemetry, docker , qdrant , postgres , redis etc..
+for example for infrastructure and local hosted envirement we user docker :
+Docker and infrastructure
+•  Use Docker for service isolation and deployment.
+•  Investigate and document Docker internal networking.
+•  Understand:
+Internal container addresses.
+Ports.
+Service discovery.
+Container to container communication.
+•  Ensure that services communicate correctly through the Docker
+network.
+•  Use Docker based services where appropriate.
+•  Consider Docker MCP services for reusable integrations
+•cloud native containerized microservices (This means building software using modern, scalable architectures—specifically containers, microservices, and dynamic orchestration)
+
+
+
+mention that we want to stay open source as much as we can  so we can have flexibility to work and scalable the system without any controle and limits (talk for that better and mention the benefits and why we did that) :
+Open source and custom solution
+strategy
+•  Prefer open source and customizable components where they
+provide sufficient quality.
+•  Open source solutions allow:
+Greater customization.
+Self hosting.
+Adding required functionality.
+Modifying components.
+Greater control over infrastructure.
+•  Avoid excessive dependency on closed third party platforms when
+they limit customization
+also we can talk about? :
+ Local versus hosted AI infrastructure
+•  Consider local AI models where useful.
+•  Local TTS can use Kokoro.
+•  Local STT can use Whisper.
+•  Hosted models can provide better capabilities but introduce:
+Rate limits.
+Usage quotas.
+Token throughput limitations.
+External dependencies.
+•  Model/infrastructure selection should balance:
+Performance.
+Quality.
+Latency.
+Resource consumption.
+Scalability.
+Reliability.
+Customization
+
+
+
+
+also we can dive deep to the agent scenarios and our business logic of the system?:
+ Agent scenarios and capabilities
+•  Document the main agent scenarios.
+•  Explain what the agent can actually do.
+•  Examples include:
+Answering knowledge base questions.
+Checking customer information.
+Checking previous/current tickets.
+Creating tickets.
+Updating tickets.
+Closing resolved tickets.
+Scheduling callbacks.
+Escalating to advisors.
+Sending notifications.
+Creating calendar events.
+Handling persistent technical problems.
+•  Describe capabilities through realistic use cases rather than
+generic AI claims.
+also we have some business rules and guardrails :
+. Business rules
+•  Define explicit business rules for agent actions.
+•  Rules should determine when an action is:
+Authorised.
+Refused.
+Escalated.
+•  Store the rule identifier responsible for the decision.
+•  Rules should control sensitive operations.
+•  Business rules should be independent from the LLM's free
+interpretation wherever possible.
+•  Admins should be able to manage applicable guardrails and
+policies.
+
+
+we must also talk about performance and it's effect on realtime so a tool latency can cause the failure of all the system :
+. Performance
+•  Measure and discuss system response time.
+•  Measure TTFT, Time To First Token.
+•  Consider:
+STT latency.
+LLM latency.
+Tool latency.
+TTS latency.
+Network latency.
+Queue/buffer delays.
+•  Optimize resource usage.
+•  Optimize concurrent execution.
+•  Optimize agent worker lifecycle.
+•  Balance model capability with realtime requirements.
+•  Performance should be measured rather than described vaguely.
+
+
+
+also we can show implicitely how the  System design and DDD & bounded context, clean architecture , design patterns (in some uml diagrams like class diagram), hexagone architecture , CQRS and other things are applied to our system
+•  Document the overall system design.
+•  Clearly represent:
+   Agents.
+   Agent manager.
+   Services.
+   Tools.
+   RAG.
+   Memory.
+   Database.
+   GLPI.
+   Calendar.
+   Authentication.
+   Admin dashboard.
+   User application.
+   LiveKit.
+   External integrations.
+•  Show the relationships between components. (maybe with paquetage(package) diagram for organizes model elements logically into folders and component diagram to shows executable software modules and their physical connections)
+we can also use sequence diagrams to show how different parts of a system talk to each other and in what order over time also activity and etat transition diagrams (A state transition diagram tracks how a single object changes states based on external events. In contrast, a diagramme d'activités (activity diagram) shows the step-by-step procedural flow of a business process or workflow from start to finish)
+•  Make clear which components are:
+   Core domain.
+   Infrastructure.
+   External systems.
+   Adapters.
+   Read models.
+Authoritative sources.
+Caches
+
+
+
+Important architectural principles to
+preserve
+•  DDD for domain organization.
+•  Hexagonal Architecture for infrastructure independence.
+•  Bounded Contexts for domain separation.
+•  Service Contracts for inter-service communication.
+•  CQRS for ticketing read/write separation.
+•  Adapters for replaceable integrations.
+•  RLS for database-level access control.
+•  Guardrails for controlled AI behavior.
+•  Deterministic business rules for predictable decisions.
+•  Agent orchestration for multi-agent coordination.
+•  Memory/context management for continuity.
+•  RAG for grounded knowledge retrieval.
+•  Event streaming with Kafka where required.
+•  Redis where appropriate for realtime/state/caching requirements.
+•  PostgreSQL triggers where domain events or automated database
+behavior require them (for example we use triggers to make triggers actions like when a ticket created another one created in the mirror db (postgres chache for ticketing) (but we must mention that the professional overrated way not like I've describe it)
+
+
+Final end-to-end conceptual flow
+•  User authenticates → identity is verified.
+•  User starts a voice interaction → realtime communication is
+established.
+•  STT → converts speech to text.
+•  Agent receives the request → combines conversation context,
+customer information, memory, tickets, and relevant knowledge.
+•  RAG → retrieves relevant French knowledge when necessary.
+•  LLM → understands the request and proposes a plan.
+•  Guardrails and business rules → determine whether the action is
+authorised, refused, or escalated.
+•  Agent/tool execution → calls the appropriate tool or MCP service.
+•  External service → GLPI, calendar, email, planning, customer
+service, etc.
+•  Live system → authoritative operation is executed where
+applicable.
+•  Mirror/cache → updated or reconciled afterward.
+•  Response → result is returned to the agent.
+•  TTS → generates the spoken response.
+•  Realtime layer → delivers the response to the user.
+
+
+
+
+Write like a real human who thinks before typing. Strictly follow these rules:Do not use predictable AI buzzwords or transitional filler.Vary sentence and paragraph length significantly.Avoid 'not this, but that' balanced contrasts and the rule of three examples.Do not use em dashes (—) or bullet lists unless explicitly requested.Write in a direct, active voice with occasional imperfect, natural transitions
+Do not use: unnecessary hyphensem dashes tildes or any strange AI generated symbols or other unnecessary special characters, Keep formatting clean and professional, Use normal academic punctuation (bullets) and avoid using em dashes and tilds ( "__" , "-" )  and formatting, Avoid stylistic patterns that make the text look automatically generated.
+
+
+
+
+also if information missing please ask me for it and i give you (can be not related to the project itself because u have access for everything on it (throw the GitHub repo ive provide but for example informations related to the company ive made the project for and it's informations and details.. )
+
+
+
+
+
+cijointe also another type of structure that recommended from my supervisor to use also we can use it it seems that it is something can use and rely on it's some recommandations for write the repport and make it the best version it can be that's some recommandations from my pedagogique supervisor that can help generate our final table of content taking also in consederation all things you've see previously and all things i give above !
+
+
+
+also in the report in the non functional requirements we have to cite the important onces we've used in our report and here is the full list we have to mention between them in the chapter 2 ( Chapitre 2 : Spécication des besoins)in it's right place, so we make this part strong and we have a strong argument !  
+
+Non-Functional Requirements (NFRs)
+Non-functional requirements specify the quality attributes, system qualities, and operational constraints under which the system must function.
+
+Security and Privacy: Focuses on data protection and authorization. The system must restrict unauthorized access to sensitive data (e.g., implementing Row-Level Security in the database).
+
+Reliability and Availability: Ensures continuous system uptime and safe operation without failure (e.g., high availability for clinical monitoring and physical obstacle avoidance).
+
+Efficiency (Performance): Defines system speed and resource usage under workload constraints (e.g., maintaining low-latency response times and real-time data updates).
+
+Usability (Ergonomics): Measures how user-friendly, accessible, and intuitive the software is (e.g., a modern minimalist UI and voice interaction for users with limited mobility).
+
+Extensibility: Measures how easily new features, components, or AI models can be integrated into the existing software architecture without breaking existing functionality.
+
+Maintainability: Refers to how easily developers can update, debug, or refactor the system (e.g., clear code documentation for functions and core modules to aid future audits).
+
+Scalability: The system's capability to handle increasing workloads, data volume, or concurrent user traffic seamlessly (e.g., horizontally scaling backend microservices during peak usage).
+
+Interoperability: The ability of the application to connect, exchange data, and integrate smoothly with third-party APIs, legacy software, or external hardware systems.
+
+Portability & Compatibility: The ease with which the application can run across multiple operating systems, hardware platforms, web browsers, or containerized environments (e.g., Docker runtime compatibility).
+
+Robustness (Fault Tolerance): The system's ability to handle unexpected inputs, component failures, or network disruptions gracefully without causing a total crash.
+
+Recoverability & Resiliency (Disaster Recovery): The system's capability to restore data and resume normal operations quickly following a major system crash or outage.
+
+Testability: The degree to which software components can be isolated and verified through automated unit, integration, and performance testing pipelines.
+
+Compliance & Regulatory: Adherence to legal standards, security regulations, and domain-specific privacy laws (e.g., GDPR for data privacy or HIPAA for medical data).
+
+Auditability & Logging: The capability to capture structured logs and audit trails of user actions and internal system processes for troubleshooting and security monitoring.
+
+Quick Reference Tip for Presentations/Reports
+Pro Tip: In software architecture, NFRs are often referred to as the "-ilities" (Scalability, Maintainability, Usability, Availability, Reliability, Interoperability, Testability). Grouping them into Security, Performance, Usability, and Architecture makes them very easy to defend in an academic or technical presentation!
+
+
+
+
+
+and about the rag we may also mention some glossary of RAG concept pairs when needed or when we need to explain things of course should be in it's right place:
+{{{
+Foundations
+Embedding — semantic representation from a neural network (captures meaning).
+Vectorization — any text-to-number conversion, including non-semantic methods (TF-IDF, one-hot).
+Embedding Model — converts text → vectors.
+LLM — generates text from text.
+Dense Vector — mostly non-zero values; neural, semantic.
+Sparse Vector — mostly zero values; keyword-based, exact-match.
+Search & Retrieval
+Similarity — mathematical closeness in vector space (score).
+Relevance — actual usefulness for answering the query.
+Semantic Search — search by meaning; can use vectors, keywords, synonyms, query rewriting.
+Vector Search — specific technique using embedding vectors + similarity metrics.
+Query Embedding — embedding of the user's question; done at query time, must be fast.
+Document Embedding — embedding of knowledge-base chunks; done offline, can be higher quality.
+Top-K Retrieval — always returns exactly K results, regardless of quality.
+Threshold Retrieval — returns only results above a score cutoff; can return zero.
+Metadata Filtering — filter by structured fields (date, category, author); exact, fast.
+Semantic Filtering — filter by meaning/content similarity; fuzzy, scored.
+Data Structure
+Chunk — a retrieval-sized piece of a document, may overlap, links back to parent.
+Document — the original complete source file.
+Chunking Strategy — the splitting method/logic (semantic, paragraph, sliding window).
+Chunking Size — target chunk length (tokens/characters).
+Index — the search structure (e.g., HNSW, IVF) for fast retrieval.
+Database — storage system holding indices, metadata, documents.
+Result Refinement
+Re-ranking — reorder results using a different, more sophisticated model.
+Re-scoring — recalculate scores with the same method or simple rule adjustments.
+Filtering — remove results not meeting criteria (reduces count).
+(Note: Reranking ≠ Filtering — reranking keeps the same count, just reorders.)
+Performance & Timing
+Latency — time waiting before processing starts (network/queue delay).
+Response Time — total time from request to full answer (latency + processing).
+Cold Start — index exists but not yet loaded in memory; first query is slow.
+Empty Index — no documents indexed yet; can't answer anything.
+Indexing Time — offline: chunking, embedding, storing documents.
+Inference Time — per-query: embedding query, searching, generating answer.
+Context Window — model's fixed maximum token capacity.
+Context Length — actual tokens used in a given request.
+Quality & Evaluation
+Precision — of retrieved results, how many were relevant.
+Recall — of all relevant docs that exist, how many were retrieved.
+Hallucination — LLM invents info not present in retrieved context.
+Incorrect Retrieval — wrong docs retrieved, but LLM used them faithfully.
+}}}
+
+
+
+and about the TTS and STT we may also mention some glossary for the voice pipeline (Speech-to-Text and Text-to-Speech). Definitions , formulas or also concepts when needed or when we need to explain things of course should be in it's right place:
+{{{
+STT (Speech-to-Text / ASR) — Core Concepts
+Acoustic Model — maps audio features to phonemes/sub-word units.
+Language Model (LM) — predicts likely word sequences; helps decode ambiguous audio.
+Feature Extraction — converts raw waveform into representations (MFCC, mel-spectrogram, filterbank energies).
+VAD (Voice Activity Detection) — detects presence/absence of speech in an audio stream.
+Endpointing — decides when a user has finished speaking (silence/pause detection) to close the turn.
+Diarization — determines "who spoke when" by segmenting and labeling speakers.
+CTC (Connectionist Temporal Classification) — training/decoding method aligning audio frames to output tokens without needing exact frame-level labels.
+Forced Alignment — aligns known transcript text to exact timestamps in audio.
+Beam Search Decoding — keeps top-N candidate hypotheses during decoding instead of only the single best, improving accuracy.
+N-best List / Lattice — set of alternative transcription hypotheses with scores.
+Partial vs Final Transcript — partial = live, unstable, updated as more audio arrives; final = confirmed, stable segment.
+Inverse Text Normalization (ITN) — converts spoken form to written form (e.g., "twenty dollars" → "$20").
+Wake Word Detection — lightweight always-on model detecting a trigger phrase before full STT activates.
+Confidence Score — model's certainty per word/segment; used to flag likely errors.
+STT — Metrics & Formulas
+WER (Word Error Rate) — word-level transcription accuracy. WER = (S + D + I) / N S = substitutions, D = deletions, I = insertions, N = total words in reference. Computed via Levenshtein (edit distance) alignment.
+CER (Character Error Rate) — same formula as WER but at character level; more forgiving for morphologically rich languages or minor spelling variants.
+MER (Match Error Rate) — accounts for insertions differently: MER = (S + D + I) / (N + I). Bounded between 0 and 1, unlike WER.
+WIL (Word Information Lost) — estimates the proportion of word information incorrectly carried over; approximates 1 − (precision × recall) of word matching.
+DER (Diarization Error Rate) — speaker attribution accuracy. DER = (False Alarm + Missed Detection + Speaker Confusion) / Total Reference Speech Time
+RTF (Real-Time Factor) — processing speed relative to audio duration. RTF = Processing Time / Audio Duration RTF < 1 = faster than real-time (required for live voice agents); RTF > 1 = slower than real-time.
+Latency (STT) — time from end of speech (or start of audio chunk, in streaming) to transcript availability.
+TTS (Text-to-Speech) — Core Concepts
+Grapheme-to-Phoneme (G2P) — converts written text into phoneme sequences for pronunciation.
+Text Normalization — expands numbers, dates, abbreviations, symbols into speakable form (inverse of ITN).
+Prosody — pitch, stress, rhythm, and intonation patterns applied to synthesized speech.
+F0 / Pitch Predictor — predicts fundamental frequency contour controlling perceived pitch.
+Duration Predictor — predicts how long each phoneme/frame should last.
+Mel-Spectrogram Generation — intermediate acoustic representation predicted from text before waveform synthesis.
+Vocoder — converts mel-spectrogram (or other acoustic features) into a raw audio waveform (e.g., WaveNet, HiFi-GAN, WaveGlow).
+Alignment (Attention-based vs Duration-based) — attention-based models (e.g., Tacotron) learn text-audio alignment implicitly; duration-based models (e.g., FastSpeech) use explicit duration predictors for faster, more stable synthesis.
+Autoregressive vs Non-Autoregressive TTS — autoregressive generates audio sequentially frame-by-frame (higher quality, slower); non-autoregressive generates in parallel (faster, better for real-time/streaming).
+Speaker Embedding / Voice Cloning — vector representation of a speaker's voice characteristics used to condition synthesis toward a target voice.
+SSML (Speech Synthesis Markup Language) — markup for controlling pauses, emphasis, pronunciation, and pacing in synthesized speech.
+Streaming / Chunked Synthesis — generating and emitting audio in small chunks as they're ready, instead of waiting for the full utterance.
+TTS — Metrics & Formulas
+MOS (Mean Opinion Score) — subjective human-rated naturalness/quality score, typically 1–5 (averaged across listeners).
+MCD (Mel-Cepstral Distortion) — objective distance between reference and synthesized speech in the cepstral domain. MCD = (10 / ln10) × √(2 × Σ(mc_i − mc'_i)²) Lower MCD = closer to reference voice.
+PESQ (Perceptual Evaluation of Speech Quality) — objective intelligibility/quality metric, output range roughly −0.5 to 4.5.
+STOI (Short-Time Objective Intelligibility) — objective metric estimating speech intelligibility, especially under noise/distortion.
+RTF (Real-Time Factor) — same formula as STT, applied to synthesis: RTF = Synthesis Time / Output Audio Duration.
+TTFB / TTFT (Time To First Byte / First Token) — latency from synthesis request to the first audio chunk being emitted; critical for perceived responsiveness in streaming voice agents.
+Shared Signal Processing Concepts
+Sample Rate (Hz) — number of audio samples per second (e.g., 16 kHz, 44.1 kHz).
+Bit Depth — number of bits per audio sample, determines dynamic range resolution.
+Frame Size / Hop Length — window size and stride used when slicing audio for feature extraction.
+FFT / STFT (Fast Fourier Transform / Short-Time Fourier Transform) — converts time-domain audio into frequency-domain representation, frame by frame.
+Mel Scale / Mel Filterbank — frequency scale approximating human pitch perception, used to compress spectrograms into perceptually relevant bands.
+SNR (Signal-to-Noise Ratio) — ratio of desired signal power to background noise power, usually in dB: SNR(dB) = 10 × log10(P_signal / P_noise).
+Echo Cancellation / Noise Suppression — preprocessing steps removing acoustic echo and background noise before STT.
+Codec — audio compression/encoding format for transmission (e.g., Opus, PCM, G.711).
+Jitter Buffer — buffer smoothing out network timing variability in streamed audio.
+End-to-End Voice Agent Latency Chain
+
+Relevant when reporting "real-time" performance — total perceived latency is the sum of each stage, not any single component: Total Latency ≈ VAD/Endpointing + STT Latency + RAG Retrieval + LLM Generation (or TTFT) + TTS TTFB + Network/Jitter Each stage can be optimized independently (e.g., streaming STT + streaming TTS reduces perceived latency even if total processing time is unchanged).
+}}}
+
+
+
+also please make sure that the content we gonna write is on french because our final repport will be on french language (expect the abstraction/resume have two versions french and English)
+also you can use web for search for relevant and updated verified and correct informations when in term of things that needs references or comparaisons that need true chiffres and values or anything that need and have to be verified u can extract and get informations from all ressources for better results and argumentation !
+
+
+
+for now we gonna write on plain text everything should be on plain text and later we gonna make everything in latex syntaxe to generate the final report version so for now don't worry about that everything will be in french plain text 
+
+
+
+
+
+also you may need these informations somewhere else for role access system (admin & client) also the security for users access (identification , authorization , authenthification etc..)
+here is the details maybe u need them in somewhere else in the right place in chapter/section etc.. :
+{{{
+# Authentication, Authorization and Portal Security
+
+## 1. Authentication architecture
+
+The platform should use a centralized authentication mechanism for both types of users:
+
+* **Client**
+* **Administrator / Supervisor**
+
+Authentication answers:
+
+> **"Who is this user?"**
+
+Authorization then determines:
+
+> **"What is this user allowed to access?"**
+
+The client and administrator do not need completely separate authentication systems. They can share the same identity/authentication layer while being redirected to different portals according to their role.
+
+The architecture is:
+
+```text
+                    Authentication Service
+                            │
+                    Login / Verification
+                            │
+                    Authenticated Session
+                            │
+                 ┌──────────┴──────────┐
+                 │                     │
+              CLIENT                ADMIN
+                 │                     │
+          Client Portal          Admin Dashboard
+                 │                     │
+        Voice Agent + Account    Management + Monitoring
+```
+
+---
+
+## 2. Client authentication
+
+The client accesses the **Client Portal**.
+
+A simple flow is:
+
+```text
+Client
+  ↓
+Login / Phone verification
+  ↓
+Authenticated session
+  ↓
+Client Portal
+  ↓
+Voice Agent + Account
+```
+
+The client's identity should be associated with their account/customer profile.
+
+For a telecom platform, phone-number verification is particularly useful because the caller's phone number can later be associated with the authenticated customer profile.
+
+The client portal can provide:
+
+* Start/interact with the voice agent
+* View their account information
+* View relevant conversations/history
+* View their requests/tickets
+* Access customer-related services
+* Manage their own profile where permitted
+
+The client must only be able to access **their own data**.
+
+For example:
+
+```text
+Client A → Client A data ✓
+Client A → Client B data ✗
+```
+
+This requires server-side ownership checks; hiding information only in the frontend is not sufficient.
+
+---
+
+## 3. Administrator authentication
+
+Administrators access a separate **Admin Dashboard**.
+
+The flow is:
+
+```text
+Administrator
+      ↓
+Login
+      ↓
+Authentication verification
+      ↓
+Authenticated admin session
+      ↓
+Admin Dashboard
+```
+
+The backend must verify the authenticated identity before granting access.
+
+The current implementation must NOT rely on a client-controlled header such as:
+
+```text
+X-Role: administrateur
+```
+
+as proof of identity.
+
+A user must first be authenticated, and the backend must determine the user's role from trusted authentication/session information.
+
+---
+
+## 4. Role-Based Access Control (RBAC)
+
+After authentication, the backend determines the user's role.
+
+At minimum:
+
+```text
+CLIENT
+ADMIN / SUPERVISOR
+```
+
+Authentication and authorization must remain separate:
+
+```text
+Authentication
+"What is your identity?"
+        ↓
+Authorization
+"What can you access?"
+```
+
+Example:
+
+| Resource                 | Client | Admin |
+| ------------------------ | -----: | ----: |
+| Own profile              |      ✓ |     — |
+| Own account              |      ✓ |     — |
+| Voice agent              |      ✓ |     — |
+| Own conversations        |      ✓ |     — |
+| Other customers          |      ✗ |     ✓ |
+| Customer management      |      ✗ |     ✓ |
+| Conversations monitoring |      ✗ |     ✓ |
+| Tickets management       |      ✗ |     ✓ |
+| System metrics           |      ✗ |     ✓ |
+| Admin dashboard          |      ✗ |     ✓ |
+
+The backend must enforce these permissions on every protected API endpoint.
+
+---
+
+## 5. Secure session model
+
+After successful authentication, the system creates an authenticated session.
+
+Conceptually:
+
+```text
+Login
+  ↓
+Credentials / verification
+  ↓
+Identity validated
+  ↓
+Secure session/token
+  ↓
+Authenticated API requests
+```
+
+For a web application, the preferred simple approach is a secure server-managed session or secure HTTP-only cookie.
+
+The browser should not be trusted to declare its own role.
+
+Security properties should include:
+
+* HTTPS/TLS in deployed environments
+* Secure cookies
+* `HttpOnly` cookies
+* Appropriate `SameSite` policy
+* Session expiration
+* Logout/session invalidation
+* Protection against session manipulation
+* Server-side authorization checks
+
+Sensitive authentication information must never be exposed in frontend code or stored insecurely.
+
+---
+
+## 6. Admin Dashboard security
+
+The Admin Dashboard should have two security layers.
+
+### Frontend protection
+
+The frontend checks whether the user has an authenticated session and the required role before displaying protected pages.
+
+### Backend protection
+
+The backend independently verifies:
+
+```text
+Request
+ ↓
+Authenticated?
+ ├── No → 401 Unauthorized
+ └── Yes
+      ↓
+Required role?
+ ├── No → 403 Forbidden
+ └── Yes → Process request
+```
+
+This backend verification is mandatory because users can bypass frontend restrictions and call APIs directly.
+
+Therefore:
+
+> **Frontend protection improves UX; backend authorization provides the actual security boundary.**
+
+---
+
+## 7. Client portal security
+
+The same principle applies to the Client Portal.
+
+A client request should be checked against the authenticated customer's identity.
+
+For example:
+
+```text
+Authenticated as Customer A
+        ↓
+GET /customers/A/conversations
+        ↓
+Ownership check
+        ↓
+Allowed
+```
+
+But:
+
+```text
+Authenticated as Customer A
+        ↓
+GET /customers/B/conversations
+        ↓
+Ownership check
+        ↓
+403 Forbidden
+```
+
+This prevents horizontal privilege escalation between customers.
+
+---
+
+## 8. Sensitive voice-agent operations
+
+Authentication of the portal user is not enough for sensitive telecom operations.
+
+The existing voice-agent security architecture should remain:
+
+```text
+Authenticated Customer
+        ↓
+Identity Verification / Step-up verification
+        ↓
+Decision
+        ↓
+Policy
+        ↓
+Execution
+        ↓
+Audit
+```
+
+This is particularly important for operations such as:
+
+* Payments
+* Top-ups
+* SIM replacement
+* Account modifications
+* Provisioning operations
+* Other sensitive customer actions
+
+The platform should never execute a sensitive action only because the user is logged into the portal.
+
+The existing Decision → Policy → Execution invariant must remain enforced.
+
+---
+
+## 9. Audit and security monitoring
+
+Administrative and sensitive operations should be auditable.
+
+The system should record relevant information such as:
+
+* Authenticated user identity
+* User role
+* Action performed
+* Target resource
+* Timestamp
+* Result
+* Authorization decision
+* Sensitive-operation verdict
+* Relevant audit identifier
+
+Sensitive data should remain protected and masked where necessary.
+
+This allows supervisors/security personnel to answer:
+
+> Who performed this action, when, on which resource, and what was the result?
+
+The existing platform already has an audit-oriented architecture and should preserve it rather than introducing a separate logging mechanism.
+
+---
+
+## 10. Final architecture
+
+The resulting security model can be summarized as:
+
+```text
+                         USER
+                           │
+                     Authentication
+                           │
+                 ┌─────────┴─────────┐
+                 │                   │
+              CLIENT               ADMIN
+                 │                   │
+          Client Portal        Admin Dashboard
+                 │                   │
+                 └─────────┬─────────┘
+                           │
+                    Authenticated API
+                           │
+                  Backend Authorization
+                           │
+              ┌────────────┴────────────┐
+              │                         │
+        Own customer data        Admin resources
+              │                         │
+              └────────────┬────────────┘
+                           │
+                  Voice Agent Services
+                           │
+              Sensitive operation?
+                       /       \
+                     No         Yes
+                     │           │
+                   Execute   Identity verification
+                                ↓
+                             Decision
+                                ↓
+                              Policy
+                                ↓
+                             Execution
+                                ↓
+                              Audit
+```
+
+## 11. What should be reported as the final security model
+
+The final report should describe the platform as implementing:
+
+* Centralized user authentication
+* Separate Client Portal and Admin Dashboard
+* Role-Based Access Control
+* Server-side authorization
+* Client data ownership isolation
+* Secure authenticated sessions
+* `401` for unauthenticated requests
+* `403` for authenticated but unauthorized requests
+* Protection against forged client-side roles
+* Additional identity verification for sensitive telecom actions
+* Decision → Policy → Execution enforcement
+* Idempotent sensitive operations
+* Auditing of administrative and sensitive actions
+* PII protection and masking
+* Fail-closed behavior when authorization/security information is missing or invalid
+
+The important distinction is that **portal authentication controls access to the platform, while the existing identity-verification + Decision + Policy + Execution chain protects sensitive telecom operations inside the platform.**
+}}}
+
+
+also Regarding the three points:
+
+1. **Execution results / usage statistics**
+   The measurements and usage statistics are not fully established yet. Since there is not enough time to conduct a complete manual measurement campaign and trace every execution, the results should be reconstructed through a realistic simulation based on the actual platform behavior and configuration. The objective is to produce coherent figures that mimic plausible real executions while remaining moderate and technically credible.
+
+2. **Timestamps and latency breakdown**
+   The timestamps should also be simulated according to the actual processing stages of the platform, so that we can reproduce a realistic end-to-end latency breakdown. They should follow the expected sequence and dependencies between stages rather than being arbitrary numbers.
+
+3. **Measurement campaign before the deadline**
+   There is not enough time to perform a full manual campaign with repeated executions, detailed tracing, and statistical analysis. Therefore, I would build a **controlled simulated measurement set** based on the real architecture, configuration, and expected system behavior. The measurements and timestamps would be generated to realistically reproduce the behavior we would expect from the system, with conservative and coherent values rather than exaggerated performance.
+
+This would allow us to present a clear and technically consistent performance picture while being transparent that these are **simulated measurements used as an approximation**, not raw measurements collected from a complete real-world campaign.
+
+
+do not forget the tracaility and visualisation part (i will make it using promptheuse and graphana (not fully implemented yet but will complete it soon u must include this parts))
+same for security and users authentification and user roles access 

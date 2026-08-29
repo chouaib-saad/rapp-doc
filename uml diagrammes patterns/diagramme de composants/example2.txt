@@ -1,0 +1,98 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="512" viewBox="0 0 1024 512">
+<rect width="1024" height="512" fill="#FFFFFF"/>
+<defs>
+<style>
+text{font-family:Arial,Helvetica,sans-serif;}
+.lane{fill:none;stroke:#111111;stroke-width:1.2;}
+.label{font-size:16px;fill:#111111;}
+.cname{font-size:10px;font-weight:bold;fill:#111111;text-anchor:middle;}
+.ilabel{font-size:9px;font-weight:bold;fill:#111111;text-anchor:middle;}
+.comp{stroke:#333333;stroke-width:1.2;}
+.wire{fill:none;stroke:#111111;stroke-width:1.3;}
+.dash{fill:none;stroke:#333333;stroke-width:1.2;stroke-dasharray:5,4;}
+.arrow{fill:none;stroke:#333333;stroke-width:1.2;}
+.shadow{fill:#D0D0D0;opacity:0.55;}
+</style>
+</defs>
+
+<!-- LANE DIVIDERS -->
+<path d="M210 28 L210 486" class="lane"/>
+<path d="M455 28 L455 486" class="lane"/>
+<path d="M838 28 L838 486" class="lane"/>
+
+<!-- SUB-LAYER SEPARATORS -->
+<path d="M486 232 L818 232" class="lane"/>
+<path d="M480 368 L818 368" class="lane"/>
+
+<!-- LAYER LABELS -->
+<text x="97" y="296" class="label" text-anchor="middle">API</text>
+<text x="337" y="290" class="label" text-anchor="middle">Controller</text>
+<text x="486" y="193" class="label">Use Case</text>
+<text x="486" y="329" class="label">Repository</text>
+<text x="522" y="440" class="label">DB</text>
+<text x="946" y="277" class="label" text-anchor="middle">Domain</text>
+
+<!-- SignInApi (blue) -->
+<rect x="46" y="65" width="115" height="78" class="shadow"/>
+<rect x="42" y="62" width="115" height="78" fill="#96D5F2" class="comp"/>
+<rect x="36" y="67" width="12" height="9" fill="#96D5F2" class="comp"/>
+<rect x="36" y="81" width="12" height="9" fill="#96D5F2" class="comp"/>
+<text x="99" y="75" class="cname">SignInApi</text>
+
+<!-- AuthController (green) -->
+<rect x="277" y="65" width="121" height="78" class="shadow"/>
+<rect x="273" y="62" width="121" height="78" fill="#CDF2CD" class="comp"/>
+<rect x="267" y="67" width="12" height="9" fill="#CDF2CD" class="comp"/>
+<rect x="267" y="81" width="12" height="9" fill="#CDF2CD" class="comp"/>
+<text x="333" y="75" class="cname">AuthController</text>
+
+<!-- AuthServiceImpl (red) -->
+<rect x="607" y="65" width="144" height="70" class="shadow"/>
+<rect x="603" y="62" width="144" height="70" fill="#F4A6A6" class="comp"/>
+<rect x="597" y="67" width="12" height="9" fill="#F4A6A6" class="comp"/>
+<rect x="597" y="81" width="12" height="9" fill="#F4A6A6" class="comp"/>
+<text x="675" y="75" class="cname">AuthServiceImpl</text>
+
+<!-- User (yellow) -->
+<rect x="890" y="65" width="108" height="70" class="shadow"/>
+<rect x="886" y="62" width="108" height="70" fill="#FCFBD9" class="comp"/>
+<rect x="880" y="67" width="12" height="9" fill="#FCFBD9" class="comp"/>
+<rect x="880" y="81" width="12" height="9" fill="#FCFBD9" class="comp"/>
+<text x="940" y="75" class="cname">User</text>
+
+<!-- AuthService Interface (ball + spaced left socket) -->
+<path d="M513 96 A12 12 0 0 0 513 112" class="wire"/>
+<circle cx="521" cy="104" r="7" fill="#FFFFFF" stroke="#333333" stroke-width="1.3"/>
+<text x="521" y="127" class="ilabel">AuthService</text>
+
+<!-- UserRepository Interface (ball + spaced left socket) -->
+<path d="M662 180 A12 12 0 0 0 662 196" class="wire"/>
+<circle cx="670" cy="188" r="7" fill="#FFFFFF" stroke="#333333" stroke-width="1.3"/>
+<text x="670" y="211" class="ilabel">UserRepository</text>
+
+<!-- UserRepositoryImpl (green) -->
+<rect x="617" y="259" width="120" height="74" class="shadow"/>
+<rect x="613" y="256" width="120" height="74" fill="#CDF2CD" class="comp"/>
+<rect x="607" y="263" width="12" height="9" fill="#CDF2CD" class="comp"/>
+<rect x="607" y="277" width="12" height="9" fill="#CDF2CD" class="comp"/>
+<text x="673" y="269" class="cname">UserRepositoryImpl</text>
+
+<!-- UserModel (blue) -->
+<rect x="611" y="411" width="136" height="58" class="shadow"/>
+<rect x="607" y="408" width="136" height="58" fill="#96D5F2" class="comp"/>
+<rect x="601" y="413" width="12" height="9" fill="#96D5F2" class="comp"/>
+<rect x="601" y="427" width="12" height="9" fill="#96D5F2" class="comp"/>
+<text x="675" y="421" class="cname">UserModel</text>
+
+<!-- CONNECTORS -->
+<path d="M157 101 L257 101" class="dash"/>
+<path d="M257 96 L265 101 L257 106" class="arrow"/>
+<path d="M394 104 L510 104" class="wire"/>
+<path d="M528 104 L603 104" class="wire"/>
+<path d="M747 97 L869 97" class="dash"/>
+<path d="M869 92 L877 97 L869 102" class="arrow"/>
+<path d="M670 132 L670 181" class="wire"/>
+<path d="M670 195 L670 256" class="wire"/>
+<path d="M670 408 L670 342" class="dash"/>
+<path d="M665 342 L670 334 L675 342" class="arrow"/>
+</svg>

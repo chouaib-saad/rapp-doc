@@ -1,0 +1,100 @@
+% Diagramme de classes du moteur de politique (figure 3.6)
+\begin{tikzpicture}[x=1cm, y=1cm]
+
+  \tikzset{
+    cl/.style={draw=black, fill=white, rectangle split, rectangle split parts=3,
+               rectangle split draw splits=true, text width=38mm,
+               inner sep=2.6pt, font=\sffamily\tiny, align=left},
+    itf/.style={draw=black, fill=figGrisTresClair, rectangle split,
+                rectangle split parts=2, rectangle split draw splits=true,
+                text width=40mm, inner sep=2.6pt, font=\sffamily\tiny, align=left},
+    cl2/.style={draw=black, fill=white, rectangle split, rectangle split parts=2,
+                rectangle split draw splits=true, text width=34mm,
+                inner sep=2.6pt, font=\sffamily\tiny, align=left},
+    rg/.style={fbox, minimum width=30mm, minimum height=6.5mm, font=\sffamily\tiny}
+  }
+  \newcommand{\nomcl}[1]{\makebox[\linewidth][c]{\textbf{#1}}}
+  \newcommand{\stereo}[1]{\makebox[\linewidth][c]{$\ll$ #1 $\gg$}}
+
+  % ── Le moteur ─────────────────────────────────────────────
+  \node[cl] (moteur) at (0,3.1) {
+    \nomcl{MoteurDePolitique}
+    \nodepart{two}
+      \textminus\ regles : Regle [1..*]\\
+      \textminus\ ordreEvaluation : Sequence
+    \nodepart{three}
+      + evaluerAction(contexte)\\
+      + evaluerReponse(texte)
+  };
+
+  % ── Le contrat d'une règle ────────────────────────────────
+  \node[itf] (regle) at (6.6,3.1) {
+    \stereo{interface}
+
+    \nomcl{Regle}
+    \nodepart{two}
+      + evaluer(contexte, seuils)\\
+      \hspace*{2.4mm}: ResultatVerdict [0..1]
+  };
+
+  % ── Le résultat rendu ─────────────────────────────────────
+  \node[cl] (res) at (0,-0.7) {
+    \nomcl{ResultatVerdict}
+    \nodepart{two}
+      \textminus\ verdict : Verdict\\
+      \textminus\ identifiantRegle : Texte\\
+      \textminus\ justification : Texte
+    \nodepart{three}
+      + estFavorable() : Booleen
+  };
+
+  \node[cl2] (seuils) at (0,-3.9) {
+    \nomcl{Seuils}
+    \nodepart{two}
+      \textminus\ plafondPaiement : Montant\\
+      \textminus\ reportsParAn : Entier\\
+      \textminus\ validiteIdentite : Duree
+  };
+
+  \node[cl2, text width=32mm] (enumv) at (6.6,-0.7) {
+    \stereo{enumeration}
+
+    \nomcl{Verdict}
+    \nodepart{two}
+      AUTORISE\\ REFUSE\\ A\_TRANSMETTRE
+  };
+
+  % ── Règles concrètes ──────────────────────────────────────
+  \node[rg] (r1) at (13.0, 4.55) {ReglePaiement};
+  \node[rg] (r2) at (13.0, 3.70) {RegleReport};
+  \node[rg] (r3) at (13.0, 2.85) {RegleContestation};
+  \node[rg] (r4) at (13.0, 2.00) {RegleCarteSIM};
+  \node[rg] (r5) at (13.0, 1.15) {RegleRecharge};
+  \node[rg] (r6) at (13.0, 0.30) {RegleForfait};
+  \node[rg] (r7) at (13.0,-0.55) {RegleItinerance};
+  \node[rg] (r8) at (13.0,-1.40) {RegleActivationLigne};
+  \node[rg] (r9) at (13.0,-2.45) {RegleEscaladeObligatoire};
+
+  \node[etiquettezone, anchor=south] at (13.0, 5.15) {Règles concrètes};
+  \draw[zone] (11.35,-2.95) rectangle (14.65,4.95);
+
+  % ── Réalisation en arbre : un seul symbole de généralisation
+  \draw (10.55,-2.45) -- (10.55,4.55);
+  \foreach \r in {r1,r2,r3,r4,r5,r6,r7,r8,r9}{
+    \draw (\r.west) -- (\r.west -| 10.55,0);
+  }
+  \draw[realisation] (10.55,3.10) -- (regle.east);
+
+  % ── Relations ─────────────────────────────────────────────
+  \draw[agregation] (moteur.east) -- node[card, above, pos=0.80] {1..*}
+                    node[card, above, pos=0.14] {1} (regle.west);
+
+  \draw[dirige] (regle.south) -- node[card, right, pos=0.55] {produit} (enumv.north);
+  \draw[dirige] (moteur.south) -- node[card, right, pos=0.5] {rend} (res.north);
+  \draw[dirige] (res.east) -- node[card, above] {1} (enumv.west);
+  \draw[dirige] (moteur.west) -- ++(-0.9,0) |- node[card, above, pos=0.86] {utilise} (seuils.west);
+
+  \node[note, text width=46mm, anchor=north west] at (2.9,-2.75)
+       {Le moteur parcourt les règles dans un ordre défini et s'arrête à la première qui se prononce. L'autorisation n'est accordée que si aucune règle ne s'y oppose.};
+
+\end{tikzpicture}

@@ -1,0 +1,53 @@
+% Diagramme d'activités de la recherche documentaire (figure 3.11)
+\begin{tikzpicture}[x=1cm, y=1cm]
+
+  \node[debut] (i) at (0,5.6) {};
+  \node[action, minimum width=42mm] (enc) at (0,4.7) {Encoder la question};
+
+  \node[action, minimum width=42mm] (dense) at (0,3.4)
+       {Sélection par proximité de sens\\\textit{seuil 0,82, douze candidats}};
+  \node[decision] (d1) at (0,1.95) {passages\\retenus ?};
+
+  \node[action, minimum width=42mm] (sparse) at (0,0.5)
+       {Sélection par termes exacts\\\textit{pondération par la rareté}};
+  \node[decision] (d2) at (0,-0.95) {recouvrement\\lexical ?};
+
+  \node[action, minimum width=42mm] (rrf) at (0,-2.4)
+       {Fusion des deux classements\\\textit{par les rangs, k = 60}};
+
+  \node[action, minimum width=42mm] (ce) at (0,-3.9)
+       {Évaluation conjointe question passage\\\textit{seuil 0,30, au plus douze candidats}};
+  \node[decision] (d3) at (0,-5.35) {pertinence\\confirmée ?};
+
+  \node[action, minimum width=42mm] (out) at (0,-6.85)
+       {Restituer les passages et leur source};
+  \node[fin] (f) at (0,-7.9) {};
+
+  \node[action, minimum width=34mm, fill=figGrisTresClair] (vide) at (6.4,-2.4)
+       {Résultat vide};
+  \node[fin] (fv) at (9.1,-2.4) {};
+
+  % ── Enchaînement principal ────────────────────────────────
+  \draw[flux] (i) -- (enc);
+  \draw[flux] (enc) -- (dense);
+  \draw[flux] (dense) -- (d1);
+  \draw[flux] (d1) -- node[etiq, right, pos=0.45] {oui} (sparse);
+  \draw[flux] (sparse) -- (d2);
+  \draw[flux] (d2) -- node[etiq, right, pos=0.45] {oui} (rrf);
+  \draw[flux] (rrf) -- (ce);
+  \draw[flux] (ce) -- (d3);
+  \draw[flux] (d3) -- node[etiq, right, pos=0.45] {oui} (out);
+  \draw[flux] (out) -- (f);
+
+  % ── Trois sorties vers l'aveu d'ignorance ─────────────────
+  \draw[flux] (d1.east) -- node[etiq, above, pos=0.2] {non} (6.4,1.95) -- (vide.north);
+  \draw[flux] (d2.east) -- node[etiq, above, pos=0.25] {non} (4.35,-0.95)
+              -- (4.35,-2.4) -- (vide.west);
+  \draw[flux] (d3.east) -- node[etiq, above, pos=0.2] {non} (5.15,-5.35)
+              -- (5.15,-3.35) -- (6.4,-3.35) -- (vide.south);
+  \draw[flux] (vide.east) -- (fv);
+
+  \node[note, text width=50mm, anchor=north west] at (8.6,-4.5)
+       {Trois sorties mènent au résultat vide. Ce n'est pas une faiblesse du traitement mais sa propriété recherchée : le système préfère déclarer qu'il ne sait pas plutôt que remettre des passages faiblement pertinents.};
+
+\end{tikzpicture}

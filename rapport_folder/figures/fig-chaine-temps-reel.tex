@@ -1,0 +1,47 @@
+% Chaîne de traitement temps réel et contribution des étapes (figure 4.1)
+\begin{tikzpicture}[x=1cm, y=1cm]
+
+  \tikzset{et/.style={fbox, text width=21mm, align=center, minimum height=13mm,
+                      font=\sffamily\tiny}}
+
+  % ── Les étapes de la chaîne ───────────────────────────────
+  \node[et] (e1) at ( 0.0,0) {\textbf{Capture}\\et transport\\\textit{temps réel}};
+  \node[et] (e2) at ( 2.5,0) {\textbf{Détection}\\de fin d'énoncé};
+  \node[et] (e3) at ( 5.0,0) {\textbf{Transcription}\\\textit{en continu}};
+  \node[et] (e4) at ( 7.5,0) {\textbf{Assemblage}\\du contexte};
+  \node[et, fill=figGrisTresClair, densely dashed] (e5) at (10.0,0)
+       {\textbf{Récupération}\\documentaire\\\textit{conditionnelle}};
+  \node[et] (e6) at (12.5,0) {\textbf{Raisonnement}};
+  \node[et] (e7) at (15.0,0) {\textbf{Synthèse}\\vocale};
+  \node[et] (e8) at (17.5,0) {\textbf{Restitution}\\au client};
+
+  \foreach \a/\b in {e1/e2, e2/e3, e3/e4, e4/e5, e5/e6, e6/e7, e7/e8}{
+    \draw[fluxep] (\a) -- (\b);
+  }
+  % Contournement lorsque la question n'est pas documentaire
+  \draw[flux] (e4.north) -- ++(0,0.85) -- (12.5,0.85)
+        node[etiq, above, pos=0.55] {si la demande n'appelle pas de recherche} -- (e6.north);
+
+  % ── Contribution temporelle, en barres ────────────────────
+  \def\ybar{-1.35}
+  \foreach \x/\w/\lbl in {
+      0.0/0.30/{transport},
+      2.5/0.55/{250 ms},
+      5.0/0.50/{150 à 250},
+      7.5/0.20/{30 à 60},
+      10.0/0.72/{200 à 350},
+      12.5/1.30/{400 à 700},
+      15.0/0.50/{150 à 250},
+      17.5/0.25/{gigue}}
+    {
+      \fill[figGrisMoyen, draw=black] (\x-0.42,\ybar) rectangle (\x+0.42,\ybar-\w);
+      \node[font=\sffamily\tiny, anchor=north] at (\x,\ybar-\w-0.06) {\lbl};
+    }
+
+  \node[font=\sffamily\tiny\itshape, anchor=east, align=right] at (-0.65,\ybar-0.55)
+       {Contribution\\au délai perçu};
+
+  \node[note, text width=92mm, anchor=north, align=center] at (8.75,-3.55)
+       {Le délai perçu par le client n'est produit par aucune étape en particulier : il est la somme des\\contributions de toutes. Une étape qui dépasse son budget le retire à toutes les autres.};
+
+\end{tikzpicture}

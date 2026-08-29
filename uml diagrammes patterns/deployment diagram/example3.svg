@@ -1,0 +1,200 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1070" viewBox="0 0 1080 1070">
+<rect width="1080" height="1070" fill="#FFFFFF"/>
+<defs>
+<style>
+text{font-family:Arial,Helvetica,sans-serif;font-weight:bold;}
+.tname{font-size:12px;fill:#222222;text-anchor:middle;}
+.stereo{font-size:9px;font-style:italic;fill:#666666;text-anchor:middle;font-weight:bold;}
+.cname{font-size:10px;fill:#222222;text-anchor:middle;}
+.alab{font-size:10px;fill:#333333;text-anchor:middle;}
+.face{stroke-width:1.5;stroke-linejoin:round;}
+.comp{fill:#FBFBFB;stroke-width:1.5;}
+.port{fill:#FFFFFF;stroke-width:1.4;}
+.linkT{fill:none;stroke:#0E6E70;stroke-width:2;}
+.linkY{fill:none;stroke:#C9A227;stroke-width:2;}
+.linkO{fill:none;stroke:#D08C44;stroke-width:2;}
+.linkR{fill:none;stroke:#C0392B;stroke-width:2;}
+.dash{fill:none;stroke:#999999;stroke-width:1.4;stroke-dasharray:5,4;}
+.arrow{fill:none;stroke:#999999;stroke-width:1.4;}
+.ball{fill:#FFF6E0;stroke:#C9A227;stroke-width:2.5;}
+.sock{fill:none;stroke-width:2.5;stroke-linecap:round;}
+</style>
+</defs>
+
+<g transform="translate(38,42)">
+
+<!-- ===================== NODE: Computer (teal) + nested Web Browser ===================== -->
+<polygon points="8,12 18,2 228,2 218,12" fill="#8ADADA" class="face" stroke="#0E6E70"/>
+<polygon points="218,12 228,2 228,342 218,352" fill="#2A9B9D" class="face" stroke="#0E6E70"/>
+<rect x="8" y="12" width="210" height="340" fill="#45B8B9" class="face" stroke="#0E6E70"/>
+<text x="113" y="40" class="tname">Computer</text>
+<polygon points="22,92 30,84 205,84 197,92" fill="#8ADADA" class="face" stroke="#0E6E70"/>
+<polygon points="197,92 205,84 205,314 197,322" fill="#2A9B9D" class="face" stroke="#0E6E70"/>
+<rect x="22" y="92" width="175" height="230" fill="#59C4C6" class="face" stroke="#0E6E70"/>
+<text x="110" y="120" class="tname">Web Browser</text>
+<rect x="32" y="150" width="152" height="52" class="comp" stroke="#0E6E70"/>
+<g transform="translate(170,155)"><rect x="0" y="0" width="9" height="11" fill="#FFFFFF" stroke="#222222" stroke-width="1"/><rect x="-3" y="2" width="4" height="3" fill="#FFFFFF" stroke="#222222" stroke-width="0.8"/><rect x="-3" y="6" width="4" height="3" fill="#FFFFFF" stroke="#222222" stroke-width="0.8"/></g>
+<text x="104" y="168" class="stereo">&lt;&lt;component&gt;&gt;</text>
+<text x="104" y="186" class="cname">Ecommerce Client Module</text>
+<rect x="44" y="222" width="62" height="52" fill="#3FB8B9" class="face" stroke="#0E6E70"/>
+<text x="75" y="242" class="stereo" fill="#063F40">&lt;&lt;artifact&gt;&gt;</text>
+<text x="75" y="258" class="cname" fill="#063F40">Styles</text>
+<rect x="112" y="222" width="62" height="52" fill="#3FB8B9" class="face" stroke="#0E6E70"/>
+<text x="143" y="242" class="stereo" fill="#063F40">&lt;&lt;artifact&gt;&gt;</text>
+<text x="143" y="258" class="cname" fill="#063F40">Scripts</text>
+
+<!-- ===================== NODE: APIServer (yellow) ===================== -->
+<polygon points="322,12 332,2 492,2 482,12" fill="#FBF0D2" class="face" stroke="#C9A227"/>
+<polygon points="482,12 492,2 492,342 482,352" fill="#E9CD8B" class="face" stroke="#C9A227"/>
+<rect x="322" y="12" width="160" height="340" fill="#F6E3AC" class="face" stroke="#C9A227"/>
+<text x="402" y="40" class="tname">APIServer</text>
+<rect x="356" y="120" width="90" height="210" class="comp" stroke="#C9A227"/>
+<g transform="translate(432,125)"><rect x="0" y="0" width="9" height="11" fill="#FFFFFF" stroke="#222222" stroke-width="1"/><rect x="-3" y="2" width="4" height="3" fill="#FFFFFF" stroke="#222222" stroke-width="0.8"/><rect x="-3" y="6" width="4" height="3" fill="#FFFFFF" stroke="#222222" stroke-width="0.8"/></g>
+<text x="401" y="205" class="stereo">&lt;&lt;component&gt;&gt;</text>
+<text x="401" y="225" class="cname">API Gateway</text>
+<text x="401" y="240" class="cname">Service</text>
+
+<!-- ===================== NODE: Product Server (orange) ===================== -->
+<polygon points="615,12 627,0 1002,0 990,12" fill="#FBE3C8" class="face" stroke="#D08C44"/>
+<polygon points="990,12 1002,0 1002,340 990,352" fill="#EFB579" class="face" stroke="#D08C44"/>
+<rect x="615" y="12" width="375" height="340" fill="#F7CE9E" class="face" stroke="#D08C44"/>
+<text x="802" y="40" class="tname">Product Server</text>
+<rect x="645" y="78" width="140" height="92" class="comp" stroke="#D08C44"/>
+<g transform="translate(771,83)"><rect x="0" y="0" width="9" height="11" fill="#FFFFFF" stroke="#222222" stroke-width="1"/><rect x="-3" y="2" width="4" height="3" fill="#FFFFFF" stroke="#222222" stroke-width="0.8"/><rect x="-3" y="6" width="4" height="3" fill="#FFFFFF" stroke="#222222" stroke-width="0.8"/></g>
+<text x="715" y="110" class="stereo">&lt;&lt;component&gt;&gt;</text>
+<text x="715" y="130" class="cname">Product Catalog</text>
+<rect x="825" y="78" width="140" height="92" class="comp" stroke="#D08C44"/>
+<g transform="translate(951,83)"><rect x="0" y="0" width="9" height="11" fill="#FFFFFF" stroke="#222222" stroke-width="1"/><rect x="-3" y="2" width="4" height="3" fill="#FFFFFF" stroke="#222222" stroke-width="0.8"/><rect x="-3" y="6" width="4" height="3" fill="#FFFFFF" stroke="#222222" stroke-width="0.8"/></g>
+<text x="895" y="110" class="stereo">&lt;&lt;component&gt;&gt;</text>
+<text x="895" y="130" class="cname">Product Database</text>
+<path d="M785 124 L815 124" class="dash"/><path d="M815 119 L823 124 L815 129" class="arrow"/>
+<rect x="645" y="212" width="140" height="92" class="comp" stroke="#D08C44"/>
+<g transform="translate(771,217)"><rect x="0" y="0" width="9" height="11" fill="#FFFFFF" stroke="#222222" stroke-width="1"/><rect x="-3" y="2" width="4" height="3" fill="#FFFFFF" stroke="#222222" stroke-width="0.8"/><rect x="-3" y="6" width="4" height="3" fill="#FFFFFF" stroke="#222222" stroke-width="0.8"/></g>
+<text x="715" y="244" class="stereo">&lt;&lt;component&gt;&gt;</text>
+<text x="715" y="264" class="cname">Invoicing Service</text>
+<rect x="825" y="212" width="140" height="92" class="comp" stroke="#D08C44"/>
+<g transform="translate(951,217)"><rect x="0" y="0" width="9" height="11" fill="#FFFFFF" stroke="#222222" stroke-width="1"/><rect x="-3" y="2" width="4" height="3" fill="#FFFFFF" stroke="#222222" stroke-width="0.8"/><rect x="-3" y="6" width="4" height="3" fill="#FFFFFF" stroke="#222222" stroke-width="0.8"/></g>
+<text x="895" y="244" class="stereo">&lt;&lt;component&gt;&gt;</text>
+<text x="895" y="264" class="cname">Invoice Database</text>
+<path d="M785 258 L815 258" class="dash"/><path d="M815 253 L823 258 L815 263" class="arrow"/>
+
+<!-- ===================== NODE: Smartphone (teal) ===================== -->
+<polygon points="162,488 172,478 384,478 374,488" fill="#8ADADA" class="face" stroke="#0E6E70"/>
+<polygon points="374,488 384,478 384,973 374,983" fill="#2A9B9D" class="face" stroke="#0E6E70"/>
+<rect x="162" y="488" width="212" height="495" fill="#45B8B9" class="face" stroke="#0E6E70"/>
+<text x="268" y="516" class="tname">Smartphone</text>
+<rect x="177" y="548" width="175" height="68" class="comp" stroke="#0E6E70"/>
+<g transform="translate(338,553)"><rect x="0" y="0" width="9" height="11" fill="#FFFFFF" stroke="#222222" stroke-width="1"/><rect x="-3" y="2" width="4" height="3" fill="#FFFFFF" stroke="#222222" stroke-width="0.8"/><rect x="-3" y="6" width="4" height="3" fill="#FFFFFF" stroke="#222222" stroke-width="0.8"/></g>
+<text x="264" y="576" class="stereo">&lt;&lt;component&gt;&gt;</text>
+<text x="264" y="596" class="cname">Ecommerce App</text>
+<path d="M264 616 L263 651" class="linkT"/>
+<path d="M263 669 L264 715" class="linkT"/>
+<rect x="177" y="715" width="175" height="240" class="comp" stroke="#0E6E70"/>
+<g transform="translate(338,720)"><rect x="0" y="0" width="9" height="11" fill="#FFFFFF" stroke="#222222" stroke-width="1"/><rect x="-3" y="2" width="4" height="3" fill="#FFFFFF" stroke="#222222" stroke-width="0.8"/><rect x="-3" y="6" width="4" height="3" fill="#FFFFFF" stroke="#222222" stroke-width="0.8"/></g>
+<text x="264" y="822" class="stereo">&lt;&lt;component&gt;&gt;</text>
+<text x="264" y="842" class="cname">Mobile API Gateway Module</text>
+
+<!-- ===================== NODE: BankServer (red) ===================== -->
+<polygon points="615,400 625,390 840,390 830,400" fill="#F7BFBC" class="face" stroke="#C0392B"/>
+<polygon points="830,400 840,390 840,710 830,720" fill="#E76F6A" class="face" stroke="#C0392B"/>
+<rect x="615" y="400" width="215" height="320" fill="#F0938E" class="face" stroke="#C0392B"/>
+<text x="722" y="428" class="tname">BankServer</text>
+<rect x="650" y="455" width="140" height="92" class="comp" stroke="#C0392B"/>
+<g transform="translate(776,460)"><rect x="0" y="0" width="9" height="11" fill="#FFFFFF" stroke="#222222" stroke-width="1"/><rect x="-3" y="2" width="4" height="3" fill="#FFFFFF" stroke="#222222" stroke-width="0.8"/><rect x="-3" y="6" width="4" height="3" fill="#FFFFFF" stroke="#222222" stroke-width="0.8"/></g>
+<text x="720" y="482" class="stereo">&lt;&lt;component&gt;&gt;</text>
+<text x="720" y="500" class="cname">Currency Exchange Rate</text>
+<text x="720" y="514" class="cname">Service</text>
+<rect x="650" y="585" width="140" height="92" class="comp" stroke="#C0392B"/>
+<g transform="translate(776,590)"><rect x="0" y="0" width="9" height="11" fill="#FFFFFF" stroke="#222222" stroke-width="1"/><rect x="-3" y="2" width="4" height="3" fill="#FFFFFF" stroke="#222222" stroke-width="0.8"/><rect x="-3" y="6" width="4" height="3" fill="#FFFFFF" stroke="#222222" stroke-width="0.8"/></g>
+<text x="720" y="622" class="stereo">&lt;&lt;component&gt;&gt;</text>
+<text x="720" y="642" class="cname">Payment Gateway</text>
+
+<!-- ===================== NODE: Courier Server (red) ===================== -->
+<polygon points="615,762 625,752 840,752 830,762" fill="#F7BFBC" class="face" stroke="#C0392B"/>
+<polygon points="830,762 840,752 840,972 830,982" fill="#E76F6A" class="face" stroke="#C0392B"/>
+<rect x="615" y="762" width="215" height="220" fill="#F0938E" class="face" stroke="#C0392B"/>
+<text x="722" y="790" class="tname">Courier Server</text>
+<rect x="650" y="840" width="140" height="92" class="comp" stroke="#C0392B"/>
+<g transform="translate(776,845)"><rect x="0" y="0" width="9" height="11" fill="#FFFFFF" stroke="#222222" stroke-width="1"/><rect x="-3" y="2" width="4" height="3" fill="#FFFFFF" stroke="#222222" stroke-width="0.8"/><rect x="-3" y="6" width="4" height="3" fill="#FFFFFF" stroke="#222222" stroke-width="0.8"/></g>
+<text x="720" y="872" class="stereo">&lt;&lt;component&gt;&gt;</text>
+<text x="720" y="892" class="cname">Shipping Service</text>
+
+<!-- ===================== CONNECTION LINES ===================== -->
+<path d="M184 176 L276 206" class="linkT"/>
+<path d="M298 207 L350 204" class="linkY"/>
+<path d="M452 151 L577 121" class="linkY"/>
+<path d="M452 186 L577 256" class="linkY"/>
+<path d="M452 221 L577 496" class="linkY"/>
+<path d="M452 256 L577 631" class="linkY"/>
+<path d="M452 321 L577 886" class="linkY"/>
+<path d="M358 766 L577 123" class="linkT"/>
+<path d="M358 806 L577 258" class="linkT"/>
+<path d="M358 846 L577 498" class="linkT"/>
+<path d="M358 886 L577 633" class="linkT"/>
+<path d="M358 926 L577 888" class="linkT"/>
+<path d="M603 122 L639 124" class="linkO"/>
+<path d="M603 257 L639 258" class="linkO"/>
+<path d="M603 497 L644 501" class="linkR"/>
+<path d="M603 632 L644 631" class="linkR"/>
+<path d="M603 887 L644 886" class="linkR"/>
+
+<!-- ===================== PORTS (small squares) ===================== -->
+<rect x="350" y="198" width="12" height="12" class="port" stroke="#C9A227"/>
+<rect x="440" y="145" width="12" height="12" class="port" stroke="#C9A227"/>
+<rect x="440" y="180" width="12" height="12" class="port" stroke="#C9A227"/>
+<rect x="440" y="215" width="12" height="12" class="port" stroke="#C9A227"/>
+<rect x="440" y="250" width="12" height="12" class="port" stroke="#C9A227"/>
+<rect x="440" y="315" width="12" height="12" class="port" stroke="#C9A227"/>
+<rect x="346" y="760" width="12" height="12" class="port" stroke="#0E6E70"/>
+<rect x="346" y="800" width="12" height="12" class="port" stroke="#0E6E70"/>
+<rect x="346" y="840" width="12" height="12" class="port" stroke="#0E6E70"/>
+<rect x="346" y="880" width="12" height="12" class="port" stroke="#0E6E70"/>
+<rect x="346" y="920" width="12" height="12" class="port" stroke="#0E6E70"/>
+<rect x="639" y="118" width="12" height="12" class="port" stroke="#D08C44"/>
+<rect x="639" y="252" width="12" height="12" class="port" stroke="#D08C44"/>
+<rect x="644" y="495" width="12" height="12" class="port" stroke="#C0392B"/>
+<rect x="644" y="625" width="12" height="12" class="port" stroke="#C0392B"/>
+<rect x="644" y="880" width="12" height="12" class="port" stroke="#C0392B"/>
+
+<!-- ===== REST API INTERFACES: ball r7 + OPEN socket arcs r12 (gaps at poles, never touching) ===== -->
+<g>
+<circle cx="289" cy="207" r="7" class="ball"/>
+<path d="M289 195 A12 12 0 0 0 289 219" class="sock" stroke="#0E6E70"/>
+<text x="289" y="247" class="alab">REST API</text>
+</g>
+<g>
+<circle cx="590" cy="122" r="7" class="ball"/>
+<path d="M585.5 111 A12 12 0 0 0 585.5 133" class="sock" stroke="#0E6E70"/>
+<path d="M594.5 111 A12 12 0 0 1 594.5 133" class="sock" stroke="#D08C44"/>
+<text x="590" y="162" class="alab">REST API</text>
+</g>
+<g>
+<circle cx="590" cy="257" r="7" class="ball"/>
+<path d="M585.5 246 A12 12 0 0 0 585.5 268" class="sock" stroke="#0E6E70"/>
+<path d="M594.5 246 A12 12 0 0 1 594.5 268" class="sock" stroke="#D08C44"/>
+<text x="590" y="297" class="alab">REST API</text>
+</g>
+<g>
+<circle cx="590" cy="497" r="7" class="ball"/>
+<path d="M585.5 486 A12 12 0 0 0 585.5 508" class="sock" stroke="#0E6E70"/>
+<path d="M594.5 486 A12 12 0 0 1 594.5 508" class="sock" stroke="#C0392B"/>
+<text x="590" y="537" class="alab">REST API</text>
+</g>
+<g>
+<circle cx="590" cy="632" r="7" class="ball"/>
+<path d="M585.5 621 A12 12 0 0 0 585.5 643" class="sock" stroke="#0E6E70"/>
+<path d="M594.5 621 A12 12 0 0 1 594.5 643" class="sock" stroke="#C0392B"/>
+<text x="590" y="672" class="alab">REST API</text>
+</g>
+<g>
+<circle cx="590" cy="887" r="7" class="ball"/>
+<path d="M585.5 876 A12 12 0 0 0 585.5 898" class="sock" stroke="#0E6E70"/>
+<path d="M594.5 876 A12 12 0 0 1 594.5 898" class="sock" stroke="#C0392B"/>
+<text x="590" y="927" class="alab">REST API</text>
+</g>
+<!-- internal Smartphone provided ball -->
+<circle cx="263" cy="660" r="7" fill="#FFFFFF" stroke="#0E6E70" stroke-width="3.5"/>
+<text x="310" y="664" class="alab">REST API</text>
+
+</g>
+</svg>

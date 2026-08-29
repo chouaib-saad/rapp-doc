@@ -1,0 +1,42 @@
+% Cycle itératif et incrémental appliqué au projet (figure 1.3)
+\begin{tikzpicture}[x=1cm, y=1cm]
+
+  \def\R{2.55}
+
+  % Six étapes réparties sur le cercle, en partant du haut
+  \foreach \i/\lbl in {
+      0/{Analyse\\du besoin},
+      1/{Conception},
+      2/{Réalisation},
+      3/{Mesure},
+      4/{Conservation\\ou reprise},
+      5/{Intégration de\\l'incrément}}
+    {
+      \pgfmathsetmacro{\ang}{90 - \i*60}
+      \node[fbox, minimum width=21mm, minimum height=9mm]
+        (e\i) at ({\ang}:\R) {\lbl};
+    }
+
+  % Flèches circulaires entre étapes consécutives
+  \foreach \i in {0,1,2,3,4}
+    {
+      \pgfmathtruncatemacro{\j}{\i+1}
+      \draw[flux] (e\i) to[bend right=18] (e\j);
+    }
+  \draw[flux] (e5) to[bend right=18] (e0);
+
+  % Noyau : l'incrément
+  \node[fboxgg, circle, minimum size=15mm, align=center, font=\sffamily\scriptsize\bfseries]
+    (noyau) at (0,0) {Incrément\\numéroté};
+
+  % Ce que porte chaque incrément, en note latérale
+  \node[note, text width=34mm, anchor=west] (n1) at (\R+1.6, 0.42)
+    {Une branche dédiée\\Un document de version\\Un changement réversible};
+
+  \node[note, text width=34mm, anchor=west] (n2) at (\R+1.6, -1.35)
+    {La mesure décide :\\l'incrément est conservé,\\corrigé ou remplacé};
+
+  \draw[dependance] (noyau.east) -- (n1.west);
+  \draw[dependance] (e3.east) to[bend right=8] (n2.west);
+
+\end{tikzpicture}

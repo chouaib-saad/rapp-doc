@@ -1,0 +1,83 @@
+% Diagramme de classes de la hiérarchie des agents (figure 3.5)
+\begin{tikzpicture}[x=1cm, y=1cm]
+
+  \tikzset{
+    cl/.style={draw=black, fill=white, rectangle split, rectangle split parts=3,
+               rectangle split draw splits=true, text width=52mm,
+               inner sep=2.6pt, font=\sffamily\tiny},
+    cl2/.style={draw=black, fill=white, rectangle split, rectangle split parts=2,
+                rectangle split draw splits=true, text width=36mm,
+                inner sep=2.6pt, font=\sffamily\tiny},
+    pers/.style={fbox, minimum width=26mm, minimum height=9mm,
+                 font=\sffamily\tiny, align=center}
+  }
+  \newcommand{\nomcl}[1]{\makebox[\linewidth][c]{\textbf{#1}}}
+  \newcommand{\stereo}[1]{\makebox[\linewidth][c]{$\ll$ #1 $\gg$}}
+
+  % ── Classe de base ────────────────────────────────────────
+  \node[cl] (base) at (0,3.4) {
+    \stereo{abstraite}
+
+    \nomcl{AgentConversationnelDeBase}
+    \nodepart{two}
+      \textminus\ instructions : Texte\\
+      \textminus\ capacites : Capacite [0..*]\\
+      \textminus\ languePreferee : Langue
+    \nodepart{three}
+      + surTourClientTermine(tour)\\
+      + evaluerSentiment(tour) : Sentiment\\
+      + journaliserTour(tour)\\
+      + cloturerConversation()\\
+      + changerLangue(langue)\\
+      \# regleAbstention() : Texte
+  };
+
+  % ── Capacités détenues ────────────────────────────────────
+  \node[cl2, text width=33mm] (cap) at (6.7,3.4) {
+    \nomcl{Capacite}
+    \nodepart{two}
+      \textminus\ nom : Texte\\
+      \textminus\ estSensible : Booleen\\
+      \textminus\ estDeTransfert : Booleen
+  };
+
+  \draw[agregation] (base.east) -- node[card, above, pos=0.16] {1}
+                    node[card, above, pos=0.86] {0..*} (cap.west);
+
+  % ── Personas ──────────────────────────────────────────────
+  \node[pers] (p1) at (-5.9,-1.6) {AgentAccueil};
+  \node[pers] (p2) at (-2.95,-1.6) {AgentOrientation};
+  \node[pers] (p3) at ( 0.0,-1.6) {AgentFacturation};
+  \node[pers] (p4) at ( 2.95,-1.6) {AgentTechnique};
+  \node[pers] (p5) at ( 5.9,-1.6) {AgentGestion\\DeCompte};
+
+  % Généralisation en arbre
+  \draw[heritage] (0,0.50) -- (base.south);
+  \draw (-5.9,0.50) -- (5.9,0.50);
+  \foreach \p in {p1,p2,p3,p4,p5}{ \draw (\p.north) -- (\p.north |- 0,0.50); }
+
+  % ── Domaine de spécialité ─────────────────────────────────
+  \node[cl2] (dom) at (2.95,-5.1) {
+    \nomcl{DomaineDeSpecialite}
+    \nodepart{two}
+      \textminus\ cle : Texte\\
+      \textminus\ sujetsCouverts : Texte\\
+      \textminus\ capaciteDeTransfert : Texte\\
+      \textminus\ phraseDeTransition : Map[Langue]
+  };
+
+  % Seuls les trois agents spécialisés couvrent un domaine.
+  \foreach \p in {p3,p4,p5}{
+    \draw[dirige] (\p.south) -- node[card, right, pos=0.75] {1} (dom.north);
+  }
+
+  % ── Contraintes structurantes ─────────────────────────────
+  \node[note, text width=50mm, anchor=north east] at (-2.05,-3.35)
+       {\{ contrainte \} Les instructions d'un agent sont dérivées de l'ensemble de ses capacités. Un agent ne peut donc pas recevoir la consigne d'utiliser une capacité qu'il ne possède pas.};
+  \draw[dependance] (-4.55,-3.35) -- (-4.35,-2.05);
+
+  \node[note, text width=42mm, anchor=north west] at (5.55,-3.55)
+       {La phrase de transition est fixée pour chaque langue, et non produite par le modèle.};
+  \draw[dependance] (5.55,-4.35) -- (4.75,-4.85);
+
+\end{tikzpicture}

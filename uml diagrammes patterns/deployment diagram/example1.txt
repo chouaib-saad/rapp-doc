@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1568" height="932" viewBox="0 0 1568 932">
+<rect width="1568" height="932" fill="#FFFFFF"/>
+<defs>
+<style>
+text{font-family:'Times New Roman',Georgia,serif;font-style:italic;font-weight:bold;}
+.stereo{font-size:17px;fill:#E02828;text-anchor:middle;}
+.nname{font-size:18px;fill:#111111;text-anchor:middle;}
+.aname{font-size:17px;fill:#111111;text-anchor:middle;}
+.face{stroke:#111111;stroke-width:1.5;stroke-linejoin:round;}
+.art{fill:#C4F061;stroke:#222222;stroke-width:1.5;}
+.link{fill:none;stroke:#111111;stroke-width:2;}
+</style>
+</defs>
+
+<!-- ===================== CONNECTIONS ===================== -->
+<path d="M351 310 L657 465" class="link"/>
+<path d="M351 587 L657 490" class="link"/>
+<path d="M977 452 L1156 452" class="link"/>
+
+<!-- ===================== NODE: Client1 (cyan 3D) ===================== -->
+<polygon points="52,185 68,169 351,169 335,185" fill="#7CE9EE" class="face"/>
+<polygon points="335,185 351,169 351,369 335,385" fill="#0EBFC9" class="face"/>
+<rect x="52" y="185" width="283" height="200" fill="#12D6DE" class="face"/>
+<text x="193" y="212" class="stereo">&lt;&lt;device&gt;&gt;</text>
+<text x="193" y="242" class="nname">Client1</text>
+<rect x="68" y="262" width="252" height="112" class="art"/>
+<text x="194" y="308" class="aname">&lt;&lt;artifact&gt;&gt;</text>
+<text x="194" y="338" class="aname">Client-Side application</text>
+
+<!-- ===================== NODE: Client2 (cyan 3D) ===================== -->
+<polygon points="52,512 68,496 351,496 335,512" fill="#7CE9EE" class="face"/>
+<polygon points="335,512 351,496 351,696 335,712" fill="#0EBFC9" class="face"/>
+<rect x="52" y="512" width="283" height="200" fill="#12D6DE" class="face"/>
+<text x="193" y="539" class="stereo">&lt;&lt;device&gt;&gt;</text>
+<text x="193" y="569" class="nname">Client2</text>
+<rect x="68" y="592" width="240" height="112" class="art"/>
+<text x="188" y="638" class="aname">&lt;&lt;artifact&gt;&gt;</text>
+<text x="188" y="668" class="aname">Client-Side application</text>
+
+<!-- ===================== NODE: Application Server (yellow 3D) ===================== -->
+<polygon points="657,303 681,279 977,279 953,303" fill="#FCFBDC" class="face"/>
+<polygon points="953,303 977,279 977,619 953,643" fill="#ECE9A8" class="face"/>
+<rect x="657" y="303" width="296" height="340" fill="#F7F6C4" class="face"/>
+<text x="805" y="330" class="stereo">&lt;&lt;device&gt;&gt;</text>
+<text x="805" y="358" class="nname">Application Server</text>
+<rect x="677" y="380" width="252" height="82" class="art"/>
+<text x="803" y="414" class="aname">&lt;&lt;artifact&gt;&gt;</text>
+<text x="803" y="444" class="aname">Application Code</text>
+<rect x="677" y="471" width="252" height="80" class="art"/>
+<text x="803" y="504" class="aname">&lt;&lt;artifact&gt;&gt;</text>
+<text x="803" y="534" class="aname">Libraries</text>
+<rect x="677" y="560" width="252" height="82" class="art"/>
+<text x="803" y="594" class="aname">&lt;&lt;artifact&gt;&gt;</text>
+<text x="803" y="624" class="aname">Run-time Environment</text>
+
+<!-- ===================== NODE: Database Server (orange 3D) ===================== -->
+<polygon points="1156,327 1174,309 1517,309 1499,327" fill="#FCD5B7" class="face"/>
+<polygon points="1499,327 1517,309 1517,509 1499,527" fill="#F0A46E" class="face"/>
+<rect x="1156" y="327" width="343" height="200" fill="#F8BA8C" class="face"/>
+<text x="1327" y="354" class="stereo">&lt;&lt;device&gt;&gt;</text>
+<text x="1327" y="384" class="nname">Database Server</text>
+<rect x="1183" y="398" width="290" height="112" class="art"/>
+<text x="1328" y="444" class="aname">&lt;&lt;artifact&gt;&gt;</text>
+<text x="1328" y="474" class="aname">Database Managment System</text>
+</svg>

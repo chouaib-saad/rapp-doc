@@ -1,0 +1,40 @@
+Visual Style Profile & Master Template
+1. Color Palette (Strict Layer-Based Coding)
+
+Layer 1 (Models/Entities - e.g., Favori, Professional): Pale Yellow (#FFF4A6) boxes.
+Layer 2 (Core Business/Data Logic - e.g., Repository, UseCase): Pink/Coral (#F28E8E) boxes.
+Layer 3 (External Interfaces/UI - e.g., Interface, Activity): Light Blue (#A9E5EF) boxes.
+Layer 4 (Processing/Abstraction - e.g., DataSource, NetworkDataSource): Pale Green (#A9EFB0) boxes.
+Text (General): Black (#000000) sans-serif font.
+Strokes/Lines: Thin black or dark gray (#333333).
+Background: Clean light off-white (e.g., #FFFDF7).
+2. Shape Language
+
+Standard horizontal and vertical rectangles with a header bar.
+Selective use of slight, subtle gray drop shadows, applied only to boxes in the Model/Entity and Abstraction layers (yellow and green) to create functional depth. Other layers (blue, pink) remain flat.
+Internal dividers separate the header from attributes and methods (UML class diagram style).
+3. Line & Stroke Styling
+
+Connectors are mostly orthogonal (right-angled), precise vector lines.
+Connection Marker Precision: The types of markers are non-interchangeable and precisely applied to connection positions:
+Generalization/Inheritance: Line with a hollow triangle arrowhead (e.g., between different models).
+Composition: Line with a hollow diamond marker (e.g., connecting UI components).
+Default Connection/Dependency: Line with a standard plain arrowhead.
+4. Visual Effects
+
+Flat, clean corporate diagram aesthetic.
+Strict color coding is the dominant visual organization. No gradients or glows are used.
+Layering effect created by selective shadows.
+5. Overall Theme
+
+Clean, highly structured UML (Unified Modeling Language) or high-level system architecture style. The diagram communicates functional layers and strict generalized rules rather than illustrative art.
+
+======== 
+
+Create a clean, flat-vector corporate system architecture diagram in a strict UML style, adhering to a precision color palette on a clean off-white (#FFFDF7) background. The diagram must display the picture cijointe , while strictly maintaining the following color codes for functional layers:
+
+Entity/Model Components: Pale Yellow (#FFF4A6) boxes.
+Core Business Logic/Data Layer: Pink/Coral (#F28E8E) boxes.
+External Interface/UI Components: Light Blue (#A9E5EF) boxes.
+Abstraction/Processing Layer: Pale Green (#A9EFB0) boxes.
+All boxes must use thin black or dark gray strokes and standard black sans-serif font for rule-based labels and method examples. Maintain strict precision in connection types: use hollow triangle arrowheads for generalization, hollow diamond markers for composition, and plain arrowheads for dependency. Apply a subtle drop shadow only to the Yellow (Entity) and Green (Abstraction) components to create depth, leaving others flat. Avoid gradients or illustrative icons. Replicate the strict, non-overlapping color coding for all components.

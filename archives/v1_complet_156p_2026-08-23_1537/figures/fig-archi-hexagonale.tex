@@ -1,0 +1,59 @@
+% Architecture hexagonale de la plateforme (figure 3.1)
+\begin{tikzpicture}[x=1cm, y=1cm]
+
+  % ── Hexagone extérieur : la couronne des ports ────────────
+  \node[regular polygon, regular polygon sides=6, draw=black, fill=figGrisTresClair,
+        minimum size=76mm, inner sep=0pt, rotate=0] (hexext) at (0,0) {};
+
+  % ── Hexagone intérieur : le domaine métier ────────────────
+  \node[regular polygon, regular polygon sides=6, draw=black, fill=white,
+        minimum size=50mm, inner sep=0pt] (hexint) at (0,0) {};
+
+  \node[font=\sffamily\scriptsize\bfseries, align=center] at (0,0.55) {Domaine métier};
+  \node[font=\sffamily\tiny, align=center] at (0,-0.05)
+       {Entités\\Objets valeur\\Règles de gestion};
+  \node[font=\sffamily\tiny\itshape, align=center] at (0,-1.02)
+       {ne dépend de rien};
+
+  % Légende de la couronne, posée à l'extérieur avec un renvoi
+  \node[font=\sffamily\tiny\itshape, align=right, anchor=south east]
+       (portlbl) at (-3.05, 3.55) {Couronne des ports :\\interfaces déclarées\\par le domaine};
+  \draw[dependance] (portlbl.south east) -- (-1.75,2.45);
+
+  % ── Ports posés sur la couronne ───────────────────────────
+  \foreach \a/\lbl in {30/{Décision}, 90/{Politique}, 150/{Exécution},
+                       210/{Connaissance}, 270/{Audit}, 330/{Intégrations}}
+    {
+      \node[draw=black, fill=white, rectangle, inner sep=1.6pt,
+            font=\sffamily\tiny] at ({\a}:3.15) {\lbl};
+    }
+
+  % ── Adaptateurs entrants ──────────────────────────────────
+  \node[fbox, minimum width=30mm, align=center] (ae1) at (-6.6, 1.55)
+       {Couche temps réel\\(entrée conversationnelle)};
+  \node[fbox, minimum width=30mm, align=center] (ae2) at (-6.6,-0.15)
+       {Interface applicative\\métier};
+  \node[fbox, minimum width=30mm, align=center] (ae3) at (-6.6,-1.85)
+       {Interfaces web};
+
+  \node[etiquettezone, anchor=south] at (-6.6, 2.45) {Adaptateurs entrants};
+  \draw[zone] ($(ae1.north west)+(-0.18,0.30)$) rectangle ($(ae3.south east)+(0.18,-0.30)$);
+
+  % ── Adaptateurs sortants ──────────────────────────────────
+  \node[fbox, minimum width=30mm, align=center] (as1) at (6.6, 2.15) {Persistance};
+  \node[fbox, minimum width=30mm, align=center] (as2) at (6.6, 0.95) {Index documentaire};
+  \node[fbox, minimum width=30mm, align=center] (as3) at (6.6,-0.25) {Gestion de tickets};
+  \node[fbox, minimum width=30mm, align=center] (as4) at (6.6,-1.45) {Systèmes de l'opérateur};
+  \node[fbox, minimum width=30mm, align=center] (as5) at (6.6,-2.65) {Journal d'audit};
+
+  \node[etiquettezone, anchor=south] at (6.6, 2.95) {Adaptateurs sortants};
+  \draw[zone] ($(as1.north west)+(-0.18,0.30)$) rectangle ($(as5.south east)+(0.18,-0.30)$);
+
+  % ── Dépendances : toutes dirigées vers le centre ──────────
+  \foreach \n in {ae1,ae2,ae3}{ \draw[flux] (\n.east) -- ($(hexext.west)+(-0.05,0)$); }
+  \foreach \n in {as1,as2,as3,as4,as5}{ \draw[flux] (\n.west) -- ($(hexext.east)+(0.05,0)$); }
+
+  \node[note, text width=88mm, anchor=north, align=center] at (0,-4.30)
+       {Le sens des dépendances est inversé : l'infrastructure se conforme au contrat défini par le\\domaine. Remplacer un fournisseur revient à écrire un adaptateur, sans toucher aux règles.};
+
+\end{tikzpicture}

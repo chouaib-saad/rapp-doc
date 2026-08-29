@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="685" height="612" viewBox="0 0 685 612">
+<rect width="685" height="612" fill="#FFFFFF"/>
+<defs>
+<style>
+text{font-family:Arial,Helvetica,sans-serif;}
+.title{font-size:14px;font-weight:bold;fill:#111111;text-anchor:middle;}
+.plab{font-size:11px;fill:#333333;text-anchor:middle;}
+.bname{font-size:11px;font-weight:bold;fill:#222222;text-anchor:middle;}
+.mlab{font-size:10px;fill:#222222;text-anchor:middle;}
+.pB{fill:#96D5F2;stroke:#D02A50;stroke-width:1.3;}
+.pY{fill:#FFFBCC;stroke:#D02A50;stroke-width:1.3;}
+.pG{fill:#CDF2CD;stroke:#D02A50;stroke-width:1.3;}
+.act{fill:none;stroke:#D02A50;stroke-width:1.7;}
+.life{fill:none;stroke:#D02A50;stroke-width:1;stroke-dasharray:5,4;}
+.msg{fill:none;stroke:#D02A50;stroke-width:1.2;}
+.msgG{fill:none;stroke:#2EA843;stroke-width:1.2;}
+</style>
+<filter id="ds" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="3" dy="3" stdDeviation="2" flood-color="#8A8A8A" flood-opacity="0.45"/></filter>
+<marker id="mM" markerWidth="9" markerHeight="9" refX="7" refY="3.5" orient="auto"><path d="M0 0 L7 3.5 L0 7 Z" fill="#D02A50"/></marker>
+<marker id="mG" markerWidth="9" markerHeight="9" refX="7" refY="3.5" orient="auto"><path d="M0 0 L7 3.5 L0 7 Z" fill="#2EA843"/></marker>
+</defs>
+
+<text x="342" y="26" class="title">User Authentication</text>
+
+<!-- ===================== LIFELINES ===================== -->
+<path d="M22 130 L22 528" class="life"/>
+<path d="M218 124 L218 515" class="life"/>
+<path d="M377 124 L377 515" class="life"/>
+<path d="M505 130 L505 528" class="life"/>
+<path d="M610 124 L610 515" class="life"/>
+
+<!-- ===================== TOP PARTICIPANTS ===================== -->
+<g class="act" filter="url(#ds)">
+<circle cx="22" cy="57" r="7.5" fill="#FFF6C7"/>
+<path d="M22 64 L22 85"/><path d="M9 71 L35 71"/><path d="M22 85 L10 101"/><path d="M22 85 L34 101"/>
+</g>
+<text x="22" y="120" class="plab">User</text>
+
+<rect x="185" y="92" width="67" height="30" class="pB" filter="url(#ds)"/><text x="218" y="111" class="bname">Browser</text>
+<rect x="327" y="92" width="100" height="30" class="pY" filter="url(#ds)"/><text x="377" y="111" class="bname">Auth Service</text>
+
+<g filter="url(#ds)">
+<path d="M488 55 L488 88 A17 7 0 0 0 522 88 L522 55" fill="#FFB340" stroke="#C77800" stroke-width="1.3"/>
+<ellipse cx="505" cy="55" rx="17" ry="7" fill="#FFC466" stroke="#C77800" stroke-width="1.3"/>
+</g>
+<text x="505" y="110" class="plab">User</text><text x="505" y="124" class="plab">Database</text>
+
+<rect x="549" y="92" width="122" height="30" class="pG" filter="url(#ds)"/><text x="610" y="111" class="bname">Web Application</text>
+
+<!-- ===================== MESSAGES ===================== -->
+<path d="M22 160 L218 160" class="msg" marker-end="url(#mM)"/><text x="120" y="150" class="mlab">Enter Credentials</text>
+<path d="M218 196 L377 196" class="msg" marker-end="url(#mM)"/><text x="297" y="180" class="mlab">Send Login Request</text><text x="297" y="192" class="mlab">(username/password)</text>
+<path d="M377 237 L505 237" class="msg" marker-end="url(#mM)"/><text x="420" y="221" class="mlab">Validate</text><text x="420" y="233" class="mlab">User Credentials</text>
+<path d="M505 277 L377 277" class="msg" marker-end="url(#mM)"/><text x="420" y="261" class="mlab">Return</text><text x="420" y="273" class="mlab">Validation Result</text>
+<path d="M377 311 L218 311" class="msgG" marker-end="url(#mG)"/><text x="297" y="303" class="mlab">Send JWT Token</text>
+<path d="M22 340 L218 340" class="msg" marker-end="url(#mM)"/><text x="117" y="332" class="mlab">Request Protected Resource</text>
+<path d="M218 385 L610 385" class="msg" marker-end="url(#mM)"/><text x="297" y="364" class="mlab">Request Resource</text><text x="297" y="378" class="mlab">(JWT in Header)</text>
+<path d="M610 414 L377 414" class="msg" marker-end="url(#mM)"/><text x="420" y="406" class="mlab">Validate JWT</text>
+<path d="M377 440 L610 440" class="msg" marker-end="url(#mM)"/><text x="490" y="432" class="mlab">Return Validation Result</text>
+<path d="M610 467 L218 467" class="msgG" marker-end="url(#mG)"/><text x="297" y="459" class="mlab">Return Protected Resource</text>
+<path d="M218 494 L22 494" class="msg" marker-end="url(#mM)"/><text x="117" y="486" class="mlab">View Protected Resource</text>
+
+<!-- ===================== BOTTOM PARTICIPANTS ===================== -->
+<text x="22" y="540" class="plab">User</text>
+<g class="act" filter="url(#ds)">
+<circle cx="22" cy="552" r="7.5" fill="#FFF6C7"/>
+<path d="M22 559 L22 580"/><path d="M9 566 L35 566"/><path d="M22 580 L10 596"/><path d="M22 580 L34 596"/>
+</g>
+
+<rect x="185" y="517" width="67" height="30" class="pB" filter="url(#ds)"/><text x="218" y="536" class="bname">Browser</text>
+<rect x="327" y="517" width="100" height="30" class="pY" filter="url(#ds)"/><text x="377" y="536" class="bname">Auth Service</text>
+
+<text x="505" y="537" class="plab">User</text><text x="505" y="551" class="plab">Database</text>
+<g filter="url(#ds)">
+<path d="M488 552 L488 585 A17 7 0 0 0 522 585 L522 552" fill="#FFB340" stroke="#C77800" stroke-width="1.3"/>
+<ellipse cx="505" cy="552" rx="17" ry="7" fill="#FFC466" stroke="#C77800" stroke-width="1.3"/>
+</g>
+
+<rect x="549" y="517" width="122" height="30" class="pG" filter="url(#ds)"/><text x="610" y="536" class="bname">Web Application</text>
+</svg>

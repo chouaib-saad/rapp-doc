@@ -1,0 +1,152 @@
+% Diagramme de classes du modèle du domaine (figure 3.4)
+\begin{tikzpicture}[x=1cm, y=1cm]
+
+  \tikzset{
+    ent/.style={draw=black, fill=white, rectangle split, rectangle split parts=2,
+                rectangle split draw splits=true, text width=33mm,
+                inner sep=2.5pt, font=\sffamily\tiny},
+    vo/.style={draw=black, fill=figGrisTresClair, rectangle split,
+               rectangle split parts=2, rectangle split draw splits=true,
+               text width=30mm, inner sep=2.5pt, font=\sffamily\tiny}
+  }
+  \newcommand{\nomcl}[1]{\makebox[\linewidth][c]{\textbf{#1}}}
+  \newcommand{\stereo}[1]{\makebox[\linewidth][c]{$\ll$ #1 $\gg$}}
+
+  % ── Rangée 1 : la conversation ────────────────────────────
+  \node[ent] (client) at (0,4.0) {
+    \nomcl{Client}
+    \nodepart{two}
+      \textminus\ identifiant : Texte\\
+      \textminus\ nomComplet : Texte\\
+      \textminus\ typeAbonnement : Texte\\
+      \textminus\ languePreferee : Langue\\
+      \textminus\ estPrioritaire : Booleen
+  };
+  \node[ent] (conv) at (5.0,4.0) {
+    \nomcl{Conversation}
+    \nodepart{two}
+      \textminus\ identifiant : Texte\\
+      \textminus\ canal : Canal\\
+      \textminus\ langue : Langue\\
+      \textminus\ issue : Texte [0..1]\\
+      \textminus\ creeLe : Horodatage
+  };
+  \node[ent] (tour) at (10.0,4.0) {
+    \nomcl{TourDeParole}
+    \nodepart{two}
+      \textminus\ identifiant : Texte\\
+      \textminus\ locuteur : Texte\\
+      \textminus\ texte : Texte\\
+      \textminus\ sentiment : Sentiment
+  };
+
+  % ── Rangée 2 : la chaîne de décision ──────────────────────
+  \node[ent] (act) at (0,0.4) {
+    \nomcl{Action}
+    \nodepart{two}
+      \textminus\ identifiant : Texte\\
+      \textminus\ nature : Texte\\
+      \textminus\ statut : Texte\\
+      \textminus\ montant : Montant [0..1]\\
+      \textminus\ reference : Texte [0..1]
+  };
+  \node[ent] (verd) at (5.0,0.4) {
+    \nomcl{VerdictDePolitique}
+    \nodepart{two}
+      \textminus\ verdict : Verdict\\
+      \textminus\ identifiantRegle : Texte\\
+      \textminus\ justification : Texte\\
+      \textminus\ creeLe : Horodatage
+  };
+  \node[ent] (deci) at (10.0,0.4) {
+    \nomcl{Decision}
+    \nodepart{two}
+      \textminus\ action : Texte\\
+      \textminus\ confiance : Reel\\
+      \textminus\ motivation : Texte
+  };
+
+  % ── Rangée 3 : les traces et les suites ───────────────────
+  \node[ent] (aud) at (0,-3.5) {
+    \nomcl{EntreeAudit}
+    \nodepart{two}
+      \textminus\ identifiant : Texte\\
+      \textminus\ contenu : Document\\
+      \textminus\ empreintePrecedente : Texte\\
+      \textminus\ empreinte : Texte
+  };
+  \node[ent] (esc) at (5.0,-3.5) {
+    \nomcl{DossierEscalade}
+    \nodepart{two}
+      \textminus\ identifiant : Texte\\
+      \textminus\ motif : MotifEscalade\\
+      \textminus\ synthese : Texte\\
+      \textminus\ resolution : Texte [0..1]
+  };
+  \node[ent] (tick) at (10.0,-3.5) {
+    \nomcl{Ticket}
+    \nodepart{two}
+      \textminus\ identifiant : Texte\\
+      \textminus\ identifiantExterne : Texte\\
+      \textminus\ objet : Texte\\
+      \textminus\ etat : Texte\\
+      \textminus\ priorite : Texte
+  };
+
+  % ── Objets valeur ─────────────────────────────────────────
+  \node[vo] (msis) at (-4.5,4.0) {
+    \stereo{objet valeur}
+
+    \nomcl{NumeroAppel}
+    \nodepart{two}
+      \textminus\ valeur : Texte\\
+      + estValide() : Booleen
+  };
+  \node[vo] (mon) at (-4.5,0.9) {
+    \stereo{objet valeur}
+
+    \nomcl{Montant}
+    \nodepart{two}
+      \textminus\ valeur : Decimal\\
+      \textminus\ devise : Texte
+  };
+  \node[vo] (idem) at (-4.5,-1.9) {
+    \stereo{objet valeur}
+
+    \nomcl{IdentiteOperation}
+    \nodepart{two}
+      \textminus\ empreinte : Texte\\
+      + correspondA(autre)
+  };
+
+  \node[etiquettezone, anchor=south] at (-4.5,5.35) {Objets valeur, immuables};
+  \draw[zone] (-6.25,-2.75) rectangle (-2.75,5.15);
+
+  % ── Associations ──────────────────────────────────────────
+  \draw[assoc] (client.east) -- node[card, above, pos=0.14] {1}
+               node[card, above, pos=0.86] {0..*} (conv.west);
+  \draw[composition] (conv.east) -- node[card, above, pos=0.16] {1}
+               node[card, above, pos=0.86] {1..*} (tour.west);
+
+  \draw[assoc] (deci.west) -- node[card, above, pos=0.14] {1}
+               node[card, above, pos=0.86] {1} (verd.east);
+  \draw[assoc] (verd.west) -- node[card, above, pos=0.14] {1}
+               node[card, above, pos=0.86] {0..*} (act.east);
+
+  \draw[assoc] (conv.south) -- node[card, right, pos=0.5] {0..*} (verd.north);
+  \draw[assoc] (act.south) -- node[card, right, pos=0.5] {1} (aud.north);
+
+  % La conversation peut donner lieu à un dossier d'escalade.
+  \draw[assoc] (conv.east) -- (7.55,4.0) -- (7.55,-3.5)
+               node[card, above, pos=0.93] {0..1} -- (esc.east);
+
+  % Le client possède ses tickets : contournement par le haut.
+  \draw[assoc] (client.north) -- (0,5.55) -- (12.35,5.55)
+               -- (12.35,-3.5) node[card, left, pos=0.94] {0..*} -- (tick.east);
+
+  % ── Emploi des objets valeur ──────────────────────────────
+  \draw[dirige] (msis.east) -- (client.west);
+  \draw[dirige] (mon.east)  -- (act.north west);
+  \draw[dirige] (idem.east) -- (act.south west);
+
+\end{tikzpicture}

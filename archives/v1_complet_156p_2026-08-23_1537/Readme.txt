@@ -1,0 +1,2 @@
+in this folder we will start write our latex repport here all files folders configs , chapters and images should be appears and created in this folder after we done from understanding all thing related to the project and all readme files and related files and rules we gonna start here in this folder.
+we will add syntaxe and config files and style from this existing template (not content but style of project and how you will write the syntax) : C:\Users\Chouqib Saad\Desktop\rapport\latex_template_to_use

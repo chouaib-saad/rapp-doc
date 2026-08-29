@@ -1,0 +1,99 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1518" height="700" viewBox="0 0 1518 700">
+<rect width="1518" height="700" fill="#FFFFFF"/>
+<defs>
+<style>
+text{font-family:Arial,Helvetica,sans-serif;}
+.nname{font-size:8px;fill:#222222;text-anchor:middle;}
+.edge{font-size:8px;fill:#333333;text-anchor:middle;paint-order:stroke;stroke:#FFFFFF;stroke-width:3;}
+.nB{fill:#96D5F2;stroke:#333333;stroke-width:1;}
+.nR{fill:#F4A6A6;stroke:#333333;stroke-width:1;}
+.nY{fill:#FCE9A8;stroke:#333333;stroke-width:1;}
+.nG{fill:#CDF2CD;stroke:#333333;stroke-width:1;}
+.nL{fill:#6FA8DC;stroke:#333333;stroke-width:1;}
+.wire{fill:none;stroke:#333333;stroke-width:1;}
+</style>
+<filter id="ds" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="2" dy="2" stdDeviation="1.6" flood-color="#8A8A8A" flood-opacity="0.5"/></filter>
+<marker id="ar" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0 0 L6 3 L0 6 Z" fill="#333333"/></marker>
+</defs>
+
+<!-- ===================== LEGEND ===================== -->
+<rect x="12" y="13" width="70" height="36" class="nL" filter="url(#ds)"/>
+<text x="47" y="34" class="nname">Connected Mode</text>
+
+<!-- ===================== NODES ===================== -->
+<ellipse cx="55" cy="112" rx="24" ry="15" class="nG" filter="url(#ds)"/>
+<rect x="104" y="97" width="62" height="36" class="nB" filter="url(#ds)"/><text x="135" y="118" class="nname">Home Screen</text>
+<rect x="198" y="97" width="74" height="36" class="nB" filter="url(#ds)"/><text x="235" y="118" class="nname">Fahes Menu Screen</text>
+<rect x="280" y="95" width="70" height="40" class="nB" filter="url(#ds)"/><text x="315" y="111" class="nname">Cancel/Modify</text><text x="315" y="121" class="nname">Screen</text>
+<path d="M313 161 L334 182 L313 203 L292 182 Z" class="nR" filter="url(#ds)"/>
+<rect x="365" y="164" width="60" height="36" class="nR" filter="url(#ds)"/><text x="397" y="185" class="nname">Error Popup</text>
+<path d="M313 236 L334 257 L313 278 L292 257 Z" class="nR" filter="url(#ds)"/>
+<rect x="376" y="239" width="74" height="36" class="nY" filter="url(#ds)"/><text x="413" y="260" class="nname">empty list message</text>
+<rect x="274" y="309" width="78" height="36" class="nY" filter="url(#ds)"/><text x="313" y="330" class="nname">show car credentials</text>
+<rect x="280" y="372" width="70" height="40" class="nB" filter="url(#ds)"/><text x="313" y="388" class="nname">Car Credentials</text><text x="313" y="398" class="nname">Details</text>
+<rect x="269" y="452" width="88" height="40" class="nY" filter="url(#ds)"/><text x="313" y="468" class="nname">Show Booking Details</text><text x="313" y="478" class="nname">Popup</text>
+<path d="M313 506 L334 527 L313 548 L292 527 Z" class="nR" filter="url(#ds)"/>
+<rect x="181" y="509" width="82" height="36" class="nY" filter="url(#ds)"/><text x="222" y="530" class="nname">Click Cancel Booking</text>
+<rect x="370" y="509" width="70" height="36" class="nY" filter="url(#ds)"/><text x="405" y="530" class="nname">Click Reschedule</text>
+<path d="M658 506 L679 527 L658 548 L637 527 Z" class="nR" filter="url(#ds)"/>
+<rect x="628" y="434" width="60" height="36" class="nR" filter="url(#ds)"/><text x="658" y="455" class="nname">Error Popup</text>
+<rect x="618" y="580" width="80" height="44" class="nB" filter="url(#ds)"/><text x="658" y="598" class="nname">Date Book Vehicle</text><text x="658" y="608" class="nname">Inspection</text>
+<rect x="102" y="604" width="60" height="36" class="nR" filter="url(#ds)"/><text x="132" y="625" class="nname">Error Popup</text>
+<path d="M222 601 L243 622 L222 643 L201 622 Z" class="nR" filter="url(#ds)"/>
+<rect x="269" y="602" width="88" height="40" class="nG" filter="url(#ds)"/><text x="313" y="618" class="nname">Successfully cancel</text><text x="313" y="628" class="nname">booking</text>
+<rect x="376" y="604" width="74" height="36" class="nB" filter="url(#ds)"/><text x="413" y="625" class="nname">Fahes Menu Screen</text>
+<path d="M806 581 L827 602 L806 623 L785 602 Z" class="nR" filter="url(#ds)"/>
+<rect x="776" y="659" width="60" height="36" class="nR" filter="url(#ds)"/><text x="806" y="680" class="nname">Error Popup</text>
+<path d="M922 531 L943 552 L922 573 L901 552 Z" class="nR" filter="url(#ds)"/>
+<rect x="892" y="634" width="60" height="36" class="nR" filter="url(#ds)"/><text x="922" y="655" class="nname">Error Popup</text>
+<rect x="880" y="428" width="84" height="48" class="nY" filter="url(#ds)"/><text x="922" y="444" class="nname">Show Popup without</text><text x="922" y="454" class="nname">Confirm and Pay</text><text x="922" y="464" class="nname">Button</text>
+<rect x="1000" y="528" width="84" height="48" class="nY" filter="url(#ds)"/><text x="1042" y="544" class="nname">Show Popup with</text><text x="1042" y="554" class="nname">Confirm and Pay</text><text x="1042" y="564" class="nname">Button</text>
+<rect x="1087" y="534" width="90" height="36" class="nY" filter="url(#ds)"/><text x="1132" y="555" class="nname">Click &quot;Confirm &amp; Pay&quot;</text>
+<path d="M1127 431 L1148 452 L1127 473 L1106 452 Z" class="nR" filter="url(#ds)"/>
+<rect x="1082" y="374" width="90" height="36" class="nY" filter="url(#ds)"/><text x="1127" y="395" class="nname">Click &quot;Confirm &amp;Exit&quot;</text>
+<path d="M1307 371 L1328 392 L1307 413 L1286 392 Z" class="nR" filter="url(#ds)"/>
+<rect x="1277" y="284" width="60" height="36" class="nR" filter="url(#ds)"/><text x="1307" y="305" class="nname">Error Popup</text>
+<rect x="1390" y="374" width="74" height="36" class="nB" filter="url(#ds)"/><text x="1427" y="395" class="nname">Fahes Menu Screen</text>
+<path d="M1307 531 L1328 552 L1307 573 L1286 552 Z" class="nR" filter="url(#ds)"/>
+<rect x="1277" y="454" width="60" height="36" class="nR" filter="url(#ds)"/><text x="1307" y="475" class="nname">Error Popup</text>
+<rect x="1407" y="532" width="80" height="40" class="nB" filter="url(#ds)"/><text x="1447" y="548" class="nname">Vehicle Payment</text><text x="1447" y="558" class="nname">Confirmation</text>
+
+<!-- ===================== EDGES ===================== -->
+<path d="M79 113 L102 114" class="wire" marker-end="url(#ar)"/>
+<path d="M166 115 L196 115" class="wire" marker-end="url(#ar)"/>
+<path d="M272 115 L278 115" class="wire" marker-end="url(#ar)"/>
+<path d="M313 135 L313 159" class="wire" marker-end="url(#ar)"/>
+<text x="313" y="143" class="edge">Call: reservation.getDetailsByCustomer API</text>
+<path d="M334 182 L363 182" class="wire" marker-end="url(#ar)"/><text x="349" y="178" class="edge">Failure</text>
+<path d="M313 203 L313 234" class="wire" marker-end="url(#ar)"/><text x="307" y="220" class="edge" text-anchor="end">Success</text>
+<path d="M334 257 L374 257" class="wire" marker-end="url(#ar)"/><text x="354" y="253" class="edge">Empty List</text>
+<path d="M313 278 L313 307" class="wire" marker-end="url(#ar)"/><text x="307" y="296" class="edge" text-anchor="end">Filled List</text>
+<path d="M313 345 L313 370" class="wire" marker-end="url(#ar)"/><text x="307" y="360" class="edge" text-anchor="end">OnClick Car</text>
+<path d="M313 412 L313 450" class="wire" marker-end="url(#ar)"/><text x="307" y="432" class="edge" text-anchor="end">Proceed</text>
+<path d="M313 492 L313 504" class="wire" marker-end="url(#ar)"/>
+<path d="M292 527 L265 527" class="wire" marker-end="url(#ar)"/>
+<path d="M334 527 L368 527" class="wire" marker-end="url(#ar)"/>
+<path d="M440 527 L635 527" class="wire" marker-end="url(#ar)"/><text x="537" y="523" class="edge">Call reservations/rescheduling API</text>
+<path d="M658 506 L658 472" class="wire" marker-end="url(#ar)"/>
+<path d="M658 548 L658 578" class="wire" marker-end="url(#ar)"/>
+<path d="M222 545 L222 599" class="wire" marker-end="url(#ar)"/><text x="222" y="572" class="edge">Call reservations/cancellation API</text>
+<path d="M201 622 L164 622" class="wire" marker-end="url(#ar)"/><text x="182" y="618" class="edge">Failure</text>
+<path d="M243 622 L267 622" class="wire" marker-end="url(#ar)"/><text x="255" y="618" class="edge">Success</text>
+<path d="M357 622 L374 622" class="wire" marker-end="url(#ar)"/><text x="365" y="618" class="edge">Close</text>
+<path d="M698 602 L783 602" class="wire" marker-end="url(#ar)"/><text x="740" y="598" class="edge">Is Mandatory Data filled</text>
+<path d="M806 623 L806 657" class="wire" marker-end="url(#ar)"/><text x="812" y="642" class="edge" text-anchor="start">No</text>
+<path d="M827 602 L860 602 L860 552 L899 552" class="wire" marker-end="url(#ar)"/><text x="856" y="594" class="edge">Yes. Call reservations/payOnline</text>
+<path d="M922 573 L922 632" class="wire" marker-end="url(#ar)"/><text x="928" y="604" class="edge" text-anchor="start">Failure</text>
+<path d="M943 552 L998 552" class="wire" marker-end="url(#ar)"/><text x="971" y="548" class="edge">Success : &quot;Result True&quot;</text>
+<path d="M922 531 L922 478" class="wire" marker-end="url(#ar)"/><text x="916" y="504" class="edge" text-anchor="end">Sucess : &quot;Result false&quot;</text>
+<path d="M964 452 L1104 452" class="wire" marker-end="url(#ar)"/>
+<path d="M1042 528 L1042 452" class="wire"/>
+<path d="M1127 431 L1127 412" class="wire" marker-end="url(#ar)"/>
+<path d="M1127 473 L1127 532" class="wire" marker-end="url(#ar)"/>
+<path d="M1172 392 L1284 392" class="wire" marker-end="url(#ar)"/><text x="1228" y="388" class="edge">Call reservations/reservation API</text>
+<path d="M1307 371 L1307 322" class="wire" marker-end="url(#ar)"/><text x="1313" y="348" class="edge" text-anchor="start">Failure</text>
+<path d="M1328 392 L1388 392" class="wire" marker-end="url(#ar)"/><text x="1358" y="388" class="edge">Reservation Created</text>
+<path d="M1177 552 L1284 552" class="wire" marker-end="url(#ar)"/><text x="1230" y="548" class="edge">Call reservations/reservation API</text>
+<path d="M1307 531 L1307 492" class="wire" marker-end="url(#ar)"/><text x="1313" y="512" class="edge" text-anchor="start">Failure</text>
+<path d="M1328 552 L1405 552" class="wire" marker-end="url(#ar)"/><text x="1366" y="548" class="edge">Reservation Created</text>
+</svg>

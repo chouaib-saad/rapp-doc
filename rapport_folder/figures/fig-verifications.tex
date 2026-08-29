@@ -1,0 +1,48 @@
+% Familles de vérifications et propriétés protégées (figure 4.x)
+\begin{tikzpicture}[x=1cm, y=1cm]
+
+  \tikzset{
+    fam/.style={draw=black, fill=white, rectangle, text width=37mm,
+                minimum height=15mm, inner sep=3pt, align=left,
+                font=\sffamily\tiny},
+    ban/.style={draw=black, fill=figGrisClair, rectangle, text width=37mm,
+                minimum height=4.6mm, inner sep=2pt, align=center,
+                font=\sffamily\tiny\bfseries}
+  }
+
+  % #1 colonne  #2 rangee  #3 famille  #4 propriete protegee
+  \newcommand{\famille}[4]{%
+    \node[fam] (f#1#2) at ({#1*4.25},{-#2*2.35}) {#4};
+    \node[ban] at ({#1*4.25},{-#2*2.35+0.98}) {#3};
+  }
+
+  % ── Ce qui doit rester déterministe ───────────────────────
+  \famille{0}{0}{Règles et verdicts}{Un contexte donné produit toujours le même verdict, la même règle et la même justification.}
+  \famille{1}{0}{Identité d'opération}{Une reprise ne produit jamais une seconde exécution, même si le contexte a changé.}
+  \famille{2}{0}{Vérification d'identité}{Tentatives bornées, hiérarchie des délais respectée, entrée inexploitable sans coût.}
+  \famille{3}{0}{Abstention documentaire}{Sans passage franchissant les filtres, la réponse est un aveu d'ignorance.}
+
+  % ── Ce qui protège la conduite du dialogue ────────────────
+  \famille{0}{1}{Cohérence des personas}{Les instructions d'un agent ne mentionnent aucune capacité qu'il ne possède pas.}
+  \famille{1}{1}{Transfert et escalade}{Un transfert est terminal ; un rappel ne coexiste jamais avec un transfert abouti.}
+  \famille{2}{1}{Mécontentement}{L'accumulation suit le comportement attendu et déclenche l'escalade au seuil prévu.}
+  \famille{3}{1}{Interruption}{L'interruption arrête la restitution et consigne ce qui a réellement été prononcé.}
+
+  % ── Ce qui protège l'exploitation ─────────────────────────
+  \famille{0}{2}{Résilience des fournisseurs}{La défaillance provoquée du principal déclenche le repli sans couper la session.}
+  \famille{1}{2}{Enregistrement}{Les tours sont consignés hors du chemin critique ; une panne de stockage n'affecte rien.}
+  \famille{2}{2}{Multilinguisme}{L'échange suit la langue du client et un changement en cours est pris en compte.}
+  \famille{3}{2}{Journalisation}{Délais de première réponse et jetons consommés sont collectés et bien attribués.}
+
+  % ── Regroupements ─────────────────────────────────────────
+  \node[etiquettezone, anchor=east, font=\sffamily\tiny\itshape, align=right]
+       at (-2.35,0) {Comportement\\déterministe};
+  \node[etiquettezone, anchor=east, font=\sffamily\tiny\itshape, align=right]
+       at (-2.35,-2.35) {Conduite\\du dialogue};
+  \node[etiquettezone, anchor=east, font=\sffamily\tiny\itshape, align=right]
+       at (-2.35,-4.70) {Exploitation};
+
+  \node[note, text width=118mm, anchor=north, align=center] at (6.4,-6.15)
+       {Ce qui doit être garanti en toutes circonstances est rendu déterministe par conception, puis vérifié comme tel.\\Ce qui relève de l'interprétation est évalué sur son comportement observable, jamais sur sa formulation.};
+
+\end{tikzpicture}

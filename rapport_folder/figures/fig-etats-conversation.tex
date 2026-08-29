@@ -1,0 +1,54 @@
+% Diagramme d'états transitions d'une conversation (figure 3.12)
+\begin{tikzpicture}[x=1cm, y=1cm]
+
+  \node[debut] (i) at (-2.6,3.4) {};
+  \node[etat, minimum width=26mm] (sess) at (0,3.4)   {Session établie};
+  \node[etat, minimum width=26mm] (ecou) at (4.4,3.4) {Écoute};
+  \node[etat, minimum width=26mm] (comp) at (8.8,3.4) {Compréhension};
+  \node[etat, minimum width=26mm] (clar) at (13.0,3.4) {Clarification};
+
+  \node[etat, minimum width=26mm] (rech) at (13.0,0.8) {Recherche\\documentaire};
+  \node[etat, minimum width=26mm] (veri) at (8.8,0.8)  {Vérification\\d'identité};
+  \node[etat, minimum width=26mm] (deci) at (4.4,0.8)  {Décision};
+  \node[etat, minimum width=26mm] (exec) at (0,0.8)    {Exécution};
+
+  \node[etat, minimum width=26mm] (rest) at (4.4,-1.8) {Restitution};
+
+  \node[etat, minimum width=26mm, fill=figGrisTresClair] (resol) at (0,-4.3)  {Résolue};
+  \node[etat, minimum width=26mm, fill=figGrisTresClair] (tran)  at (8.8,-4.3) {Transférée};
+  \node[fin] (f1) at (0,-6.0) {};
+  \node[fin] (f2) at (8.8,-6.0) {};
+
+  % ── Trajet nominal ────────────────────────────────────────
+  \draw[flux] (i) -- (sess);
+  \draw[flux] (sess) -- node[etiq, above] {ouverture} (ecou);
+  \draw[flux] (ecou) -- node[etiq, above] {fin de tour} (comp);
+  \draw[flux] (comp) -- node[etiq, above] {demande ambiguë} (clar);
+  \draw[flux] (clar.south) -- node[etiq, right, pos=0.5] {question} (rech.north);
+
+  \draw[flux] (comp.south) -- node[etiq, right, pos=0.5] {opération\\sensible} (veri.north);
+  \draw[flux] (rech) -- node[etiq, above] {passages} (veri);
+  \draw[flux] (veri) -- node[etiq, above] {identité fraîche} (deci);
+  \draw[flux] (deci) -- node[etiq, above] {verdict favorable} (exec);
+  \draw[flux] (exec.south) -- ++(0,-0.75) -| node[etiq, above, pos=0.25] {résultat} (rest.north);
+  \draw[flux] (deci.south) -- node[etiq, right, pos=0.45] {réponse} (rest.north);
+
+  % Retour à l'écoute et interruption, contournant les états voisins
+  \draw[flux] (rest.west) -- (2.2,-1.8) -- (2.2,2.9)
+        node[etiq, left, pos=0.62] {tour suivant} -- (ecou.south west);
+  \draw[flux] (rest.east) -- (7.3,-1.8) -- (7.3,2.55)
+        node[etiq, right, pos=0.62] {interruption\\du client} -- (5.4,2.55) -- (ecou.south east);
+
+  % ── Sorties terminales ────────────────────────────────────
+  \draw[flux] (rest.south) -- ++(0,-0.85) -| node[etiq, above, pos=0.25] {demande satisfaite} (resol.north);
+  \draw[flux] (rest.south) -- ++(0,-0.85) -| node[etiq, above, pos=0.25] {escalade} (tran.north);
+  \draw[flux] (veri.east) -- ++(1.35,0) -- (11.5,-4.3)
+        node[etiq, above, pos=0.72] {échec de vérification} -- (tran.east);
+
+  \draw[flux] (resol) -- (f1);
+  \draw[flux] (tran) -- (f2);
+
+  \node[note, text width=84mm, anchor=north, align=center] at (4.4,-6.75)
+       {Les deux issues sont terminales et traitées symétriquement : l'escalade est un résultat\\normal du système, pas une défaillance.};
+
+\end{tikzpicture}

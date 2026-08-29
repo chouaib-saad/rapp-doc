@@ -1,0 +1,46 @@
+Use this reusable prompt:
+
+```text
+Create a clean, high-resolution UML sequence diagram in a precise flat vector style.
+
+STYLE AND VISUAL IDENTITY:
+- Warm off-white background: #FFFDF7.
+- Minimal technical diagram aesthetic with generous whitespace.
+- Use saturated magenta as the primary accent: #A50046.
+- Use dark green as the secondary accent for return messages: #198B26.
+- Use near-black text: #111111.
+- Use pale cyan participant boxes: #A9E5EF.
+- Use pale green participant boxes: #A9EFB0.
+- Use pale warm yellow callout boxes: #FFF4A6.
+- Use light gray activation bars: #D8D8D8.
+- Use thin, crisp strokes with no gradients and no photorealistic effects.
+- Use a subtle gray drop shadow behind participant header boxes only.
+- Use a compact, clean sans-serif font similar to Arial or Helvetica.
+- Text must be black, highly legible, and consistently aligned.
+
+SHAPES AND DIAGRAM ELEMENTS:
+- Participant headers are flat horizontal rectangles with sharp corners, magenta outlines, and subtle gray drop shadows.
+- Use pale cyan for user/client-like participants and pale green for platform/system/application-like participants.
+- Lifelines are thin vertical magenta dashed lines.
+- Activation bars are narrow vertical light-gray rectangles with dark outlines.
+- Messages are thin horizontal magenta lines with solid triangular arrowheads for forward calls.
+- Return messages use thin green lines with solid triangular arrowheads pointing back.
+- Asynchronous or deferred returns may use green dashed lines.
+- Combined fragments such as “opt”, “alt”, or equivalent conditional blocks are large sharp-cornered rectangles with thin magenta outlines.
+- Fragment labels sit in small rectangular tabs attached to the upper-left corner, filled pale pink or pale cyan, with magenta outlines.
+- Conditions inside fragments use small italic black text.
+- Fragment subdivisions use thin magenta dashed horizontal separators.
+- Explanatory notes are pale yellow rectangular callout boxes with a thin magenta border and subtly rounded corners.
+- Callout text is compact, black, and italicized where appropriate.
+- Keep all lines orthogonal and horizontal/vertical; do not use curved connectors.
+- Maintain a balanced landscape composition with precise alignment between headers, lifelines, activation bars, messages, and fragments.
+- Do not add icons, illustrations, decorative backgrounds, gradients, 3D effects, or unrelated elements.
+
+CONTENT AND ACCURACY:
+Replace [INSERT DIAGRAM CONTENT HERE] with the exact sequence-diagram content supplied by the user. Preserve every word, number, punctuation mark, accent, label, condition, participant name, arrow direction, structural relationship, and relative position exactly. Do not summarize, rewrite, translate, omit, duplicate, or invent any content.
+
+OUTPUT:
+Generate one polished landscape image only, suitable for a technical document. Ensure every label is sharp, readable, correctly spelled, and fully visible. Use the supplied content as the source of truth; use this prompt only for the visual style, shapes, colors, linework, and overall theme.
+
+[INSERT DIAGRAM CONTENT HERE]
+```

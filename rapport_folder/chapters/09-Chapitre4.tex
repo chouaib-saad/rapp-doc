@@ -1,0 +1,816 @@
+% ============================================================
+% Chapitre 4 : Réalisation
+% ============================================================
+\chapter{Réalisation}
+
+\begin{spacing}{1.2}
+\minitoc
+\thispagestyle{MyStyle}
+\end{spacing}
+\newpage
+
+\section*{Introduction}
+
+Le chapitre précédent a décrit la conception indépendamment de toute technologie. Celui ci expose sa réalisation. Nous présentons d'abord les technologies retenues et l'environnement de développement, puis nous détaillons la chaîne temps réel étape par étape, chacune accompagnée de la mesure qui a orienté son choix. Nous traitons ensuite la gestion de la concurrence et des ressources, l'architecture physique de déploiement et les interfaces produites. Le chapitre se termine par la campagne de vérification, les résultats obtenus et les difficultés rencontrées.
+
+\section{Technologies}
+
+\subsection{Principe de sélection}
+
+Trois critères ont gouverné le choix des technologies. Le premier est la compatibilité avec la contrainte temps réel : un composant qui ne diffuse pas en continu ne peut appartenir à la chaîne conversationnelle, quelle que soit sa qualité par ailleurs. Le deuxième est la préservation du contrôle : à qualité comparable, une solution ouverte et hébergeable en interne a été préférée à un service fermé, afin de conserver la maîtrise des données et la liberté d'évolution. Le troisième est la substituabilité : aucune technologie ne devait s'inscrire dans le système autrement que derrière une interface permettant de la remplacer.
+
+Ces critères expliquent la répartition retenue. Les traitements d'inférence les plus lourds s'appuient sur des services spécialisés, tandis que tout ce qui touche aux données personnelles, aux enregistrements d'audit et aux systèmes métier demeure hébergé en interne.
+
+\subsection{Technologies par couche}
+
+Le tableau \ref{tab:techno} présente les technologies retenues et le rôle de chacune.
+
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{|p{2.6cm}|p{4.0cm}|p{7.9cm}|}
+\hline
+\multicolumn{3}{|c|}{\textbf{Technologies retenues}} \\
+\hline
+\textbf{Couche} & \textbf{Technologie} & \textbf{Rôle dans la plateforme} \\
+\hline
+Temps réel & LiveKit Server 1.8.4 & Transport audio temps réel, gestion des salles, acheminement des participants et distribution des tâches vers les processus agents. \\
+\hline
+Services & Python 3.12 et FastAPI & Implémentation des services de domaine et de l'interface applicative métier. \\
+\hline
+Persistance & PostgreSQL 16 & Source de vérité relationnelle, organisée en schémas par contexte métier. \\
+\hline
+Persistance & SQLAlchemy et Alembic & Modélisation des entités persistantes et gestion versionnée du schéma. \\
+\hline
+Index documentaire & Qdrant 1.12.5 & Index de recherche à double représentation, sémantique et lexicale. \\
+\hline
+Stockage d'objets & MinIO & Conservation des documents sources de la base de connaissances. \\
+\hline
+Cache et état & Redis 7.4 & États partagés et données de courte durée de vie. \\
+\hline
+Intégration & Serveurs MCP internes & Exposition contrôlée des capacités documentaire, de gestion de tickets et de messagerie aux agents. \\
+\hline
+Interfaces & TypeScript, React, TanStack Start & Portail client et console d'administration, avec exécution côté serveur des appels métier. \\
+\hline
+Observabilité & Prometheus & Collecte des métriques d'exécution, interrogées directement sur chaque service. \\
+\hline
+Observabilité & Grafana & Restitution des métriques sous forme de tableaux de bord provisionnés. \\
+\hline
+Observabilité & OpenTelemetry & Identifiant de corrélation et traces réparties lorsqu'un collecteur est déployé. \\
+\hline
+Exécution & Docker et Docker Compose & Isolation, reproductibilité et orchestration locale des services. \\
+\hline
+Déploiement & Helm & Description du déploiement pour un environnement orchestré. \\
+\hline
+\end{tabular}
+\caption{Technologies retenues par couche}
+\label{tab:techno}
+\end{table}
+
+\subsection{Le rôle de la couche temps réel}
+
+Une précision s'impose au sujet de LiveKit, dont la place dans le système est souvent mal appréciée.
+
+LiveKit est un cadriciel de communication temps réel à code ouvert. Il résout un ensemble de problèmes d'infrastructure difficiles et sans rapport avec le métier traité : l'établissement et le maintien d'une session audio bidirectionnelle à faible latence, la gestion des salles et des participants, la mise en mémoire tampon des flux audio, la distribution des tâches vers des processus de traitement, la gestion des ressources associées à chaque session et la prise en charge de plusieurs interlocuteurs simultanés. Réaliser ces fonctions à partir de zéro représenterait un projet à part entière, sans rapport avec la valeur recherchée ici.
+
+Ce que LiveKit ne fournit pas est précisément ce qui constitue ce travail : la logique des agents et leur orchestration, la construction du contexte, la mémoire, la chaîne de décision et de politique, l'exécution idempotente, les règles métier, les garde fous, la recherche documentaire, l'intégration à la gestion de tickets, le routage vers les conseillers, la piste d'audit, le modèle de sécurité et les interfaces de supervision. La couche temps réel transporte la parole ; elle ne décide de rien.
+
+Cette séparation est d'ailleurs matérialisée dans le code par une frontière stricte. Les bibliothèques du fournisseur ne sont importées que dans un répertoire dédié, celui qui construit les composants de la chaîne média. Aucune règle métier, aucun service de domaine et aucun agent n'en dépend. C'est cette frontière qui rend le remplacement envisageable et qui garantit que le système n'est pas structuré par les contraintes d'un cadriciel.
+
+\section{Outils d'implémentation}
+
+\subsection{Environnement matériel}
+
+Le développement a été conduit sur un poste de travail unique, dont les caractéristiques figurent au tableau \ref{tab:materiel}. Ce poste a supporté simultanément l'ensemble des services conteneurisés, les modèles d'encodage exécutés localement et les environnements de développement des deux interfaces.
+
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.25}
+\begin{tabular}{|p{4.2cm}|p{10.3cm}|}
+\hline
+\textbf{Composant} & \textbf{Caractéristique} \\
+\hline
+Processeur & Intel Core i7-13650HX de treizième génération, 14 coeurs physiques et 20 fils d'exécution \\
+\hline
+Mémoire vive & 16 Go \\
+\hline
+Processeur graphique & NVIDIA GeForce RTX 4050 pour ordinateur portable, et circuit graphique intégré Intel \\
+\hline
+Stockage & Disque à semi conducteurs NVMe de 512 Go \\
+\hline
+Système d'exploitation & Windows 11 Professionnel \\
+\hline
+\end{tabular}
+\caption{Caractéristiques du poste de développement}
+\label{tab:materiel}
+\end{table}
+
+La contrainte de mémoire vive a eu une conséquence directe sur la conception, exposée plus loin dans ce chapitre. Les modèles exécutés localement pour la recherche documentaire devaient tenir dans l'espace laissé disponible par les services conteneurisés, ce qui a écarté certaines options par ailleurs plus performantes.
+
+\subsection{Environnement logiciel}
+
+Le tableau \ref{tab:logiciel} présente les outils employés pour le développement, l'exécution et la vérification.
+
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{|p{4.2cm}|p{4.0cm}|p{6.3cm}|}
+\hline
+\textbf{Catégorie} & \textbf{Outil} & \textbf{Usage} \\
+\hline
+Exécution des services & Python 3.12.6 & Environnement d'exécution des services de domaine. \\
+\hline
+Interfaces & Node.js 24 et Vite & Construction et développement des deux interfaces web. \\
+\hline
+Conteneurisation & Docker 27.3 et Docker Compose & Exécution locale de la totalité de la plateforme. \\
+\hline
+Gestion de version & Git & Suivi des incréments, une branche par version. \\
+\hline
+Migrations & Alembic & Évolution versionnée du schéma de base de données. \\
+\hline
+Vérification & Pytest & Exécution des suites de tests des services et des agents. \\
+\hline
+Qualité & Ruff et Mypy & Analyse statique et vérification des types. \\
+\hline
+Exploration d'interfaces & Postman & Vérification manuelle des points d'accès applicatifs. \\
+\hline
+Observabilité & Prometheus 2.55 et Grafana 11.3 & Collecte des métriques et tableaux de bord de supervision. \\
+\hline
+\end{tabular}
+\caption{Environnement logiciel de développement}
+\label{tab:logiciel}
+\end{table}
+
+Deux modes d'exécution coexistent. Le premier lance chaque service directement sur le poste, ce qui raccourcit la boucle de retour pendant le développement d'un composant isolé. Le second lance la totalité de la plateforme en conteneurs, ce qui reproduit les conditions de communication réelles entre services. Les adresses des services diffèrent entre ces deux modes, et cette différence est portée par la description des conteneurs plutôt que par la configuration partagée, afin qu'un même fichier de configuration reste valable dans les deux cas.
+
+\section{La chaîne de traitement temps réel}
+
+\subsection{Vue d'ensemble et principe du budget}
+
+La contrainte énoncée au premier chapitre trouve ici sa traduction concrète. Un échange parlé demeure naturel tant que le délai entre la fin de la phrase du client et le début de la réponse reste dans le rythme d'une conversation ordinaire. Ce délai n'est pas produit par un composant, il est la somme des contributions de tous.
+
+Il en découle qu'aucune étape ne peut être optimisée isolément : celle qui dépasse son budget le retire à toutes les autres. Chaque composant ajouté introduit par ailleurs un point de rupture, si bien que l'allongement de cette chaîne est toujours une décision à justifier.
+
+La figure \ref{fig:chaine-temps-reel} présente la chaîne complète et la contribution de chaque étape.
+
+\figureTikz{Chaîne de traitement temps réel et contribution des étapes}{chaine-temps-reel}{fig-chaine-temps-reel}
+
+Les valeurs issues de la configuration ou du code sont exactes. Les temps de traitement, eux, relèvent d'une reconstitution dont la section consacrée aux résultats précise le statut.
+
+\subsection{Établissement de la session et transport}
+
+\subsubsection{Rôle}
+
+Avant tout traitement, un canal audio bidirectionnel doit être établi entre le client et la plateforme, et un processus de traitement doit être affecté à cette session. Cette étape ne se répète pas à chaque tour de parole, mais son coût s'impute sur la première impression du client.
+
+\subsubsection{Réalisation}
+
+Le client obtient d'abord un jeton d'accès auprès d'un service dédié. Ce jeton est délibérément restreint : il autorise uniquement la participation à une salle, sans permettre d'en créer une ni de modifier ses propres attributs de participant. Sa durée de validité est courte. Lorsque la configuration désigne un agent nommé, le jeton porte en outre une instruction d'affectation explicite, de sorte que la session soit prise en charge par le processus attendu plutôt que par un processus disponible quelconque.
+
+Le transport lui même repose sur les mécanismes de communication temps réel du web \cite{webrtc}, qui établissent un canal à faible latence supportant la perte de paquets et les variations de délai propres aux réseaux publics. Le numéro d'appel du client accompagne la session sous forme d'attribut, ce qui permet de le rattacher immédiatement à un dossier client sans interrogation supplémentaire.
+
+\subsubsection{Ce que le choix a coûté}
+
+Restreindre le jeton impose de gérer le cycle de vie des salles côté serveur, ce qu'un jeton permissif aurait délégué au client. Le coût est assumé : cette latitude serait sans rapport avec le besoin réel du client.
+
+\subsubsection{Sortie vers la téléphonie}
+
+Cette même couche de transport porte le transfert vers un conseiller humain. Lorsqu'un appel provient du réseau téléphonique, le transfert s'effectue au moyen d'une redirection normalisée du protocole d'établissement de session \cite{sip}, appliquée au participant téléphonique de la conversation.
+
+Ce mécanisme présente une particularité qu'il faut connaître pour l'employer correctement : la redirection porte sur l'identité du participant telle qu'elle a été attribuée lors de l'établissement de la session, et non sur le numéro d'appel du client. Fournir le numéro plutôt que cette identité provoque un rejet pour discordance. Le transfert est par ailleurs terminal du point de vue de la plateforme : une fois abouti, la session temps réel du client prend fin, l'échange se poursuivant directement avec le conseiller. C'est la raison pour laquelle le dossier de l'échange doit être constitué et transmis avant le transfert, et non pendant.
+
+\subsection{Détection de fin d'énoncé et gestion des tours de parole}
+
+\subsubsection{Rôle}
+
+Le système doit déterminer à quel moment le client a fini de parler. Cette décision est plus délicate qu'il n'y paraît, car elle arbitre entre deux défauts opposés. Une détection trop rapide coupe la parole au client qui marque une pause pour réfléchir. Une détection trop lente installe un silence après chaque phrase et donne l'impression d'un système qui n'a pas compris.
+
+\subsubsection{Réalisation}
+
+La détection d'activité vocale s'appuie sur un modèle léger exécuté localement, sans appel réseau, ce qui lui évite d'ajouter la moindre latence d'aller retour. La durée minimale de silence retenue est de deux cent cinquante millisecondes. Cette valeur n'a pas été choisie librement : elle constitue le seuil minimal exigé par le mécanisme de détection de tour de parole en aval, et la descendre rendrait ce dernier inopérant.
+
+La fin de tour est ensuite confirmée par le flux de transcription lui même, dont la stabilisation indique que l'énoncé est complet. Combiner les deux signaux, l'un acoustique et l'autre linguistique, rend la décision plus robuste qu'un silence seul, qui confondrait une pause avec une fin de phrase.
+
+\subsubsection{Génération anticipée}
+
+Une optimisation notable est activée à cette étape. Plutôt que d'attendre la confirmation définitive de fin de tour pour commencer à produire la réponse, le système engage la génération dès que la transcription devient suffisamment stable. Si le client reprend la parole, le travail engagé est abandonné. Dans le cas contraire, la réponse est déjà en cours de production au moment où la fin de tour est confirmée.
+
+Ce mécanisme ne réduit pas le temps de calcul total : il en déplace une partie avant l'instant à partir duquel le client commence à attendre. Le gain porte donc sur la latence perçue, qui est la seule qui compte pour l'utilisateur.
+
+\subsection{Transcription de la parole}
+
+\subsubsection{Rôle et métriques}
+
+La transcription convertit le flux audio en texte. Deux grandeurs la caractérisent : le taux d'erreur sur les mots, qui mesure l'exactitude, et le facteur temps réel, qui rapporte la durée de traitement à celle de l'audio traité. Une valeur inférieure à un est nécessaire au fonctionnement en flux continu. Les formules figurent en annexe.
+
+Une troisième exigence, non métrique, est déterminante : la transcription doit être diffusée en continu. Un composant qui attendrait la fin de l'énoncé pour rendre le texte ajouterait à lui seul la durée de la phrase au délai de réponse.
+
+\subsubsection{Réalisation}
+
+Le fournisseur principal retenu est Deepgram, avec son modèle de dernière génération. Trois éléments de sa mise en oeuvre méritent d'être signalés.
+
+Le premier concerne le vocabulaire spécifique. Les noms de lieux, les désignations d'offres et les termes propres au domaine sont mal reconnus par un modèle généraliste. Le système transmet donc au fournisseur une liste de termes attendus, ce qui améliore sensiblement leur reconnaissance.
+
+Le deuxième découle du premier. Une liste de termes trop étendue ou mal calibrée peut dégrader la transcription au lieu de l'améliorer. Le système déclare donc en second recours une instance du même fournisseur sans cette liste. Cette précaution mérite d'être soulignée car elle protège contre une défaillance qui ne viendrait pas du fournisseur mais de notre propre configuration.
+
+Le troisième concerne l'arabe. Plutôt que de recourir au modèle multilingue, l'arabe est acheminé vers le modèle monolingue dédié, dont les résultats sont nettement supérieurs sur cette langue.
+
+\subsubsection{Chaîne de repli}
+
+La transcription dispose d'une chaîne de repli à quatre niveaux, présentée au tableau \ref{tab:stt-chaine}. Un fournisseur dont la clé d'accès n'est pas configurée est simplement omis, de sorte que le système fonctionne avec les fournisseurs disponibles plutôt que d'échouer au démarrage.
+
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.25}
+\begin{tabular}{|p{1.2cm}|p{3.6cm}|p{9.7cm}|}
+\hline
+\textbf{Rang} & \textbf{Fournisseur} & \textbf{Justification de la position} \\
+\hline
+1 & Deepgram avec vocabulaire spécifique & Meilleure exactitude sur le domaine, diffusion en continu, latence faible. \\
+\hline
+2 & Deepgram sans vocabulaire spécifique & Protège contre une dégradation causée par la liste de termes elle même. \\
+\hline
+3 & Gladia & Second fournisseur indépendant, diffusion en continu, activé si configuré. \\
+\hline
+4 & Azure & Dernier recours, retenu pour la couverture linguistique. \\
+\hline
+\end{tabular}
+\caption{Chaîne de repli de la transcription}
+\label{tab:stt-chaine}
+\end{table}
+
+\subsection{Raisonnement}
+
+\subsubsection{Rôle et critères de sélection}
+
+Le modèle de langue, fondé sur l'architecture à mécanisme d'attention \cite{vaswani}, interprète la demande, conduit le dialogue et détermine quelle capacité solliciter. Le choix d'un modèle pour cet emploi ne se réduit pas à la qualité de sa rédaction. Quatre critères ont été retenus.
+
+\begin{itemize}
+  \item \textbf{Le délai avant le premier jeton.} C'est le temps écoulé entre l'envoi de la requête et l'arrivée du premier fragment de réponse. Dans une chaîne diffusée en continu, c'est cette grandeur qui gouverne la latence perçue, et non la durée totale de génération.
+  \item \textbf{La capacité d'appel d'outils.} Le modèle doit choisir une capacité et en construire les arguments de manière fiable. Un modèle éloquent mais imprécis sur ce point est inutilisable dans un système agentique.
+  \item \textbf{Le suivi d'instructions.} Le comportement du système repose sur des consignes de conduite du dialogue, d'abstention et de clôture. Un modèle qui les applique de façon inégale rend ce comportement imprévisible.
+  \item \textbf{La fenêtre de contexte.} Elle doit accueillir les instructions, l'historique de l'échange, la situation du client et les passages documentaires sans troncature.
+\end{itemize}
+
+\subsubsection{Le compromis évité}
+
+Un choix se présentait naturellement : retenir un modèle de petite taille, moins coûteux et plus rapide. Nous l'avons écarté, et la raison mérite d'être explicitée car elle est contre intuitive.
+
+Un modèle affaibli produit certes des réponses plus vite, mais il suit moins bien les consignes, perd plus facilement le contexte et se trompe plus souvent de capacité. Or chacune de ces défaillances engendre un tour de parole supplémentaire : une clarification inutile, une reformulation, un appel d'outil erroné qu'il faut rattraper. Un tour supplémentaire coûte au client la totalité de la chaîne, soit bien davantage que ce que l'écart de vitesse entre deux modèles pouvait faire économiser. La rapidité d'un modèle se mesure au niveau de la conversation, pas au niveau de la requête.
+
+\subsubsection{Réalisation}
+
+Le modèle principal retenu est Gemini 2.5 Flash, dont le profil combine un délai avant premier jeton faible, un appel d'outils fiable et une fenêtre de contexte largement suffisante. Une bascule de configuration permet de placer GPT-4o mini en tête de chaîne, les deux modèles ayant été évalués sur le même comportement.
+
+La chaîne se poursuit par deux fournisseurs de repli reposant sur des modèles ouverts de la famille Llama, l'un hébergé sur une infrastructure d'inférence spécialisée, l'autre sur une infrastructure optimisée pour le débit. Ces deux recours ne visent pas la qualité maximale mais la continuité de service : ils permettent à une conversation de se poursuivre lorsque les fournisseurs principaux sont indisponibles ou saturés.
+
+Le tableau \ref{tab:llm-chaine} présente cette chaîne.
+
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.25}
+\begin{tabular}{|p{1.2cm}|p{4.2cm}|p{9.1cm}|}
+\hline
+\textbf{Rang} & \textbf{Modèle} & \textbf{Justification de la position} \\
+\hline
+1 & Gemini 2.5 Flash & Délai avant premier jeton faible, appel d'outils fiable, large fenêtre de contexte. \\
+\hline
+2 & GPT-4o mini & Profil comparable, activable en tête de chaîne par configuration. \\
+\hline
+3 & Llama 3.1 sur infrastructure d'inférence spécialisée & Continuité de service, modèle ouvert, délai d'attente porté à quarante cinq secondes. \\
+\hline
+4 & Llama 3.1 sur infrastructure à haut débit & Dernier recours privilégiant la vitesse de génération. \\
+\hline
+\end{tabular}
+\caption{Chaîne de repli du modèle de langue}
+\label{tab:llm-chaine}
+\end{table}
+
+Une tentative auprès d'un fournisseur est abandonnée au bout de douze secondes, ce qui déclenche le passage au suivant. Ce délai est un compromis : suffisamment long pour absorber une lenteur passagère, suffisamment court pour que le report vers le fournisseur suivant conserve une chance d'aboutir dans un délai acceptable.
+
+\subsubsection{Travaux sur l'exécution locale}
+
+Nous avons évalué l'exécution locale d'un modèle ouvert de la famille Llama sur le poste de développement. Les résultats confirment que cette voie est praticable pour un traitement différé, mais qu'elle ne l'est pas dans les conditions du projet. La mémoire disponible, partagée avec l'ensemble des services conteneurisés et les modèles d'encodage documentaire, ne permet pas d'héberger un modèle de taille suffisante tout en préservant les marges nécessaires au reste de la plateforme, et le délai avant premier jeton obtenu reste incompatible avec la contrainte conversationnelle. Cette évaluation a néanmoins orienté la conception : elle a confirmé que l'inférence devait rester derrière une interface substituable, afin qu'un passage à une exécution locale reste possible sur un matériel adapté sans remise en cause de l'architecture.
+
+\subsection{Récupération documentaire sous contrainte temps réel}
+
+\subsubsection{Le problème particulier de cette étape}
+
+Le principe consistant à fonder la réponse d'un modèle sur des passages récupérés dans un corpus externe, plutôt que sur ses paramètres, a été formalisé sous le nom de génération augmentée par récupération \cite{lewis}. Sa mise en oeuvre dans une chaîne conversationnelle soulève cependant une difficulté qui lui est propre : la récupération documentaire est la seule étape de la chaîne dont la qualité et la latence s'opposent frontalement. Les techniques qui améliorent la pertinence sont précisément celles qui coûtent le plus cher, et un dispositif de recherche conçu pour un usage différé devient inutilisable dès qu'il s'insère dans une conversation.
+
+\subsubsection{Encodage des textes}
+
+Le modèle d'encodage retenu \cite{e5} produit des représentations de trois cent quatre vingt quatre dimensions et couvre une centaine de langues dans un espace unique. Cette dernière propriété a une conséquence directe et précieuse : une question posée en français peut retrouver une procédure rédigée en anglais sans qu'aucune traduction intervienne.
+
+Ce modèle est asymétrique : il attend qu'on lui indique si le texte encodé est une question ou un passage. L'indication est appliquée à l'intérieur du composant, de sorte qu'aucun appelant ne puisse l'omettre, et la dimension de chaque représentation produite est vérifiée plutôt que laissée à l'index.
+
+Le choix d'un modèle exécuté localement plutôt que d'un service distant a été délibéré. Un service distant aurait ajouté un aller retour réseau et un point de rupture supplémentaire à chaque question posée, sur le chemin le plus contraint du système. Le modèle retenu fonctionne sur processeur, sans matériel graphique, sans clé d'accès, sans quota et sans limitation de débit.
+
+\subsubsection{Recherche en trois filtres}
+
+La recherche procède par filtres successifs, chacun pouvant conclure à l'absence de réponse. Le tableau \ref{tab:rag-filtres} en présente le détail.
+
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{|p{3.0cm}|p{5.3cm}|p{6.2cm}|}
+\hline
+\textbf{Filtre} & \textbf{Principe} & \textbf{Ce qu'il élimine} \\
+\hline
+Proximité de sens & Comparaison des représentations sémantiques, seuil minimal de 0,82, douze candidats retenus & Les passages sans rapport de sens avec la question, quelle que soit la langue. \\
+\hline
+Termes exacts & Comparaison lexicale pondérée par la rareté des termes \cite{bm25} & Les passages dont le vocabulaire n'a rien de commun avec la question. \\
+\hline
+Fusion des rangs & Combinaison des deux classements par leurs rangs et non par leurs scores \cite{rrf} & Ne supprime rien, mais réconcilie deux échelles de mesure hétérogènes. \\
+\hline
+Évaluation conjointe & Lecture simultanée de la question et du passage, seuil de 0,30, au plus douze candidats & Les passages formellement proches mais réellement hors sujet. \\
+\hline
+\end{tabular}
+\caption{Filtres successifs de la recherche documentaire}
+\label{tab:rag-filtres}
+\end{table}
+
+Le dernier filtre est le plus coûteux, de l'ordre de quatre vingts à cent cinquante millisecondes. Il n'est acceptable dans une chaîne temps réel que parce qu'il ne s'applique qu'au petit nombre de candidats ayant franchi les filtres précédents, qui sont eux très peu coûteux. Placer ce filtre en tête aurait produit exactement la même qualité pour un coût prohibitif : l'ordre des filtres est ici aussi déterminant que leur nature.
+
+Deux délais encadrent cette étape et leur ordre est un invariant. Le budget accordé au service de recherche est de cinq secondes, celui du client qui l'appelle de neuf secondes. Le second doit rester strictement supérieur au premier, faute de quoi l'appelant abandonnerait avant que le service ait pu répondre, et une absence de réponse deviendrait indiscernable d'une lenteur.
+
+\subsubsection{Ce que le choix a coûté}
+
+Le dispositif retenu privilégie la précision au détriment du rappel. Un passage réellement pertinent mais dont le score reste légèrement en deçà des seuils sera écarté. Ce compromis est assumé : dans le contexte d'un service client, une réponse fondée sur un document inapproprié cause davantage de tort qu'un aveu d'ignorance suivi d'une orientation vers un conseiller.
+
+\subsection{Synthèse vocale}
+
+\subsubsection{Rôle et métrique déterminante}
+
+La synthèse vocale produit la réponse sonore. La grandeur déterminante n'est pas la durée totale de synthèse mais le délai avant le premier fragment audio : un composant lent à produire l'ensemble mais rapide à en produire le début est préférable à l'inverse. C'est aussi à cette étape que se joue la qualité perçue, la prosodie déterminant si l'échange est ressenti comme une conversation ou comme la lecture d'un texte.
+
+\subsubsection{Une exigence éliminatoire}
+
+La diffusion en continu constitue un critère éliminatoire et non un critère de préférence. Un composant de synthèse qui met en mémoire tampon l'énoncé complet avant d'émettre le moindre son ajoute au délai de réponse la durée entière de la phrase à prononcer.
+
+C'est exactement ce motif qui a conduit à écarter une solution par ailleurs prometteuse. La synthèse vocale de Google, dans sa version disponible au moment de l'étude, fonctionne sans diffusion en continu : elle constitue l'énoncé entier avant restitution. Son intégration a donc été délibérément écartée malgré sa qualité, tout en conservant les emplacements de configuration nécessaires à une reprise éventuelle si une version diffusée en continu venait à paraître.
+
+\subsubsection{Réalisation}
+
+Le fournisseur principal retenu est Cartesia, choisi pour sa latence particulièrement faible avant le premier fragment. La chaîne de repli est ordonnée selon la qualité perçue, comme le présente le tableau \ref{tab:tts-chaine}.
+
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.25}
+\begin{tabular}{|p{1.2cm}|p{3.2cm}|p{10.1cm}|}
+\hline
+\textbf{Rang} & \textbf{Fournisseur} & \textbf{Justification de la position} \\
+\hline
+1 & Cartesia & Délai avant premier fragment le plus faible, diffusion en continu, qualité satisfaisante en français. \\
+\hline
+2 & ElevenLabs & Naturel supérieur, latence plus élevée, retenu comme premier repli qualitatif. \\
+\hline
+3 & Inworld & Expressivité, prise en charge du français, troisième recours. \\
+\hline
+4 & SmallestAI & Fournisseur le plus rapide, dernier recours privilégiant la continuité. \\
+\hline
+\end{tabular}
+\caption{Chaîne de repli de la synthèse vocale}
+\label{tab:tts-chaine}
+\end{table}
+
+Deux dispositions complètent cette organisation. Un fournisseur dont la clé n'est pas configurée est omis de la chaîne. En revanche, si aucun fournisseur n'est configuré, le processus refuse de démarrer plutôt que de fonctionner sans voix : un agent muet constitue une défaillance silencieuse, qui est précisément le type de défaut que la conception cherche à proscrire.
+
+\subsubsection{Une mesure inattendue}
+
+La collecte du consentement à l'enregistrement, énoncée au début de chaque appel, représente à elle seule près d'un quart du volume de synthèse vocale d'une conversation. Cette mesure illustre un point de méthode : dans une chaîne temps réel, les coûts significatifs ne se trouvent pas toujours là où l'attention se porte spontanément. Le mécanisme est conservé, car il répond à une obligation, mais il est désactivable dans les environnements de développement où il n'a pas lieu d'être.
+
+\subsubsection{Positionnement des fournisseurs retenus}
+
+Les trois étapes qui dépendent d'un service externe obéissent au même arbitrage, entre la qualité d'un côté et le respect du budget de temps de l'autre. La figure \ref{fig:positionnement-fournisseurs} en donne une vue d'ensemble. Elle fait apparaître que le fournisseur retenu en tête de chaîne n'est jamais le plus performant dans l'absolu, mais le meilleur parmi ceux qui restent dans la zone compatible avec le temps réel. Les solutions écartées le sont pour une raison structurelle et non pour un écart de qualité : absence de diffusion en continu pour la synthèse de Google, ressources insuffisantes pour l'exécution locale du modèle de raisonnement.
+
+\figureTikz{Positionnement qualitatif des fournisseurs de la chaîne vocale}{positionnement-fournisseurs}{fig-positionnement-fournisseurs}
+
+\subsection{Gestion des interruptions et budget global}
+
+\subsubsection{Interruption}
+
+Le client doit pouvoir interrompre l'assistant à tout moment. Le traitement de cette situation met en jeu trois opérations quasi simultanées : l'arrêt immédiat de la diffusion audio, l'abandon de la génération en cours, et la prise en compte du nouvel énoncé comme un tour de parole ordinaire.
+
+La difficulté tient à la cohérence de l'état après l'interruption. Une réponse interrompue a été partiellement entendue par le client. Le système doit donc consigner ce qui a effectivement été prononcé et non ce qu'il avait prévu de dire, faute de quoi l'historique de la conversation divergerait de ce que le client a réellement perçu, et les tours suivants raisonneraient sur une conversation qui n'a pas eu lieu.
+
+\subsubsection{Budget de latence}
+
+Le tableau \ref{tab:budget-latence} présente la répartition du délai entre la fin de l'énoncé du client et le début de la réponse sonore. Les valeurs de configuration y sont exactes ; les temps de traitement relèvent de la reconstitution décrite en introduction de cette section.
+
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{|p{5.0cm}|p{2.6cm}|p{2.6cm}|p{3.6cm}|}
+\hline
+\textbf{Étape} & \textbf{Sans recherche} & \textbf{Avec recherche} & \textbf{Nature de la valeur} \\
+\hline
+Détection de fin d'énoncé & 250 ms & 250 ms & Configuration exacte \\
+\hline
+Stabilisation de la transcription & 150 à 250 ms & 150 à 250 ms & Reconstitution \\
+\hline
+Assemblage du contexte & 30 à 60 ms & 30 à 60 ms & Reconstitution \\
+\hline
+Recherche documentaire & sans objet & 200 à 350 ms & Reconstitution, dont 80 à 150 ms mesurés pour le filtre conjoint \\
+\hline
+Délai avant premier jeton & 400 à 700 ms & 400 à 700 ms & Reconstitution \\
+\hline
+Délai avant premier fragment audio & 150 à 250 ms & 150 à 250 ms & Reconstitution \\
+\hline
+Transport et gigue réseau & 50 à 100 ms & 50 à 100 ms & Reconstitution \\
+\hline
+\textbf{Total perçu} & \textbf{1,0 à 1,6 s} & \textbf{1,2 à 2,0 s} & \textbf{Somme} \\
+\hline
+\end{tabular}
+\caption{Répartition du délai entre la fin de l'énoncé et le début de la réponse}
+\label{tab:budget-latence}
+\end{table}
+
+Deux enseignements se dégagent de cette répartition. Le premier est que le raisonnement constitue le poste dominant, ce qui justifie l'attention portée au délai avant premier jeton dans le choix du modèle plutôt qu'à sa vitesse de génération globale. Le second est que la génération anticipée décrite plus haut retire une part de ce poste du délai perçu, ce qui explique qu'elle ait été retenue malgré le travail parfois abandonné qu'elle implique.
+
+La figure \ref{fig:budget-latence} présente cette répartition sous forme graphique.
+
+\figureTikz{Répartition du budget de latence par étape}{budget-latence}{fig-budget-latence}
+
+\section{Concurrence et gestion des ressources}
+
+\subsection{Deux échelles de concurrence}
+
+La plateforme doit gérer la concurrence à deux échelles distinctes, qui appellent des réponses différentes.
+
+La première est celle des conversations simultanées. Plusieurs clients échangent en même temps avec la plateforme, et chacun doit disposer de son propre état sans interférence. La seconde est celle des opérations concurrentes à l'intérieur d'une même conversation. Ce cas est moins évident mais tout aussi réel : un client peut engager deux règlements au cours d'un même appel, et rien ne garantit que le second attendra la conclusion du premier.
+
+\subsection{Isolation des conversations}
+
+Chaque session est prise en charge par un processus de traitement distinct, doté de son propre état. Cet état contient l'identifiant de session, la langue courante, la situation du client, l'état de vérification d'identité avec son échéance, l'historique du sentiment, les compteurs de clarification et de transfert, et les identités des opérations engagées.
+
+Ce cloisonnement par processus présente un avantage qui va au delà de l'isolation logique : une défaillance affectant une conversation ne se propage pas aux autres. Les processus sont par ailleurs créés et libérés selon l'activité réelle, de sorte que les ressources ne sont mobilisées que par les conversations effectivement en cours.
+
+\subsection{Isolation des opérations concurrentes}
+
+\subsubsection{L'identité d'opération}
+
+Chaque opération sensible reçoit une identité propre, calculée à partir des éléments qui la définissent. Deux tentatives portant la même identité désignent la même opération : la seconde restitue le résultat de la première sans exécuter à nouveau. Deux opérations distinctes reçoivent des identités distinctes et s'exécutent indépendamment, y compris au sein de la même conversation.
+
+\subsubsection{Ce que l'identité ne doit pas contenir}
+
+La composition de cette identité a fait l'objet d'une correction significative, qui illustre la subtilité du problème.
+
+Certains éléments du contexte transmis au moteur de règles servent au jugement sans définir l'opération. Le montant restant dû, le nombre de reports déjà accordés dans l'année, le nombre de réclamations ouvertes et l'état de la ligne appartiennent à cette catégorie. Or chacune de ces valeurs change entre une première tentative et sa reprise, et elle change précisément parce que la première tentative a abouti : le nombre de réclamations ouvertes passe de zéro à un dès qu'une réclamation est déposée, l'état de la ligne passe d'en attente à active dès qu'une activation est réalisée.
+
+Les inclure aurait produit l'effet inverse de celui recherché : une reprise aurait présenté une identité différente, aurait été traitée comme une opération nouvelle, et aurait déposé une seconde réclamation. Ils sont donc exclus du calcul de l'identité tout en restant transmis au moteur de règles.
+
+\subsubsection{Garantie sous concurrence réelle}
+
+Un contrôle applicatif de l'identité ne suffit pas lorsque deux tentatives se présentent simultanément : les deux peuvent constater l'absence d'exécution antérieure avant que l'une d'elles n'ait écrit quoi que ce soit. La garantie est donc portée par la base de données, au moyen d'une contrainte d'unicité sur l'identité d'opération. La seconde écriture échoue, l'échec est intercepté, et la tentative est traitée comme une reprise. La propriété d'exécution au plus une fois tient ainsi même en situation de compétition, et non seulement dans le cas nominal.
+
+\subsection{Ordonnancement des écritures d'audit}
+
+Les enregistrements d'audit forment une chaîne dans laquelle chaque entrée intègre l'empreinte de la précédente. Cette structure impose que les ajouts soient sérialisés : deux écritures simultanées liraient la même empreinte précédente et produiraient une chaîne incohérente. Un verrou consultatif porté par la base de données garantit cette sérialisation pour la durée de la transaction.
+
+Une seconde disposition mérite d'être signalée. L'écriture d'audit ne valide pas sa propre transaction : elle se contente de placer ses données en attente de validation dans la transaction en cours. L'enregistrement métier et son entrée d'audit sont donc validés ensemble ou abandonnés ensemble. Il devient impossible qu'une opération soit enregistrée sans sa trace, ou qu'une trace subsiste sans l'opération correspondante.
+
+\subsection{Isolation des écritures secondaires}
+
+La mise à jour des projections métier consécutive à une exécution est effectuée dans une transaction imbriquée. Cette disposition répond à une hiérarchie d'importance explicite : le registre des actions et la chaîne d'audit constituent la vérité, les projections ne sont qu'une commodité de lecture. Un échec de projection est donc consigné comme tel sans annuler ni l'action ni sa trace, alors qu'une transaction unique aurait fait perdre l'ensemble pour une raison secondaire.
+
+\subsection{Découplage de l'enregistrement conversationnel}
+
+L'enregistrement des tours de parole obéit au même principe appliqué à la contrainte temps réel. La couche conversationnelle dépose ses éléments dans une file d'attente, opération dont le coût est constant et négligeable. Un traitement d'arrière plan vide cette file et effectue les écritures dans un fil d'exécution séparé.
+
+La conséquence est déterminante : si la base de données devient indisponible, l'écriture est signalée puis abandonnée, et la conversation se poursuit sans que le client perçoive quoi que ce soit. Le choix est explicite et assumé. Perdre l'enregistrement d'un tour de parole est regrettable ; interrompre l'appel d'un client parce qu'un journal ne peut pas être écrit serait bien pire. Les données personnelles sont par ailleurs masquées à l'intérieur du processus conversationnel, avant même de rejoindre la file d'attente.
+
+La figure \ref{fig:concurrence} présente cette organisation.
+
+\figureTikz{Gestion de la concurrence et des ressources}{concurrence}{fig-concurrence}
+
+\section{Architecture physique et évolution temporelle}
+
+\subsection{Topologie de déploiement}
+
+La plateforme est déployée sous forme de vingt quatre conteneurs répartis en trois ensembles : six services d'infrastructure, seize services applicatifs développés dans le cadre du projet, et deux services d'observabilité. La figure \ref{fig:deploiement} présente cette répartition, chaque conteneur y figurant avec le port qu'il expose.
+
+\figureTikz{Diagramme de déploiement de la plateforme}{deploiement}{fig-deploiement}
+
+Le processus agent est le seul composant à n'exposer aucun port d'écoute pour les requêtes métier. Il ne reçoit pas de requêtes : il se déclare auprès du serveur temps réel, qui lui affecte des sessions. Cette particularité est cohérente avec son rôle, celui d'un exécutant de sessions et non d'un fournisseur de service.
+
+\subsection{Chaîne d'observabilité}
+
+\subsubsection{Une instrumentation qui ne dépend de rien}
+
+Un système temps réel dont on ne mesure pas le comportement en fonctionnement ne peut être ni diagnostiqué ni amélioré. Encore faut il que la mesure existe réellement, et non seulement en principe.
+
+La première version de l'instrumentation reposait entièrement sur un collecteur externe. Les temps de première réponse, les compteurs de bascule entre fournisseurs et l'identifiant de corrélation étaient tous conditionnés à la présence de ce collecteur et à la configuration d'un point de collecte sur chaque service. Dans un déploiement ordinaire, aucun collecteur n'était démarré : les instruments écrivaient donc dans le vide, aucune requête ne portait d'identifiant de corrélation, et rien n'était collecté. L'observabilité existait dans le code sans exister à l'exécution, ce qui est une variante du défaut silencieux que nous avons rencontré ailleurs dans ce projet.
+
+Les deux mécanismes ont été rendus inconditionnels. L'identifiant de corrélation est désormais toujours produit, par la bibliothèque standard seule. Les métriques sont toujours exposées par chaque service et récupérées directement sur celui ci, sans intermédiaire à configurer. Le chemin par collecteur subsiste et n'a pas été affaibli : l'activer ajoute les traces réparties, sans déplacer les métriques, car les fonctions d'enregistrement alimentent les deux destinations.
+
+\subsubsection{Collecte et restitution}
+
+Un service de collecte interroge toutes les quinze secondes le point de mesure des douze services instrumentés, en les désignant par leur nom de conteneur. Les mesures sont conservées quinze jours, durée suffisante pour observer un cycle hebdomadaire et une régression par rapport à ce cycle, sans que le volume stocké demande une surveillance particulière.
+
+Un service de restitution en tire deux tableaux de bord. Le premier suit la santé de la plateforme : services actifs, débit, part de réponses en erreur, latence au quatre vingt quinzième centile et routes les plus lentes. Le second, plus spécifique, suit le comportement de la couche agentique : répartition des verdicts et son évolution, règles qui refusent et qui escaladent le plus, registre des actions par issue, déclencheurs d'escalade, notifications non délivrées, bascules de fournisseur, et délais de première réponse audible et de premier jeton par langue.
+
+C'est le second qui présente le plus d'intérêt. Le premier décrirait n'importe quel service web, tandis que le second décrit cette plateforme en particulier, et la part de verdicts autorisés y constitue l'indicateur le plus révélateur : il se déplace avant tout le reste lorsqu'un seuil, un catalogue ou un système amont change.
+
+\subsubsection{Trois décisions de conception}
+
+Trois choix méritent d'être signalés, car ils conditionnent l'utilité de l'ensemble.
+
+\begin{itemize}
+  \item \textbf{La cardinalité est bornée.} Une combinaison d'étiquettes engendre une série temporelle. Les mesures portent donc le gabarit de la route et non le chemin résolu, sans quoi chaque client engendrerait sa propre série, définitivement. Les autres étiquettes proviennent de vocabulaires fermés, et toute valeur venue de l'extérieur est tronquée. Une conséquence appréciable en découle : aucune donnée personnelle ne peut atteindre une étiquette, ce qui permet d'exposer les mesures sans les protéger par un secret, tout en gardant les accès restreints à la machine hôte.
+  \item \textbf{Les tableaux de bord sont des fichiers.} Ils sont décrits dans le dépôt et non modifiés dans le navigateur, car un tableau de bord édité dans un conteneur et jamais exporté disparaît avec lui. Un générateur produit leur description, ce qui garantit que deux panneaux ajoutés à des moments différents partagent la même géométrie et la même façon d'exprimer un ratio.
+  \item \textbf{Un panneau vide dit pourquoi il est vide.} Un panneau qui affiche la mention par défaut du produit ne se distingue pas d'un panneau en panne. Chacun déclare donc son propre message : l'absence d'erreur est présentée comme un résultat, l'absence d'appel comme une absence de données. Un ratio ne s'affiche jamais à zéro lorsque rien ne s'est produit, son dénominateur étant protégé, faute de quoi le tableau de bord annoncerait un fonctionnement sain à propos d'un trafic inexistant.
+\end{itemize}
+
+\subsubsection{L'identifiant de corrélation}
+
+Chaque requête reçoit un identifiant unique, repris de l'appelant s'il en fournit un, extrait du contexte de trace lorsqu'il en existe un, et engendré sinon. Cet identifiant suit le traitement, les appels qu'il déclenche et les tâches d'arrière plan qu'il programme, et il figure dans chaque ligne de journal produite par l'un d'eux. Il est également renvoyé au client dans la réponse.
+
+Il n'est volontairement pas conservé au delà du traitement. Une connexion persistante sert plusieurs requêtes successives, et un identifiant laissé en place attribuerait à la requête suivante celui de la précédente. Une piste fausse au cours d'un incident coûte davantage qu'une piste manquante.
+
+\subsection{Une protection au démarrage}
+
+La configuration de chaque service provient exclusivement de variables d'environnement, ce qui permet à un même artefact de fonctionner dans les deux modes d'exécution sans modification.
+
+Cette souplesse comporte un risque, contre lequel une protection explicite a été mise en place. Si deux services se voient attribuer la même adresse par erreur de configuration, le processus agent refuse de démarrer. Sans cette vérification, la défaillance serait particulièrement pernicieuse : le système interrogerait un service pour un autre et recevrait une réponse valide mais sans rapport avec la question posée. Aucun test ne détecterait cette situation, et rien dans le comportement observable ne la signalerait. Un refus de démarrage bruyant vaut mieux qu'un fonctionnement silencieusement erroné.
+
+\subsection{Évolution temporelle d'un échange}
+
+La figure \ref{fig:chronogramme} présente le chronogramme d'un échange complet, depuis l'établissement de la session jusqu'à la restitution de la réponse. Il fait apparaître ce que le budget de latence présenté plus haut ne montre pas : le recouvrement partiel des étapes.
+
+Trois recouvrements y sont visibles. La transcription s'effectue pendant que le client parle et non après. La génération de la réponse débute avant la confirmation de fin de tour, grâce à la génération anticipée. La synthèse vocale émet ses premiers fragments avant que la réponse complète ne soit produite. C'est ce recouvrement qui explique que le délai perçu soit sensiblement inférieur à la somme des durées de traitement.
+
+\figureTikz{Chronogramme d'un échange conversationnel complet}{chronogramme}{fig-chronogramme}
+\section{Interfaces de l'application}
+
+Deux interfaces web complètent la plateforme : un portail destiné au client et une console destinée aux profils internes. Nous ne présentons ici que les écrans qui rendent visible un mécanisme décrit dans ce rapport.
+
+\subsection{Portail client}
+
+Le portail s'organise autour de l'assistant conversationnel, les autres écrans donnant accès aux informations que la conversation peut mobiliser. La planche \ref{fig:ui-client-a} présente l'assistant en session et la situation de facturation, la planche \ref{fig:ui-client-b} les demandes du client et l'historique de ses échanges.
+
+\planchePlaceholder{Portail client : assistant conversationnel et facturation}{ui-client-a}
+  {Capture de la page assistant pendant une conversation vocale active : indicateur d'état de la session, transcription progressive, commandes de contrôle de l'appel.}{Assistant en session}
+  {Capture de la page de facturation : solde, factures et montants dus, tels que l'agent de facturation les consulte pendant l'échange.}{Situation de facturation}
+
+\planchePlaceholder{Portail client : demandes en cours et historique des échanges}{ui-client-b}
+  {Capture de la page des demandes : tickets en cours et rappels programmés, avec le créneau effectivement réservé.}{Demandes et rappels}
+  {Capture de la page d'activité : historique des conversations avec leur date, leur durée et leur issue.}{Historique des échanges}
+
+Un rappel négocié pendant une conversation apparaît sur cette dernière planche avec le créneau réellement réservé, ce qui rend visible la continuité entre l'échange parlé et l'espace personnel.
+
+\subsection{Console d'administration et de supervision}
+
+La console expose les surfaces de supervision et de gouvernance. Deux écrans méritent une présentation isolée car ils rendent observables les garanties centrales de la plateforme.
+
+La figure \ref{fig:ui-decisions} présente l'inspection des décisions. Pour une action donnée y figurent la proposition formulée, le verdict rendu, l'identifiant de la règle appliquée et sa justification. Cet écran permet de répondre non seulement à la question de savoir ce qui a été décidé, mais à celle de savoir en vertu de quoi.
+
+\figurePlaceholder{Console d'administration : inspection des décisions et des verdicts}{ui-decisions}{Capture de la page des décisions, présentant pour une action donnée la proposition, le verdict rendu, l'identifiant de la règle appliquée et sa justification.}
+
+La figure \ref{fig:ui-audit} présente le registre d'audit. Elle ne se contente pas d'afficher les enregistrements : elle rend compte du recalcul de la chaîne d'empreintes et signale toute discordance, ce qui matérialise la propriété de traçabilité vérifiable.
+
+\figurePlaceholder{Console d'administration : registre d'audit et vérification d'intégrité}{ui-audit}{Capture de la page d'audit, présentant les entrées du registre et le résultat de la vérification de la chaîne d'empreintes.}
+
+Les planches \ref{fig:ui-admin-a} et \ref{fig:ui-admin-b} rassemblent les autres surfaces de supervision : la vue d'ensemble opérationnelle et l'historique des appels, puis la gouvernance des règles et de la base documentaire.
+
+\planchePlaceholder{Console d'administration : supervision de l'activité}{ui-admin-a}
+  {Capture de la vue d'ensemble : état des services, indicateurs d'activité récents, alertes en cours.}{Vue d'ensemble opérationnelle}
+  {Capture de l'historique des appels, avec le détail d'une conversation ouverte sur sa transcription.}{Appels et transcriptions}
+
+\planchePlaceholder{Console d'administration : gouvernance du comportement}{ui-admin-b}
+  {Capture de la page des règles métier : catalogue des règles applicables, seuils et état.}{Règles métier}
+  {Capture de la base de connaissances : documents, version et état d'indexation.}{Base documentaire}
+
+La planche \ref{fig:ui-admin-c} présente enfin les surfaces d'escalade : les cas transmis à un conseiller avec leur motif, et le registre des conseillers dont les créneaux alimentent la négociation d'un rappel.
+
+\planchePlaceholder{Console d'administration : escalade et disponibilités}{ui-admin-c}
+  {Capture de la page des escalades : cas transmis à un conseiller, motif issu de la liste fermée, dossier associé.}{Escalades et dossiers}
+  {Capture de la page des disponibilités : registre des conseillers, créneaux et indisponibilités.}{Conseillers et créneaux}
+
+\subsection{Systèmes intégrés et environnement d'exécution}
+
+La planche \ref{fig:ui-integ} établit que les intégrations décrites opèrent sur des systèmes réels : un ticket créé par la plateforme y figure dans le système de gestion de tickets de l'organisation, avec le vocabulaire de ce système, et le corpus documentaire y apparaît indexé.
+
+\planchePlaceholder{Intégrations effectives}{ui-integ}
+  {Capture du système de gestion de tickets montrant un ticket créé par la plateforme au cours d'une conversation, avec son demandeur, sa catégorie et son état.}{Ticket créé dans le système de référence}
+  {Capture de la console de l'index documentaire : collection indexée et nombre de fragments.}{Corpus indexé}
+
+Les deux tableaux de bord décrits à la section précédente constituent la surface d'exploitation de la plateforme. La planche \ref{fig:ui-observabilite} les présente : la santé des services d'un côté, le comportement de la couche agentique de l'autre.
+
+\planchePlaceholder{Tableaux de bord de supervision}{ui-observabilite}
+  {Capture du tableau de bord \emph{Plateforme, santé des services} : services actifs, débit, part de réponses en erreur, latence au quatre vingt quinzième centile, routes les plus lentes.}{Santé des services}
+  {Capture du tableau de bord \emph{Agent IA, décisions, actions et voix} : répartition des verdicts et son évolution, règles qui refusent le plus, actions par issue, délais de première réponse audible par langue.}{Comportement de la couche agentique}
+
+La planche \ref{fig:ui-exploit} présente enfin la collecte elle même et la topologie en fonctionnement, cette dernière confrontant le diagramme de déploiement de la figure \ref{fig:deploiement} à son exécution réelle.
+
+\planchePlaceholder{Collecte des mesures et topologie en exécution}{ui-exploit}
+  {Capture de l'interface de collecte : liste des cibles interrogées avec leur état, et interrogation d'une mesure de latence ou de verdict.}{Cibles interrogées}
+  {Capture de l'environnement conteneurisé en fonctionnement : services d'infrastructure, applicatifs et d'observabilité, avec leur état et leur port.}{Topologie en exécution}
+
+\section{Vérification et évaluation}
+
+\subsection{Principe retenu}
+
+La vérification d'un système conversationnel se heurte à une difficulté propre : une partie de son comportement n'est pas déterministe. Il serait vain d'exiger d'un modèle de langue qu'il produise deux fois la même phrase.
+
+Nous avons donc retenu un principe simple. Ce qui doit être garanti quelles que soient les circonstances est rendu déterministe par conception, et vérifié comme tel. Ce qui relève de l'interprétation est évalué sur son comportement observable et non sur sa formulation. Ainsi, la vérification ne porte pas sur les mots employés pour refuser une opération, mais sur le fait qu'elle soit effectivement refusée, avec le bon motif.
+
+\subsection{Familles de vérifications}
+
+La figure \ref{fig:verifications} présente les familles de vérifications constituées au cours du projet et la propriété que chacune protège.
+
+\figureTikz{Familles de vérifications et propriétés protégées}{verifications}{fig-verifications}
+
+\subsection{Vérification par injection de défaillance}
+
+La chaîne de repli présente une difficulté de vérification bien connue : elle ne s'exerce jamais en fonctionnement nominal, et un mécanisme de secours jamais éprouvé est un mécanisme dont on ignore s'il fonctionne.
+
+Le système comporte donc un dispositif d'injection de défaillance, activable par configuration pour chacune des trois étapes dépendant de fournisseurs externes. Ce dispositif substitue au fournisseur principal une configuration invalide, ce qui provoque son échec réel et non simulé. Le chemin de repli est ainsi exercé dans les conditions exactes de son déclenchement en production, et la vérification porte sur la continuité effective de la session.
+
+\subsection{Contrôle d'intégrité}
+
+La vérification de la chaîne d'audit constitue une catégorie à part, puisqu'elle porte sur les données et non sur le code. Un traitement dédié recalcule l'ensemble de la chaîne d'empreintes et signale toute discordance entre l'empreinte enregistrée et l'empreinte recalculée. Ce contrôle est accessible depuis la console d'administration et peut être exécuté périodiquement.
+
+\section{Résultats et statistiques}
+
+\subsection{Statut des mesures présentées}
+
+Cette section appelle une précision méthodologique préalable, énoncée sans détour.
+
+Les mesures relatives à la qualité de la recherche documentaire sont réelles. Elles ont été obtenues au moyen d'un instrument de sondage développé pour ce projet et exécuté sur le corpus réel. Elles sont reproduites telles qu'obtenues.
+
+Les mesures de latence de bout en bout, en revanche, procèdent d'une reconstitution. La chaîne d'observabilité décrite plus haut relève bien ces grandeurs en continu, et les tableaux de bord les affichent par langue ; mais une campagne conduite sur une période représentative, avec exécutions répétées et analyse statistique, n'a pas pu être menée dans le temps imparti au projet. Les valeurs présentées sont donc établies à partir de l'architecture réelle, de la configuration réelle et du comportement observé de chaque composant, avec une volonté délibérée de rester en deçà plutôt qu'au delà des performances plausibles. Elles décrivent un comportement attendu et cohérent, non un relevé expérimental.
+
+La distinction est doublement utile. Elle évite de présenter comme mesuré ce qui ne l'est pas, et elle circonscrit précisément ce qui reste à faire : l'instrument existe et fonctionne, seule la campagne manque.
+
+\subsection{Qualité de la recherche documentaire}
+
+\subsubsection{Le problème du seuil unique}
+
+L'instrument de sondage a produit un résultat qui a orienté toute la conception de cette étape. Le tableau \ref{tab:rag-mesures} présente les scores de proximité obtenus sur le corpus, pour des questions posées dans les trois langues, accompagnés d'une question de contrôle sans rapport avec le domaine.
+
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.25}
+\begin{tabular}{|p{5.4cm}|p{2.1cm}|p{3.4cm}|p{3.0cm}|}
+\hline
+\textbf{Question} & \textbf{Meilleur score} & \textbf{Bruit conservé au seuil relatif 0,93} & \textbf{Verdict} \\
+\hline
+Activation de l'itinérance, en anglais & 0,8953 & aucun & correct \\
+\hline
+Activation de l'itinérance, en français & 0,8606 & aucun & correct \\
+\hline
+Activation de l'itinérance, en arabe & 0,8310 & un document sans rapport à 0,965 & fuite \\
+\hline
+Lenteur de la connexion, en anglais & 0,8670 & trois documents entre 0,944 et 0,964 & fuite \\
+\hline
+Question de contrôle hors domaine & 0,7880 & tous écartés & correct \\
+\hline
+\end{tabular}
+\caption{Scores de proximité mesurés sur le corpus documentaire}
+\label{tab:rag-mesures}
+\end{table}
+
+Deux enseignements se dégagent de ce relevé.
+
+Le premier concerne l'écart disponible. La question de contrôle, sans aucun rapport avec le domaine, atteint tout de même 0,7880. Une bonne réponse en anglais atteint 0,8953. La marge séparant le bruit d'une réponse correcte n'est donc que de 0,107 en anglais, de 0,073 en français et de 0,043 en arabe.
+
+Le second concerne l'asymétrie linguistique, qui est structurelle et non un artefact de réglage. La similarité entre deux langues différentes est systématiquement inférieure à la similarité au sein d'une même langue, indépendamment du sens. Un seuil unique appliqué aux trois langues est donc environ deux fois et demie plus contraignant pour l'arabe que pour l'anglais. C'est la raison pour laquelle les faux négatifs en arabe constituent le premier mode de défaillance à surveiller.
+
+\subsubsection{L'inversion qui a imposé une évaluation conjointe}
+
+Une seconde mesure, plus décisive encore, a été relevée sur un corpus élargi. Une question de contrôle portant sur la réparation d'un appareil ménager, donc totalement étrangère au domaine, a obtenu un score de 0,8411 contre un document traitant de problèmes de connexion. Dans le même relevé, une question légitime posée en arabe au sujet de l'itinérance internationale a obtenu 0,8310 contre le document qui y répond effectivement.
+
+Une question sans aucun rapport avec le domaine a donc mieux scoré qu'une réponse correcte. Les deux distributions ne sont pas seulement resserrées, elles sont inversées. Aucun seuil, si finement réglé soit il, ne peut écarter ce bruit sans écarter du même mouvement toutes les réponses en arabe.
+
+L'explication est structurelle. Une comparaison par représentations indépendantes encode la question d'un côté et le passage de l'autre, puis compare deux résumés. Elle ne peut donc distinguer une proximité de forme d'une proximité de sens, et elle pénalise systématiquement les paires interlingues. Une évaluation lisant conjointement la question et le passage, avec attention complète sur les deux, ne subit pas cette limite \cite{nogueira}. Le modèle retenu pour cette étape a été entraîné sur un jeu de données multilingue dédié au classement de passages \cite{mmarco}, ce qui le rend utilisable sur les trois langues du projet.
+
+C'est ce constat, et non une préférence théorique, qui a imposé le filtre conjoint décrit plus haut. La figure \ref{fig:rag-comparaison} présente cette comparaison.
+
+\figureTikz{Séparation entre réponses pertinentes et bruit selon la méthode d'évaluation}{rag-comparaison}{fig-rag-comparaison}
+
+\subsubsection{Coût de la solution retenue}
+
+Un modèle d'évaluation conjointe de grande taille a d'abord été évalué. Sa qualité est supérieure, mais son encombrement d'environ un gigaoctet et son temps de traitement de deux à cinq secondes par question l'excluent d'une chaîne conversationnelle. Il n'a été conservé qu'à des fins d'évaluation différée.
+
+Le modèle finalement retenu occupe environ cent dix huit mégaoctets et traite les candidats en quatre vingts à cent cinquante millisecondes. Cette réduction d'un ordre de grandeur du coût, pour une qualité restant suffisante sur la tâche visée, n'a été possible que parce que ce filtre s'applique en dernier, à un nombre de candidats déjà fortement réduit. Le tableau \ref{tab:rag-modeles} récapitule cette comparaison.
+
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.25}
+\begin{tabular}{|p{4.6cm}|p{2.4cm}|p{3.2cm}|p{4.0cm}|}
+\hline
+\textbf{Modèle} & \textbf{Taille} & \textbf{Temps par question} & \textbf{Décision} \\
+\hline
+Évaluation conjointe de grande taille & environ 1,1 Go & 2 à 5 s & Écarté de la chaîne temps réel, conservé pour l'évaluation différée \\
+\hline
+Évaluation conjointe compacte & environ 118 Mo & 80 à 150 ms & Retenu, appliqué en dernier filtre \\
+\hline
+Encodage sémantique & 118 millions de paramètres & quelques millisecondes & Retenu, premier filtre \\
+\hline
+Encodage lexical & négligeable & quelques millisecondes & Retenu, filtre complémentaire \\
+\hline
+\end{tabular}
+\caption{Comparaison des modèles évalués pour la recherche documentaire}
+\label{tab:rag-modeles}
+\end{table}
+
+\subsection{Volumétrie du système réalisé}
+
+La figure \ref{fig:volumetrie} récapitule les grandeurs qui caractérisent l'étendue du système produit.
+
+\figureTikz{Volumétrie du système réalisé}{volumetrie}{fig-volumetrie}
+
+\subsection{Comportement en situation de défaillance}
+
+Le tableau \ref{tab:resilience} présente le comportement observé lors des exercices d'injection de défaillance.
+
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.25}
+\begin{tabular}{|p{4.0cm}|p{5.2cm}|p{5.3cm}|}
+\hline
+\textbf{Défaillance provoquée} & \textbf{Comportement attendu} & \textbf{Comportement observé} \\
+\hline
+Fournisseur de transcription principal & Passage au fournisseur suivant sans interruption & Session poursuivie, transition non perceptible par le client \\
+\hline
+Modèle de langue principal & Passage au fournisseur suivant après expiration du délai de tentative & Session poursuivie, allongement du délai de réponse sur le tour concerné \\
+\hline
+Fournisseur de synthèse principal & Passage au fournisseur suivant sans silence & Session poursuivie, changement de voix perceptible \\
+\hline
+Base de données indisponible & Perte des enregistrements, conversation préservée & Conversation poursuivie normalement, écritures signalées puis abandonnées \\
+\hline
+Service documentaire indisponible & Aveu d'ignorance plutôt que réponse infondée & Réponse d'abstention énoncée au client \\
+\hline
+Aucun conseiller disponible & Proposition de rappel sur créneau réel & Créneau proposé, réservé et confirmé \\
+\hline
+\end{tabular}
+\caption{Comportement du système en situation de défaillance provoquée}
+\label{tab:resilience}
+\end{table}
+
+Le changement de voix perceptible lors du repli de synthèse vocale mérite un commentaire. Il constitue une dégradation assumée : maintenir une voix identique aurait exigé de restreindre le choix des fournisseurs à ceux proposant une voix comparable, ce qui aurait réduit la profondeur de la chaîne de repli. Nous avons préféré une conversation qui se poursuit avec une voix différente à une conversation qui s'interrompt avec la bonne voix.
+
+\section{Problèmes rencontrés}
+
+Nous rapportons ici les difficultés qui ont eu un effet réel sur la conception, en écartant les incidents ordinaires de développement. Chacune est présentée selon la même progression : le constat, l'analyse, la décision et le résultat.
+
+\subsection{Une dégradation silencieuse de la recherche documentaire}
+
+Le constat fut d'abord favorable en apparence. L'assistant répondait aux questions documentaires, les réponses paraissaient plausibles, et rien dans son comportement ne signalait d'anomalie.
+
+L'analyse a révélé une situation nettement moins satisfaisante. Le mécanisme de construction du composant de recherche prévoyait un repli vers une méthode lexicale rudimentaire en cas d'échec du chemin vectoriel. Or ce chemin échouait systématiquement, pour une raison de configuration héritée d'une étape antérieure du projet. L'assistant répondait donc en réalité par simple recouvrement de termes sur un corpus réduit chargé en mémoire, tout en présentant les caractéristiques extérieures d'un système à recherche vectorielle.
+
+La décision fut de supprimer purement et simplement ce repli. La conclusion qui s'est imposée à cette occasion a ensuite guidé plusieurs autres choix du projet : une dégradation silencieuse est pire qu'une panne. Une panne se voit et se corrige. Une dégradation silencieuse produit des réponses plausibles que personne ne remet en question. Le composant signale désormais son incapacité et le service refuse de répondre, ce qui est bruyant, visible et corrigible.
+
+\subsection{L'inversion des scores de similarité}
+
+Le constat a été établi par la mesure rapportée plus haut : une question hors domaine obtenait un meilleur score qu'une réponse correcte en arabe.
+
+L'analyse a montré que le problème ne relevait pas du réglage mais de la méthode. Aucune valeur de seuil ne pouvait séparer deux distributions inversées. Plusieurs journées ont été consacrées à l'ajustement des seuils avant que cette conclusion ne s'impose, et c'est la construction d'un instrument de sondage systématique qui l'a rendue évidente.
+
+La décision fut d'ajouter une étape d'évaluation conjointe, en la plaçant en dernier et en la restreignant aux candidats survivants pour en rendre le coût acceptable. Le résultat est une séparation nette entre le bruit et les réponses pertinentes, obtenue pour un surcoût de l'ordre de la centaine de millisecondes.
+
+L'enseignement dépasse le cas particulier. Le temps consacré à construire l'instrument de mesure a été très inférieur au temps qu'aurait consommé la poursuite des ajustements empiriques, et c'est lui qui a permis de comprendre le problème plutôt que d'en déplacer les symptômes.
+
+\subsection{Un modèle de mécontentement à la fois trop sensible et trop indulgent}
+
+Le constat provenait de deux observations contradictoires. Des conversations parfaitement ordinaires étaient signalées comme conflictuelles, tandis que des clients manifestement mécontents ne l'étaient pas.
+
+L'analyse a établi que le modèle initial cumulait deux défauts opposés. Un unique terme négatif portait le score au maximum, ce qui expliquait les faux positifs. Tout tour non négatif remettait le compteur à zéro, ce qui expliquait les faux négatifs chez un client constamment mécontent mais courtois.
+
+La décision fut de remplacer le comptage par une accumulation pondérée, dans laquelle un tour négatif fait progresser un score, un tour positif le fait décroître, et l'agressivité pèse davantage. Le seuil a été calibré pour préserver le comportement de référence à trois tours négatifs. Le résultat figure au tableau présenté au chapitre précédent.
+
+\subsection{Un risque de confusion entre services}
+
+Le constat a été fait lors d'une exécution en mode développement, où deux services se sont trouvés configurés avec la même adresse.
+
+L'analyse a montré la gravité particulière de cette situation. Le service interrogé répondait correctement à une question qui ne lui était pas destinée. Aucune erreur n'était levée, aucun journal ne signalait d'anomalie, et le système continuait de fonctionner en produisant des résultats valides dans leur forme mais sans rapport avec la demande. Aucun test existant ne pouvait détecter cela, puisque chaque composant se comportait correctement.
+
+La décision fut d'ajouter au démarrage une vérification refusant l'exécution lorsque deux services partagent une adresse. Le résultat est un échec immédiat et explicite au lancement, préféré à un fonctionnement silencieusement erroné.
+
+\subsection{Une identité d'opération trop inclusive}
+
+Le constat s'est manifesté lors de la vérification de la reprise des opérations : une seconde réclamation était déposée alors que le mécanisme d'exécution unique aurait dû l'empêcher.
+
+L'analyse a identifié la cause. L'identité de l'opération incluait des éléments du contexte transmis au moteur de règles, dont le nombre de réclamations ouvertes. Or cette valeur passait de zéro à un précisément parce que la première tentative avait réussi. La reprise présentait donc une identité différente et était traitée comme une opération nouvelle. Le mécanisme fonctionnait exactement comme il était écrit, mais il avait été écrit sur une définition erronée de l'identité.
+
+La décision fut de distinguer explicitement les éléments qui définissent une opération de ceux qui servent seulement à la juger, et d'exclure les seconds du calcul de l'identité tout en les conservant dans le contexte transmis aux règles. Le résultat est une propriété d'exécution unique effective, y compris lorsque l'état du client évolue entre une tentative et sa reprise.
+
+\subsection{La contrainte de mémoire et ses conséquences}
+
+Le constat s'est imposé progressivement. Le poste de développement devait accueillir simultanément vingt deux conteneurs applicatifs et d'infrastructure, les modèles d'encodage documentaire et les environnements de développement des deux interfaces, dans seize gigaoctets de mémoire.
+
+L'analyse a conduit à hiérarchiser les besoins plutôt qu'à chercher un gain uniforme. Les modèles exécutés localement constituaient le poste dominant, et c'est là que les décisions ont porté.
+
+Les décisions prises ont été au nombre de trois. Un modèle d'évaluation conjointe d'environ un gigaoctet a été écarté au profit d'un modèle de cent dix huit mégaoctets. L'exécution locale d'un modèle de langue a été évaluée puis abandonnée dans les conditions du projet. Les modèles d'encodage retenus ont été choisis dans leur variante quantifiée pour processeur, sans dépendance à un matériel graphique.
+
+Le résultat dépasse la simple tenue dans l'enveloppe disponible. Cette contrainte a produit une architecture dont les composants les plus coûteux sont placés en dernier dans la chaîne et ne traitent qu'un nombre réduit de candidats. Une machine plus dotée aurait probablement conduit à une conception moins soignée sur ce point.
+
+\section*{Conclusion}
+
+Ce chapitre a exposé la réalisation de la plateforme. Nous avons présenté les technologies retenues et les critères qui ont présidé à leur sélection, en situant précisément le rôle du cadriciel temps réel par rapport au travail d'ingénierie propre au projet. Nous avons ensuite détaillé la chaîne de traitement temps réel étape par étape, chacune accompagnée de sa métrique, de ses solutions écartées et du coût de la solution retenue.
+
+La gestion de la concurrence a montré comment les conversations et les opérations sont isolées les unes des autres, et comment les garanties d'exécution unique et d'intégrité de la trace résistent à des accès simultanés. L'architecture physique a établi la correspondance entre la conception et les vingt quatre conteneurs effectivement déployés, et décrit la chaîne d'observabilité qui rend le comportement du système mesurable en fonctionnement. Les interfaces ont donné à voir les surfaces produites pour le client comme pour les profils internes.
+
+La campagne de vérification a enfin été présentée, ainsi que les résultats obtenus, en distinguant explicitement les mesures réelles des valeurs reconstituées. Les difficultés rencontrées ont été rapportées avec leur analyse et leur résolution, car plusieurs d'entre elles ont infléchi la conception plus profondément que ne l'aurait fait une exécution sans obstacle.

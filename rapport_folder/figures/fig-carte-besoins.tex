@@ -1,0 +1,80 @@
+% Carte des besoins fonctionnels par domaine (figure 2.x)
+\begin{tikzpicture}[x=1cm, y=1cm]
+
+  \tikzset{
+    dom/.style={draw=black, fill=white, rectangle, text width=36mm,
+                minimum height=26mm, inner sep=3pt, align=left,
+                font=\sffamily\tiny},
+    tit/.style={draw=black, fill=figGrisClair, rectangle, text width=36mm,
+                minimum height=5.5mm, inner sep=2pt, align=center,
+                font=\sffamily\tiny\bfseries}
+  }
+
+  % #1 colonne  #2 rangee  #3 titre  #4 contenu
+  \newcommand{\domaine}[4]{%
+    \node[dom] (d#1#2) at ({#1*4.15},{-#2*3.55}) {#4};
+    \node[tit] at ({#1*4.15},{-#2*3.55+1.575}) {#3};
+  }
+
+  \domaine{0}{0}{Conversation}{%
+    $\bullet$ Engager un échange parlé ou écrit\\
+    $\bullet$ Conserver le fil d'un tour à l'autre\\
+    $\bullet$ Identifier l'intention\\
+    $\bullet$ Clarifier en une seule question\\
+    $\bullet$ Accepter l'interruption\\
+    $\bullet$ Changer de langue en cours}
+
+  \domaine{1}{0}{Contexte client}{%
+    $\bullet$ Reconstituer profil et abonnement\\
+    $\bullet$ Récupérer l'historique des demandes\\
+    $\bullet$ Ne solliciter chaque élément que\\
+    \hspace*{2mm}lorsque la demande le justifie}
+
+  \domaine{2}{0}{Connaissance}{%
+    $\bullet$ Répondre à partir de la documentation\\
+    \hspace*{2mm}de l'opérateur\\
+    $\bullet$ Signaler explicitement l'absence\\
+    \hspace*{2mm}de réponse\\
+    $\bullet$ Alimenter la base sans intervention\\
+    \hspace*{2mm}sur le code}
+
+  \domaine{3}{0}{Action sensible}{%
+    $\bullet$ Vérifier l'identité au préalable\\
+    $\bullet$ Rendre un verdict explicite\\
+    $\bullet$ Associer règle et justification\\
+    $\bullet$ Exécuter une fois et une seule\\
+    $\bullet$ Confirmer verbalement le résultat}
+
+  \domaine{0}{1}{Tickets}{%
+    $\bullet$ Consulter les tickets existants\\
+    $\bullet$ Créer, mettre à jour, clôturer\\
+    $\bullet$ Tenir compte de l'historique pour\\
+    \hspace*{2mm}éviter les doublons}
+
+  \domaine{1}{1}{Escalade et rappel}{%
+    $\bullet$ Reconnaître le besoin d'un humain\\
+    $\bullet$ Transférer vers un conseiller libre\\
+    $\bullet$ Négocier un créneau réel sinon\\
+    $\bullet$ Transmettre le dossier complet}
+
+  \domaine{2}{1}{Espace client}{%
+    $\bullet$ Consulter profil, facturation,\\
+    \hspace*{2mm}demandes et historique\\
+    $\bullet$ Consulter et effacer la mémoire\\
+    $\bullet$ Aucun accès aux données d'autrui}
+
+  \domaine{3}{1}{Supervision}{%
+    $\bullet$ Consulter conversations et décisions\\
+    $\bullet$ Suivre les indicateurs d'activité\\
+    $\bullet$ Gérer conseillers et disponibilités\\
+    $\bullet$ Administrer règles et référentiels\\
+    $\bullet$ Contrôler l'intégrité du registre}
+
+  % ── Regroupement par acteur ───────────────────────────────
+  \draw[zone] (-2.05,-5.55) rectangle (14.4,1.85);
+  \node[etiquettezone, anchor=south west] at (-1.95,1.85)
+       {Périmètre du client : conversation, contexte, connaissance, action, tickets, escalade, espace personnel};
+  \node[etiquettezone, anchor=north east] at (14.3,-5.55)
+       {Périmètre interne : supervision et administration};
+
+\end{tikzpicture}

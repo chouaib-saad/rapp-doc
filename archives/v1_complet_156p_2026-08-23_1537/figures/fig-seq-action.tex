@@ -1,0 +1,57 @@
+% Diagramme de séquence système : exécuter une opération sensible (figure 2.5)
+\begin{tikzpicture}[x=1cm, y=1cm]
+
+  \def\xA{0}      % Client
+  \def\xB{6.6}    % Plateforme
+  \def\xC{12.4}   % Systèmes métier
+  \def\ybas{-11.4}
+
+  \node[entete, minimum width=26mm] (A) at (\xA,0) {Client};
+  \node[entete, minimum width=28mm] (B) at (\xB,0) {: Plateforme};
+  \node[entete, minimum width=34mm] (C) at (\xC,0) {: Systèmes métier};
+
+  \draw[ligne] (\xA,-0.38) -- (\xA,\ybas);
+  \draw[ligne] (\xB,-0.38) -- (\xB,\ybas);
+  \draw[ligne] (\xC,-0.38) -- (\xC,\ybas);
+
+  \fill[figGrisClair, draw=black] (\xA-0.12,-0.85) rectangle (\xA+0.12,-11.05);
+  \fill[figGrisClair, draw=black] (\xB-0.12,-1.05) rectangle (\xB+0.12,-10.85);
+
+  % ── Demande et confirmation verbale ───────────────────────
+  \draw[message] (\xA,-1.05) -- node[etiq, above] {demande d'opération} (\xB,-1.05);
+  \draw[message] (\xB,-1.70) -- node[etiq, above] {récapitulatif et demande de confirmation} (\xA,-1.70);
+  \draw[message] (\xA,-2.35) -- node[etiq, above] {confirmation explicite} (\xB,-2.35);
+
+  % ── Vérification d'identité ───────────────────────────────
+  \draw[draw=black] (\xA-1.25,-2.90) rectangle (\xC+1.75,-4.95);
+  \fill[figGrisClair, draw=black] (\xA-1.25,-2.90) rectangle (\xA-0.15,-3.25);
+  \node[font=\sffamily\tiny\bfseries] at (\xA-0.70,-3.075) {opt};
+  \node[etiqi, anchor=west] at (\xA+0.15,-3.09) {[identité non vérifiée ou expirée]};
+
+  \draw[message] (\xB,-3.70) -- node[etiq, above] {demande des quatre derniers chiffres} (\xA,-3.70);
+  \draw[message] (\xA,-4.40) -- node[etiq, above] {éléments d'identification} (\xB,-4.40);
+
+  % ── Décision et verdict ───────────────────────────────────
+  \draw[draw=black] (\xA-1.25,-5.40) rectangle (\xC+1.75,-10.20);
+  \fill[figGrisClair, draw=black] (\xA-1.25,-5.40) rectangle (\xA-0.15,-5.75);
+  \node[font=\sffamily\tiny\bfseries] at (\xA-0.70,-5.575) {alt};
+  \node[etiqi, anchor=west] at (\xA+0.15,-5.59) {[verdict autorisé]};
+
+  \fill[figGrisClair, draw=black] (\xC-0.12,-6.30) rectangle (\xC+0.12,-7.10);
+  \draw[message] (\xB,-6.30) -- node[etiq, above] {opération, référencée au verdict} (\xC,-6.30);
+  \draw[retour]  (\xC,-7.10) -- node[etiq, above] {référence d'exécution} (\xB,-7.10);
+  \draw[message] (\xB,-7.70) -- node[etiq, above] {confirmation orale du résultat} (\xA,-7.70);
+
+  \draw[dashed, draw=black] (\xA-1.25,-8.20) -- (\xC+1.75,-8.20);
+  \node[etiqi, anchor=west] at (\xA+0.15,-8.39) {[verdict refusé]};
+  \draw[message] (\xB,-8.85) -- node[etiq, above] {motif du refus, en termes compréhensibles} (\xA,-8.85);
+
+  \draw[dashed, draw=black] (\xA-1.25,-9.30) -- (\xC+1.75,-9.30);
+  \node[etiqi, anchor=west] at (\xA+0.15,-9.49) {[verdict imposant une intervention humaine]};
+  \draw[message] (\xB,-9.95) -- node[etiq, above] {annonce du passage à un conseiller} (\xA,-9.95);
+
+  % ── Note sur l'invariant ──────────────────────────────────
+  \node[note, text width=38mm, anchor=north west] at (\xC+2.15,-5.60)
+       {Aucune opération n'atteint\\les systèmes métier sans un\\verdict favorable préalable,\\déjà persisté et identifié.};
+
+\end{tikzpicture}

@@ -1,0 +1,46 @@
+% Pipeline de raisonnement d'un agent (figure 3.14)
+\begin{tikzpicture}[x=1cm, y=1cm]
+
+  % ── Zone probabiliste ─────────────────────────────────────
+  \fill[figGrisTresClair] (-1.85,-1.05) rectangle (5.85,1.15);
+  \draw[draw=figGrisFonce, dashed] (-1.85,-1.05) rectangle (5.85,1.15);
+  \node[font=\sffamily\tiny\itshape, anchor=south] at (2.0,1.25) {Couche probabiliste};
+
+  % ── Zone déterministe ─────────────────────────────────────
+  \draw[draw=black, line width=0.7pt] (6.35,-1.05) rectangle (10.55,1.15);
+  \node[font=\sffamily\tiny\itshape, anchor=south] at (8.45,1.25) {Couche déterministe};
+
+  % ── Étapes ────────────────────────────────────────────────
+  \node[fbox, text width=30mm, align=center, minimum height=11mm] (e1) at (0,0)
+       {Interprétation\\de la demande\\\textit{au regard du contexte}};
+  \node[fbox, text width=30mm, align=center, minimum height=11mm] (e2) at (4.0,0)
+       {Détermination\\de l'intention\\\textit{répondre, agir, transmettre}};
+  \node[fboxgg, text width=28mm, align=center, minimum height=11mm] (e3) at (8.45,0)
+       {Validation par\\les contraintes\\\textit{règles métier}};
+  \node[fbox, text width=30mm, align=center, minimum height=11mm] (e4) at (13.2,0)
+       {Réalisation\\et restitution};
+
+  \draw[fluxep] (e1) -- (e2);
+  \draw[fluxep] (e2) -- (e3);
+  \draw[fluxep] (e3) -- node[etiq, above, pos=0.5] {autorisée} (e4);
+
+  % ── Les deux autres issues ────────────────────────────────
+  \node[fbox, text width=26mm, align=center] (r1) at (13.2,-2.3) {Refus motivé,\\énoncé au client};
+  \node[fbox, text width=26mm, align=center] (r2) at (13.2,-4.0) {Transmission\\à un conseiller};
+
+  \draw[flux] (e3.south) -- ++(0,-0.6) -| node[etiq, above, pos=0.25] {refusée} (r1.west);
+  \draw[flux] (e3.south) -- ++(0,-0.6) -- (8.45,-4.0) -- node[etiq, above, pos=0.55] {à transmettre} (r2.west);
+
+  % ── Ce qui alimente chaque étape ──────────────────────────
+  \node[fboxg, text width=26mm, align=center] (c1) at (0,2.9) {Contexte assemblé};
+  \node[fboxg, text width=26mm, align=center] (c2) at (4.0,2.9) {Capacités détenues};
+  \node[fboxg, text width=26mm, align=center] (c3) at (8.45,2.9) {Règles et seuils};
+
+  \draw[dependance] (c1.south) -- (e1.north);
+  \draw[dependance] (c2.south) -- (e2.north);
+  \draw[dependance] (c3.south) -- (e3.north);
+
+  \node[note, text width=88mm, anchor=north, align=center] at (5.0,-5.4)
+       {Le modèle de langue intervient aux deux premières étapes, où sa capacité d'interprétation est\\irremplaçable. Il n'intervient pas à la troisième : le modèle propose, il ne dispose pas.};
+
+\end{tikzpicture}

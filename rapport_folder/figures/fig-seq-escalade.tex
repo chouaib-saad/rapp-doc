@@ -1,0 +1,49 @@
+% Diagramme de séquence système : escalader vers un conseiller humain (figure 2.7)
+\begin{tikzpicture}[x=1cm, y=1cm]
+
+  \def\xA{0}      % Client
+  \def\xB{6.2}    % Plateforme
+  \def\xC{11.4}   % Conseiller
+  \def\xD{15.6}   % Service de notification
+  \def\ybas{-10.9}
+
+  \node[entete, minimum width=24mm] (A) at (\xA,0) {Client};
+  \node[entete, minimum width=28mm] (B) at (\xB,0) {: Plateforme};
+  \node[entete, minimum width=26mm] (C) at (\xC,0) {Conseiller};
+  \node[entete, minimum width=32mm] (D) at (\xD,0) {: Notification};
+
+  \foreach \x in {\xA,\xB,\xC,\xD}{ \draw[ligne] (\x,-0.38) -- (\x,\ybas); }
+
+  \fill[figGrisClair, draw=black] (\xA-0.12,-0.85) rectangle (\xA+0.12,-10.55);
+  \fill[figGrisClair, draw=black] (\xB-0.12,-0.85) rectangle (\xB+0.12,-10.35);
+
+  % ── Annonce et constitution du dossier ────────────────────
+  \draw[message] (\xB,-1.05) -- node[etiq, above] {annonce de l'escalade} (\xA,-1.05);
+  \draw[message] (\xB+0.12,-1.75) -- ++(1.15,0) node[etiq, above, anchor=south west, xshift=-1.1cm] {constitution du dossier}
+        -- ++(0,-0.55) -- (\xB+0.12,-2.30);
+
+  % ── Alternative : conseiller disponible ou non ────────────
+  \draw[draw=black] (\xA-1.25,-2.90) rectangle (\xD+1.95,-10.05);
+  \fill[figGrisClair, draw=black] (\xA-1.25,-2.90) rectangle (\xA-0.15,-3.25);
+  \node[font=\sffamily\tiny\bfseries] at (\xA-0.70,-3.075) {alt};
+  \node[etiqi, anchor=west] at (\xA+0.15,-3.09) {[un conseiller est disponible]};
+
+  \fill[figGrisClair, draw=black] (\xC-0.12,-3.75) rectangle (\xC+0.12,-5.60);
+  \draw[message] (\xB,-3.75) -- node[etiq, above] {réservation du conseiller} (\xC,-3.75);
+  \draw[message] (\xB,-4.40) -- node[etiq, above] {transfert de l'appel} (\xC,-4.40);
+  \draw[message] (\xB,-5.05) -- node[etiq, above] {remise du dossier} (\xC,-5.05);
+  \draw[retour] (\xC,-5.60) -- node[etiq, above] {prise en charge de la conversation} (\xA,-5.60);
+
+  \draw[dashed, draw=black] (\xA-1.25,-6.25) -- (\xD+1.95,-6.25);
+  \node[etiqi, anchor=west] at (\xA+0.15,-6.44) {[aucun conseiller disponible, ou transfert échoué]};
+
+  \draw[message] (\xB,-6.95) -- node[etiq, above] {proposition de créneaux réellement disponibles} (\xA,-6.95);
+  \draw[message] (\xA,-7.60) -- node[etiq, above] {choix d'un créneau} (\xB,-7.60);
+  \draw[message] (\xB,-8.25) -- node[etiq, above] {confirmation orale de l'horaire retenu} (\xA,-8.25);
+
+  \fill[figGrisClair, draw=black] (\xD-0.12,-8.85) rectangle (\xD+0.12,-9.55);
+  \draw[message] (\xB,-8.85) -- node[etiq, above] {avis au conseiller, dossier joint} (\xD,-8.85);
+  \fill[figGrisClair, draw=black] (\xC-0.12,-9.55) rectangle (\xC+0.12,-9.85);
+  \draw[message] (\xD,-9.55) -- node[etiq, above] {notification} (\xC,-9.55);
+
+\end{tikzpicture}

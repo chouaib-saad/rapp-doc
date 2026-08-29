@@ -1,0 +1,95 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="644" viewBox="0 0 800 644">
+<rect width="800" height="644" fill="#FFFFFF"/>
+<defs>
+<style>
+text{font-family:Arial,Helvetica,sans-serif;}
+.title{font-size:13px;font-weight:bold;fill:#111111;text-anchor:middle;}
+.ucname{font-size:12px;fill:#222222;text-anchor:middle;}
+.actor{font-size:12px;fill:#333333;text-anchor:middle;}
+.edge{font-size:11px;fill:#222222;text-anchor:middle;}
+.bound{fill:none;stroke:#111111;stroke-width:1.5;}
+.uc{fill:#FFFBCC;stroke:#D02A50;stroke-width:1.3;}
+.act{fill:none;stroke:#D02A50;stroke-width:1.7;}
+.lB{fill:none;stroke:#2B3BE0;stroke-width:1.4;}
+.lG{fill:none;stroke:#2EA843;stroke-width:1.4;}
+.lK{fill:none;stroke:#2B2B2B;stroke-width:1.2;}
+.lC{fill:none;stroke:#D22B55;stroke-width:1.4;}
+.lCd{fill:none;stroke:#D22B55;stroke-width:1.4;stroke-dasharray:6,4;}
+</style>
+<filter id="ds" x="-20%" y="-20%" width="140%" height="140%">
+<feDropShadow dx="3" dy="3" stdDeviation="2.5" flood-color="#8A8A8A" flood-opacity="0.45"/>
+</filter>
+<marker id="aB" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8" fill="none" stroke="#2B3BE0" stroke-width="1.3"/></marker>
+<marker id="aG" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8" fill="none" stroke="#2EA843" stroke-width="1.3"/></marker>
+<marker id="aK" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8" fill="none" stroke="#2B2B2B" stroke-width="1.2"/></marker>
+<marker id="aC" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8" fill="none" stroke="#D22B55" stroke-width="1.3"/></marker>
+</defs>
+
+<!-- ===================== SYSTEM BOUNDARY ===================== -->
+<rect x="118" y="7" width="507" height="630" class="bound" filter="url(#ds)"/>
+<text x="371" y="21" class="title">E-commerce Website</text>
+
+<!-- ===================== USE CASES ===================== -->
+<ellipse cx="231" cy="55" rx="63" ry="16" class="uc" filter="url(#ds)"/><text x="231" y="59" class="ucname">Add to Cart</text>
+<ellipse cx="235" cy="120" rx="67" ry="16" class="uc" filter="url(#ds)"/><text x="235" y="124" class="ucname">Cancel Order</text>
+<ellipse cx="533" cy="119" rx="73" ry="18" class="uc" filter="url(#ds)"/><text x="533" y="123" class="ucname">Process Refund</text>
+<ellipse cx="235" cy="184" rx="65" ry="15" class="uc" filter="url(#ds)"/><text x="235" y="188" class="ucname">Place Order</text>
+<ellipse cx="231" cy="249" rx="76" ry="16" class="uc" filter="url(#ds)"/><text x="231" y="253" class="ucname">Browse Products</text>
+<ellipse cx="231" cy="314" rx="40" ry="14" class="uc" filter="url(#ds)"/><text x="231" y="318" class="ucname">Login</text>
+<ellipse cx="231" cy="378" rx="78" ry="16" class="uc" filter="url(#ds)"/><text x="231" y="382" class="ucname">Register Account</text>
+<ellipse cx="235" cy="451" rx="95" ry="18" class="uc" filter="url(#ds)"/><text x="235" y="455" class="ucname">Update Product Listings</text>
+<ellipse cx="231" cy="529" rx="94" ry="18" class="uc" filter="url(#ds)"/><text x="231" y="533" class="ucname">Manage User Accounts</text>
+<ellipse cx="231" cy="601" rx="66" ry="15" class="uc" filter="url(#ds)"/><text x="231" y="605" class="ucname">View Reports</text>
+
+<!-- ===================== ACTORS ===================== -->
+<g class="act" filter="url(#ds)">
+<circle cx="40" cy="152" r="7.5" fill="#FFF6C7"/>
+<path d="M40 159 L40 180"/><path d="M27 166 L53 166"/><path d="M40 180 L28 196"/><path d="M40 180 L52 196"/>
+</g>
+<text x="40" y="214" class="actor">Customer</text>
+
+<g class="act" filter="url(#ds)">
+<circle cx="40" cy="291" r="7.5" fill="#FFF6C7"/>
+<path d="M40 298 L40 319"/><path d="M27 305 L53 305"/><path d="M40 319 L28 335"/><path d="M40 319 L52 335"/>
+</g>
+<text x="40" y="352" class="actor">Guest</text>
+
+<g class="act" filter="url(#ds)">
+<circle cx="40" cy="428" r="7.5" fill="#FFF6C7"/>
+<path d="M40 435 L40 456"/><path d="M27 442 L53 442"/><path d="M40 456 L28 472"/><path d="M40 456 L52 472"/>
+</g>
+<text x="40" y="489" class="actor">Admin</text>
+
+<g class="act" filter="url(#ds)">
+<circle cx="733" cy="137" r="7.5" fill="#FFF6C7"/>
+<path d="M733 144 L733 165"/><path d="M720 151 L746 151"/><path d="M733 165 L721 181"/><path d="M733 165 L745 181"/>
+</g>
+<text x="733" y="197" class="actor">Payment Gateway</text>
+
+<!-- ===================== ASSOCIATIONS ===================== -->
+<!-- Customer (bright blue) -->
+<path d="M60 140 Q95 82 168 58" class="lB" marker-end="url(#aB)"/>
+<path d="M66 163 Q115 138 170 126" class="lB" marker-end="url(#aB)"/>
+<path d="M68 180 L168 184" class="lB" marker-end="url(#aB)"/>
+<path d="M57 196 Q90 268 192 311" class="lB" marker-end="url(#aB)"/>
+
+<!-- Guest (bright green) -->
+<path d="M60 288 Q110 264 170 257" class="lG" marker-end="url(#aG)"/>
+<path d="M58 320 Q110 346 170 372" class="lG" marker-end="url(#aG)"/>
+
+<!-- Admin (black) -->
+<path d="M55 414 Q90 350 196 321" class="lK" marker-end="url(#aK)"/>
+<path d="M57 424 Q110 400 168 386" class="lK" marker-end="url(#aK)"/>
+<path d="M62 451 L138 451" class="lK" marker-end="url(#aK)"/>
+<path d="M58 464 Q110 490 160 514" class="lK" marker-end="url(#aK)"/>
+<path d="M54 477 Q80 560 168 594" class="lK" marker-end="url(#aK)"/>
+
+<!-- Payment flows (bright crimson) -->
+<path d="M300 181 L668 166" class="lC" marker-end="url(#aC)"/>
+<text x="533" y="161" class="edge">Make Payment</text>
+<path d="M668 150 L598 126" class="lC" marker-end="url(#aC)"/>
+
+<!-- Cancel Order ..includes..> Process Refund -->
+<path d="M302 119 L452 119" class="lCd" marker-end="url(#aC)"/>
+<text x="397" y="110" class="edge">&#171;includes&#187;</text>
+</svg>

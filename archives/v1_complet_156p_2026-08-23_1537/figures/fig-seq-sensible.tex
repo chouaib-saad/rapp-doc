@@ -1,0 +1,61 @@
+% Diagramme de séquence d'une action sensible (figure 3.9)
+\begin{tikzpicture}[x=1cm, y=1cm]
+
+  \def\xA{0}    \def\xB{3.4}  \def\xC{6.8}
+  \def\xD{10.2} \def\xE{13.6} \def\xF{16.8} \def\xG{19.8}
+  \def\ybas{-9.6}
+
+  \node[entete, minimum width=22mm] (A) at (\xA,0) {: Agent};
+  \node[entete, minimum width=24mm] (B) at (\xB,0) {: Contexte};
+  \node[entete, minimum width=24mm] (C) at (\xC,0) {: Décision};
+  \node[entete, minimum width=24mm] (D) at (\xD,0) {: Politique};
+  \node[entete, minimum width=24mm] (E) at (\xE,0) {: Exécution};
+  \node[entete, minimum width=24mm] (F) at (\xF,0) {: Système métier};
+  \node[entete, minimum width=22mm] (G) at (\xG,0) {: Audit};
+
+  \foreach \x in {\xA,\xB,\xC,\xD,\xE,\xF,\xG}{ \draw[ligne] (\x,-0.55) -- (\x,\ybas); }
+
+  \fill[figGrisClair, draw=black] (\xA-0.12,-1.0) rectangle (\xA+0.12,-9.3);
+
+  % 1. Contexte
+  \fill[figGrisClair, draw=black] (\xB-0.12,-1.0) rectangle (\xB+0.12,-1.7);
+  \draw[message] (\xA,-1.0) -- node[etiq, above] {situation vérifiée du client} (\xB,-1.0);
+  \draw[retour]  (\xB,-1.7) -- node[etiq, above] {contexte de décision} (\xA,-1.7);
+
+  % 2. Décision
+  \fill[figGrisClair, draw=black] (\xC-0.12,-2.3) rectangle (\xC+0.12,-3.0);
+  \draw[message] (\xA,-2.3) -- node[etiq, above] {proposer une action} (\xC,-2.3);
+  \draw[retour]  (\xC,-3.0) -- node[etiq, above] {action candidate et confiance} (\xA,-3.0);
+
+  \node[etiqi, anchor=west, text width=44mm] at (\xC+0.35,-3.55)
+       {[confiance insuffisante : escalade immédiate, sans tentative]};
+
+  % 3. Politique
+  \fill[figGrisClair, draw=black] (\xD-0.12,-4.3) rectangle (\xD+0.12,-5.2);
+  \draw[message] (\xA,-4.3) -- node[etiq, above] {demander le verdict} (\xD,-4.3);
+  \draw[message] (\xD+0.12,-4.75) -- ++(1.0,0) -- ++(0,-0.28) -- (\xD+0.12,-5.03);
+  \node[etiq, anchor=west] at (\xD+0.35,-4.63) {persister le verdict};
+  \draw[retour]  (\xD,-5.2) -- node[etiq, above] {verdict motivé, identifié} (\xA,-5.2);
+
+  % 4. Exécution, conditionnée au verdict
+  \draw[draw=black] (\xA-1.05,-5.75) rectangle (\xG+1.55,-9.15);
+  \fill[figGrisClair, draw=black] (\xA-1.05,-5.75) rectangle (\xA+0.05,-6.10);
+  \node[font=\sffamily\tiny\bfseries] at (\xA-0.50,-5.925) {alt};
+  \node[etiqi, anchor=west] at (\xA+0.25,-5.94) {[verdict favorable]};
+
+  \fill[figGrisClair, draw=black] (\xE-0.12,-6.6) rectangle (\xE+0.12,-8.3);
+  \draw[message] (\xA,-6.6) -- node[etiq, above] {exécuter, référencé au verdict} (\xE,-6.6);
+  \draw[message] (\xE+0.12,-7.05) -- ++(1.05,0) -- ++(0,-0.28) -- (\xE+0.12,-7.33);
+  \node[etiq, anchor=west] at (\xE+0.35,-6.93) {identité d'opération};
+
+  \fill[figGrisClair, draw=black] (\xF-0.12,-7.7) rectangle (\xF+0.12,-8.1);
+  \draw[message] (\xE,-7.7) -- node[etiq, above] {opération} (\xF,-7.7);
+  \draw[retour]  (\xF,-8.1) -- node[etiq, above] {référence} (\xE,-8.1);
+
+  \fill[figGrisClair, draw=black] (\xG-0.12,-8.75) rectangle (\xG+0.12,-9.05);
+  \draw[message] (\xE,-8.75) -- node[etiq, above] {inscrire l'acte} (\xG,-8.75);
+
+  \node[note, text width=50mm, anchor=north west] at (\xG+2.1,-4.2)
+       {Persister le verdict avant l'exécution, et exécuter contre ce verdict persisté, rend structurellement impossible une action dont aucune trace d'autorisation n'existerait.};
+
+\end{tikzpicture}

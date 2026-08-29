@@ -1,0 +1,57 @@
+% Diagramme de composants de la plateforme (figure 3.3)
+\begin{tikzpicture}[x=1cm, y=1cm]
+
+  \tikzset{cp/.style={composant, minimum width=34mm, minimum height=13mm,
+                      font=\sffamily\scriptsize, align=center}}
+
+  % ── Adaptateurs d'entrée ──────────────────────────────────
+  \node[cp] (rt)  at (0, 3.0) {Couche temps réel\\\textit{(assembleur)}};   \iconeComposant{rt}
+  \node[cp] (api) at (0, 0.6) {Interface applicative\\métier};             \iconeComposant{api}
+  \node[cp] (tok) at (0,-1.8) {Service de jetons};                          \iconeComposant{tok}
+
+  % ── Services de domaine ───────────────────────────────────
+  \node[cp] (ctx) at (5.4, 4.2) {Service de contexte};      \iconeComposant{ctx}
+  \node[cp] (kno) at (5.4, 1.8) {Service de connaissance};  \iconeComposant{kno}
+  \node[cp] (dec) at (5.4,-0.6) {Service de décision};      \iconeComposant{dec}
+  \node[cp] (pol) at (5.4,-3.0) {Service de politique};     \iconeComposant{pol}
+
+  \node[cp] (exe) at (10.8, 1.8) {Service d'exécution};     \iconeComposant{exe}
+  \node[cp] (not) at (10.8,-0.6) {Service de notification}; \iconeComposant{not}
+  \node[cp] (mcp) at (10.8,-3.0) {Passerelles\\d'intégration}; \iconeComposant{mcp}
+
+  \node[etiquettezone, anchor=south] at (5.4, 5.15) {Services de domaine};
+  \draw[zone] (3.55,-3.75) rectangle (7.25,4.95);
+
+  % ── Systèmes externes ─────────────────────────────────────
+  \node[fboxg, minimum width=30mm, minimum height=9mm, align=center] (glpi) at (15.6, 1.8)
+       {$\ll$ externe $\gg$\\Gestion de tickets};
+  \node[fboxg, minimum width=30mm, minimum height=9mm, align=center] (ops) at (15.6,-0.6)
+       {$\ll$ externe $\gg$\\Systèmes de l'opérateur};
+  \node[fboxg, minimum width=30mm, minimum height=9mm, align=center] (idx) at (15.6,-3.0)
+       {$\ll$ externe $\gg$\\Index documentaire};
+
+  % ── Interfaces fournies et requises ───────────────────────
+  \draw[dependance] (rt.east)  -- node[etiq, pos=0.55] {contexte} (ctx.west);
+  \draw[dependance] (rt.east)  -- node[etiq, pos=0.62] {connaissance} (kno.west);
+  \draw[dependance] (rt.east)  -- node[etiq, pos=0.62] {décision} (dec.west);
+  \draw[dependance] (api.east) -- node[etiq, pos=0.55] {lecture} (ctx.west);
+  \draw[dependance] (api.east) -- (pol.west);
+
+  \draw[dependance] (dec.east) -- node[etiq, pos=0.5] {verdict} (pol.north east);
+  \draw[dependance] (pol.east) -- node[etiq, pos=0.55] {autorisation} (exe.south west);
+  \draw[dependance] (exe.east) -- (glpi.west);
+  \draw[dependance] (exe.east) -- (ops.west);
+  \draw[dependance] (kno.east) -- (idx.west);
+  \draw[dependance] (not.east) -- (ops.west);
+  \draw[dependance] (mcp.east) -- (glpi.south west);
+
+  % Interface fournie par le service de jetons
+  \draw (tok.east) -- (2.2,-1.8);
+  \draw[fill=white] (2.35,-1.8) circle (1.2mm);
+  \node[etiq, anchor=west] at (2.60,-1.8) {jeton d'accès temps réel};
+  \draw[dependance] (rt.south) -- ++(0,-0.35) -| (1.2,-1.55) -- (1.2,-1.8);
+
+  \node[note, text width=76mm, anchor=north, align=center] at (7.6,-4.55)
+       {La couche temps réel n'implémente aucune règle : elle assemble les composants et\\appelle les services de domaine au travers d'interfaces typées.};
+
+\end{tikzpicture}

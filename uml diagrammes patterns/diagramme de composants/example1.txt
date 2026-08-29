@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="940" height="490" viewBox="0 0 940 490">
+<rect width="940" height="490" fill="#FFFFFF"/>
+<defs><style>
+text{font-family:Arial,Helvetica,sans-serif;}
+.pkg{fill:none;stroke-width:2;}
+.pkg-title{font-size:15px;text-anchor:middle;}
+.stereo{font-size:12px;font-weight:bold;fill:#111111;text-anchor:middle;}
+.name{font-size:13px;font-weight:bold;fill:#111111;text-anchor:middle;}
+.box{fill:#FFFFFF;stroke:#111111;stroke-width:1.6;}
+.wire{fill:none;stroke:#111111;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;}
+.icon{fill:#FFFFFF;stroke:#111111;stroke-width:1.2;}
+</style></defs>
+<text x="481" y="42" class="pkg-title" fill="#C7519A">External package</text>
+<rect x="325" y="50" width="312" height="90" class="pkg" stroke="#C7519A"/>
+<rect x="370" y="66" width="180" height="56" class="box"/>
+<text x="460" y="90" class="stereo">&lt;&lt;component&gt;&gt;</text>
+<text x="460" y="108" class="name">Mistral</text>
+<g transform="translate(526,74)"><rect x="0" y="0" width="16" height="20" class="icon"/><rect x="-4" y="3" width="6" height="4" class="icon"/><rect x="-4" y="11" width="6" height="4" class="icon"/></g>
+<path d="M460 122 L460 156" class="wire"/>
+<path d="M444 174 A19 19 0 0 0 476 174" class="wire"/>
+<circle cx="460" cy="167" r="11" fill="#7EC8E3" stroke="#333333" stroke-width="2.5"/>
+<text x="460" y="196" class="name">API</text>
+<path d="M460 200 L460 271 Q460 281 450 281 L383 281" class="wire"/>
+<text x="253" y="223" class="pkg-title" fill="#2E8B9A">Reports generator package</text>
+<rect x="81" y="231" width="344" height="225" class="pkg" stroke="#2E8B9A"/>
+<rect x="125" y="250" width="258" height="62" class="box"/>
+<text x="254" y="277" class="stereo">&lt;&lt;component&gt;&gt;</text>
+<text x="254" y="295" class="name">generate_table_report</text>
+<g transform="translate(359,258)"><rect x="0" y="0" width="16" height="20" class="icon"/><rect x="-4" y="3" width="6" height="4" class="icon"/><rect x="-4" y="11" width="6" height="4" class="icon"/></g>
+<path d="M254 312 L254 329" class="wire"/>
+<path d="M238 347 A19 19 0 0 0 270 347" class="wire"/>
+<circle cx="254" cy="340" r="11" fill="#7EC8E3" stroke="#333333" stroke-width="2.5"/>
+<path d="M254 357 L254 375" class="wire"/>
+<rect x="141" y="375" width="234" height="62" class="box"/>
+<text x="258" y="402" class="stereo">&lt;&lt;component&gt;&gt;</text>
+<text x="258" y="420" class="name">generate_all_reports</text>
+<g transform="translate(351,383)"><rect x="0" y="0" width="16" height="20" class="icon"/><rect x="-4" y="3" width="6" height="4" class="icon"/><rect x="-4" y="11" width="6" height="4" class="icon"/></g>
+<path d="M265 340 L474 340 Q484 340 484 330 L484 273 Q484 263 494 263 L531 263" class="wire"/>
+<text x="680" y="211" class="pkg-title" fill="#7DBB7D">Reports parser package</text>
+<rect x="508" y="219" width="344" height="226" class="pkg" stroke="#7DBB7D"/>
+<rect x="531" y="232" width="250" height="62" class="box"/>
+<text x="656" y="259" class="stereo">&lt;&lt;component&gt;&gt;</text>
+<text x="656" y="277" class="name">display_selected_report</text>
+<g transform="translate(757,240)"><rect x="0" y="0" width="16" height="20" class="icon"/><rect x="-4" y="3" width="6" height="4" class="icon"/><rect x="-4" y="11" width="6" height="4" class="icon"/></g>
+<path d="M656 294 L656 329" class="wire"/>
+<path d="M640 347 A19 19 0 0 0 672 347" class="wire"/>
+<circle cx="656" cy="340" r="11" fill="#7EC8E3" stroke="#333333" stroke-width="2.5"/>
+<path d="M656 357 L656 375" class="wire"/>
+<rect x="555" y="375" width="187" height="62" class="box"/>
+<text x="648" y="402" class="stereo">&lt;&lt;component&gt;&gt;</text>
+<text x="648" y="420" class="name">parse_insights</text>
+<g transform="translate(718,383)"><rect x="0" y="0" width="16" height="20" class="icon"/><rect x="-4" y="3" width="6" height="4" class="icon"/><rect x="-4" y="11" width="6" height="4" class="icon"/></g>
+</svg>

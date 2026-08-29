@@ -1,0 +1,262 @@
+% ============================================================
+% Annexes
+% ============================================================
+
+\chapter*{Annexe A : Fondements de la recherche augmentée par récupération}
+\addcontentsline{toc}{chapter}{Annexe A : Fondements de la recherche augmentée par récupération}
+\markboth{\MakeUppercase{Annexe A}}{}
+
+Cette annexe complète les explications fonctionnelles données au fil des chapitres. Les notions y sont regroupées par thème et présentées par paires, car la plupart des confusions rencontrées sur ce sujet portent moins sur une définition isolée que sur la distinction entre deux notions voisines.
+
+\section*{A.1 Représentation des textes}
+
+\begin{itemize}
+  \item \textbf{Vectorisation et plongement.} La vectorisation désigne toute conversion d'un texte en nombres, y compris par des méthodes non sémantiques fondées sur le comptage de termes. Le plongement désigne spécifiquement une représentation produite par un réseau de neurones, qui capture le sens plutôt que la forme.
+  \item \textbf{Représentation dense et représentation creuse.} Une représentation dense comporte majoritairement des valeurs non nulles et porte le sens. Une représentation creuse comporte majoritairement des zéros, chaque dimension correspondant à un terme du vocabulaire, et porte la correspondance lexicale exacte.
+  \item \textbf{Modèle symétrique et modèle asymétrique.} Un modèle symétrique encode de la même façon deux textes de même nature. Un modèle asymétrique distingue le rôle de chaque texte, la question d'un côté et le passage de l'autre, et exige que ce rôle lui soit indiqué. Le modèle retenu dans ce projet appartient à la seconde catégorie.
+  \item \textbf{Plongement de question et plongement de passage.} Le premier est calculé au moment de la recherche et se trouve donc soumis à la contrainte de temps. Le second est calculé lors de l'ingestion, hors ligne, ce qui autorise un traitement plus coûteux.
+\end{itemize}
+
+\section*{A.2 Structure du corpus}
+
+\begin{itemize}
+  \item \textbf{Document et fragment.} Le document est le fichier source complet. Le fragment est une portion de taille adaptée à la récupération, reliée à son document d'origine, et pouvant recouvrir partiellement le fragment voisin.
+  \item \textbf{Stratégie de segmentation et taille de segmentation.} La stratégie désigne la méthode de découpage, par exemple le respect des paragraphes ou l'usage d'une fenêtre glissante. La taille désigne la longueur cible d'un fragment. La première détermine si un fragment demeure une unité de sens, la seconde son coût.
+  \item \textbf{Index et base de données.} L'index est la structure de recherche qui rend la comparaison rapide. La base de données conserve les documents, les fragments et leurs métadonnées. Dans ce projet, la base est la source de vérité et l'index en est un dérivé reconstructible.
+\end{itemize}
+
+\section*{A.3 Recherche et sélection}
+
+\begin{itemize}
+  \item \textbf{Similarité et pertinence.} La similarité est une grandeur mathématique, la proximité de deux représentations dans un espace. La pertinence est l'utilité réelle d'un passage pour répondre à la question. Les mesures rapportées au chapitre de réalisation montrent que les deux peuvent diverger.
+  \item \textbf{Recherche sémantique et recherche vectorielle.} La recherche sémantique désigne toute recherche par le sens. La recherche vectorielle en est une technique particulière, fondée sur la comparaison de représentations.
+  \item \textbf{Sélection des k premiers et sélection par seuil.} La première renvoie toujours exactement k résultats, quelle que soit leur qualité. La seconde ne renvoie que les résultats dépassant une valeur donnée, et peut n'en renvoyer aucun. Cette dernière propriété est indispensable lorsque le système doit pouvoir déclarer qu'il ne sait pas.
+  \item \textbf{Réordonnancement et filtrage.} Le réordonnancement change l'ordre des résultats sans en modifier le nombre. Le filtrage en réduit le nombre. Le dispositif décrit dans ce rapport relève du filtrage.
+  \item \textbf{Fusion par rangs réciproques.} Méthode de combinaison de plusieurs classements qui utilise le rang de chaque élément et non son score. Pour un élément de rang $r$ dans un classement donné, la contribution s'écrit :
+\end{itemize}
+
+\begin{equation}
+\mathrm{RRF}(d) = \sum_{c \in C} \frac{1}{k + r_c(d)}
+\end{equation}
+
+où $C$ désigne l'ensemble des classements, $r_c(d)$ le rang du document $d$ dans le classement $c$, et $k$ une constante d'amortissement fixée à 60 dans ce projet. L'intérêt de cette formulation est qu'elle dispense de ramener à une échelle commune des scores de natures différentes, ce qui serait nécessaire pour combiner directement une similarité cosinus et une pondération lexicale.
+
+\section*{A.4 Qualité}
+
+\begin{itemize}
+  \item \textbf{Précision et rappel.} La précision est la proportion de résultats pertinents parmi les résultats retournés. Le rappel est la proportion de documents pertinents effectivement retrouvés parmi tous ceux qui existent. Le dispositif décrit dans ce rapport privilégie explicitement la précision.
+  \item \textbf{Hallucination et récupération incorrecte.} Dans le premier cas, le modèle produit une information absente des passages fournis. Dans le second, les passages fournis sont inadaptés mais le modèle les a fidèlement utilisés. La distinction importe car les deux défauts appellent des corrections opposées, l'une portant sur la génération et l'autre sur la récupération.
+\end{itemize}
+
+\section*{A.5 Temps}
+
+\begin{itemize}
+  \item \textbf{Latence et temps de réponse.} La latence est le délai d'attente avant le début du traitement. Le temps de réponse est la durée totale, de la requête à la réponse complète.
+  \item \textbf{Démarrage à froid et index vide.} Dans le premier cas l'index existe mais n'est pas encore chargé en mémoire, la première interrogation est donc lente. Dans le second aucun document n'est indexé, et aucune interrogation ne peut aboutir. Les deux se manifestent par une absence de résultat et appellent des diagnostics différents.
+  \item \textbf{Fenêtre de contexte et longueur de contexte.} La première est la capacité maximale du modèle. La seconde est le nombre de jetons effectivement utilisés pour une requête donnée.
+\end{itemize}
+
+\newpage
+
+% ============================================================
+\chapter*{Annexe B : Métriques de la chaîne vocale}
+\addcontentsline{toc}{chapter}{Annexe B : Métriques de la chaîne vocale}
+\markboth{\MakeUppercase{Annexe B}}{}
+
+\section*{B.1 Notions de traitement du signal}
+
+\begin{itemize}
+  \item \textbf{Fréquence d'échantillonnage.} Nombre d'échantillons prélevés par seconde, exprimé en hertz. Les chaînes vocales conversationnelles emploient couramment 16 kHz.
+  \item \textbf{Fenêtre et pas d'analyse.} Taille de la fenêtre découpant le signal et décalage entre deux fenêtres consécutives lors de l'extraction des caractéristiques.
+  \item \textbf{Transformée de Fourier à court terme.} Conversion du signal du domaine temporel vers le domaine fréquentiel, fenêtre par fenêtre.
+  \item \textbf{Échelle de Mel.} Échelle de fréquences approchant la perception humaine de la hauteur, utilisée pour compresser un spectrogramme en bandes perceptivement pertinentes.
+  \item \textbf{Rapport signal sur bruit.} Rapport entre la puissance du signal utile et celle du bruit de fond, exprimé en décibels :
+\end{itemize}
+
+\begin{equation}
+\mathrm{SNR}_{\mathrm{dB}} = 10 \log_{10}\left(\frac{P_{\mathrm{signal}}}{P_{\mathrm{bruit}}}\right)
+\end{equation}
+
+\section*{B.2 Transcription de la parole}
+
+\subsection*{Notions}
+
+\begin{itemize}
+  \item \textbf{Détection d'activité vocale.} Distinction entre les segments contenant de la parole et les segments silencieux dans un flux audio.
+  \item \textbf{Détermination de fin de tour.} Décision indiquant que le locuteur a terminé son énoncé, à partir de la durée du silence et de la stabilité de la transcription.
+  \item \textbf{Segmentation en locuteurs.} Attribution de chaque segment de parole au locuteur qui l'a produit.
+  \item \textbf{Transcription partielle et transcription définitive.} La première est produite au fil de l'audio et reste susceptible d'être révisée. La seconde est stabilisée et ne change plus.
+  \item \textbf{Normalisation inverse du texte.} Conversion de la forme orale vers la forme écrite, par exemple d'un montant énoncé en toutes lettres vers son écriture chiffrée.
+  \item \textbf{Amorçage par termes attendus.} Transmission au modèle d'une liste de termes propres au domaine afin d'améliorer leur reconnaissance.
+\end{itemize}
+
+\subsection*{Métriques}
+
+Le taux d'erreur sur les mots rapporte les erreurs au nombre de mots de la référence, l'alignement étant obtenu par distance d'édition :
+
+\begin{equation}
+\mathrm{WER} = \frac{S + D + I}{N}
+\end{equation}
+
+où $S$ désigne les substitutions, $D$ les omissions, $I$ les insertions et $N$ le nombre de mots de la référence. Le taux d'erreur sur les caractères applique la même formule au niveau du caractère, ce qui le rend plus indulgent pour les langues morphologiquement riches et pour les variantes orthographiques mineures.
+
+Le taux d'erreur d'appariement borne le résultat entre zéro et un, contrairement au taux d'erreur sur les mots qui peut le dépasser en cas d'insertions nombreuses :
+
+\begin{equation}
+\mathrm{MER} = \frac{S + D + I}{N + I}
+\end{equation}
+
+Le taux d'erreur de segmentation en locuteurs mesure la qualité de l'attribution de la parole :
+
+\begin{equation}
+\mathrm{DER} = \frac{\text{fausses alarmes} + \text{omissions} + \text{confusions de locuteur}}{\text{durée totale de parole de référence}}
+\end{equation}
+
+Le facteur temps réel rapporte la durée de traitement à la durée de l'audio traité :
+
+\begin{equation}
+\mathrm{RTF} = \frac{T_{\mathrm{traitement}}}{T_{\mathrm{audio}}}
+\end{equation}
+
+Une valeur inférieure à un indique un traitement plus rapide que le temps réel, condition nécessaire au fonctionnement en flux continu. Une valeur supérieure à un signifie que le retard s'accumule à mesure que la parole se poursuit.
+
+\section*{B.3 Synthèse vocale}
+
+\subsection*{Notions}
+
+\begin{itemize}
+  \item \textbf{Conversion graphème phonème.} Passage du texte écrit à la suite de phonèmes à prononcer.
+  \item \textbf{Normalisation du texte.} Développement des nombres, dates, abréviations et symboles vers leur forme prononçable.
+  \item \textbf{Prosodie.} Ensemble des variations de hauteur, d'accentuation, de rythme et d'intonation appliquées à la parole produite.
+  \item \textbf{Prédicteur de durée.} Composant déterminant la durée de chaque phonème.
+  \item \textbf{Vocodeur.} Composant convertissant la représentation acoustique intermédiaire en forme d'onde audible.
+  \item \textbf{Synthèse autorégressive et non autorégressive.} La première produit l'audio image par image, avec une qualité élevée et une latence importante. La seconde produit en parallèle, ce qui convient mieux au fonctionnement en flux continu.
+  \item \textbf{Synthèse par fragments.} Émission de l'audio par portions successives dès qu'elles sont disponibles, plutôt qu'après constitution de l'énoncé complet. Cette propriété a constitué un critère éliminatoire dans ce projet.
+\end{itemize}
+
+\subsection*{Métriques}
+
+La note moyenne d'opinion est une évaluation subjective du naturel de la voix, généralement établie sur une échelle de un à cinq et moyennée sur un panel d'auditeurs.
+
+La distorsion cepstrale sur l'échelle de Mel mesure objectivement l'écart entre une voix synthétisée et une voix de référence :
+
+\begin{equation}
+\mathrm{MCD} = \frac{10}{\ln 10} \sqrt{2 \sum_{i=1}^{M} \left(mc_i - mc'_i\right)^2}
+\end{equation}
+
+où $mc_i$ et $mc'_i$ désignent les coefficients cepstraux de la référence et du signal synthétisé. Une valeur faible traduit une proximité élevée.
+
+L'évaluation perceptuelle de la qualité vocale et l'intelligibilité objective à court terme complètent cette appréciation, la première sur la qualité globale et la seconde sur l'intelligibilité en présence de bruit ou de distorsion.
+
+Le facteur temps réel s'applique également à la synthèse, en rapportant la durée de production à la durée de l'audio produit. Le délai avant le premier fragment audio mesure quant à lui le temps écoulé entre la demande de synthèse et l'émission du premier son. C'est cette dernière grandeur, et non la durée totale, qui gouverne la latence perçue dans une chaîne diffusée en continu.
+
+\section*{B.4 Chaîne de latence de bout en bout}
+
+La latence totale perçue par le client est la somme des contributions de chaque étape :
+
+\begin{equation}
+T_{\mathrm{total}} \approx T_{\mathrm{fin\ de\ tour}} + T_{\mathrm{STT}} + T_{\mathrm{contexte}} + T_{\mathrm{récupération}} + T_{\mathrm{TTFT}} + T_{\mathrm{TTFA}} + T_{\mathrm{réseau}}
+\end{equation}
+
+Deux remarques accompagnent cette formulation. La première est que chaque terme peut être optimisé indépendamment, ce qui rend l'analyse par étape pertinente. La seconde est que la diffusion en continu de la transcription et de la synthèse réduit la latence perçue même lorsque le temps de traitement total demeure inchangé, puisqu'elle permet aux étapes de se recouvrir partiellement.
+
+\newpage
+
+% ============================================================
+\chapter*{Annexe C : Notions relatives aux systèmes agentiques}
+\addcontentsline{toc}{chapter}{Annexe C : Notions relatives aux systèmes agentiques}
+\markboth{\MakeUppercase{Annexe C}}{}
+
+\section*{C.1 Modèles de langue}
+
+\begin{itemize}
+  \item \textbf{Jeton.} Unité élémentaire manipulée par le modèle, correspondant à un mot, à une portion de mot ou à un signe de ponctuation. La facturation et les limites de capacité s'expriment en jetons.
+  \item \textbf{Fenêtre de contexte.} Nombre maximal de jetons que le modèle peut prendre en compte simultanément, instructions, historique et documents compris.
+  \item \textbf{Inférence.} Calcul produisant la réponse à partir de l'entrée fournie. Elle ne modifie pas les paramètres du modèle.
+  \item \textbf{Délai avant le premier jeton.} Temps écoulé entre l'envoi de la requête et l'arrivée du premier élément de réponse. Grandeur déterminante en contexte conversationnel.
+  \item \textbf{Appel d'outils.} Capacité du modèle à désigner une fonction externe et à en construire les arguments, plutôt que de produire directement du texte. Cette capacité conditionne l'existence même d'un système agentique.
+  \item \textbf{Limitation de débit.} Restriction imposée par un fournisseur sur le nombre de requêtes ou de jetons par unité de temps. Elle constitue une contrainte de conception réelle, et non un simple paramètre commercial, car elle détermine le nombre de conversations simultanées soutenables.
+  \item \textbf{Modèle ouvert et modèle propriétaire.} Le premier peut être hébergé et adapté localement, ce qui offre la maîtrise des données et l'absence de quota, au prix des ressources matérielles nécessaires. Le second est accessible par service distant, généralement plus performant, mais introduit une dépendance externe et des limites d'usage.
+\end{itemize}
+
+\section*{C.2 Agents}
+
+\begin{itemize}
+  \item \textbf{Agent.} Composant qui reçoit une demande, dispose d'un ensemble borné de capacités, se voit imposer des contraintes, et produit soit une réponse, soit un appel de capacité, soit une transmission.
+  \item \textbf{Processus agent.} Unité d'exécution prenant en charge une session, dotée de son propre état et créée ou libérée selon l'activité.
+  \item \textbf{Persona.} Ensemble formé par le rôle d'un agent, ses instructions, ses capacités et son périmètre de responsabilité.
+  \item \textbf{Orchestration.} Coordination de plusieurs agents, incluant la désignation de l'agent actif, le passage de relais et la conservation du contexte lors de ce passage.
+  \item \textbf{Garde fou.} Contrainte appliquée en dehors du modèle, qui valide ou refuse une intention ou un énoncé avant qu'il ne produise un effet.
+\end{itemize}
+
+\section*{C.3 Progression des pratiques d'ingénierie}
+
+Trois niveaux de pratique se sont succédé, chacun englobant le précédent.
+
+L'ingénierie des instructions porte sur la formulation des consignes adressées au modèle. Elle produit des résultats rapides et atteint ses limites lorsque les consignes s'allongent, car un modèle applique inégalement une instruction longue.
+
+L'ingénierie du contexte porte sur la sélection des informations mises à disposition du modèle, sur le moment de leur insertion et sur leur durée de vie. Elle traite le contexte comme une ressource limitée qu'il faut allouer, et non comme un espace à remplir.
+
+L'ingénierie du harnais porte sur le système qui entoure le modèle : bornage des capacités, validation des intentions, contrôle des énoncés, enregistrement des décisions et reprise en main en cas d'échec. C'est à ce niveau que se situent les garanties du système, car elles ne peuvent pas reposer sur le comportement d'un composant probabiliste.
+
+\newpage
+
+% ============================================================
+\chapter*{Annexe D : Modèle détaillé de sécurité et d'audit}
+\addcontentsline{toc}{chapter}{Annexe D : Modèle détaillé de sécurité et d'audit}
+\markboth{\MakeUppercase{Annexe D}}{}
+
+\section*{D.1 Distinction entre authentification et autorisation}
+
+L'authentification répond à la question de l'identité de l'utilisateur. L'autorisation répond à celle de ce qu'il lui est permis d'atteindre. Les confondre conduit à un défaut classique, où le seul fait d'être authentifié vaut permission.
+
+Dans la plateforme, ces deux fonctions sont séparées explicitement. L'authentification établit une identité et ouvre une session. L'autorisation est évaluée à chaque requête, à partir du rôle déduit de cette session et jamais à partir d'une information fournie par l'appelant.
+
+\section*{D.2 Codes de réponse et sémantique}
+
+\begin{itemize}
+  \item \textbf{401.} La requête n'est pas authentifiée. Aucune identité n'a été établie ou la session n'est plus valide.
+  \item \textbf{403.} La requête est authentifiée mais l'identité établie ne dispose pas des droits requis.
+\end{itemize}
+
+Cette distinction est significative pour le diagnostic comme pour la sécurité : elle sépare le défaut d'identité du défaut de droits, sans révéler à un appelant non autorisé l'existence ou l'absence de la ressource visée.
+
+\section*{D.3 Protection des éléments d'authentification}
+
+Les éléments d'authentification sont conservés sous forme dérivée au moyen d'une fonction de hachage à coût mémoire élevé, choisie pour rendre coûteuse une attaque par recherche exhaustive même sur du matériel spécialisé. Les paramètres employés suivent les recommandations en vigueur pour un usage interactif.
+
+Ces paramètres sont enregistrés avec chaque empreinte plutôt que fixés globalement. Cette disposition permet de les renforcer ultérieurement sans invalider les comptes existants ni imposer une migration : la vérification lit les paramètres de l'enregistrement qu'elle contrôle.
+
+\section*{D.4 Sessions révocables}
+
+Une session n'est pas un jeton autoportant dont la validité s'apprécierait à sa seule lecture, mais une référence revalidée auprès de son enregistrement à chaque requête.
+
+Le coût de ce choix est une consultation supplémentaire par requête. Le bénéfice est qu'une déconnexion, une expiration ou une révocation globale prennent effet immédiatement. Un jeton autoportant serait resté valide jusqu'à son échéance, laissant subsister une fenêtre pendant laquelle une session révoquée demeure exploitable.
+
+\section*{D.5 Isolation des données entre clients}
+
+La vérification d'appartenance ne porte pas sur l'identifiant transmis dans la requête, qui est sous le contrôle de l'appelant, mais sur la correspondance entre la ressource demandée et l'identité établie par la session. Cette disposition prévient l'élévation de privilèges horizontale, par laquelle un utilisateur légitime accéderait aux données d'un autre utilisateur de même niveau.
+
+\section*{D.6 Vérification d'identité renforcée}
+
+Les opérations sensibles engagées au cours d'une conversation exigent une vérification distincte de l'ouverture de session, fondée sur un élément que seul le titulaire connaît.
+
+Cette vérification est bornée par un nombre maximal de tentatives, un nombre maximal de réponses inexploitables et une échéance globale. Trois délais sont ordonnés strictement, du plus court au plus long : celui de l'appel de vérification, celui de la procédure complète, puis celui du contrôle qui l'englobe. Cet ordre garantit qu'une défaillance est signalée au niveau où elle se produit plutôt qu'absorbée par le délai supérieur.
+
+Le résultat conservé n'est pas un simple indicateur. Il comprend l'identifiant du client vérifié, le niveau atteint, l'horodatage, l'échéance et la méthode employée. Une vérification vaut donc pour un client déterminé et pour une durée déterminée.
+
+\section*{D.7 Chaîne d'audit}
+
+Chaque enregistrement d'audit intègre l'empreinte du précédent dans le calcul de la sienne :
+
+\begin{equation}
+h_n = \mathrm{SHA\text{-}256}\left(h_{n-1} \parallel \mathrm{JSON}_{\mathrm{canonique}}(p_n) \parallel t_n\right)
+\end{equation}
+
+où $h_{n-1}$ est l'empreinte de l'enregistrement précédent, $p_n$ la charge utile du présent enregistrement, $t_n$ son horodatage, et $\parallel$ l'opération de concaténation. La forme canonique de la représentation garantit qu'un même contenu produit toujours la même empreinte, indépendamment de l'ordre de sérialisation des champs.
+
+La modification d'un enregistrement ancien invalide son empreinte et, par propagation, toutes les empreintes postérieures. Un recalcul complet de la chaîne suffit donc à détecter l'altération et à en localiser le point d'origine.
+
+Deux propriétés complètent ce mécanisme. Les ajouts sont sérialisés par un verrou porté par la base de données, faute de quoi deux écritures simultanées liraient la même empreinte précédente et produiraient une chaîne incohérente. L'écriture d'audit ne valide par ailleurs pas sa propre transaction, de sorte que l'enregistrement métier et sa trace sont validés ensemble ou abandonnés ensemble.
+
+Il convient de souligner ce que cette construction garantit et ce qu'elle ne garantit pas. Elle n'empêche pas une modification, ce qu'aucun mécanisme de stockage ne permet réellement. Elle garantit qu'une modification ne peut pas passer inaperçue.

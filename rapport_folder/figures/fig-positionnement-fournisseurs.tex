@@ -1,0 +1,67 @@
+% Positionnement qualitatif des fournisseurs de la chaîne vocale (figure 4.x)
+\begin{tikzpicture}[x=1cm, y=1cm]
+
+  \tikzset{
+    pt/.style={circle, draw=black, fill=black, inner sep=0pt, minimum size=2.6pt},
+    ptv/.style={circle, draw=black, fill=white, inner sep=0pt, minimum size=3.0pt},
+    lb/.style={font=\sffamily\tiny, inner sep=1.5pt},
+    axe/.style={font=\sffamily\tiny\itshape}
+  }
+
+  % Un panneau : cadre, zone temps réel, axes
+  % #1 decalage x  #2 titre  #3 legende axe x  #4 legende axe y  #5 limite
+  \newcommand{\panneau}[5]{%
+    \begin{scope}[shift={(#1,0)}]
+      \fill[figGrisTresClair] (0,0) rectangle (#5,4.5);
+      \draw[dashed] (#5,0) -- (#5,4.6);
+      \draw[->] (0,0) -- (5.3,0);
+      \draw[->] (0,0) -- (0,4.8);
+      \node[axe, anchor=north east] at (5.3,-0.12) {#3};
+      \node[axe, rotate=90, anchor=south west] at (-0.18,0.1) {#4};
+      \node[lb, anchor=south, align=center, fill=figGrisTresClair] at ({#5/2},0.12) {zone\\temps réel};
+      \node[font=\sffamily\tiny\bfseries, anchor=north] at (2.55,-0.62) {#2};
+    \end{scope}%
+  }
+
+  % ── Synthèse vocale ───────────────────────────────────────
+  \panneau{0}{Synthèse vocale}{délai avant le premier fragment}{naturel perçu}{2.4}
+  \begin{scope}
+    \node[pt] at (0.95,2.95) {};  \node[lb, anchor=south] at (0.95,3.10) {Cartesia};
+    \draw (0.95,2.95) circle (3.4mm);
+    \node[pt] at (0.50,1.85) {};  \node[lb, anchor=east] at (0.36,1.85) {SmallestAI};
+    \node[pt] at (3.05,3.30) {};  \node[lb, anchor=west] at (3.20,3.30) {Inworld};
+    \node[pt] at (4.15,4.05) {};  \node[lb, anchor=east] at (4.00,4.15) {ElevenLabs};
+    \node[ptv] at (4.85,3.75) {}; \node[lb, anchor=east] at (4.70,3.60) {Gemini};
+  \end{scope}
+
+  % ── Transcription ─────────────────────────────────────────
+  \panneau{6.6}{Transcription}{latence de traitement}{exactitude sur le domaine}{2.6}
+  \begin{scope}[shift={(6.6,0)}]
+    \node[pt] at (1.05,3.85) {};  \node[lb, anchor=south] at (1.05,4.00) {Deepgram};
+    \draw (1.05,3.85) circle (3.4mm);
+    \node[pt] at (2.30,3.05) {};  \node[lb, anchor=west] at (2.45,3.05) {Gladia};
+    \node[pt] at (3.60,2.55) {};  \node[lb, anchor=west] at (3.75,2.55) {Azure};
+  \end{scope}
+
+  % ── Raisonnement ──────────────────────────────────────────
+  \panneau{12.9}{Raisonnement}{délai avant le premier jeton}{suivi des instructions}{2.7}
+  \begin{scope}[shift={(12.9,0)}]
+    \node[pt] at (1.35,4.05) {};  \node[lb, anchor=south] at (1.35,4.20) {Gemini 2.5 Flash};
+    \draw (1.35,4.05) circle (3.4mm);
+    \node[pt] at (2.15,3.60) {};  \node[lb, anchor=west] at (2.30,3.60) {GPT-4o mini};
+    \node[pt] at (3.55,2.20) {};  \node[lb, anchor=west] at (3.70,2.20) {Llama 3.1 hébergé};
+    \node[ptv] at (4.65,1.35) {}; \node[lb, anchor=east] at (4.50,1.20) {Llama 3.1 local};
+  \end{scope}
+
+  % ── Légende ───────────────────────────────────────────────
+  \node[pt] at (0.4,-1.55) {};
+  \node[lb, anchor=west] at (0.62,-1.55) {intégré à la chaîne};
+  \node[ptv] at (5.0,-1.55) {};
+  \node[lb, anchor=west] at (5.22,-1.55) {écarté : diffusion en continu absente ou ressources insuffisantes};
+  \draw (14.1,-1.55) circle (2.8mm);
+  \node[lb, anchor=west] at (14.45,-1.55) {retenu en principal};
+
+  \node[note, text width=126mm, anchor=north, align=center] at (8.8,-2.25)
+       {Positionnement qualitatif établi à partir du comportement observé et de la documentation des fournisseurs.\\Il ordonne les solutions les unes par rapport aux autres et ne constitue pas un relevé de mesures.};
+
+\end{tikzpicture}

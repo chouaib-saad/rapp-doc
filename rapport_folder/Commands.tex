@@ -1,0 +1,164 @@
+% ============================================================
+% Commands.tex — valeurs propres au rapport
+% Ces commandes alimentent les métadonnées PDF et les rappels
+% de couverture. La page de garde elle-même est un PDF inclus
+% (chapters/00-PageDeGarde.pdf).
+% ============================================================
+
+\newcommand{\reportAuthor} {%
+  Chouaib \textsc{Saad}%
+}
+
+\newcommand{\reportTitle} {%
+  Plateforme conversationnelle temps réel pour l'automatisation
+  de la relation client dans les télécommunications%
+}
+
+\newcommand{\reportSubject} {%
+  Rapport de projet de fin d'études — Génie logiciel et architecture logicielle%
+}
+
+\newcommand{\dateSoutenance} {%
+  À PRÉCISER%
+}
+
+\newcommand{\studyDepartment} {%
+  Département Informatique%
+}
+
+\newcommand{\ENETCOM} {%
+  Institut Supérieur des Sciences Appliquées et de Technologie de Sousse%
+}
+
+\newcommand{\codePFE} {%
+  FI-GL24-103%
+}
+
+\newcommand{\juryPresident} {%
+  À PRÉCISER%
+}
+\newcommand{\juryPresidentDesc} {%
+  Président du jury%
+}
+
+\newcommand{\juryMemberOne} {%
+  Mme Maha \textsc{Khemaja}%
+}
+\newcommand{\juryMemberOneDesc} {%
+  Encadrante pédagogique%
+}
+
+\newcommand{\juryMemberTwo} {%
+  M. Ayoub \textsc{Mejri}%
+}
+\newcommand{\juryMemberTwoDesc} {%
+  Encadrant professionnel%
+}
+
+\newcommand{\specialcell}[1]{%
+  \begin{tabularx}{\textwidth}{@{}X@{}}#1\end{tabularx}%
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Commandes propres au rapport
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Planche de deux captures côte à côte, avec sous-légendes.
+% Deux captures occupent ainsi la place d'une seule, ce qui permet
+% d'en montrer davantage sans allonger le document.
+%   #1 = légende de la planche   #2 = clé de la planche
+%   #3 = fichier gauche  #4 = sous-légende gauche
+%   #5 = fichier droit   #6 = sous-légende droite
+\newcommand{\planche}[6]{%
+  \begin{figure}[H]%
+    \centering%
+    \setlength{\fboxsep}{3pt}%
+    \setlength{\fboxrule}{0.5pt}%
+    \begin{subfigure}[t]{0.48\linewidth}%
+      \centering\fbox{\includegraphics[width=\linewidth]{#3}}%
+      \caption{#4}%
+    \end{subfigure}\hfill%
+    \begin{subfigure}[t]{0.48\linewidth}%
+      \centering\fbox{\includegraphics[width=\linewidth]{#5}}%
+      \caption{#6}%
+    \end{subfigure}%
+    \caption{#1}%
+    \label{fig:#2}%
+  \end{figure}%
+}
+
+% Planche en attente des captures. Même encombrement que la planche
+% réelle, chaque case décrivant précisément la capture attendue.
+\newcommand{\planchePlaceholder}[6]{%
+  \begin{figure}[H]%
+    \centering%
+    \setlength{\fboxsep}{4pt}%
+    \setlength{\fboxrule}{0.5pt}%
+    \begin{subfigure}[t]{0.48\linewidth}%
+      \centering%
+      \fbox{\parbox[c][32mm][c]{0.93\linewidth}{\centering\scriptsize\textit{#3}}}%
+      \caption{#4}%
+    \end{subfigure}\hfill%
+    \begin{subfigure}[t]{0.48\linewidth}%
+      \centering%
+      \fbox{\parbox[c][32mm][c]{0.93\linewidth}{\centering\scriptsize\textit{#5}}}%
+      \caption{#6}%
+    \end{subfigure}%
+    \caption{#1}%
+    \label{fig:#2}%
+  \end{figure}%
+}
+
+% Emplacement d'un visuel non encore intégré.
+%   #1 = légende de la figure
+%   #2 = clé de référence (sans le préfixe fig:)
+%   #3 = description précise du visuel attendu
+% Le \label est placé DANS l'environnement figure, après la
+% légende, afin que \ref renvoie bien au numéro de la figure.
+\newcommand{\figurePlaceholder}[3]{%
+  \begin{figure}[H]%
+    \center%
+    \setlength{\fboxsep}{10pt}%
+    \setlength{\fboxrule}{0.5pt}%
+    \fbox{%
+      \parbox[c][45mm][c]{0.85\linewidth}{%
+        \centering\small\textit{Emplacement réservé}\\[2mm]#3%
+      }%
+    }%
+    \caption{#1}%
+    \label{fig:#2}%
+  \end{figure}%
+}
+
+% Figure réelle, au format visuel du modèle (cadre fin, centrée).
+%   #1 = fichier image  #2 = largeur  #3 = légende  #4 = clé
+\newcommand{\figureReport}[4]{%
+  \begin{figure}[H]%
+    \center%
+    \setlength{\fboxsep}{5pt}%
+    \setlength{\fboxrule}{0.5pt}%
+    \fbox{%
+      \includegraphics[width=#2]{#1}%
+    }%
+    \caption{#3}%
+    \label{fig:#4}%
+  \end{figure}%
+}
+
+% Figure vectorielle produite en TikZ, au format visuel du modèle.
+%   #1 = légende  #2 = clé  #3 = nom du fichier dans figures/
+% La figure est réduite si, et seulement si, elle dépasse la largeur
+% du bloc de texte. Une figure plus étroite conserve son échelle.
+\newcommand{\figureTikz}[3]{%
+  \begin{figure}[!htb]%
+    \center%
+    \setlength{\fboxsep}{6pt}%
+    \setlength{\fboxrule}{0.5pt}%
+    \fbox{%
+      \adjustbox{max width=\dimexpr\linewidth-18pt\relax,
+                 max totalheight=0.82\textheight}{\input{figures/#3}}%
+    }%
+    \caption{#1}%
+    \label{fig:#2}%
+  \end{figure}%
+}

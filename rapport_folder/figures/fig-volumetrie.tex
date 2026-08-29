@@ -1,0 +1,41 @@
+% Volumétrie du système réalisé (figure 4.x)
+\begin{tikzpicture}[x=1cm, y=1cm]
+
+  \tikzset{
+    kpi/.style={draw=black, fill=white, rectangle, minimum width=32mm,
+                minimum height=17mm, inner sep=2pt},
+    grand/.style={font=\sffamily\Large\bfseries},
+    petit/.style={font=\sffamily\tiny, align=center, text width=30mm}
+  }
+
+  % #1 colonne  #2 rangee  #3 valeur  #4 libelle
+  \newcommand{\chiffre}[4]{%
+    \node[kpi] (k#1#2) at ({#1*3.55},{-#2*1.95}) {};
+    \node[grand] at ({#1*3.55},{-#2*1.95+0.34}) {#3};
+    \node[petit] at ({#1*3.55},{-#2*1.95-0.38}) {#4};
+  }
+
+  % ── Rangée 1 : le déploiement ─────────────────────────────
+  \chiffre{0}{0}{24}{conteneurs déployés\\\textit{6 infra, 16 applicatifs, 2 observabilité}}
+  \chiffre{1}{0}{13}{interfaces déclarées\\par le domaine}
+  \chiffre{2}{0}{10}{bibliothèques\\partagées}
+  \chiffre{3}{0}{16}{modules de\\persistance}
+
+  % ── Rangée 2 : les surfaces exposées ──────────────────────
+  \chiffre{0}{1}{73}{points d'accès de\\l'interface métier}
+  \chiffre{1}{1}{35}{écrans\\\textit{20 en console, 15 au portail}}
+  \chiffre{2}{1}{5}{agents\\spécialisés}
+  \chiffre{3}{1}{3}{domaines métier\\déclarés}
+
+  % ── Rangée 3 : le périmètre fonctionnel ───────────────────
+  \chiffre{0}{2}{9}{types d'opérations\\sensibles reconnues}
+  \chiffre{1}{2}{3}{langues prises\\en charge}
+  \chiffre{2}{2}{112}{incréments\\livrés}
+  \chiffre{3}{2}{260}{validations\\enregistrées}
+
+  % ── Regroupements ─────────────────────────────────────────
+  \node[etiquettezone, anchor=east, font=\sffamily\tiny\itshape] at (-1.9,0) {Déploiement};
+  \node[etiquettezone, anchor=east, font=\sffamily\tiny\itshape] at (-1.9,-1.95) {Surfaces exposées};
+  \node[etiquettezone, anchor=east, font=\sffamily\tiny\itshape] at (-1.9,-3.90) {Périmètre et travail};
+
+\end{tikzpicture}

@@ -1,0 +1,67 @@
+% Diagramme d'activités de l'ingestion documentaire (figure 3.10)
+\begin{tikzpicture}[x=1cm, y=1cm]
+
+  % ── Partition : chaîne d'ingestion ────────────────────────
+  \draw[draw=black] (-3.3,-9.5) rectangle (3.6,6.5);
+  \node[font=\sffamily\tiny\bfseries, anchor=north] at (0.15,6.35) {Chaîne d'ingestion};
+
+  \node[debut] (i) at (0,5.6) {};
+  \node[action, text width=38mm, align=center] (ext) at (0,4.7)
+       {Extraire le texte du format source};
+  \node[action, text width=38mm, align=center] (meta) at (0,3.5)
+       {Déterminer les métadonnées\\\textit{titre, type, langue}};
+  \node[decision] (dc) at (0,2.0) {empreinte\\inchangée ?};
+
+  \node[action, text width=38mm, align=center] (vers) at (0,0.5)
+       {Créer la version suivante\\et désactiver la précédente};
+  \node[action, text width=38mm, align=center] (seg) at (0,-0.9)
+       {Segmenter en fragments\\\textit{1200 caractères, recouvrement 150}};
+  \node[action, text width=38mm, align=center] (emb) at (0,-2.3)
+       {Encoder chaque fragment\\\textit{représentation dense et lexicale}};
+  \node[action, text width=38mm, align=center] (pers) at (0,-3.8)
+       {Écrire en une seule transaction\\\textit{document, fragments, travail, événement}};
+  \node[action, text width=38mm, align=center] (evt) at (0,-5.3)
+       {Déposer l'événement de synchronisation};
+
+  \node[action, text width=30mm, align=center, fill=figGrisTresClair] (noop) at (0,-7.4)
+       {Aucun traitement};
+  \node[fin] (fn) at (0,-8.6) {};
+
+  % ── Partition : synchronisation vers l'index ──────────────
+  \draw[draw=black] (3.6,-9.5) rectangle (10.3,6.5);
+  \node[font=\sffamily\tiny\bfseries, anchor=north] at (6.95,6.35) {Synchronisation vers l'index};
+
+  \node[action, text width=38mm, align=center] (drain) at (6.95,-5.3)
+       {Vider la file par lots de 200};
+  \node[action, text width=38mm, align=center] (upsert) at (6.95,-6.8)
+       {Insérer ou remplacer les deux\\représentations dans l'index};
+  \node[fin] (f) at (6.95,-8.1) {};
+
+  % ── Enchaînement ──────────────────────────────────────────
+  \draw[flux] (i) -- (ext);
+  \draw[flux] (ext) -- (meta);
+  \draw[flux] (meta) -- (dc);
+  \draw[flux] (dc) -- node[etiq, right, pos=0.4] {non} (vers);
+  \draw[flux] (vers) -- (seg);
+  \draw[flux] (seg) -- (emb);
+  \draw[flux] (emb) -- (pers);
+  \draw[flux] (pers) -- (evt);
+
+  \draw[flux] (dc.west) -- node[etiq, above, pos=0.3] {oui} (-2.55,2.0) -- (-2.55,-7.4) -- (noop.west);
+  \draw[flux] (noop) -- (fn);
+
+  \draw[flux] (evt.east) -- node[etiq, above] {file durable} (drain.west);
+  \draw[flux] (drain) -- (upsert);
+  \draw[flux] (upsert) -- (f);
+
+  % Les deux notes prennent place dans l'espace libre de la
+  % seconde partition, ce qui évite d'élargir la figure.
+  \node[note, text width=52mm, anchor=north west] (n1) at (4.2,5.2)
+       {Le contrôle d'empreinte rend l'ingestion idempotente : des octets identiques ne produisent aucun travail.};
+  \draw[dependance] (n1.west) -- (1.35,2.0);
+
+  \node[note, text width=52mm, anchor=north west] (n2) at (4.2,2.2)
+       {Le passage par une file durable évite que la référence et l'index divergent : si l'index est momentanément indisponible, l'événement subsiste et sera traité ensuite.};
+  \draw[dependance] (n2.south) -- (6.95,-4.55);
+
+\end{tikzpicture}

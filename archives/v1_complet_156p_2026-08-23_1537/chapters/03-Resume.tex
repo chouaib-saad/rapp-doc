@@ -1,0 +1,31 @@
+% ============================================================
+% Résumé (français) et Abstract (anglais)
+% ============================================================
+\chapter*{Résumé}
+\addcontentsline{toc}{chapter}{Résumé}
+\thispagestyle{empty}
+
+Ce projet de fin d'études, réalisé au sein de la société Amsys Consulting, porte sur la conception et la réalisation d'une plateforme conversationnelle temps réel destinée à l'automatisation de la relation client dans le secteur des télécommunications. La plateforme prend en charge de bout en bout les demandes courantes d'un abonné, en voix comme en texte, en français, en arabe et en anglais.
+
+Le système repose sur une architecture en ports et adaptateurs qui maintient les règles métier indépendantes de toute dépendance technique, et sur un ensemble de cinq agents conversationnels spécialisés dont le contexte est assemblé selon les besoins de chaque échange. Les réponses factuelles sont ancrées dans la documentation de l'opérateur au moyen d'une chaîne de recherche procédant par filtres successifs, conçue pour admettre son ignorance plutôt que produire une réponse infondée. Toute opération engageant le compte d'un client est précédée d'une vérification d'identité, soumise à des règles métier déterministes rendant un verdict motivé et tracé, puis exécutée de manière à ne pouvoir l'être deux fois. Chaque acte conséquent est inscrit dans un registre chaîné dont l'altération est détectable. Lorsque l'autonomie n'est pas appropriée, la conversation est transmise à un conseiller humain accompagnée du dossier complet, ou un rappel est négocié sur les disponibilités réelles.
+
+Le travail a été conduit selon un cycle itératif et incrémental, chaque incrément étant mesuré avant d'être conservé. Le système réalisé compte vingt deux services conteneurisés, une chaîne vocale temps réel dotée d'une solution de repli à chaque étape, deux interfaces web et un dispositif d'observabilité. Les mesures conduites sur la recherche documentaire ont mis en évidence une inversion des scores de similarité entre langues, qui a imposé une révision de la méthode de sélection des passages.
+
+\bigskip
+\noindent\textbf{Mots clés :} plateforme conversationnelle, agents spécialisés, traitement temps réel, recherche augmentée par récupération, architecture hexagonale, règles métier déterministes, traçabilité, télécommunications.
+
+\newpage
+
+% ── Abstract ────────────────────────────────────────────────
+\chapter*{Abstract}
+\addcontentsline{toc}{chapter}{Abstract}
+\thispagestyle{empty}
+
+This final year project, carried out at Amsys Consulting, covers the design and implementation of a real time conversational platform for customer service automation in the telecommunications sector. The platform handles a subscriber's routine requests end to end, over voice and text, in French, Arabic and English.
+
+The system rests on a ports and adapters architecture that keeps business rules independent of any technical dependency, and on a set of five specialised conversational agents whose context is assembled according to the needs of each exchange. Factual answers are grounded in the operator's own documentation through a retrieval chain built as a sequence of filters, designed to admit ignorance rather than produce an unfounded answer. Every operation affecting a customer account is preceded by an identity check, submitted to deterministic business rules returning a justified and traceable verdict, then executed in a way that prevents it from happening twice. Each consequential act is written to a chained ledger in which tampering is detectable. When autonomy is not appropriate, the conversation is handed over to a human advisor together with the complete case file, or a callback is negotiated against real advisor availability.
+
+The work followed an iterative and incremental lifecycle, each increment being measured before being kept. The delivered system comprises twenty two containerised services, a real time voice chain with a fallback at every stage, two web interfaces and an observability layer. Measurements carried out on documentary retrieval revealed an inversion of similarity scores across languages, which required revising the passage selection method.
+
+\bigskip
+\noindent\textbf{Keywords:} conversational platform, specialised agents, real time processing, retrieval augmented generation, hexagonal architecture, deterministic business rules, traceability, telecommunications.

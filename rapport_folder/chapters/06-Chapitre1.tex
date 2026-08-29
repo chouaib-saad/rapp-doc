@@ -1,0 +1,230 @@
+% ============================================================
+% Chapitre 1 : Présentation générale du projet
+% ============================================================
+\chapter{Présentation générale du projet}
+
+\begin{spacing}{1.2}
+\minitoc
+\thispagestyle{MyStyle}
+\end{spacing}
+\newpage
+
+\section*{Introduction}
+
+Ce premier chapitre situe le projet dans son contexte. Nous présentons d'abord la société qui a accueilli le stage, puis le cadre métier dans lequel s'inscrit la plateforme développée. Nous exposons ensuite la problématique qui a motivé ce travail, l'idée de solution retenue pour y répondre et les objectifs que nous nous sommes fixés. Une étude des solutions existantes permet de positionner notre proposition par rapport à l'offre du marché. Le chapitre se termine par la chronologie du projet et par le processus de développement que nous avons appliqué.
+
+\section{Présentation de l'organisme d'accueil}
+
+Fondée en 2009, Amsys Consulting est une société internationale de conseil et d'ingénierie technologique qui accompagne ses clients dans leur transformation numérique. Son activité s'articule autour de trois lignes de services complémentaires : l'ingénierie informatique, les solutions automatisées et le conseil métier. Ces trois axes sont déployés sur un large éventail de secteurs, ce qui conduit les équipes à intervenir aussi bien sur des systèmes d'information existants que sur des projets construits à partir d'une page blanche.
+
+Au fil de son développement, la société a élargi son périmètre géographique aux marchés européen et asiatique. Elle a par ailleurs structuré une practice dédiée à l'intelligence artificielle et à l'apprentissage automatique, chargée d'industrialiser les travaux menés dans ce domaine plutôt que de les cantonner à des expérimentations isolées. C'est dans le prolongement direct de cette expertise que s'inscrit le présent projet, à l'intersection de l'intelligence artificielle conversationnelle, de la recherche d'information et des opérations télécom.
+
+La figure \ref{fig:logo-amsys} présente l'identité visuelle de la société.
+
+Amsys Consulting s'appuie sur un cadre rigoureux en matière de sécurité de l'information et de qualité de service, ainsi que sur des partenariats stratégiques avec les principaux fournisseurs de services cloud. Ce socle n'est pas resté un élément de contexte : il a directement structuré plusieurs choix techniques du projet. Les frontières de sécurité, les pratiques d'observabilité et l'architecture d'infrastructure décrites dans les chapitres suivants en découlent en grande partie, et plusieurs décisions que nous justifions par la suite ne s'expliquent pleinement qu'à la lumière de ces exigences internes.
+
+\figurePlaceholder{Logo de la société Amsys Consulting}{logo-amsys}{Logo officiel de la société, sur fond blanc, cadré et centré.}
+
+\section{Présentation du projet}
+
+\subsection{Cadre général du projet}
+
+Le projet se situe dans le domaine de la relation client des opérateurs de télécommunications. Un opérateur traite quotidiennement un volume considérable d'interactions entrantes, et la distribution de ces demandes est fortement déséquilibrée. Une minorité de sollicitations correspond à des situations complexes, singulières, qui justifient pleinement l'intervention d'un conseiller expérimenté. La grande majorité relève au contraire d'opérations courantes au déroulement prévisible : consulter un solde, régler une facture, recharger une ligne prépayée, activer une option, signaler une connexion dégradée ou demander le déblocage d'une carte SIM.
+
+Ces opérations courantes partagent trois caractéristiques qui les rendent particulièrement adaptées à une automatisation conversationnelle. Elles suivent un cheminement stable d'une occurrence à l'autre. Elles s'appuient sur des informations déjà présentes dans le système d'information de l'opérateur. Elles aboutissent enfin à un nombre restreint d'actions bien identifiées. Le logiciel que nous avons développé prend place précisément à cet endroit : il se positionne en amont du conseiller humain, prend en charge les demandes qu'il peut résoudre de bout en bout, et réserve l'attention humaine aux situations qui la requièrent réellement.
+
+Ce positionnement impose une contrainte de fonctionnement qui gouverne l'ensemble des décisions techniques présentées dans ce rapport. Un échange parlé n'est perçu comme naturel que si la réponse survient dans le rythme d'une conversation ordinaire. Au delà d'un certain délai, l'interlocuteur ne perçoit plus une hésitation mais une défaillance : il répète sa phrase, se reprend, ou abandonne. Cette contrainte transforme chaque étape du traitement en une question de budget. Comprendre la parole, retrouver le contexte du client, consulter la documentation de l'opérateur, raisonner, décider, agir puis répondre à voix haute sont autant d'étapes qui consomment une part d'un temps total qui ne peut pas s'allonger. Nous reviendrons sur cette contrainte tout au long du rapport, car elle explique un grand nombre de choix qui paraîtraient arbitraires sans elle.
+
+Le cadre du projet comporte enfin une dimension linguistique. Le contexte d'exploitation visé est multilingue : le français constitue la langue principale, l'arabe et l'anglais sont également pris en charge. Cette exigence n'est pas un simple paramètre de configuration. Elle influe sur le choix des modèles, sur la qualité de la recherche documentaire et sur la manière dont le système bascule d'une langue à l'autre en cours de conversation.
+
+\subsection{Problématique}
+
+Les canaux de relation client actuellement en service reposent majoritairement sur trois mécanismes : des serveurs vocaux interactifs organisés en arborescence de menus, des scripts destinés à guider les conseillers, et une procédure d'escalade par création de ticket. Cet ensemble fonctionne, mais il produit une expérience dont les limites sont bien documentées dans le secteur.
+
+Le premier symptôme est le temps d'attente. Le second est la répétition : le client s'identifie une première fois auprès du serveur vocal, puis de nouveau auprès du conseiller, parfois une troisième fois lors d'un transfert. Le troisième symptôme est la perte de contexte. À chaque transition entre services, le client doit reformuler sa demande, car l'information rassemblée à l'étape précédente ne circule pas avec lui.
+
+Deux conséquences en découlent. La première est d'ordre opérationnel. Une part significative du temps des conseillers est absorbée par des tâches au déroulement prévisible, qui n'exploitent ni leur expérience ni leur capacité d'analyse, et qui pourraient être résolues sans intervention manuelle. La seconde est d'ordre commercial. La friction ressentie à ce stade du parcours affecte directement la satisfaction, dans un secteur où le changement d'opérateur est devenu simple et où l'attrition constitue un enjeu majeur.
+
+Une automatisation naïve de ces échanges ne résout cependant qu'une partie du problème, et en introduit une autre. Un système conversationnel adossé à un modèle de langue produit un texte plausible, ce qui n'équivaut pas à un texte exact. Sur un domaine documentaire, une réponse inexacte engendre une insatisfaction. Sur une opération qui engage un compte client, elle engendre un incident : un paiement passé pour un montant erroné, une ligne réactivée sans autorisation, une option souscrite à l'insu du titulaire. La difficulté ne se limite donc pas à faire comprendre et répondre une machine. Elle consiste à obtenir un comportement dont on puisse démontrer, après coup, qu'il était correct.
+
+C'est cette double exigence qui définit la problématique traitée dans ce projet. Il s'agit de résoudre les demandes courantes en conversation naturelle, dans un rythme temps réel, tout en garantissant que chaque action ayant une conséquence pour le client demeure encadrée, justifiée et vérifiable. La première partie de l'exigence relève de la performance et de la qualité conversationnelle. La seconde relève de la maîtrise du comportement et de la traçabilité. Aucune des deux ne peut être sacrifiée au bénéfice de l'autre.
+
+\subsection{Solution proposée}
+
+La solution que nous proposons est une plateforme conversationnelle auto hébergée, capable de prendre en charge de bout en bout les demandes fréquentes d'un client d'opérateur télécom, en voix comme en texte, en français, en arabe et en anglais.
+
+L'idée directrice tient en une séparation nette entre deux responsabilités que les systèmes conversationnels confondent habituellement. D'un côté, la compréhension du langage, la conduite du dialogue et la formulation de la réponse, pour lesquelles un modèle de langue est l'outil approprié. De l'autre, la décision d'agir sur le compte d'un client, qui ne relève pas du modèle mais d'un ensemble de règles métier explicites, évaluées de manière déterministe et indépendantes de toute interprétation. Le modèle propose, les règles disposent.
+
+Autour de cette séparation, la plateforme organise quatre garanties complémentaires. Les réponses factuelles sont ancrées dans la documentation propre à l'opérateur plutôt que dans la mémoire du modèle, et le système admet explicitement son ignorance lorsque cette documentation ne contient pas la réponse. Toute action sensible est précédée d'une vérification d'identité et suivie d'un verdict explicite, dont le motif est conservé. Chaque acte conséquent est inscrit dans un registre dont l'intégrité peut être contrôlée ultérieurement. Enfin, lorsque l'autonomie n'est pas appropriée, la conversation est transmise à un conseiller humain accompagnée du dossier complet de ce qui a été compris, tenté et décidé.
+
+Ce dernier point mérite d'être souligné, car il inverse une hypothèse courante. Le transfert vers un humain n'est pas traité comme l'échec du système automatique, mais comme l'un de ses résultats normaux, prévu et outillé au même titre que la résolution autonome.
+
+\subsection{Objectifs du projet}
+
+Les objectifs énoncés ci après structurent la suite du rapport. Chacun se traduit au chapitre suivant en besoins fonctionnels ou non fonctionnels, et trouve au chapitre de réalisation la description du mécanisme qui le satisfait.
+
+\begin{itemize}
+  \item Résoudre de façon autonome les demandes courantes d'un client, en dialogue parlé naturel, sans passage par une arborescence de menus.
+  \item Tenir un rythme conversationnel temps réel, en gérant correctement les interruptions du client et les silences de fin de tour de parole.
+  \item Ancrer chaque réponse factuelle dans la documentation de l'opérateur, et faire admettre au système son ignorance plutôt que produire une réponse plausible mais infondée.
+  \item Soumettre chaque action sensible à des règles métier déterministes produisant un verdict explicite, assorti de l'identifiant de la règle qui l'a motivé.
+  \item Garantir qu'une action approuvée est exécutée une fois et une seule, même en cas de reprise ou de tentative concurrente.
+  \item Rendre vérifiable après coup tout acte ayant une conséquence pour le client, au moyen d'un registre dont l'altération est détectable.
+  \item Transférer la conversation à un conseiller humain, ou négocier un rappel lorsque aucun conseiller n'est disponible, en transmettant dans les deux cas le contexte complet de l'échange.
+  \item Conserver la maîtrise de la plateforme en privilégiant les composants ouverts et l'hébergement interne partout où cela préserve le contrôle sur les données et sur l'évolution du système.
+  \item Offrir aux équipes d'exploitation les moyens de superviser, d'auditer et de faire évoluer le comportement du système sans intervention sur le code.
+\end{itemize}
+
+Ces objectifs sont volontairement formulés en termes de propriétés vérifiables plutôt qu'en termes de fonctionnalités. Cette formulation nous engage : elle rend possible, au chapitre de réalisation, la démonstration que chacun d'eux est effectivement tenu.
+
+\section{Étude de l'existant}
+
+Avant de concevoir notre solution, nous avons examiné ce qui existe déjà, à deux niveaux. Le premier niveau est celui du dispositif que les opérateurs exploitent aujourd'hui. Le second est celui des plateformes commerciales d'automatisation conversationnelle qui se positionnent sur ce marché.
+
+\subsection{Le dispositif en place chez les opérateurs}
+
+Le dispositif historique combine un serveur vocal interactif, une équipe de conseillers outillée par des scripts, et un système de gestion de tickets pour les demandes qui ne se résolvent pas au premier contact. Sa robustesse tient à sa simplicité : le parcours est entièrement déterminé à l'avance et son comportement est parfaitement prévisible. Cette même propriété constitue sa limite. Une arborescence de menus ne peut couvrir que les cas anticipés lors de sa conception, elle impose au client de traduire son besoin dans le vocabulaire du système, et elle ne transporte pratiquement aucune information d'une étape à la suivante.
+
+\subsection{Les plateformes commerciales d'automatisation conversationnelle}
+
+Trois acteurs européens structurent aujourd'hui ce segment. Nous les avons retenus parce qu'ils couvrent le même besoin que notre projet et qu'ils représentent trois approches différentes du problème.
+
+\subsubsection{PolyAI}
+
+PolyAI est un éditeur britannique d'assistants vocaux destinés à l'automatisation du service client. La plateforme prend en charge les appels entrants et sortants, le débordement de file d'attente, le routage par intention et l'escalade vers un conseiller, avec une prise en charge multilingue étendue et des intégrations vers les systèmes de gestion de la relation client, les plateformes de réservation, les systèmes de paiement et les logiciels de centre de contact \cite{polyai}. Ses points forts reconnus sont la qualité de la voix synthétisée et la gestion des tours de parole, y compris les interruptions et les corrections en cours d'énoncé.
+
+La solution est livrée comme un service géré. Ce choix de distribution simplifie considérablement le déploiement, mais il place la chaîne de raisonnement interne hors du périmètre de l'équipe cliente. La décomposition en agents spécialisés, la stratégie de recherche documentaire et le contrôle granulaire des politiques métier ne constituent pas des surfaces de conception exposées, et l'adaptation à un système d'information particulier passe par une intégration conduite par l'éditeur.
+
+\subsubsection{Cognigy}
+
+Cognigy est une plateforme allemande d'intelligence artificielle conversationnelle pour l'entreprise, qui couvre les canaux voix, dialogue en ligne et messagerie, avec des connecteurs natifs vers les principaux environnements de centre de contact. Le produit a évolué vers des capacités agentiques, avec des agents capables de collaborer et de partager une mémoire contextuelle lors des passages de relais \cite{cognigy}. Son environnement de conception en low-code permet à des profils non techniques de construire et de faire évoluer des parcours, ce qui accélère nettement le déploiement initial.
+
+Ce même choix de conception constitue la contrepartie. Un éditeur visuel définit implicitement l'ensemble des compositions possibles. La profondeur de personnalisation reste donc bornée par ce que l'outil expose, notamment sur la logique d'orchestration, sur la définition fine des agents spécialisés et sur l'articulation entre la couche de raisonnement et des politiques métier maintenues à l'extérieur de la plateforme.
+
+\subsubsection{Parloa}
+
+Parloa est une plateforme européenne d'automatisation vocale conçue spécifiquement pour les opérations de centre de contact. Elle couvre le cycle de vie complet des agents, de la définition à l'optimisation, avec une gouvernance de production comprenant le versionnement et des garde-fous appliqués aux instructions du modèle, ainsi qu'une téléphonie opérée en propre \cite{parloa}. Son alignement sur les indicateurs propres aux centres d'appels et sa rapidité de mise en service constituent ses principaux atouts.
+
+Le produit est positionné comme une offre verticalement intégrée plutôt que comme une architecture ouverte. Cette intégration explique sa cohérence de bout en bout, et restreint dans le même mouvement la possibilité pour une équipe externe de composer ses propres agents, de définir sa propre stratégie de récupération documentaire et d'appliquer ses propres règles déterministes sur les actions sensibles.
+
+\subsection{Synthèse comparative}
+
+Le tableau \ref{tab:existant} récapitule les avantages et les inconvénients de chacun de ces systèmes au regard du besoin exprimé au paragraphe précédent.
+
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.25}
+\begin{tabular}{|p{3.2cm}|p{5.4cm}|p{5.4cm}|}
+\hline
+\textbf{Système existant} & \textbf{Avantages} & \textbf{Inconvénients} \\
+\hline
+Serveur vocal interactif et scripts de conseillers
+& Comportement entièrement prévisible. Coût de mise en oeuvre faible. Aucune dépendance à un modèle de langue.
+& Ne couvre que les cas anticipés. Impose au client le vocabulaire du système. Ne transporte pas le contexte d'une étape à l'autre. Génère attente, réidentifications et transferts. \\
+\hline
+PolyAI
+& Qualité vocale élevée. Gestion fine des tours de parole. Couverture multilingue étendue. Intégrations métier éprouvées.
+& Service géré : la chaîne de raisonnement n'est pas exposée. Décomposition agentique et stratégie documentaire non maîtrisables. Adaptation dépendante de l'éditeur. Auto hébergement non proposé. \\
+\hline
+Cognigy
+& Couverture multicanale. Capacités agentiques avec mémoire partagée. Conception en low-code accessible aux profils métier. Déploiement initial rapide.
+& Personnalisation bornée par l'éditeur visuel. Orchestration et politiques métier difficilement externalisables. Contrôle limité sur la couche de récupération documentaire. \\
+\hline
+Parloa
+& Conception centrée sur la voix. Gestion du cycle de vie des agents. Gouvernance de production et versionnement. Téléphonie opérée en propre.
+& Offre verticalement intégrée. Composition d'agents propres restreinte. Règles déterministes sur actions sensibles non maîtrisables par l'équipe cliente. \\
+\hline
+\end{tabular}
+\caption{Avantages et inconvénients des systèmes existants}
+\label{tab:existant}
+\end{table}
+
+Trois manques reviennent d'un système à l'autre, et ce sont eux qui définissent l'espace dans lequel notre proposition s'inscrit. Le premier est l'absence de surface de contrôle explicite sur la décision : aucune de ces plateformes n'expose un mécanisme de règles déterministes que l'équipe cliente définisse et fasse évoluer elle même, alors que ce sont ces règles qui protègent les opérations engageant un compte client. Le deuxième est la maîtrise limitée de l'ancrage documentaire, qui conditionne pourtant l'exactitude des réponses. Le troisième est l'impossibilité de conserver l'ensemble sous contrôle interne, ce qui pèse lorsque les données traitées relèvent de la vie privée des abonnés.
+
+Le tableau \ref{tab:positionnement} positionne la solution proposée sur ces critères. Nous y reviendrons au chapitre de réalisation, où chacune de ces lignes sera rattachée au mécanisme qui la met en oeuvre.
+
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.25}
+\begin{tabular}{|p{4.9cm}|p{2.1cm}|p{2.1cm}|p{2.1cm}|p{2.4cm}|}
+\hline
+\textbf{Critère} & \textbf{PolyAI} & \textbf{Cognigy} & \textbf{Parloa} & \textbf{Solution proposée} \\
+\hline
+Interaction vocale temps réel & Oui & Oui & Oui & \textbf{Oui} \\
+\hline
+Décomposition en agents spécialisés maîtrisée par l'équipe & Non & Partielle & Non & \textbf{Oui} \\
+\hline
+Ancrage documentaire configurable de bout en bout & Non & Partielle & Non & \textbf{Oui} \\
+\hline
+Règles déterministes explicites sur les actions sensibles & Non exposées & Limitées & Limitées & \textbf{Explicites} \\
+\hline
+Traçabilité vérifiable des décisions & Non exposée & Partielle & Partielle & \textbf{Registre vérifiable} \\
+\hline
+Spécialisation métier télécom & Générique & Générique & Générique & \textbf{Native} \\
+\hline
+Auto hébergement possible & Non & Partiel & Non & \textbf{Oui} \\
+\hline
+\end{tabular}
+\caption{Positionnement de la solution proposée par rapport aux plateformes étudiées}
+\label{tab:positionnement}
+\end{table}
+
+\section{Chronologie du projet}
+
+Le projet s'est déroulé de mars à août 2026. Nous l'avons organisé en six phases successives, chacune produisant un ensemble cohérent et démontrable plutôt qu'un simple lot de travaux. La figure \ref{fig:gantt} présente le diagramme de Gantt correspondant, et le tableau \ref{tab:phases} précise ce que chaque phase a produit.
+
+\figureTikz{Diagramme de Gantt du projet}{gantt}{fig-gantt}
+
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.25}
+\begin{tabular}{|p{2.1cm}|p{4.0cm}|p{7.8cm}|}
+\hline
+\textbf{Période} & \textbf{Phase} & \textbf{Résultat principal} \\
+\hline
+Mars & Cadrage et étude & Compréhension du domaine, étude de l'existant, spécification des besoins, choix de l'architecture cible et des principes structurants. \\
+\hline
+Avril & Fondations & Mise en place du socle applicatif, du modèle de données, de la séparation en contextes métier et des interfaces entre couches. \\
+\hline
+Mai & Chaîne vocale temps réel & Premier échange parlé de bout en bout, gestion des tours de parole et des interruptions, chaînes de repli entre fournisseurs. \\
+\hline
+Juin & Décision et exécution & Services métier, chaîne décision, politique et exécution, exécution idempotente des actions sensibles, registre d'audit. \\
+\hline
+Juillet & Connaissance et intégration & Chaîne d'ingestion et de récupération documentaire, intégration au système de gestion de tickets, escalade et planification de rappels. \\
+\hline
+Août & Interfaces et durcissement & Portail client, console d'administration, observabilité, campagne de vérification, corrections et rédaction du présent rapport. \\
+\hline
+\end{tabular}
+\caption{Phases du projet et résultats associés}
+\label{tab:phases}
+\end{table}
+
+Ces phases se recouvrent partiellement. Plusieurs travaux engagés lors d'une phase se sont poursuivis pendant la suivante, notamment l'optimisation de la chaîne vocale, qui a fait l'objet d'ajustements jusqu'aux dernières semaines à mesure que les mesures de latence se précisaient.
+
+\section{Processus de développement}
+
+\subsection{Le choix d'un cycle itératif et incrémental}
+
+Nous avons conduit ce projet selon un cycle de vie itératif et incrémental. Ce choix ne relève pas d'une préférence méthodologique mais d'une contrainte propre au sujet.
+
+Un cycle séquentiel suppose que le comportement attendu du logiciel puisse être spécifié complètement avant d'être construit. Cette hypothèse ne tenait pas ici. Une part importante des décisions de conception dépendait de grandeurs qui n'existent qu'une fois le composant en fonctionnement : le temps réellement consommé par une étape de la chaîne vocale, la qualité effective d'une recherche documentaire sur un corpus multilingue, le comportement d'un modèle face à une instruction ambiguë. Ces grandeurs ne se déduisent pas d'une étude préalable, elles se mesurent. Le développement devait donc procéder par constructions successives, chacune suffisamment complète pour être mesurée, puis conservée, corrigée ou remplacée selon le résultat obtenu.
+
+\subsection{La forme concrète des itérations}
+
+Chaque itération a pris la forme d'un incrément numéroté, associé à une branche de développement dédiée et à un document décrivant son contenu, son intention et son résultat. Le projet compte à son terme cent douze incréments de ce type, pour deux cent soixante validations enregistrées dans l'historique du dépôt.
+
+Cette granularité fine répond à un besoin précis. Un incrément qui isole une modification unique reste réversible : si une mesure ultérieure invalide un choix, il est possible de revenir sur ce choix sans défaire ce qui a été construit autour. Nous avons appliqué cette règle avec une rigueur particulière aux mécanismes que nous qualifions de porteurs, ceux dont dépend une garantie du système. Une modification touchant l'un d'eux fait l'objet d'un incrément à part entière, accompagné de la justification du changement.
+
+La figure \ref{fig:cycle-iteratif} illustre le cycle appliqué à chaque incrément.
+
+\figureTikz{Cycle itératif et incrémental appliqué au projet}{cycle-iteratif}{fig-cycle-iteratif}
+
+\subsection{Vérification continue}
+
+La mesure occupant une place centrale dans ce cycle, elle devait être disponible en permanence et non à l'issue du développement. Nous avons donc constitué progressivement un ensemble de vérifications automatisées couvrant les comportements que le système doit garantir quelles que soient ses évolutions ultérieures : le caractère déterministe des décisions, l'exécution unique des actions sensibles, le refus de répondre en l'absence de source documentaire, le comportement en cas de défaillance d'un fournisseur externe, et le respect de la langue de l'échange. Le chapitre de réalisation revient en détail sur cet ensemble et sur ce que chaque famille de vérifications protège.
+
+\section*{Conclusion}
+
+Ce chapitre a établi le cadre du projet. Nous avons présenté la société d'accueil, puis délimité le domaine d'application et la contrainte de temps réel qui le gouverne. L'analyse de la problématique a fait apparaître une exigence double : traiter les demandes courantes en conversation naturelle, et garantir simultanément que toute action engageant un client demeure encadrée et vérifiable. L'étude de l'existant a montré que les dispositifs en place et les plateformes commerciales disponibles répondent partiellement à la première exigence et laissent la seconde hors du contrôle de l'équipe cliente. Nous avons enfin exposé la chronologie du projet et le cycle itératif et incrémental qui a permis de conduire des choix de conception dépendant de mesures.
+
+Le chapitre suivant traduit ces objectifs en spécifications. Nous y identifions les acteurs du système, nous formulons les besoins fonctionnels et non fonctionnels qui en découlent, et nous détaillons les principaux cas d'utilisation qui structureront ensuite la conception.

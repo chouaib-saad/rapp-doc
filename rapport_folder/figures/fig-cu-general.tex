@@ -1,0 +1,53 @@
+% Diagramme de cas d'utilisation général (figure 2.1)
+\begin{tikzpicture}[x=1cm, y=1cm]
+
+  % ── Frontière du système ──────────────────────────────────
+  \draw[line width=0.7pt] (2.35,-4.95) rectangle (11.15,4.55);
+  \node[font=\sffamily\small\bfseries, anchor=north] at (6.75,4.42) {La plateforme};
+
+  % ── Cas d'utilisation : périmètre du client ───────────────
+  \node[cu, minimum width=30mm] (c1) at (4.55, 3.30) {Mener une\\conversation};
+  \node[cu, minimum width=30mm] (c2) at (4.55, 1.90) {Obtenir une réponse\\documentaire};
+  \node[cu, minimum width=30mm] (c3) at (4.55, 0.50) {Exécuter une\\opération sensible};
+  \node[cu, minimum width=30mm] (c4) at (4.55,-0.90) {Gérer ses tickets};
+  \node[cu, minimum width=30mm] (c5) at (4.55,-2.30) {Consulter son\\espace personnel};
+  \node[cu, minimum width=30mm] (c6) at (4.55,-3.70) {Escalader vers un\\conseiller humain};
+
+  % ── Cas d'utilisation : périmètre interne ─────────────────
+  \node[cu, minimum width=30mm] (a1) at (8.95, 3.30) {Superviser\\les conversations};
+  \node[cu, minimum width=30mm] (a2) at (8.95, 1.90) {Inspecter décisions\\et verdicts};
+  \node[cu, minimum width=30mm] (a3) at (8.95, 0.50) {Gérer conseillers\\et disponibilités};
+  \node[cu, minimum width=30mm] (a4) at (8.95,-0.90) {Administrer les\\règles métier};
+  \node[cu, minimum width=30mm] (a5) at (8.95,-2.30) {Gérer la base\\documentaire};
+  \node[cu, minimum width=30mm] (a6) at (8.95,-3.70) {Contrôler\\l'intégrité};
+
+  % ── Acteur principal externe ──────────────────────────────
+  \acteur{cli}{(0,0.1)}{Client}
+
+  % ── Acteurs internes, hiérarchie de droits croissants ─────
+  \acteur{cons}{(13.6, 2.95)}{Conseiller}
+  \acteur{sup}{(13.6, 0.45)}{Superviseur}
+  \acteur{adm}{(13.6,-2.05)}{Administrateur}
+
+  % Généralisation : le superviseur hérite du conseiller,
+  % l'administrateur hérite du superviseur.
+  \draw[heritage] (13.6, 1.30) -- (13.6, 2.12);
+  \draw[heritage] (13.6,-1.20) -- (13.6,-0.38);
+
+  % ── Associations du client ────────────────────────────────
+  \foreach \c in {c1,c2,c3,c4,c5,c6}{ \draw[assoc] (cli-droite) -- (\c.west); }
+
+  % ── Associations des profils internes ─────────────────────
+  \draw[assoc] (cons-gauche) -- (a3.east);
+  \draw[assoc] (sup-gauche)  -- (a1.east);
+  \draw[assoc] (sup-gauche)  -- (a2.east);
+  \draw[assoc] (adm-gauche)  -- (a4.east);
+  \draw[assoc] (adm-gauche)  -- (a5.east);
+  \draw[assoc] (adm-gauche)  -- (a6.east);
+
+  % Le conseiller reçoit les conversations escaladées. Le lien
+  % contourne le cadre par le bas afin de ne croiser aucun cas.
+  \draw[assoc] (cons-bas) -- (13.6,-3.55) -- (12.15,-3.55)
+               -- (12.15,-4.55) -- (6.55,-4.55) -- (c6.south east);
+
+\end{tikzpicture}

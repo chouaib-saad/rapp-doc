@@ -1,0 +1,97 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1020" height="235" viewBox="0 0 1020 235">
+<rect width="1020" height="235" fill="#FFFFFF"/>
+<defs>
+<style>
+text{font-family:Arial,Helvetica,sans-serif;}
+.sname{font-size:12px;font-weight:bold;fill:#111111;text-anchor:middle;}
+.sdo{font-size:11px;fill:#111111;}
+.guard{font-size:11px;fill:#333333;text-anchor:middle;}
+.state{stroke:#333333;stroke-width:1.2;}
+.sep{stroke:#333333;stroke-width:1;}
+.wire{fill:none;stroke:#333333;stroke-width:1.2;}
+.arrow{fill:none;stroke:#333333;stroke-width:1.2;}
+.shadow{fill:#D0D0D0;opacity:0.55;}
+</style>
+</defs>
+
+<!-- ===================== INITIAL PSEUDOSTATE ===================== -->
+<circle cx="30" cy="116" r="8" class="shadow"/>
+<circle cx="27" cy="113" r="8" fill="#111111"/>
+
+<!-- ===================== STATE: Nouvelle (blue) ===================== -->
+<rect x="116" y="73" width="133" height="82" rx="8" class="shadow"/>
+<rect x="113" y="70" width="133" height="82" rx="8" fill="#96D5F2" class="state"/>
+<line x1="113" y1="91" x2="246" y2="91" class="sep"/>
+<text x="179" y="85" class="sname">Nouvelle</text>
+<text x="118" y="106" class="sdo">do/Étudier la demande</text>
+
+<!-- ===================== CHOICE PSEUDOSTATE (diamond) ===================== -->
+<path d="M307 96 L322 111 L307 126 L292 111 Z" fill="#FFFFFF" class="state"/>
+
+<!-- ===================== STATE: En cours (yellow) ===================== -->
+<rect x="365" y="19" width="163" height="68" rx="8" class="shadow"/>
+<rect x="362" y="16" width="163" height="68" rx="8" fill="#FCFBD9" class="state"/>
+<line x1="362" y1="38" x2="525" y2="38" class="sep"/>
+<text x="443" y="31" class="sname">En cours</text>
+<text x="367" y="53" class="sdo">do/Réaliser le travail demandé</text>
+
+<!-- ===================== STATE: Terminée (green) ===================== -->
+<rect x="595" y="19" width="102" height="68" rx="8" class="shadow"/>
+<rect x="592" y="16" width="102" height="68" rx="8" fill="#CDF2CD" class="state"/>
+<line x1="592" y1="38" x2="694" y2="38" class="sep"/>
+<text x="643" y="31" class="sname">Terminée</text>
+<text x="597" y="53" class="sdo">do/Évaluer le travail</text>
+
+<!-- ===================== STATE: Évaluée (green) ===================== -->
+<rect x="784" y="19" width="132" height="68" rx="8" class="shadow"/>
+<rect x="781" y="16" width="132" height="68" rx="8" fill="#CDF2CD" class="state"/>
+<text x="847" y="31" class="sname">Évaluée</text>
+
+<!-- ===================== STATE: Refusée (red) ===================== -->
+<rect x="396" y="147" width="112" height="69" rx="8" class="shadow"/>
+<rect x="393" y="144" width="112" height="69" rx="8" fill="#F4A6A6" class="state"/>
+<text x="449" y="159" class="sname">Refusée</text>
+
+<!-- ===================== FINAL PSEUDOSTATE (bullseye) ===================== -->
+<circle cx="949" cy="114" r="11" class="shadow"/>
+<circle cx="946" cy="111" r="11" fill="#FFFFFF" stroke="#111111" stroke-width="1.5"/>
+<circle cx="946" cy="111" r="6.5" fill="#111111"/>
+
+<!-- ===================== TRANSITIONS ===================== -->
+<!-- initial -> Nouvelle  [Demander] -->
+<path d="M35 113 L103 113" class="wire"/>
+<path d="M103 108 L111 113 L103 118" class="arrow"/>
+<text x="75" y="97" class="guard">[Demander]</text>
+
+<!-- Nouvelle -> choice -->
+<path d="M246 111 L284 111" class="wire"/>
+<path d="M284 106 L292 111 L284 116" class="arrow"/>
+
+<!-- choice -> En cours  [Accepter] -->
+<path d="M307 96 L307 50 L354 50" class="wire"/>
+<path d="M354 45 L362 50 L354 55" class="arrow"/>
+<text x="307" y="37" class="guard">[Accepter]</text>
+
+<!-- En cours -> Terminée  [Terminer] -->
+<path d="M525 50 L584 50" class="wire"/>
+<path d="M584 45 L592 50 L584 55" class="arrow"/>
+<text x="555" y="37" class="guard">[Terminer]</text>
+
+<!-- Terminée -> Évaluée  [Évaluer] -->
+<path d="M694 50 L773 50" class="wire"/>
+<path d="M773 45 L781 50 L773 55" class="arrow"/>
+<text x="735" y="37" class="guard">[Évaluer]</text>
+
+<!-- choice -> Refusée  [Refuser] -->
+<path d="M307 126 L307 178 L385 178" class="wire"/>
+<path d="M385 173 L393 178 L385 183" class="arrow"/>
+<text x="300" y="190" class="guard">[Refuser]</text>
+
+<!-- Évaluée -> final -->
+<path d="M913 50 L946 50 L946 91" class="wire"/>
+<path d="M941 91 L946 99 L951 91" class="arrow"/>
+
+<!-- Refusée -> final -->
+<path d="M505 178 L946 178 L946 132" class="wire"/>
+<path d="M941 132 L946 124 L951 132" class="arrow"/>
+</svg>

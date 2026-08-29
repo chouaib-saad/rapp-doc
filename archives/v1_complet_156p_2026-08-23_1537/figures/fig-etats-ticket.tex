@@ -1,0 +1,27 @@
+% Diagramme d'états transitions d'un ticket (figure 3.13)
+\begin{tikzpicture}[x=1cm, y=1cm]
+
+  \node[debut] (i) at (0,0) {};
+  \node[etat, minimum width=24mm] (ouv) at (2.6,0)  {Ouvert};
+  \node[etat, minimum width=24mm] (enc) at (6.6,0)  {En cours\\de traitement};
+  \node[etat, minimum width=24mm] (att) at (6.6,-2.6) {En attente};
+  \node[etat, minimum width=24mm] (res) at (10.6,0) {Résolu};
+  \node[etat, minimum width=24mm] (clo) at (14.2,0) {Clôturé};
+  \node[fin] (f) at (16.9,0) {};
+
+  \draw[flux] (i) -- node[etiq, above] {création} (ouv);
+  \draw[flux] (ouv) -- node[etiq, above] {prise en charge} (enc);
+  \draw[flux] (enc) -- node[etiq, above] {résolution apportée} (res);
+  \draw[flux] (res) -- node[etiq, above] {clôture} (clo);
+  \draw[flux] (clo) -- (f);
+
+  \draw[flux] (enc.south) -- node[etiq, right, pos=0.45] {attente d'un\\élément externe} (att.north);
+  \draw[flux] (att.west) -- ++(-1.35,0) |- node[etiq, above, pos=0.78] {élément reçu} (enc.west);
+
+  \draw[flux] (res.north) to[bend right=32]
+        node[etiq, above, pos=0.5] {réouverture} (enc.north);
+
+  \node[note, text width=72mm, anchor=north, align=center] at (8.4,-4.05)
+       {Le vocabulaire d'états est celui du système de référence de l'organisation. La plateforme\\traduit les codes de ce système vers ces cinq états, et cette traduction est le seul point\\où les deux vocabulaires se rencontrent.};
+
+\end{tikzpicture}

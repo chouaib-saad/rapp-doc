@@ -1,0 +1,51 @@
+that's okay confirmed but for besoins  fonctionnl et non fonctionnl focus and selelectionner les besoins e facon claire et plus soigneurse aussi pour :
+here is the list of non fonctional requirments u gonna select from carefully :
+Non-Functional Requirements (NFRs)
+Non-functional requirements specify the quality attributes, system qualities, and operational constraints under which the system must function.
+
+Security and Privacy: Focuses on data protection and authorization. The system must restrict unauthorized access to sensitive data (e.g., implementing Row-Level Security in the database).
+
+Reliability and Availability: Ensures continuous system uptime and safe operation without failure (e.g., high availability for clinical monitoring and physical obstacle avoidance).
+
+Efficiency (Performance): Defines system speed and resource usage under workload constraints (e.g., maintaining low-latency response times and real-time data updates).
+
+Usability (Ergonomics): Measures how user-friendly, accessible, and intuitive the software is (e.g., a modern minimalist UI and voice interaction for users with limited mobility).
+
+Extensibility: Measures how easily new features, components, or AI models can be integrated into the existing software architecture without breaking existing functionality.
+
+Maintainability: Refers to how easily developers can update, debug, or refactor the system (e.g., clear code documentation for functions and core modules to aid future audits).
+
+Scalability: The system's capability to handle increasing workloads, data volume, or concurrent user traffic seamlessly (e.g., horizontally scaling backend microservices during peak usage).
+
+Interoperability: The ability of the application to connect, exchange data, and integrate smoothly with third-party APIs, legacy software, or external hardware systems.
+
+Portability & Compatibility: The ease with which the application can run across multiple operating systems, hardware platforms, web browsers, or containerized environments (e.g., Docker runtime compatibility).
+
+Robustness (Fault Tolerance): The system's ability to handle unexpected inputs, component failures, or network disruptions gracefully without causing a total crash.
+
+Recoverability & Resiliency (Disaster Recovery): The system's capability to restore data and resume normal operations quickly following a major system crash or outage.
+
+Testability: The degree to which software components can be isolated and verified through automated unit, integration, and performance testing pipelines.
+
+Compliance & Regulatory: Adherence to legal standards, security regulations, and domain-specific privacy laws (e.g., GDPR for data privacy or HIPAA for medical data).
+
+Auditability & Logging: The capability to capture structured logs and audit trails of user actions and internal system processes for troubleshooting and security monitoring.
+
+for the : 2.4 Diagrammes de cas d'utilisation
+choisir les cas d'utilisations les pllus highlighted and can explained very well and can be a software engineering and great workflow to show and to show all the interresting work and soution architecturing also use case like client question answering from knowledge and selecting tools that's something deserve to talk on too !
+
+for chapter 4 that seems to be good but highlight more piplines and things and other diagrams if needed everything seems great for now but if there other diagrams or things needs to be highlighted i give you the light to add everything will make the work appears better and make the hard work show on and show the results and the engineering procceses and the impressive details , workflows , pipline yes it deserves to be added like a diagram or a graph etc.. but in the best and in the right place and everything should be perfect and defencible !
+
+about the bibliographie & ntographie seems to be strong but we are open for other things if there is things to add later (but with aproval and negociations) :
+Bibliographie & Netographie
+Annexes
+Annexe A : Théorie complète sur les métriques STT/TTS (WER, CER, RTF, MOS).
+Annexe B : Glossaire approfondi du RAG et de l'ingénierie de contexte (Context Engineering).
+Annexe C : Détails du protocole MCP (Model Context Protocol).
+
+
+Answers for Questions for Negotiation (Before we lock this):
+1- for chapter 2 : i wanna maybe add (not change change the existing onces)  but maybe another rag scenario and warm transfer (between specialised agents could be somehting great ! (open for negociation for the additional use cases and what you recommand)
+ 2- i think the call session lifecycle more impressive and relevant to show the jury , what do you think ?
+3- yeah im agree with that anda add the more interresting engineering metrics and more interessting formulas that show impressive researches and work and proffesionalism (that's a plus not a migration or chance and it's negciable and u have to give me your recommandations about that)
+4- everything balanced and  seems to be strong for now, but i let it open for any adjustment or recommandations that makes the repport more structured and strong and better presentend with more interresting sections or details (we may talk for the geo-referenced zone or advisor registry or any other more interresting  things and features later if we need to ..)

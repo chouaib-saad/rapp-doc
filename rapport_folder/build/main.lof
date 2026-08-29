@@ -1,0 +1,57 @@
+\babel@toc {french}{}\relax 
+\thispagestyle {MyStyle}
+\addvspace {10\p@ }
+\contentsline {xchapter}{Présentation générale du projet}{3}{chapter.1}%
+\contentsline {figure}{\numberline {1.1}{\ignorespaces Logo de la société Amsys Consulting}}{5}{figure.caption.10}%
+\contentsline {figure}{\numberline {1.2}{\ignorespaces Diagramme de Gantt du projet}}{12}{figure.caption.13}%
+\contentsline {figure}{\numberline {1.3}{\ignorespaces Cycle itératif et incrémental appliqué au projet}}{14}{figure.caption.15}%
+\addvspace {10\p@ }
+\contentsline {xchapter}{Spécification des besoins}{16}{chapter.2}%
+\contentsline {figure}{\numberline {2.1}{\ignorespaces Carte des besoins fonctionnels par domaine}}{21}{figure.caption.17}%
+\contentsline {figure}{\numberline {2.2}{\ignorespaces Diagramme de cas d'utilisation général de la plateforme}}{25}{figure.caption.19}%
+\contentsline {figure}{\numberline {2.3}{\ignorespaces Diagramme du cas d'utilisation Obtenir une réponse documentaire}}{26}{figure.caption.20}%
+\contentsline {figure}{\numberline {2.4}{\ignorespaces Diagramme de séquence système du cas Obtenir une réponse documentaire}}{27}{figure.caption.22}%
+\contentsline {figure}{\numberline {2.5}{\ignorespaces Diagramme du cas d'utilisation Exécuter une opération sensible}}{28}{figure.caption.23}%
+\contentsline {figure}{\numberline {2.6}{\ignorespaces Diagramme de séquence système du cas Exécuter une opération sensible}}{29}{figure.caption.25}%
+\contentsline {figure}{\numberline {2.7}{\ignorespaces Diagramme du cas d'utilisation Escalader vers un conseiller humain}}{30}{figure.caption.26}%
+\contentsline {figure}{\numberline {2.8}{\ignorespaces Diagramme de séquence système du cas Escalader vers un conseiller humain}}{31}{figure.caption.28}%
+\addvspace {10\p@ }
+\contentsline {xchapter}{Conception}{33}{chapter.3}%
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Architecture hexagonale de la plateforme}}{35}{figure.caption.29}%
+\contentsline {figure}{\numberline {3.2}{\ignorespaces Diagramme de paquetages des contextes métier}}{36}{figure.caption.30}%
+\contentsline {figure}{\numberline {3.3}{\ignorespaces Diagramme de composants de la plateforme}}{37}{figure.caption.31}%
+\contentsline {figure}{\numberline {3.4}{\ignorespaces Diagramme de classes du modèle du domaine}}{39}{figure.caption.32}%
+\contentsline {figure}{\numberline {3.5}{\ignorespaces Diagramme de classes de la hiérarchie des agents}}{40}{figure.caption.33}%
+\contentsline {figure}{\numberline {3.6}{\ignorespaces Diagramme de classes du moteur de politique}}{40}{figure.caption.34}%
+\contentsline {figure}{\numberline {3.7}{\ignorespaces Modèle entités associations des schémas centraux}}{42}{figure.caption.35}%
+\contentsline {figure}{\numberline {3.8}{\ignorespaces Diagramme de séquence du traitement d'un tour de parole}}{43}{figure.caption.36}%
+\contentsline {figure}{\numberline {3.9}{\ignorespaces Diagramme de séquence d'une action sensible}}{44}{figure.caption.37}%
+\contentsline {figure}{\numberline {3.10}{\ignorespaces Diagramme d'activités de l'ingestion documentaire}}{45}{figure.caption.38}%
+\contentsline {figure}{\numberline {3.11}{\ignorespaces Diagramme d'activités de la recherche documentaire}}{47}{figure.caption.39}%
+\contentsline {figure}{\numberline {3.12}{\ignorespaces Diagramme d'états transitions d'une conversation}}{48}{figure.caption.40}%
+\contentsline {figure}{\numberline {3.13}{\ignorespaces Diagramme d'états transitions d'un ticket}}{48}{figure.caption.41}%
+\contentsline {figure}{\numberline {3.14}{\ignorespaces Pipeline de raisonnement d'un agent}}{49}{figure.caption.42}%
+\contentsline {figure}{\numberline {3.15}{\ignorespaces Orchestration des agents et transitions}}{51}{figure.caption.44}%
+\contentsline {figure}{\numberline {3.16}{\ignorespaces Assemblage du contexte d'un agent}}{53}{figure.caption.46}%
+\contentsline {figure}{\numberline {3.17}{\ignorespaces Modèle de sécurité de la plateforme}}{57}{figure.caption.49}%
+\addvspace {10\p@ }
+\contentsline {xchapter}{Réalisation}{61}{chapter.4}%
+\contentsline {figure}{\numberline {4.1}{\ignorespaces Chaîne de traitement temps réel et contribution des étapes}}{67}{figure.caption.54}%
+\contentsline {figure}{\numberline {4.2}{\ignorespaces Positionnement qualitatif des fournisseurs de la chaîne vocale}}{76}{figure.caption.59}%
+\contentsline {figure}{\numberline {4.3}{\ignorespaces Répartition du budget de latence par étape}}{77}{figure.caption.61}%
+\contentsline {figure}{\numberline {4.4}{\ignorespaces Gestion de la concurrence et des ressources}}{80}{figure.caption.62}%
+\contentsline {figure}{\numberline {4.5}{\ignorespaces Diagramme de déploiement de la plateforme}}{81}{figure.caption.63}%
+\contentsline {figure}{\numberline {4.6}{\ignorespaces Chronogramme d'un échange conversationnel complet}}{84}{figure.caption.64}%
+\contentsline {figure}{\numberline {4.7}{\ignorespaces Portail client : assistant conversationnel et facturation}}{85}{figure.caption.65}%
+\contentsline {figure}{\numberline {4.8}{\ignorespaces Portail client : demandes en cours et historique des échanges}}{85}{figure.caption.66}%
+\contentsline {figure}{\numberline {4.9}{\ignorespaces Console d'administration : inspection des décisions et des verdicts}}{86}{figure.caption.67}%
+\contentsline {figure}{\numberline {4.10}{\ignorespaces Console d'administration : registre d'audit et vérification d'intégrité}}{86}{figure.caption.68}%
+\contentsline {figure}{\numberline {4.11}{\ignorespaces Console d'administration : supervision de l'activité}}{86}{figure.caption.69}%
+\contentsline {figure}{\numberline {4.12}{\ignorespaces Console d'administration : gouvernance du comportement}}{87}{figure.caption.70}%
+\contentsline {figure}{\numberline {4.13}{\ignorespaces Console d'administration : escalade et disponibilités}}{87}{figure.caption.71}%
+\contentsline {figure}{\numberline {4.14}{\ignorespaces Intégrations effectives}}{87}{figure.caption.72}%
+\contentsline {figure}{\numberline {4.15}{\ignorespaces Tableaux de bord de supervision}}{88}{figure.caption.73}%
+\contentsline {figure}{\numberline {4.16}{\ignorespaces Collecte des mesures et topologie en exécution}}{88}{figure.caption.74}%
+\contentsline {figure}{\numberline {4.17}{\ignorespaces Familles de vérifications et propriétés protégées}}{89}{figure.caption.75}%
+\contentsline {figure}{\numberline {4.18}{\ignorespaces Séparation entre réponses pertinentes et bruit selon la méthode d'évaluation}}{92}{figure.caption.77}%
+\contentsline {figure}{\numberline {4.19}{\ignorespaces Volumétrie du système réalisé}}{93}{figure.caption.79}%

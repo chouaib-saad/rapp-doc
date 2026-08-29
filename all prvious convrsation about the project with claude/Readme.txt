@@ -1,0 +1,1 @@
+the markdown in this folder contains all our historic conversations with claude so you get to the point and you know what exactly done here before in this conversation

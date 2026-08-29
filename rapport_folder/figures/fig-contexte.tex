@@ -1,0 +1,53 @@
+% Assemblage du contexte d'un agent (figure 3.16)
+\begin{tikzpicture}[x=1cm, y=1cm]
+
+  \tikzset{
+    src/.style={fbox, text width=34mm, align=left, minimum height=8mm,
+                font=\sffamily\tiny},
+    cond/.style={decision, minimum width=13mm, font=\sffamily\tiny}
+  }
+
+  % ── Sources systématiques ─────────────────────────────────
+  \node[src, fill=figGrisClair] (s1) at (0, 4.0) {\textbf{Identité de session}\\session, langue, rang du tour};
+  \node[src, fill=figGrisClair] (s2) at (0, 2.6) {\textbf{Profil client}\\nom, ligne, abonnement, statut};
+  \node[src, fill=figGrisClair] (s3) at (0, 1.2) {\textbf{Sentiment courant}\\score cumulé, tours négatifs};
+
+  \node[etiquettezone, anchor=south east] at (1.8, 4.95) {Sollicitation systématique};
+
+  % ── Sources conditionnelles ───────────────────────────────
+  \node[src] (c1) at (0,-0.5) {\textbf{Situation de facturation}\\montants dus, factures ouvertes};
+  \node[src] (c2) at (0,-1.9) {\textbf{Historique des demandes}\\tickets et réclamations en cours};
+  \node[src] (c3) at (0,-3.3) {\textbf{Mémoire d'appels antérieurs}\\synthèse des échanges précédents};
+  \node[src] (c4) at (0,-4.7) {\textbf{État de vérification}\\niveau, horodatage, échéance};
+  \node[src] (c5) at (0,-6.1) {\textbf{Connaissance documentaire}\\passages pertinents et source};
+
+  \node[etiquettezone, anchor=south east] at (1.8,-0.15) {Sollicitation conditionnelle};
+  \draw[zone] (-1.95,-6.75) rectangle (1.95,0.05);
+
+  % ── Conditions ────────────────────────────────────────────
+  \node[cond] (d1) at (3.9,-0.5) {domaine\\facturation ?};
+  \node[cond] (d2) at (3.9,-1.9) {demande\\le justifie ?};
+  \node[cond] (d3) at (3.9,-3.3) {client\\connu ?};
+  \node[cond] (d4) at (3.9,-4.7) {opération\\sensible ?};
+  \node[cond] (d5) at (3.9,-6.1) {question\\documentaire ?};
+
+  \foreach \s/\d in {c1/d1, c2/d2, c3/d3, c4/d4, c5/d5}{
+    \draw[flux] (\s.east) -- (\d.west);
+  }
+
+  % ── Assembleur ────────────────────────────────────────────
+  \node[fboxtitre, text width=28mm, align=center, minimum height=26mm] (asm) at (7.9,-0.5)
+       {Assemblage\\du contexte};
+
+  \foreach \s in {s1,s2,s3}{ \draw[flux] (\s.east) -- (asm.north west); }
+  \foreach \d in {d1,d2,d3,d4,d5}{ \draw[flux] (\d.east) -- node[etiq, above, pos=0.25] {oui} (asm.west); }
+
+  % ── Sortie ────────────────────────────────────────────────
+  \node[fbox, text width=30mm, align=center, minimum height=14mm] (ag) at (12.2,-0.5)
+       {\textbf{Agent actif}\\\textit{reçoit un contexte\\assemblé, non accumulé}};
+  \draw[fluxep] (asm) -- (ag);
+
+  \node[note, text width=44mm, anchor=north west] at (10.5,-3.4)
+       {Tout élément placé dans le contexte consomme une part de la fenêtre disponible et une part du temps de traitement. Un contexte qui accumule tout devient à la fois plus coûteux et moins efficace.};
+
+\end{tikzpicture}

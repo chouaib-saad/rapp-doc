@@ -1,0 +1,117 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="614" viewBox="0 0 1024 614">
+<rect width="1024" height="614" fill="#FFFFFF"/>
+<defs>
+<style>
+text{font-family:Arial,Helvetica,sans-serif;}
+.pname{font-size:12px;font-weight:bold;fill:#111111;text-anchor:middle;}
+.ptitle{font-size:13px;font-weight:bold;fill:#111111;text-anchor:middle;}
+.edge{font-size:12px;fill:#333333;text-anchor:middle;}
+.fold{stroke:#333333;stroke-width:1.2;}
+.wire{fill:none;stroke:#333333;stroke-width:1.2;stroke-dasharray:5,4;}
+.arrow{fill:none;stroke:#333333;stroke-width:1.2;}
+.shadow{fill:#D0D0D0;opacity:0.55;}
+</style>
+</defs>
+
+<!-- ===================== PACKAGE: Contrôleur traitements (container) ===================== -->
+<rect x="301" y="42" width="360" height="367" class="shadow"/>
+<rect x="297" y="17" width="144" height="22" fill="#FFFFFF" class="fold"/>
+<rect x="297" y="38" width="360" height="367" fill="#FFFFFF" class="fold"/>
+<text x="477" y="58" class="ptitle">Contrôleur traitements</text>
+
+<!-- Système de messagerie (green) -->
+<rect x="321" y="102" width="135" height="68" class="shadow"/>
+<rect x="317" y="82" width="54" height="17" fill="#CDF2CD" class="fold"/>
+<rect x="317" y="98" width="135" height="68" fill="#CDF2CD" class="fold"/>
+<path d="M352 88 h4 v-3 h3 v3 h5 v8 h-12 z" fill="#FFFFFF" stroke="#333333" stroke-width="0.9"/>
+<text x="384" y="122" class="pname">Système de</text>
+<text x="384" y="138" class="pname">messagerie</text>
+
+<!-- Auth (red) -->
+<rect x="500" y="102" width="132" height="62" class="shadow"/>
+<rect x="496" y="82" width="54" height="17" fill="#F4A6A6" class="fold"/>
+<rect x="496" y="98" width="132" height="62" fill="#F4A6A6" class="fold"/>
+<path d="M531 88 h4 v-3 h3 v3 h5 v8 h-12 z" fill="#FFFFFF" stroke="#333333" stroke-width="0.9"/>
+<text x="562" y="124" class="pname">Auth</text>
+
+<!-- Système d'administration (blue) -->
+<rect x="329" y="279" width="124" height="100" class="shadow"/>
+<rect x="325" y="259" width="54" height="17" fill="#96D5F2" class="fold"/>
+<rect x="325" y="275" width="124" height="100" fill="#96D5F2" class="fold"/>
+<path d="M360 265 h4 v-3 h3 v3 h5 v8 h-12 z" fill="#FFFFFF" stroke="#333333" stroke-width="0.9"/>
+<text x="387" y="300" class="pname">Système</text>
+<text x="387" y="317" class="pname">d'administration</text>
+
+<!-- système de gestion de services à domicile (red) -->
+<rect x="519" y="290" width="115" height="85" class="shadow"/>
+<rect x="515" y="270" width="54" height="17" fill="#F4A6A6" class="fold"/>
+<rect x="515" y="286" width="115" height="85" fill="#F4A6A6" class="fold"/>
+<path d="M550 276 h4 v-3 h3 v3 h5 v8 h-12 z" fill="#FFFFFF" stroke="#333333" stroke-width="0.9"/>
+<text x="572" y="306" class="pname">système de</text>
+<text x="572" y="322" class="pname">gestion de</text>
+<text x="572" y="338" class="pname">services à</text>
+<text x="572" y="354" class="pname">domicile</text>
+
+<!-- ===================== Contrôleur GUI d'administration (blue) ===================== -->
+<rect x="55" y="258" width="161" height="129" class="shadow"/>
+<rect x="51" y="238" width="64" height="17" fill="#96D5F2" class="fold"/>
+<rect x="51" y="254" width="161" height="129" fill="#96D5F2" class="fold"/>
+<text x="131" y="279" class="pname">Contrôleur GUI</text>
+<text x="131" y="296" class="pname">d'administration</text>
+
+<!-- ===================== Contrôleur GUI Utilisateur (blue) ===================== -->
+<rect x="756" y="270" width="190" height="111" class="shadow"/>
+<rect x="752" y="250" width="76" height="17" fill="#96D5F2" class="fold"/>
+<rect x="752" y="266" width="190" height="111" fill="#96D5F2" class="fold"/>
+<text x="847" y="289" class="pname">Contrôleur GUI Utilisateur</text>
+
+<!-- ===================== Module intelligent de recommandation (green) ===================== -->
+<rect x="64" y="448" width="214" height="111" class="shadow"/>
+<rect x="60" y="428" width="84" height="17" fill="#CDF2CD" class="fold"/>
+<rect x="60" y="444" width="214" height="111" fill="#CDF2CD" class="fold"/>
+<text x="167" y="469" class="pname">Module intelligent de</text>
+<text x="167" y="486" class="pname">recommandation</text>
+
+<!-- ===================== Module intelligent de vérification (green) ===================== -->
+<rect x="722" y="448" width="194" height="111" class="shadow"/>
+<rect x="718" y="428" width="78" height="17" fill="#CDF2CD" class="fold"/>
+<rect x="718" y="444" width="194" height="111" fill="#CDF2CD" class="fold"/>
+<text x="815" y="469" class="pname">Module intelligent de</text>
+<text x="815" y="486" class="pname">vérification</text>
+
+<!-- ===================== DEPENDENCIES (dashed + open arrows + labels) ===================== -->
+<!-- GUI admin ..> Système d'administration -->
+<path d="M212 315 L315 315" class="wire"/>
+<path d="M315 310 L323 315 L315 320" class="arrow"/>
+<text x="265" y="299" class="edge">access</text>
+
+<!-- Système d'administration ..> gestion -->
+<path d="M449 318 L505 318" class="wire"/>
+<path d="M505 313 L513 318 L505 323" class="arrow"/>
+<text x="480" y="300" class="edge">access</text>
+
+<!-- GUI utilisateur ..> gestion -->
+<path d="M752 316 L640 316" class="wire"/>
+<path d="M640 311 L632 316 L640 321" class="arrow"/>
+<text x="690" y="299" class="edge">access</text>
+
+<!-- gestion ..> messagerie -->
+<path d="M525 270 L436 174" class="wire"/>
+<path d="M438 170 L430 168 L436 176" class="arrow"/>
+<text x="487" y="203" class="edge">access</text>
+
+<!-- gestion ..> Auth -->
+<path d="M572 270 L564 178" class="wire"/>
+<path d="M559 178 L563 170 L568 178" class="arrow"/>
+<text x="597" y="219" class="edge">import</text>
+
+<!-- gestion ..> module recommandation -->
+<path d="M560 371 L533 487 L282 487" class="wire"/>
+<path d="M282 482 L274 487 L282 492" class="arrow"/>
+<text x="417" y="441" class="edge">access</text>
+
+<!-- gestion ..> module vérification -->
+<path d="M585 371 L613 487 L710 487" class="wire"/>
+<path d="M710 482 L718 487 L710 492" class="arrow"/>
+<text x="664" y="449" class="edge">access</text>
+</svg>

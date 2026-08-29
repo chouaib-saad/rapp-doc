@@ -1,0 +1,160 @@
+% ============================================================
+% @Auteur  : Chouaib Saad
+% @Projet  : Plateforme conversationnelle temps réel — Amsys Consulting
+% @École   : ISSAT Sousse
+% ============================================================
+
+\documentclass[12pt, oneside, a4paper]{pfe-report}
+
+% ── Images ──────────────────────────────────────────────────
+\graphicspath{{images/}}
+
+% ── Commandes personnalisées ────────────────────────────────
+\input{Commands}
+\usepackage{amsmath}
+
+\usepackage{microtype}
+\emergencystretch=3em
+
+% Les figures utilisent une police sans empattement, conformément aux
+% conventions retenues pour les schémas. La fonte sans empattement par
+% défaut n'existe qu'en version bitmap dans cette installation, ce que
+% l'expansion de microtype refuse. On charge donc Nimbus Sans, qui est
+% vectorielle et correspond à la famille Helvetica attendue. La police
+% du corps du texte reste inchangée.
+\usepackage{helvet}
+
+% Le corps du rapport est en interligne un et demi. Appliqué tel quel aux
+% tableaux, cet interligne les fait déborder de la page. Les flottants
+% repassent donc en interligne simple, comme le fait déjà le modèle pour
+% la table des matières et les listes de figures et de tableaux.
+% Pour revenir à l'interligne double, remplacer les deux occurrences de
+% \onehalfspacing ci-dessous par \doublespacing.
+\usepackage{etoolbox}
+\AtBeginEnvironment{table}{\singlespacing}
+\AtBeginEnvironment{figure}{\singlespacing}
+
+% ── Styles des figures vectorielles ─────────────────────────
+\input{figures/styles}
+
+% ── Métadonnées PDF ─────────────────────────────────────────
+\hypersetup{
+  pdftitle    = {\reportTitle},
+  pdfauthor   = {\reportAuthor},
+  pdfsubject  = {\reportSubject},
+  pdfkeywords = {rapport de projet de fin d'etudes, telecommunications,
+                 agents conversationnels, temps reel, recherche augmentee
+                 par recuperation, architecture hexagonale, orchestration}
+}
+
+% ── Configuration minitoc (ordre imposé) ────────────────────
+\setcounter{minitocdepth}{2}
+\setlength{\mtcindent}{0pt}
+
+% ============================================================
+\begin{document}
+% ============================================================
+
+% ── Activation des mini-tables (une seule fois) ─────────────
+% \dominitoc prépare les fichiers .mtc à partir de la table des
+% matières. Il s'emploie AVEC \tableofcontents lorsque le rapport
+% comporte une vraie table des matières, ce qui est le cas ici.
+% \faketableofcontents est réservé aux documents SANS table des
+% matières : l'appeler en plus de \tableofcontents faisait
+% imprimer le titre de la table sans aucune entrée.
+\dominitoc
+
+% ── Page de garde ───────────────────────────────────────────
+\includepdf[fitpaper=true, pages=-]{chapters/00-PageDeGarde.pdf}
+\cleardoublepage
+
+% ── Pages liminaires ────────────────────────────────────────
+\pagenumbering{roman}
+\onehalfspacing
+
+\input{chapters/01-Dedicace}
+\newpage
+
+\input{chapters/02-Remerciements}
+\newpage
+
+\input{chapters/03-Resume}
+\newpage
+
+% ── Table des matières ──────────────────────────────────────
+% La dédicace, les remerciements, le résumé et l'abstract ne
+% portent aucun numéro. La pagination romane visible commence
+% donc ici, à i, plutôt que de reprendre le compteur masqué.
+\clearpage
+\setcounter{page}{1}
+
+\addtocontents{toc}{\protect\thispagestyle{MyStyle}}
+\renewcommand*\contentsname{TABLE DES MATIÈRES}
+
+\begin{spacing}{1}
+\tableofcontents
+\end{spacing}
+\newpage
+
+% ── Liste des figures ───────────────────────────────────────
+% \addcontentsline doit précéder la liste : placé après, il
+% enregistrait la page de FIN de la liste et non celle où elle
+% commence, d'où un renvoi décalé dans la table des matières.
+\addtocontents{lof}{\protect\thispagestyle{MyStyle}}
+\renewcommand{\listfigurename}{LISTE DES FIGURES}
+
+\addcontentsline{toc}{chapter}{\listfigurename}
+\begin{spacing}{1}
+\listoffigures
+\end{spacing}
+\adjustmtc
+\newpage
+
+% ── Liste des tableaux ──────────────────────────────────────
+\addtocontents{lot}{\protect\thispagestyle{MyStyle}}
+\renewcommand{\listtablename}{LISTE DES TABLEAUX}
+
+\addcontentsline{toc}{chapter}{\listtablename}
+\begin{spacing}{1}
+\listoftables
+\end{spacing}
+\adjustmtc
+\newpage
+
+% ── Liste des abréviations ──────────────────────────────────
+\input{chapters/04-ListeDesAbreviations}
+\adjustmtc
+\newpage
+
+% ── Introduction générale ───────────────────────────────────
+% La numérotation arabe démarre ici : l'introduction générale est
+% la page 1 du rapport. Les pièces liminaires qui précèdent portent
+% des chiffres romains, à l'exception de la dédicace, des
+% remerciements, du résumé et de l'abstract, qui ne portent aucun
+% numéro (leur page est en style empty).
+\clearpage
+\pagenumbering{arabic}
+
+\input{chapters/05-IntroductionGenerale}
+\adjustmtc
+\newpage
+
+% ── CORPS DU RAPPORT ────────────────────────────────────────
+\onehalfspacing
+
+\input{chapters/06-Chapitre1}
+\input{chapters/07-Chapitre2}
+\input{chapters/08-Chapitre3}
+\input{chapters/09-Chapitre4}
+
+% ── Conclusion générale ─────────────────────────────────────
+\input{chapters/10-ConclusionGenerale}
+
+% ── Bibliographie et nétographie ────────────────────────────
+\input{chapters/11-Bibliographie}
+
+% ── Annexes ─────────────────────────────────────────────────
+\input{chapters/12-Annexes}
+
+% ============================================================
+\end{document}

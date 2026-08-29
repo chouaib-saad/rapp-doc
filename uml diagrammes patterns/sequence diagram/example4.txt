@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="745" height="612" viewBox="0 0 745 612">
+<rect width="745" height="612" fill="#FFFFFF"/>
+<defs>
+<style>
+text{font-family:Arial,Helvetica,sans-serif;}
+.title{font-size:14px;font-weight:bold;fill:#111111;text-anchor:middle;}
+.plab{font-size:11px;fill:#333333;text-anchor:middle;}
+.bname{font-size:11px;font-weight:bold;fill:#222222;text-anchor:middle;}
+.mlab{font-size:10px;fill:#222222;text-anchor:middle;}
+.pB{fill:#96D5F2;stroke:#D02A50;stroke-width:1.3;}
+.pY{fill:#FFFBCC;stroke:#D02A50;stroke-width:1.3;}
+.pG{fill:#CDF2CD;stroke:#D02A50;stroke-width:1.3;}
+.act{fill:none;stroke:#D02A50;stroke-width:1.7;}
+.life{fill:none;stroke:#D02A50;stroke-width:1;stroke-dasharray:5,4;}
+.msg{fill:none;stroke:#D02A50;stroke-width:1.2;}
+.msgG{fill:none;stroke:#2EA843;stroke-width:1.2;}
+</style>
+<filter id="ds" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="3" dy="3" stdDeviation="2" flood-color="#8A8A8A" flood-opacity="0.45"/></filter>
+<marker id="mM" markerWidth="9" markerHeight="9" refX="7" refY="3.5" orient="auto"><path d="M0 0 L7 3.5 L0 7 Z" fill="#D02A50"/></marker>
+<marker id="mG" markerWidth="9" markerHeight="9" refX="7" refY="3.5" orient="auto"><path d="M0 0 L7 3.5 L0 7 Z" fill="#2EA843"/></marker>
+</defs>
+
+<text x="372" y="26" class="title">Online Payment Processing</text>
+
+<!-- ===================== LIFELINES ===================== -->
+<path d="M52 130 L52 528" class="life"/>
+<path d="M248 124 L248 515" class="life"/>
+<path d="M407 124 L407 515" class="life"/>
+<path d="M535 130 L535 528" class="life"/>
+<path d="M640 124 L640 515" class="life"/>
+
+<!-- ===================== TOP PARTICIPANTS ===================== -->
+<g class="act" filter="url(#ds)">
+<circle cx="52" cy="57" r="7.5" fill="#FFF6C7"/>
+<path d="M52 64 L52 85"/><path d="M39 71 L65 71"/><path d="M52 85 L40 101"/><path d="M52 85 L64 101"/>
+</g>
+<text x="52" y="120" class="plab">Customer</text>
+
+<rect x="215" y="92" width="67" height="30" class="pB" filter="url(#ds)"/><text x="248" y="111" class="bname">Mobile App</text>
+<rect x="357" y="92" width="100" height="30" class="pY" filter="url(#ds)"/><text x="407" y="111" class="bname">Order Service</text>
+
+<g filter="url(#ds)">
+<path d="M518 55 L518 88 A17 7 0 0 0 552 88 L552 55" fill="#FFB340" stroke="#C77800" stroke-width="1.3"/>
+<ellipse cx="535" cy="55" rx="17" ry="7" fill="#FFC466" stroke="#C77800" stroke-width="1.3"/>
+</g>
+<text x="535" y="110" class="plab">Bank</text><text x="535" y="124" class="plab">Database</text>
+
+<rect x="579" y="92" width="122" height="30" class="pG" filter="url(#ds)"/><text x="640" y="111" class="bname">Payment Gateway</text>
+
+<!-- ===================== MESSAGES ===================== -->
+<path d="M52 160 L248 160" class="msg" marker-end="url(#mM)"/><text x="150" y="150" class="mlab">Select Items &amp; Checkout</text>
+<path d="M248 196 L407 196" class="msg" marker-end="url(#mM)"/><text x="327" y="180" class="mlab">Create Order Request</text><text x="327" y="192" class="mlab">(cart details)</text>
+<path d="M407 237 L640 237" class="msg" marker-end="url(#mM)"/><text x="523" y="227" class="mlab">Initiate Payment (amount, orderId)</text>
+<path d="M640 277 L535 277" class="msg" marker-end="url(#mM)"/><text x="583" y="267" class="mlab">Verify Card &amp; Funds</text>
+<path d="M535 311 L640 311" class="msgG" marker-end="url(#mG)"/><text x="583" y="303" class="mlab">Return Authorization Code</text>
+<path d="M52 340 L248 340" class="msg" marker-end="url(#mM)"/><text x="150" y="332" class="mlab">Enter OTP Code</text>
+<path d="M248 385 L640 385" class="msg" marker-end="url(#mM)"/><text x="444" y="377" class="mlab">Submit OTP for Verification</text>
+<path d="M640 414 L535 414" class="msg" marker-end="url(#mM)"/><text x="583" y="406" class="mlab">Capture Funds</text>
+<path d="M535 440 L640 440" class="msg" marker-end="url(#mM)"/><text x="583" y="432" class="mlab">Return Capture Confirmation</text>
+<path d="M640 467 L248 467" class="msgG" marker-end="url(#mG)"/><text x="444" y="459" class="mlab">Payment Confirmed (receipt token)</text>
+<path d="M248 494 L52 494" class="msg" marker-end="url(#mM)"/><text x="150" y="486" class="mlab">Display Order Receipt</text>
+
+<!-- ===================== BOTTOM PARTICIPANTS ===================== -->
+<text x="52" y="540" class="plab">Customer</text>
+<g class="act" filter="url(#ds)">
+<circle cx="52" cy="552" r="7.5" fill="#FFF6C7"/>
+<path d="M52 559 L52 580"/><path d="M39 566 L65 566"/><path d="M52 580 L40 596"/><path d="M52 580 L64 596"/>
+</g>
+
+<rect x="215" y="517" width="67" height="30" class="pB" filter="url(#ds)"/><text x="248" y="536" class="bname">Mobile App</text>
+<rect x="357" y="517" width="100" height="30" class="pY" filter="url(#ds)"/><text x="407" y="536" class="bname">Order Service</text>
+
+<text x="535" y="537" class="plab">Bank</text><text x="535" y="551" class="plab">Database</text>
+<g filter="url(#ds)">
+<path d="M518 566 L518 599 A17 7 0 0 0 552 599 L552 566" fill="#FFB340" stroke="#C77800" stroke-width="1.3"/>
+<ellipse cx="535" cy="566" rx="17" ry="7" fill="#FFC466" stroke="#C77800" stroke-width="1.3"/>
+</g>
+
+<rect x="579" y="517" width="122" height="30" class="pG" filter="url(#ds)"/><text x="640" y="536" class="bname">Payment Gateway</text>
+</svg>

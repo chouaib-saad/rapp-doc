@@ -1,0 +1,39 @@
+this content must be adapted to the repport
+
+1.4.1 Méthodologie adoptée
+
+Nous avons opté pour le modèle évolutif, qui se base sur un développement incrémental itératif axé sur la livraison quotidienne au client pour garantir une utilisation rapide des incréments du logiciel, et par la suite, permettre de découvrir les vrais besoins du client plus tôt dans le cycle de vie du logiciel et ainsi améliorer au fur et à mesure sa qualité.
+
+En effet, le modèle évolutif garantit une :
+
+Livraison rapide de produits fonctionnels : le modèle décompose le projets en incréments fonctionnels développés en ordre de priorité pour permettre une livraison rapide utilisable.
+
+Meilleure collaboration avec le client : Cette approche permet une communication régulière et des retours de feedback pour l'ajout de nouvelles fonctionnalités au cours du temps.
+
+Flexibilité : La méthode évolutive nous donne une flexibilité en fonction des besoins du client.
+
+Modèle évolutif
+Spec. Design Code & Test Intég. Valid.
+Incrément #1
+Utilisable 30%
+Customer Feedback starts
+Spec. Design Code & Test Intég. Valid.
+Incrément #2
+Utilisable 55%
+Spec. Design Code & Test Intég. Valid.
+Incrément #3
+Utilisable 80%
+Spec. Design Code & Test Intég. Valid.
+Incrément #4
+Utilisable 100%
+
+FIGURE 1.5 - Cycle de la méthodologie évolutive [23, p. 19]
+
+Il est important que chaque incrément livré apporte une valeur ajoutée à la version globale du logiciel en ajoutant une fonctionnalité réelle et souhaitée par le client.
+
+
+
+=============================
+partue de references :
+[22] Dr. Selma Belgacem. Les patrons d’architecture (2) clean architecture. 2021-2022.
+[23] Dr. Selma Belgacem. Processus de dØveloppement : MØthodologies non agiles. 2021-2022.

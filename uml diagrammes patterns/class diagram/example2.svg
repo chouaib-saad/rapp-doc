@@ -1,0 +1,249 @@
+
+<svg viewBox="0 0 1200 950" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Drop Shadow for layered components -->
+    <filter id="shadow" x="-5%" y="-5%" width="120%" height="120%">
+      <feDropShadow dx="2" dy="2" stdDeviation="2" flood-color="#000000" flood-opacity="0.15"/>
+    </filter>
+
+    <!-- Connectors / Markers -->
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <polygon points="0,2 10,6 0,10" fill="#333333" />
+    </marker>
+
+    <marker id="triangle" markerWidth="14" markerHeight="14" refX="12" refY="7" orient="auto">
+      <polygon points="1,2 12,7 1,12" fill="#ffffff" stroke="#333333" stroke-width="1.2"/>
+    </marker>
+
+    <marker id="diamond" markerWidth="16" markerHeight="14" refX="14" refY="7" orient="auto">
+      <polygon points="1,7 7,1 13,7 7,13" fill="#ffffff" stroke="#333333" stroke-width="1.2"/>
+    </marker>
+  </defs>
+
+  <style>
+    .bg { fill: #fffdf7; }
+    .box { stroke: #333333; stroke-width: 1.2; }
+    .layer-yellow { fill: #fff4a6; filter: url(#shadow); }
+    .layer-pink { fill: #f28e8e; }
+    .layer-blue { fill: #a9e5ef; }
+    .layer-green { fill: #a9efb0; filter: url(#shadow); }
+    .divider { stroke: #333333; stroke-width: 1.2; }
+    .line { stroke: #333333; stroke-width: 1.2; fill: none; }
+    .dashed-line { stroke: #333333; stroke-width: 1.2; fill: none; stroke-dasharray: 4,4; }
+    .header-text { font-family: Arial, Helvetica, sans-serif; font-size: 12px; font-weight: bold; fill: #000000; text-anchor: middle; dominant-baseline: middle; }
+    .body-text { font-family: Arial, Helvetica, sans-serif; font-size: 11px; fill: #000000; dominant-baseline: middle; }
+    .assoc-text { font-family: Arial, Helvetica, sans-serif; font-size: 11px; fill: #555555; dominant-baseline: middle; text-anchor: middle; }
+  </style>
+
+  <!-- Background -->
+  <rect class="bg" width="1200" height="950" />
+
+  <!-- ================= LINES & CONNECTIONS ================= -->
+  <g id="connections">
+    <!-- Favori to Client (Dashed Dependency) -->
+    <path d="M 800 110 L 780 180 L 750 180" class="dashed-line" marker-end="url(#arrow)" />
+    
+    <!-- Client to Professional (Ajouter) -->
+    <path d="M 750 190 L 860 190" class="line" marker-end="url(#arrow)" />
+    <text x="805" y="200" class="assoc-text">Ajouter</text>
+
+    <!-- Client to User (Generalization) -->
+    <path d="M 700 230 L 750 300 L 780 300" class="line" marker-end="url(#triangle)" />
+
+    <!-- Professional to User (Generalization) -->
+    <path d="M 910 240 L 850 300 L 820 300" class="line" marker-end="url(#triangle)" />
+
+    <!-- Repository to User -->
+    <path d="M 800 450 L 800 400" class="line" />
+
+    <!-- Repository to DataSource -->
+    <path d="M 800 510 L 800 570" class="line" marker-end="url(#arrow)" />
+    <text x="825" y="540" class="assoc-text">Utiliser</text>
+
+    <!-- UseCase to Repository (Invoquer) -->
+    <path d="M 640 480 L 740 480" class="line" marker-end="url(#arrow)" />
+    <text x="690" y="470" class="assoc-text">Invoquer</text>
+
+    <!-- ViewModel to UseCase (Appeler) -->
+    <path d="M 480 480 L 540 480" class="line" marker-end="url(#arrow)" />
+    <text x="510" y="470" class="assoc-text">Appeler</text>
+
+    <!-- Interface to ViewModel (Récupérer) -->
+    <path d="M 280 480 L 360 480" class="line" marker-end="url(#arrow)" />
+    <text x="320" y="470" class="assoc-text">Récupérer</text>
+
+    <!-- NetworkDataSource to DataSource (Generalization) -->
+    <path d="M 720 660 L 770 610" class="line" marker-end="url(#triangle)" />
+
+    <!-- LocalDataSource to DataSource (Generalization) -->
+    <path d="M 880 660 L 830 610" class="line" marker-end="url(#triangle)" />
+
+    <!-- NetworkDataSource to Remote (Demander) -->
+    <path d="M 720 720 L 720 800" class="line" marker-end="url(#arrow)" />
+    <text x="750" y="760" class="assoc-text">Demander</text>
+
+    <!-- LocalDataSource to Dao (Stocker) -->
+    <path d="M 880 720 L 880 800" class="line" marker-end="url(#arrow)" />
+    <text x="905" y="760" class="assoc-text">Stocker</text>
+
+    <!-- Dialog to Interface (Composition line left side) -->
+    <path d="M 70 700 L 70 480 L 160 480" class="line" marker-end="url(#diamond)" />
+
+    <!-- Dialog to Interface (Generalization) -->
+    <path d="M 120 700 L 180 600" class="line" marker-end="url(#triangle)" />
+
+    <!-- Fragment to Interface (Generalization) -->
+    <path d="M 230 700 L 230 600" class="line" marker-end="url(#triangle)" />
+
+    <!-- Activity to Interface (Generalization) -->
+    <path d="M 370 700 L 280 600" class="line" marker-end="url(#triangle)" />
+
+    <!-- Fragment to Activity (Composition) -->
+    <path d="M 280 730 L 340 730" class="line" marker-end="url(#diamond)" />
+
+  </g>
+
+  <!-- ================= CLASS BOXES ================= -->
+
+  <!-- Models / Entities (Layer 1: Yellow) -->
+  
+  <g id="Favori" transform="translate(750, 40)">
+    <rect x="0" y="0" width="100" height="70" class="box layer-yellow" />
+    <line x1="0" y1="20" x2="100" y2="20" class="divider" />
+    <text x="50" y="10" class="header-text">Favori</text>
+    <text x="8" y="32" class="body-text">+IdProfessional</text>
+    <text x="8" y="46" class="body-text">+idClient</text>
+    <text x="8" y="60" class="body-text">+timeStamp</text>
+  </g>
+
+  <g id="Client" transform="translate(620, 160)">
+    <rect x="0" y="0" width="130" height="70" class="box layer-yellow" />
+    <line x1="0" y1="20" x2="130" y2="20" class="divider" />
+    <text x="65" y="10" class="header-text">Client</text>
+    <text x="8" y="32" class="body-text">+idClient</text>
+    <text x="8" y="46" class="body-text">+nbrRequests</text>
+    <text x="8" y="60" class="body-text">+addFavorit(id)</text>
+  </g>
+
+  <g id="Professional" transform="translate(860, 140)">
+    <rect x="0" y="0" width="130" height="100" class="box layer-yellow" />
+    <line x1="0" y1="20" x2="130" y2="20" class="divider" />
+    <text x="65" y="10" class="header-text">Professional</text>
+    <text x="8" y="32" class="body-text">+idProfessional</text>
+    <text x="8" y="46" class="body-text">+longitude</text>
+    <text x="8" y="60" class="body-text">+latitude</text>
+    <text x="8" y="74" class="body-text">+description</text>
+    <text x="8" y="88" class="body-text">+rateNumber</text>
+  </g>
+
+  <g id="User" transform="translate(740, 310)">
+    <rect x="0" y="0" width="120" height="90" class="box layer-yellow" />
+    <line x1="0" y1="20" x2="120" y2="20" class="divider" />
+    <text x="60" y="10" class="header-text">User</text>
+    <text x="8" y="32" class="body-text">+firstName</text>
+    <text x="8" y="46" class="body-text">+lastName</text>
+    <text x="8" y="60" class="body-text">+phoneNumber</text>
+    <text x="8" y="74" class="body-text">+imagePath</text>
+  </g>
+
+  <!-- Core Logic / Data Layer (Layer 2: Pink) -->
+  
+  <g id="UseCase" transform="translate(540, 460)">
+    <rect x="0" y="0" width="100" height="45" class="box layer-pink" />
+    <line x1="0" y1="20" x2="100" y2="20" class="divider" />
+    <text x="50" y="10" class="header-text">UseCase</text>
+    <text x="8" y="32" class="body-text">+invok(data)</text>
+  </g>
+
+  <g id="Repository" transform="translate(740, 450)">
+    <rect x="0" y="0" width="120" height="60" class="box layer-pink" />
+    <line x1="0" y1="20" x2="120" y2="20" class="divider" />
+    <text x="60" y="10" class="header-text">Repository</text>
+    <text x="8" y="32" class="body-text">+networkDataSource</text>
+    <text x="8" y="46" class="body-text">+localDataSource</text>
+  </g>
+
+  <!-- Abstraction / Processing Layer (Layer 4: Green) -->
+
+  <g id="ViewModel" transform="translate(360, 450)">
+    <rect x="0" y="0" width="120" height="70" class="box layer-green" />
+    <line x1="0" y1="20" x2="120" y2="20" class="divider" />
+    <text x="60" y="10" class="header-text">ViewModel</text>
+    <text x="8" y="32" class="body-text">+eventFlow</text>
+    <text x="8" y="46" class="body-text">+toggleLoading</text>
+    <text x="8" y="60" class="body-text">+executeUseCase(...)</text>
+  </g>
+
+  <g id="DataSource" transform="translate(740, 570)">
+    <rect x="0" y="0" width="120" height="40" class="box layer-green" />
+    <line x1="0" y1="20" x2="120" y2="20" class="divider" />
+    <text x="60" y="10" class="header-text">DataSource</text>
+  </g>
+
+  <g id="NetworkDataSource" transform="translate(660, 660)">
+    <rect x="0" y="0" width="120" height="60" class="box layer-green" />
+    <line x1="0" y1="20" x2="120" y2="20" class="divider" />
+    <text x="60" y="10" class="header-text">NetworkDataSource</text>
+    <text x="8" y="32" class="body-text">+RemoteApi</text>
+  </g>
+
+  <g id="LocalDataSource" transform="translate(820, 660)">
+    <rect x="0" y="0" width="120" height="60" class="box layer-green" />
+    <line x1="0" y1="20" x2="120" y2="20" class="divider" />
+    <text x="60" y="10" class="header-text">LocalDataSource</text>
+    <text x="8" y="32" class="body-text">+Dao</text>
+  </g>
+
+  <!-- External Interfaces / UI (Layer 3: Blue) -->
+
+  <g id="Interface" transform="translate(160, 440)">
+    <rect x="0" y="0" width="120" height="150" class="box layer-blue" />
+    <line x1="0" y1="20" x2="120" y2="20" class="divider" />
+    <text x="60" y="10" class="header-text">Interface</text>
+    <text x="8" y="32" class="body-text">+ID</text>
+    <text x="8" y="46" class="body-text">+Context</text>
+    <text x="8" y="60" class="body-text">+onCreate()</text>
+  </g>
+
+  <g id="Dialog" transform="translate(70, 700)">
+    <rect x="0" y="0" width="100" height="60" class="box layer-blue" />
+    <line x1="0" y1="20" x2="100" y2="20" class="divider" />
+    <text x="50" y="10" class="header-text">Dialog</text>
+    <text x="8" y="32" class="body-text">+Show()</text>
+  </g>
+
+  <g id="Fragment" transform="translate(180, 700)">
+    <rect x="0" y="0" width="100" height="60" class="box layer-blue" />
+    <line x1="0" y1="20" x2="100" y2="20" class="divider" />
+    <text x="50" y="10" class="header-text">Fragment</text>
+    <text x="8" y="32" class="body-text">+parentActivity</text>
+  </g>
+
+  <g id="Activity" transform="translate(340, 700)">
+    <rect x="0" y="0" width="100" height="60" class="box layer-blue" />
+    <line x1="0" y1="20" x2="100" y2="20" class="divider" />
+    <text x="50" y="10" class="header-text">Activity</text>
+  </g>
+
+  <g id="Remote" transform="translate(670, 800)">
+    <rect x="0" y="0" width="100" height="90" class="box layer-blue" />
+    <line x1="0" y1="20" x2="100" y2="20" class="divider" />
+    <text x="50" y="10" class="header-text">Remote</text>
+    <text x="8" y="32" class="body-text">+Get()</text>
+    <text x="8" y="46" class="body-text">+Delete()</text>
+    <text x="8" y="60" class="body-text">+Put()</text>
+    <text x="8" y="74" class="body-text">+Post()</text>
+  </g>
+
+  <g id="Dao" transform="translate(830, 800)">
+    <rect x="0" y="0" width="100" height="90" class="box layer-blue" />
+    <line x1="0" y1="20" x2="100" y2="20" class="divider" />
+    <text x="50" y="10" class="header-text">Dao</text>
+    <text x="8" y="32" class="body-text">+Select()</text>
+    <text x="8" y="46" class="body-text">+Insert()</text>
+    <text x="8" y="60" class="body-text">+Delete()</text>
+    <text x="8" y="74" class="body-text">+Replace()</text>
+  </g>
+
+</svg>
+

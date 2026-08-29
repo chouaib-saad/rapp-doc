@@ -1,0 +1,689 @@
+
+<svg xmlns="http://www.w3.org/2000/svg"
+     width="851"
+     height="658"
+     viewBox="0 0 851 658"
+     role="img"
+     aria-label="Diagramme de dépendances entre achats, paiement, carte bancaire, client et inventaire">
+
+  <defs>
+
+    <!-- ========================================================= -->
+    <!-- BLACK RELATION ARROW                                      -->
+    <!-- ========================================================= -->
+
+    <marker id="blackArrow"
+            viewBox="0 0 10 10"
+            refX="8.5"
+            refY="5"
+            markerWidth="8"
+            markerHeight="8"
+            orient="auto"
+            markerUnits="userSpaceOnUse">
+      <path d="M 0 0
+               L 10 5
+               L 0 10
+               Z"
+            fill="#111111"/>
+    </marker>
+
+
+    <!-- ========================================================= -->
+    <!-- BLUE RELATION ARROW                                       -->
+    <!-- ========================================================= -->
+
+    <marker id="blueArrow"
+            viewBox="0 0 10 10"
+            refX="8.5"
+            refY="5"
+            markerWidth="8"
+            markerHeight="8"
+            orient="auto"
+            markerUnits="userSpaceOnUse">
+      <path d="M 0 0
+               L 10 5
+               L 0 10
+               Z"
+            fill="#4ea5dc"/>
+    </marker>
+
+
+    <!-- ========================================================= -->
+    <!-- BLUE DOWNWARD ARROW                                       -->
+    <!-- ========================================================= -->
+
+    <marker id="blueDownArrow"
+            viewBox="0 0 10 10"
+            refX="5"
+            refY="8.5"
+            markerWidth="8"
+            markerHeight="8"
+            orient="auto"
+            markerUnits="userSpaceOnUse">
+      <path d="M 0 0
+               L 5 10
+               L 10 0
+               Z"
+            fill="#4ea5dc"/>
+    </marker>
+
+
+    <!-- ========================================================= -->
+    <!-- TYPOGRAPHY                                                -->
+    <!-- ========================================================= -->
+
+    <style>
+      .node-text {
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 15px;
+        font-weight: 600;
+        fill: #161616;
+      }
+
+      .relation-label {
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 12px;
+        font-weight: 600;
+        fill: #404040;
+      }
+
+      .relation-label-blue {
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 12px;
+        font-weight: 600;
+        fill: #6a6a6a;
+      }
+
+      .tiny-x {
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 16px;
+        font-weight: 700;
+        fill: #4ea5dc;
+      }
+    </style>
+
+  </defs>
+
+
+  <!-- ========================================================= -->
+  <!-- PURE WHITE BACKGROUND                                     -->
+  <!-- ========================================================= -->
+
+  <rect x="0"
+        y="0"
+        width="851"
+        height="658"
+        fill="#ffffff"/>
+
+
+  <!-- ========================================================= -->
+  <!-- TOP PINK FOLDER #1 — ACHAT EN LIGNE                        -->
+  <!-- ========================================================= -->
+
+  <!-- Folder tab -->
+  <path d="M 32 45
+           L 32 28
+           L 82 28
+           L 82 45
+           Z"
+        fill="#eadfe8"
+        stroke="#444444"
+        stroke-width="1.8"
+        stroke-linejoin="miter"/>
+
+  <!-- Folder body -->
+  <rect x="32"
+        y="45"
+        width="126"
+        height="96"
+        fill="#e8dbe7"
+        stroke="#444444"
+        stroke-width="1.8"/>
+
+  <text x="95"
+        y="94"
+        text-anchor="middle"
+        class="node-text">
+    Achat en ligne
+  </text>
+
+
+  <!-- ========================================================= -->
+  <!-- TOP PINK FOLDER #2 — ACHAT SUR MOBILE                      -->
+  <!-- ========================================================= -->
+
+  <!-- Folder tab -->
+  <path d="M 256 45
+           L 256 28
+           L 307 28
+           L 307 45
+           Z"
+        fill="#eadfe8"
+        stroke="#444444"
+        stroke-width="1.8"
+        stroke-linejoin="miter"/>
+
+  <!-- Folder body -->
+  <rect x="256"
+        y="45"
+        width="127"
+        height="96"
+        fill="#e8dbe7"
+        stroke="#444444"
+        stroke-width="1.8"/>
+
+  <text x="319.5"
+        y="94"
+        text-anchor="middle"
+        class="node-text">
+    Achat sur mobile
+  </text>
+
+
+  <!-- ========================================================= -->
+  <!-- TOP PINK FOLDER #3 — PHONE SHOPPING                        -->
+  <!-- ========================================================= -->
+
+  <!-- Folder tab -->
+  <path d="M 481 45
+           L 481 28
+           L 532 28
+           L 532 45
+           Z"
+        fill="#eadfe8"
+        stroke="#444444"
+        stroke-width="1.8"
+        stroke-linejoin="miter"/>
+
+  <!-- Folder body -->
+  <rect x="481"
+        y="45"
+        width="128"
+        height="96"
+        fill="#e8dbe7"
+        stroke="#444444"
+        stroke-width="1.8"/>
+
+  <text x="545"
+        y="94"
+        text-anchor="middle"
+        class="node-text">
+    Phone shopping
+  </text>
+
+
+  <!-- ========================================================= -->
+  <!-- TOP PINK FOLDER #4 — VENTE PAR CORRESPONDANCE              -->
+  <!-- ========================================================= -->
+
+  <!-- Folder tab -->
+  <path d="M 706 45
+           L 706 28
+           L 757 28
+           L 757 45
+           Z"
+        fill="#eadfe8"
+        stroke="#444444"
+        stroke-width="1.8"
+        stroke-linejoin="miter"/>
+
+  <!-- Folder body -->
+  <rect x="706"
+        y="45"
+        width="127"
+        height="96"
+        fill="#e8dbe7"
+        stroke="#444444"
+        stroke-width="1.8"/>
+
+  <text x="769.5"
+        y="82"
+        text-anchor="middle"
+        class="node-text">
+    Vente par
+  </text>
+
+  <text x="769.5"
+        y="102"
+        text-anchor="middle"
+        class="node-text">
+    correspondance
+  </text>
+
+
+  <!-- ========================================================= -->
+  <!-- YELLOW FOLDER — PAIEMENT                                   -->
+  <!-- ========================================================= -->
+
+  <!-- Folder tab -->
+  <path d="M 175 332
+           L 175 315
+           L 226 315
+           L 226 332
+           Z"
+        fill="#ffea8e"
+        stroke="#444444"
+        stroke-width="1.8"
+        stroke-linejoin="miter"/>
+
+  <!-- Folder body -->
+  <rect x="175"
+        y="332"
+        width="126"
+        height="98"
+        fill="#ffe697"
+        stroke="#444444"
+        stroke-width="1.8"/>
+
+  <text x="238"
+        y="389"
+        text-anchor="middle"
+        class="node-text">
+    Paiement
+  </text>
+
+
+  <!-- ========================================================= -->
+  <!-- YELLOW FOLDER — CARTE BANCAIRE                            -->
+  <!-- ========================================================= -->
+
+  <!-- Folder tab -->
+  <path d="M 512 332
+           L 512 315
+           L 563 315
+           L 563 332
+           Z"
+        fill="#ffea8e"
+        stroke="#444444"
+        stroke-width="1.8"
+        stroke-linejoin="miter"/>
+
+  <!-- Folder body -->
+  <rect x="512"
+        y="332"
+        width="126"
+        height="98"
+        fill="#ffe697"
+        stroke="#444444"
+        stroke-width="1.8"/>
+
+  <text x="575"
+        y="389"
+        text-anchor="middle"
+        class="node-text">
+    Carte bancaire
+  </text>
+
+
+  <!-- ========================================================= -->
+  <!-- GREEN FOLDER — CLIENT                                     -->
+  <!-- ========================================================= -->
+
+  <!-- Folder tab -->
+  <path d="M 175 546
+           L 175 529
+           L 226 529
+           L 226 546
+           Z"
+        fill="#8df17e"
+        stroke="#444444"
+        stroke-width="1.8"
+        stroke-linejoin="miter"/>
+
+  <!-- Folder body -->
+  <rect x="175"
+        y="546"
+        width="126"
+        height="96"
+        fill="#92f486"
+        stroke="#444444"
+        stroke-width="1.8"/>
+
+  <text x="238"
+        y="600"
+        text-anchor="middle"
+        class="node-text">
+    Client
+  </text>
+
+
+  <!-- ========================================================= -->
+  <!-- GREEN FOLDER — INVENTAIRE                                 -->
+  <!-- ========================================================= -->
+
+  <!-- Folder tab -->
+  <path d="M 512 546
+           L 512 529
+           L 563 529
+           L 563 546
+           Z"
+        fill="#8df17e"
+        stroke="#444444"
+        stroke-width="1.8"
+        stroke-linejoin="miter"/>
+
+  <!-- Folder body -->
+  <rect x="512"
+        y="546"
+        width="126"
+        height="96"
+        fill="#92f486"
+        stroke="#444444"
+        stroke-width="1.8"/>
+
+  <text x="575"
+        y="600"
+        text-anchor="middle"
+        class="node-text">
+    Inventaire
+  </text>
+
+
+  <!-- ========================================================= -->
+  <!-- BLUE «merge» RELATION                                    -->
+  <!-- ========================================================= -->
+
+  <!-- First source vertical -->
+  <path d="M 120 141
+           L 120 203"
+        fill="none"
+        stroke="#4ea5dc"
+        stroke-width="2.2"
+        stroke-dasharray="7 7"/>
+
+  <!-- Horizontal merge bus -->
+  <path d="M 120 203
+           L 757 203"
+        fill="none"
+        stroke="#4ea5dc"
+        stroke-width="2.2"
+        stroke-dasharray="7 7"/>
+
+  <!-- Second source vertical -->
+  <path d="M 348 141
+           L 348 203"
+        fill="none"
+        stroke="#4ea5dc"
+        stroke-width="2.2"
+        stroke-dasharray="7 7"/>
+
+  <!-- Third source vertical -->
+  <path d="M 551 141
+           L 551 203"
+        fill="none"
+        stroke="#4ea5dc"
+        stroke-width="2.2"
+        stroke-dasharray="7 7"/>
+
+  <!-- Final destination vertical -->
+  <path d="M 807 141
+           L 807 203"
+        fill="none"
+        stroke="#4ea5dc"
+        stroke-width="2.2"
+        stroke-dasharray="7 7"/>
+
+  <!-- Downward arrow on final blue branch -->
+  <line x1="807"
+        y1="195"
+        x2="807"
+        y2="202"
+        stroke="#4ea5dc"
+        stroke-width="2"
+        marker-end="url(#blueDownArrow)"/>
+
+  <!-- Merge label #1 -->
+  <text x="218"
+        y="195"
+        text-anchor="middle"
+        class="relation-label-blue">
+    «merge»
+  </text>
+
+  <!-- Merge label #2 -->
+  <text x="645"
+        y="195"
+        text-anchor="middle"
+        class="relation-label-blue">
+    «merge»
+  </text>
+
+
+  <!-- ========================================================= -->
+  <!-- BLACK «use» HORIZONTAL RELATION                           -->
+  <!-- ========================================================= -->
+
+  <!-- Main horizontal dashed relation -->
+  <path d="M 70 266
+           L 807 266"
+        fill="none"
+        stroke="#111111"
+        stroke-width="2.2"
+        stroke-dasharray="7 7"/>
+
+  <!-- Right arrowhead -->
+  <line x1="799"
+        y1="266"
+        x2="807"
+        y2="266"
+        stroke="#111111"
+        stroke-width="2.2"
+        marker-end="url(#blackArrow)"/>
+
+
+  <!-- Vertical from Achat en ligne -->
+  <path d="M 70 141
+           L 70 266"
+        fill="none"
+        stroke="#111111"
+        stroke-width="2.2"
+        stroke-dasharray="7 7"/>
+
+  <!-- Vertical from Achat sur mobile -->
+  <path d="M 307 141
+           L 307 266"
+        fill="none"
+        stroke="#111111"
+        stroke-width="2.2"
+        stroke-dasharray="7 7"/>
+
+  <!-- Vertical from Phone shopping -->
+  <path d="M 520 141
+           L 520 266"
+        fill="none"
+        stroke="#111111"
+        stroke-width="2.2"
+        stroke-dasharray="7 7"/>
+
+  <!-- Vertical from Vente par correspondance -->
+  <path d="M 807 141
+           L 807 266"
+        fill="none"
+        stroke="#111111"
+        stroke-width="2.2"
+        stroke-dasharray="7 7"/>
+
+
+  <!-- «use» labels -->
+  <text x="186"
+        y="258"
+        text-anchor="middle"
+        class="relation-label">
+    «use»
+  </text>
+
+  <text x="646"
+        y="258"
+        text-anchor="middle"
+        class="relation-label">
+    «use»
+  </text>
+
+
+  <!-- ========================================================= -->
+  <!-- BLACK «use» RELATION — PAIEMENT                           -->
+  <!-- ========================================================= -->
+
+  <path d="M 70 266
+           L 70 380
+           L 174 380"
+        fill="none"
+        stroke="#111111"
+        stroke-width="2.2"
+        stroke-dasharray="7 7"
+        marker-end="url(#blackArrow)"/>
+
+  <text x="112"
+        y="368"
+        text-anchor="middle"
+        class="relation-label">
+    «use»
+  </text>
+
+
+  <!-- ========================================================= -->
+  <!-- BLACK «access» RELATION — PAIEMENT -> CARTE BANCAIRE      -->
+  <!-- ========================================================= -->
+
+  <path d="M 301 380
+           L 511 380"
+        fill="none"
+        stroke="#111111"
+        stroke-width="2.2"
+        stroke-dasharray="7 7"
+        marker-end="url(#blackArrow)"/>
+
+  <text x="409"
+        y="372"
+        text-anchor="middle"
+        class="relation-label">
+    «access»
+  </text>
+
+
+  <!-- ========================================================= -->
+  <!-- BLUE DOWNWARD RELATION — CARTE BANCAIRE                   -->
+  <!-- ========================================================= -->
+
+  <path d="M 586 203
+           L 586 331"
+        fill="none"
+        stroke="#4ea5dc"
+        stroke-width="2.4"
+        stroke-dasharray="7 7"
+        marker-end="url(#blueDownArrow)"/>
+
+
+  <!-- ========================================================= -->
+  <!-- BLACK «import» — PAIEMENT -> CLIENT                       -->
+  <!-- ========================================================= -->
+
+  <path d="M 238 430
+           L 238 545"
+        fill="none"
+        stroke="#111111"
+        stroke-width="2.2"
+        stroke-dasharray="7 7"
+        marker-end="url(#blackArrow)"/>
+
+  <text x="205"
+        y="484"
+        text-anchor="middle"
+        class="relation-label">
+    «import»
+  </text>
+
+
+  <!-- ========================================================= -->
+  <!-- BLACK «import» — CARTE BANCAIRE -> INVENTAIRE             -->
+  <!-- ========================================================= -->
+
+  <path d="M 588 430
+           L 588 545"
+        fill="none"
+        stroke="#111111"
+        stroke-width="2.2"
+        stroke-dasharray="7 7"
+        marker-end="url(#blackArrow)"/>
+
+  <text x="644"
+        y="484"
+        text-anchor="middle"
+        class="relation-label">
+    «import»
+  </text>
+
+
+  <!-- ========================================================= -->
+  <!-- SMALL BLUE x                                              -->
+  <!-- ========================================================= -->
+
+  <text x="439"
+        y="145"
+        text-anchor="middle"
+        class="tiny-x">
+    x
+  </text>
+
+
+  <!-- ========================================================= -->
+  <!-- BLUE JUNCTION POINTS                                      -->
+  <!-- ========================================================= -->
+
+  <circle cx="70"
+          cy="143"
+          r="2.7"
+          fill="#4ea5dc"/>
+
+  <circle cx="70"
+          cy="202"
+          r="2.7"
+          fill="#4ea5dc"/>
+
+  <circle cx="348"
+          cy="202"
+          r="2.7"
+          fill="#4ea5dc"/>
+
+  <circle cx="551"
+          cy="202"
+          r="2.7"
+          fill="#4ea5dc"/>
+
+  <circle cx="807"
+          cy="202"
+          r="2.7"
+          fill="#4ea5dc"/>
+
+
+  <!-- ========================================================= -->
+  <!-- BLACK JUNCTION POINTS                                     -->
+  <!-- ========================================================= -->
+
+  <circle cx="70"
+          cy="266"
+          r="2.6"
+          fill="#111111"/>
+
+  <circle cx="307"
+          cy="266"
+          r="2.6"
+          fill="#111111"/>
+
+  <circle cx="520"
+          cy="266"
+          r="2.6"
+          fill="#111111"/>
+
+  <circle cx="807"
+          cy="266"
+          r="2.6"
+          fill="#111111"/>
+
+</svg>
+
+
+
+
+
+

@@ -1,0 +1,203 @@
+\babel@toc {french}{}\relax 
+\thispagestyle {MyStyle}
+\contentsline {chapter}{LISTE DES FIGURES}{viii}{chapter*.5}%
+\contentsline {chapter}{LISTE DES TABLEAUX}{x}{chapter*.6}%
+\contentsline {chapter}{Liste des abréviations}{xi}{chapter*.8}%
+\contentsline {chapter}{Introduction Générale}{1}{chapter*.9}%
+\contentsline {chapter}{\numberline {1}Présentation générale du projet}{3}{chapter.1}%
+\contentsline {section}{\numberline {1.1}Présentation de l'organisme d'accueil}{4}{section.1.1}%
+\contentsline {section}{\numberline {1.2}Présentation du projet}{5}{section.1.2}%
+\contentsline {subsection}{\numberline {1.2.1}Cadre général du projet}{5}{subsection.1.2.1}%
+\contentsline {subsection}{\numberline {1.2.2}Problématique}{6}{subsection.1.2.2}%
+\contentsline {subsection}{\numberline {1.2.3}Solution proposée}{7}{subsection.1.2.3}%
+\contentsline {subsection}{\numberline {1.2.4}Objectifs du projet}{7}{subsection.1.2.4}%
+\contentsline {section}{\numberline {1.3}Étude de l'existant}{8}{section.1.3}%
+\contentsline {subsection}{\numberline {1.3.1}Le dispositif en place chez les opérateurs}{8}{subsection.1.3.1}%
+\contentsline {subsection}{\numberline {1.3.2}Les plateformes commerciales d'automatisation conversationnelle}{9}{subsection.1.3.2}%
+\contentsline {subsubsection}{\numberline {1.3.2.1}PolyAI}{9}{subsubsection.1.3.2.1}%
+\contentsline {subsubsection}{\numberline {1.3.2.2}Cognigy}{9}{subsubsection.1.3.2.2}%
+\contentsline {subsubsection}{\numberline {1.3.2.3}Parloa}{10}{subsubsection.1.3.2.3}%
+\contentsline {subsection}{\numberline {1.3.3}Synthèse comparative}{10}{subsection.1.3.3}%
+\contentsline {section}{\numberline {1.4}Chronologie du projet}{12}{section.1.4}%
+\contentsline {section}{\numberline {1.5}Processus de développement}{13}{section.1.5}%
+\contentsline {subsection}{\numberline {1.5.1}Le choix d'un cycle itératif et incrémental}{13}{subsection.1.5.1}%
+\contentsline {subsection}{\numberline {1.5.2}La forme concrète des itérations}{14}{subsection.1.5.2}%
+\contentsline {subsection}{\numberline {1.5.3}Vérification continue}{14}{subsection.1.5.3}%
+\contentsline {chapter}{\numberline {2}Spécification des besoins}{16}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Identification des acteurs}{17}{section.2.1}%
+\contentsline {subsection}{\numberline {2.1.1}Acteurs principaux}{17}{subsection.2.1.1}%
+\contentsline {subsection}{\numberline {2.1.2}Acteurs secondaires}{18}{subsection.2.1.2}%
+\contentsline {section}{\numberline {2.2}Besoins fonctionnels}{19}{section.2.2}%
+\contentsline {subsection}{\numberline {2.2.1}Conduite de la conversation}{19}{subsection.2.2.1}%
+\contentsline {subsection}{\numberline {2.2.2}Construction du contexte client}{19}{subsection.2.2.2}%
+\contentsline {subsection}{\numberline {2.2.3}Ancrage documentaire des réponses}{19}{subsection.2.2.3}%
+\contentsline {subsection}{\numberline {2.2.4}Traitement des actions sensibles}{19}{subsection.2.2.4}%
+\contentsline {subsection}{\numberline {2.2.5}Gestion des tickets}{20}{subsection.2.2.5}%
+\contentsline {subsection}{\numberline {2.2.6}Escalade et rappel}{20}{subsection.2.2.6}%
+\contentsline {subsection}{\numberline {2.2.7}Espace client}{20}{subsection.2.2.7}%
+\contentsline {subsection}{\numberline {2.2.8}Supervision et administration}{20}{subsection.2.2.8}%
+\contentsline {subsection}{\numberline {2.2.9}Récapitulatif}{21}{subsection.2.2.9}%
+\contentsline {section}{\numberline {2.3}Besoins non fonctionnels}{21}{section.2.3}%
+\contentsline {subsection}{\numberline {2.3.1}Performance et comportement temps réel}{21}{subsection.2.3.1}%
+\contentsline {subsection}{\numberline {2.3.2}Fiabilité et disponibilité}{22}{subsection.2.3.2}%
+\contentsline {subsection}{\numberline {2.3.3}Robustesse et tolérance aux pannes}{22}{subsection.2.3.3}%
+\contentsline {subsection}{\numberline {2.3.4}Sécurité et confidentialité}{22}{subsection.2.3.4}%
+\contentsline {subsection}{\numberline {2.3.5}Traçabilité et auditabilité}{22}{subsection.2.3.5}%
+\contentsline {subsection}{\numberline {2.3.6}Extensibilité et maintenabilité}{22}{subsection.2.3.6}%
+\contentsline {subsection}{\numberline {2.3.7}Passage à l'échelle}{23}{subsection.2.3.7}%
+\contentsline {subsection}{\numberline {2.3.8}Interopérabilité et portabilité}{23}{subsection.2.3.8}%
+\contentsline {subsection}{\numberline {2.3.9}Testabilité}{23}{subsection.2.3.9}%
+\contentsline {subsection}{\numberline {2.3.10}Ergonomie}{23}{subsection.2.3.10}%
+\contentsline {subsection}{\numberline {2.3.11}Récapitulatif}{23}{subsection.2.3.11}%
+\contentsline {section}{\numberline {2.4}Diagrammes de cas d'utilisation}{24}{section.2.4}%
+\contentsline {subsection}{\numberline {2.4.1}Diagramme de cas d'utilisation général}{24}{subsection.2.4.1}%
+\contentsline {subsection}{\numberline {2.4.2}Cas d'utilisation : obtenir une réponse documentaire}{25}{subsection.2.4.2}%
+\contentsline {subsubsection}{\numberline {2.4.2.1}Diagramme du cas}{25}{subsubsection.2.4.2.1}%
+\contentsline {subsubsection}{\numberline {2.4.2.2}Description textuelle}{25}{subsubsection.2.4.2.2}%
+\contentsline {subsubsection}{\numberline {2.4.2.3}Diagramme de séquence système}{27}{subsubsection.2.4.2.3}%
+\contentsline {subsection}{\numberline {2.4.3}Cas d'utilisation : exécuter une opération sensible}{27}{subsection.2.4.3}%
+\contentsline {subsubsection}{\numberline {2.4.3.1}Diagramme du cas}{27}{subsubsection.2.4.3.1}%
+\contentsline {subsubsection}{\numberline {2.4.3.2}Description textuelle}{27}{subsubsection.2.4.3.2}%
+\contentsline {subsubsection}{\numberline {2.4.3.3}Diagramme de séquence système}{29}{subsubsection.2.4.3.3}%
+\contentsline {subsection}{\numberline {2.4.4}Cas d'utilisation : escalader vers un conseiller humain}{29}{subsection.2.4.4}%
+\contentsline {subsubsection}{\numberline {2.4.4.1}Diagramme du cas}{29}{subsubsection.2.4.4.1}%
+\contentsline {subsubsection}{\numberline {2.4.4.2}Description textuelle}{29}{subsubsection.2.4.4.2}%
+\contentsline {subsubsection}{\numberline {2.4.4.3}Diagramme de séquence système}{31}{subsubsection.2.4.4.3}%
+\contentsline {chapter}{\numberline {3}Conception}{33}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Vue statique de l'application}{34}{section.3.1}%
+\contentsline {subsection}{\numberline {3.1.1}Architecture logique du logiciel}{34}{subsection.3.1.1}%
+\contentsline {subsubsection}{\numberline {3.1.1.1}Le principe retenu}{34}{subsubsection.3.1.1.1}%
+\contentsline {subsubsection}{\numberline {3.1.1.2}Les ports du domaine}{34}{subsubsection.3.1.1.2}%
+\contentsline {subsubsection}{\numberline {3.1.1.3}Découpage en contextes métier}{35}{subsubsection.3.1.1.3}%
+\contentsline {subsubsection}{\numberline {3.1.1.4}Décomposition en composants}{37}{subsubsection.3.1.1.4}%
+\contentsline {subsection}{\numberline {3.1.2}Diagrammes de classes}{38}{subsection.3.1.2}%
+\contentsline {subsubsection}{\numberline {3.1.2.1}Modèle du domaine}{38}{subsubsection.3.1.2.1}%
+\contentsline {subsubsection}{\numberline {3.1.2.2}Hiérarchie des agents conversationnels}{38}{subsubsection.3.1.2.2}%
+\contentsline {subsubsection}{\numberline {3.1.2.3}Moteur de décision déterministe}{39}{subsubsection.3.1.2.3}%
+\contentsline {subsection}{\numberline {3.1.3}Conception de la base de données}{41}{subsection.3.1.3}%
+\contentsline {subsubsection}{\numberline {3.1.3.1}Organisation en schémas}{41}{subsubsection.3.1.3.1}%
+\contentsline {subsubsection}{\numberline {3.1.3.2}Modèle entités associations}{41}{subsubsection.3.1.3.2}%
+\contentsline {subsubsection}{\numberline {3.1.3.3}Deux asymétries assumées}{41}{subsubsection.3.1.3.3}%
+\contentsline {section}{\numberline {3.2}Vue dynamique de l'application}{42}{section.3.2}%
+\contentsline {subsection}{\numberline {3.2.1}Diagrammes de séquence}{43}{subsection.3.2.1}%
+\contentsline {subsubsection}{\numberline {3.2.1.1}Déroulement d'un tour de parole}{43}{subsubsection.3.2.1.1}%
+\contentsline {subsubsection}{\numberline {3.2.1.2}Déroulement d'une action sensible}{43}{subsubsection.3.2.1.2}%
+\contentsline {subsection}{\numberline {3.2.2}Diagrammes d'activités}{44}{subsection.3.2.2}%
+\contentsline {subsubsection}{\numberline {3.2.2.1}Ingestion documentaire}{44}{subsubsection.3.2.2.1}%
+\contentsline {subsubsection}{\numberline {3.2.2.2}Recherche documentaire}{46}{subsubsection.3.2.2.2}%
+\contentsline {subsection}{\numberline {3.2.3}Diagrammes d'états transitions}{46}{subsection.3.2.3}%
+\contentsline {subsubsection}{\numberline {3.2.3.1}Cycle de vie d'une conversation}{46}{subsubsection.3.2.3.1}%
+\contentsline {subsubsection}{\numberline {3.2.3.2}Cycle de vie d'un ticket}{47}{subsubsection.3.2.3.2}%
+\contentsline {section}{\numberline {3.3}Conception du système agentique}{48}{section.3.3}%
+\contentsline {subsection}{\numberline {3.3.1}Principe et pipeline de raisonnement}{49}{subsection.3.3.1}%
+\contentsline {subsection}{\numberline {3.3.2}Décomposition en agents spécialisés}{49}{subsection.3.3.2}%
+\contentsline {subsubsection}{\numberline {3.3.2.1}Motivation}{49}{subsubsection.3.3.2.1}%
+\contentsline {subsubsection}{\numberline {3.3.2.2}Déclaration unique des domaines}{50}{subsubsection.3.3.2.2}%
+\contentsline {subsubsection}{\numberline {3.3.2.3}Passage de relais entre agents}{51}{subsubsection.3.3.2.3}%
+\contentsline {subsection}{\numberline {3.3.3}Construction du contexte}{51}{subsection.3.3.3}%
+\contentsline {subsubsection}{\numberline {3.3.3.1}Un contexte assemblé et non accumulé}{51}{subsubsection.3.3.3.1}%
+\contentsline {subsubsection}{\numberline {3.3.3.2}Mémoire courte et mémoire longue}{52}{subsubsection.3.3.3.2}%
+\contentsline {subsection}{\numberline {3.3.4}Garde fous et comportement déterministe}{54}{subsection.3.3.4}%
+\contentsline {subsubsection}{\numberline {3.3.4.1}Nature des garde fous}{54}{subsubsection.3.3.4.1}%
+\contentsline {subsubsection}{\numberline {3.3.4.2}Le sentiment comme signal de décision}{54}{subsubsection.3.3.4.2}%
+\contentsline {subsubsection}{\numberline {3.3.4.3}Déterminisme là où il compte}{55}{subsubsection.3.3.4.3}%
+\contentsline {subsection}{\numberline {3.3.5}Du prompt au harnais}{56}{subsection.3.3.5}%
+\contentsline {section}{\numberline {3.4}Conception de la sécurité et du contrôle d'accès}{56}{section.3.4}%
+\contentsline {subsection}{\numberline {3.4.1}Deux frontières distinctes}{56}{subsection.3.4.1}%
+\contentsline {subsection}{\numberline {3.4.2}Authentification et gestion de session}{56}{subsection.3.4.2}%
+\contentsline {subsection}{\numberline {3.4.3}Autorisation fondée sur le rôle}{57}{subsection.3.4.3}%
+\contentsline {subsection}{\numberline {3.4.4}Isolation des données entre clients}{58}{subsection.3.4.4}%
+\contentsline {subsection}{\numberline {3.4.5}Vérification d'identité renforcée}{59}{subsection.3.4.5}%
+\contentsline {subsection}{\numberline {3.4.6}Traçabilité}{59}{subsection.3.4.6}%
+\contentsline {chapter}{\numberline {4}Réalisation}{61}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Technologies}{63}{section.4.1}%
+\contentsline {subsection}{\numberline {4.1.1}Principe de sélection}{63}{subsection.4.1.1}%
+\contentsline {subsection}{\numberline {4.1.2}Technologies par couche}{63}{subsection.4.1.2}%
+\contentsline {subsection}{\numberline {4.1.3}Le rôle de la couche temps réel}{64}{subsection.4.1.3}%
+\contentsline {section}{\numberline {4.2}Outils d'implémentation}{65}{section.4.2}%
+\contentsline {subsection}{\numberline {4.2.1}Environnement matériel}{65}{subsection.4.2.1}%
+\contentsline {subsection}{\numberline {4.2.2}Environnement logiciel}{66}{subsection.4.2.2}%
+\contentsline {section}{\numberline {4.3}La chaîne de traitement temps réel}{67}{section.4.3}%
+\contentsline {subsection}{\numberline {4.3.1}Vue d'ensemble et principe du budget}{67}{subsection.4.3.1}%
+\contentsline {subsection}{\numberline {4.3.2}Établissement de la session et transport}{67}{subsection.4.3.2}%
+\contentsline {subsubsection}{\numberline {4.3.2.1}Rôle}{67}{subsubsection.4.3.2.1}%
+\contentsline {subsubsection}{\numberline {4.3.2.2}Réalisation}{67}{subsubsection.4.3.2.2}%
+\contentsline {subsubsection}{\numberline {4.3.2.3}Ce que le choix a coûté}{68}{subsubsection.4.3.2.3}%
+\contentsline {subsubsection}{\numberline {4.3.2.4}Sortie vers la téléphonie}{68}{subsubsection.4.3.2.4}%
+\contentsline {subsection}{\numberline {4.3.3}Détection de fin d'énoncé et gestion des tours de parole}{68}{subsection.4.3.3}%
+\contentsline {subsubsection}{\numberline {4.3.3.1}Rôle}{68}{subsubsection.4.3.3.1}%
+\contentsline {subsubsection}{\numberline {4.3.3.2}Réalisation}{69}{subsubsection.4.3.3.2}%
+\contentsline {subsubsection}{\numberline {4.3.3.3}Génération anticipée}{69}{subsubsection.4.3.3.3}%
+\contentsline {subsection}{\numberline {4.3.4}Transcription de la parole}{69}{subsection.4.3.4}%
+\contentsline {subsubsection}{\numberline {4.3.4.1}Rôle et métriques}{69}{subsubsection.4.3.4.1}%
+\contentsline {subsubsection}{\numberline {4.3.4.2}Réalisation}{69}{subsubsection.4.3.4.2}%
+\contentsline {subsubsection}{\numberline {4.3.4.3}Chaîne de repli}{70}{subsubsection.4.3.4.3}%
+\contentsline {subsection}{\numberline {4.3.5}Raisonnement}{70}{subsection.4.3.5}%
+\contentsline {subsubsection}{\numberline {4.3.5.1}Rôle et critères de sélection}{70}{subsubsection.4.3.5.1}%
+\contentsline {subsubsection}{\numberline {4.3.5.2}Le compromis évité}{71}{subsubsection.4.3.5.2}%
+\contentsline {subsubsection}{\numberline {4.3.5.3}Réalisation}{71}{subsubsection.4.3.5.3}%
+\contentsline {subsubsection}{\numberline {4.3.5.4}Travaux sur l'exécution locale}{72}{subsubsection.4.3.5.4}%
+\contentsline {subsection}{\numberline {4.3.6}Récupération documentaire sous contrainte temps réel}{72}{subsection.4.3.6}%
+\contentsline {subsubsection}{\numberline {4.3.6.1}Le problème particulier de cette étape}{72}{subsubsection.4.3.6.1}%
+\contentsline {subsubsection}{\numberline {4.3.6.2}Encodage des textes}{73}{subsubsection.4.3.6.2}%
+\contentsline {subsubsection}{\numberline {4.3.6.3}Recherche en trois filtres}{73}{subsubsection.4.3.6.3}%
+\contentsline {subsubsection}{\numberline {4.3.6.4}Ce que le choix a coûté}{74}{subsubsection.4.3.6.4}%
+\contentsline {subsection}{\numberline {4.3.7}Synthèse vocale}{74}{subsection.4.3.7}%
+\contentsline {subsubsection}{\numberline {4.3.7.1}Rôle et métrique déterminante}{74}{subsubsection.4.3.7.1}%
+\contentsline {subsubsection}{\numberline {4.3.7.2}Une exigence éliminatoire}{74}{subsubsection.4.3.7.2}%
+\contentsline {subsubsection}{\numberline {4.3.7.3}Réalisation}{75}{subsubsection.4.3.7.3}%
+\contentsline {subsubsection}{\numberline {4.3.7.4}Une mesure inattendue}{75}{subsubsection.4.3.7.4}%
+\contentsline {subsubsection}{\numberline {4.3.7.5}Positionnement des fournisseurs retenus}{75}{subsubsection.4.3.7.5}%
+\contentsline {subsection}{\numberline {4.3.8}Gestion des interruptions et budget global}{76}{subsection.4.3.8}%
+\contentsline {subsubsection}{\numberline {4.3.8.1}Interruption}{76}{subsubsection.4.3.8.1}%
+\contentsline {subsubsection}{\numberline {4.3.8.2}Budget de latence}{76}{subsubsection.4.3.8.2}%
+\contentsline {section}{\numberline {4.4}Concurrence et gestion des ressources}{78}{section.4.4}%
+\contentsline {subsection}{\numberline {4.4.1}Deux échelles de concurrence}{78}{subsection.4.4.1}%
+\contentsline {subsection}{\numberline {4.4.2}Isolation des conversations}{78}{subsection.4.4.2}%
+\contentsline {subsection}{\numberline {4.4.3}Isolation des opérations concurrentes}{78}{subsection.4.4.3}%
+\contentsline {subsubsection}{\numberline {4.4.3.1}L'identité d'opération}{78}{subsubsection.4.4.3.1}%
+\contentsline {subsubsection}{\numberline {4.4.3.2}Ce que l'identité ne doit pas contenir}{78}{subsubsection.4.4.3.2}%
+\contentsline {subsubsection}{\numberline {4.4.3.3}Garantie sous concurrence réelle}{79}{subsubsection.4.4.3.3}%
+\contentsline {subsection}{\numberline {4.4.4}Ordonnancement des écritures d'audit}{79}{subsection.4.4.4}%
+\contentsline {subsection}{\numberline {4.4.5}Isolation des écritures secondaires}{79}{subsection.4.4.5}%
+\contentsline {subsection}{\numberline {4.4.6}Découplage de l'enregistrement conversationnel}{80}{subsection.4.4.6}%
+\contentsline {section}{\numberline {4.5}Architecture physique et évolution temporelle}{81}{section.4.5}%
+\contentsline {subsection}{\numberline {4.5.1}Topologie de déploiement}{81}{subsection.4.5.1}%
+\contentsline {subsection}{\numberline {4.5.2}Chaîne d'observabilité}{81}{subsection.4.5.2}%
+\contentsline {subsubsection}{\numberline {4.5.2.1}Une instrumentation qui ne dépend de rien}{81}{subsubsection.4.5.2.1}%
+\contentsline {subsubsection}{\numberline {4.5.2.2}Collecte et restitution}{82}{subsubsection.4.5.2.2}%
+\contentsline {subsubsection}{\numberline {4.5.2.3}Trois décisions de conception}{82}{subsubsection.4.5.2.3}%
+\contentsline {subsubsection}{\numberline {4.5.2.4}L'identifiant de corrélation}{83}{subsubsection.4.5.2.4}%
+\contentsline {subsection}{\numberline {4.5.3}Une protection au démarrage}{83}{subsection.4.5.3}%
+\contentsline {subsection}{\numberline {4.5.4}Évolution temporelle d'un échange}{84}{subsection.4.5.4}%
+\contentsline {section}{\numberline {4.6}Interfaces de l'application}{84}{section.4.6}%
+\contentsline {subsection}{\numberline {4.6.1}Portail client}{84}{subsection.4.6.1}%
+\contentsline {subsection}{\numberline {4.6.2}Console d'administration et de supervision}{85}{subsection.4.6.2}%
+\contentsline {subsection}{\numberline {4.6.3}Systèmes intégrés et environnement d'exécution}{87}{subsection.4.6.3}%
+\contentsline {section}{\numberline {4.7}Vérification et évaluation}{88}{section.4.7}%
+\contentsline {subsection}{\numberline {4.7.1}Principe retenu}{88}{subsection.4.7.1}%
+\contentsline {subsection}{\numberline {4.7.2}Familles de vérifications}{89}{subsection.4.7.2}%
+\contentsline {subsection}{\numberline {4.7.3}Vérification par injection de défaillance}{89}{subsection.4.7.3}%
+\contentsline {subsection}{\numberline {4.7.4}Contrôle d'intégrité}{89}{subsection.4.7.4}%
+\contentsline {section}{\numberline {4.8}Résultats et statistiques}{90}{section.4.8}%
+\contentsline {subsection}{\numberline {4.8.1}Statut des mesures présentées}{90}{subsection.4.8.1}%
+\contentsline {subsection}{\numberline {4.8.2}Qualité de la recherche documentaire}{90}{subsection.4.8.2}%
+\contentsline {subsubsection}{\numberline {4.8.2.1}Le problème du seuil unique}{90}{subsubsection.4.8.2.1}%
+\contentsline {subsubsection}{\numberline {4.8.2.2}L'inversion qui a imposé une évaluation conjointe}{91}{subsubsection.4.8.2.2}%
+\contentsline {subsubsection}{\numberline {4.8.2.3}Coût de la solution retenue}{92}{subsubsection.4.8.2.3}%
+\contentsline {subsection}{\numberline {4.8.3}Volumétrie du système réalisé}{93}{subsection.4.8.3}%
+\contentsline {subsection}{\numberline {4.8.4}Comportement en situation de défaillance}{93}{subsection.4.8.4}%
+\contentsline {section}{\numberline {4.9}Problèmes rencontrés}{94}{section.4.9}%
+\contentsline {subsection}{\numberline {4.9.1}Une dégradation silencieuse de la recherche documentaire}{94}{subsection.4.9.1}%
+\contentsline {subsection}{\numberline {4.9.2}L'inversion des scores de similarité}{95}{subsection.4.9.2}%
+\contentsline {subsection}{\numberline {4.9.3}Un modèle de mécontentement à la fois trop sensible et trop indulgent}{95}{subsection.4.9.3}%
+\contentsline {subsection}{\numberline {4.9.4}Un risque de confusion entre services}{96}{subsection.4.9.4}%
+\contentsline {subsection}{\numberline {4.9.5}Une identité d'opération trop inclusive}{96}{subsection.4.9.5}%
+\contentsline {subsection}{\numberline {4.9.6}La contrainte de mémoire et ses conséquences}{96}{subsection.4.9.6}%
+\contentsline {chapter}{Conclusion Générale}{98}{chapter*.81}%
+\contentsline {chapter}{Bibliographie}{100}{chapter*.82}%
+\contentsline {chapter}{Nétographie}{102}{chapter*.83}%
+\contentsline {chapter}{Annexe A : Fondements de la recherche augmentée par récupération}{104}{chapter*.84}%
+\contentsline {chapter}{Annexe B : Métriques de la chaîne vocale}{107}{chapter*.85}%
+\contentsline {chapter}{Annexe C : Notions relatives aux systèmes agentiques}{111}{chapter*.86}%
+\contentsline {chapter}{Annexe D : Modèle détaillé de sécurité et d'audit}{113}{chapter*.87}%

@@ -1,0 +1,229 @@
+
+<svg viewBox="0 0 1100 700" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Drop Shadow for layered components -->
+    <filter id="shadow" x="-5%" y="-5%" width="120%" height="120%">
+      <feDropShadow dx="2" dy="2" stdDeviation="2" flood-color="#000000" flood-opacity="0.15"/>
+    </filter>
+
+    <!-- Connectors / Markers -->
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <polygon points="0,2 10,6 0,10" fill="#333333" />
+    </marker>
+
+    <marker id="triangle" markerWidth="14" markerHeight="14" refX="12" refY="7" orient="auto">
+      <polygon points="1,2 12,7 1,12" fill="#ffffff" stroke="#333333" stroke-width="1.2"/>
+    </marker>
+
+    <marker id="diamond" markerWidth="16" markerHeight="14" refX="14" refY="7" orient="auto">
+      <polygon points="1,7 7,1 13,7 7,13" fill="#ffffff" stroke="#333333" stroke-width="1.2"/>
+    </marker>
+  </defs>
+
+  <style>
+    .bg { fill: #fffdf7; }
+    .box { stroke: #333333; stroke-width: 1.2; }
+    .layer-yellow { fill: #fff4a6; filter: url(#shadow); }
+    .layer-pink { fill: #f28e8e; }
+    .layer-blue { fill: #a9e5ef; }
+    .layer-green { fill: #a9efb0; filter: url(#shadow); }
+    .divider { stroke: #333333; stroke-width: 1.2; }
+    .line { stroke: #333333; stroke-width: 1.2; fill: none; }
+    .header-text { font-family: Arial, Helvetica, sans-serif; font-size: 12px; font-weight: bold; fill: #000000; text-anchor: middle; dominant-baseline: middle; }
+    .body-text { font-family: Arial, Helvetica, sans-serif; font-size: 11px; fill: #000000; dominant-baseline: middle; }
+    .label-text { font-family: Arial, Helvetica, sans-serif; font-size: 11px; fill: #000000; text-anchor: middle; font-style: italic; dominant-baseline: middle; }
+    .assoc-text { font-family: Arial, Helvetica, sans-serif; font-size: 11px; fill: #000000; dominant-baseline: middle; }
+  </style>
+
+  <!-- Background -->
+  <rect class="bg" width="1100" height="700" />
+
+  <!-- Outer Diagram Frame -->
+  <rect x="15" y="15" width="1070" height="670" fill="none" stroke="#333333" stroke-width="1.2" />
+
+  <!-- Grouping Box for Value Objects -->
+  <rect x="25" y="70" width="195" height="435" fill="#a9efb0" fill-opacity="0.2" stroke="#333333" stroke-width="1.2" stroke-dasharray="6,4" rx="4" />
+  <text x="35" y="55" class="label-text" text-anchor="start">Objets valeur, immuables</text>
+
+  <!-- ================= LINES & CONNECTIONS ================= -->
+  <g id="connections">
+    <!-- Dependencies (Arrows) -->
+    <path d="M 205 135 L 280 135" class="line" marker-end="url(#arrow)" />
+    <path d="M 205 315 L 280 325" class="line" marker-end="url(#arrow)" />
+    <path d="M 205 445 L 280 385" class="line" marker-end="url(#arrow)" />
+
+    <!-- Associations -->
+    <!-- Client to Conversation -->
+    <path d="M 480 140 L 540 140" class="line" />
+    <text x="490" y="132" class="assoc-text">1</text>
+    <text x="515" y="132" class="assoc-text">0..*</text>
+
+    <!-- Conversation to TourDeParole (Composition - Diamond points to Conversation) -->
+    <path d="M 800 140 L 730 140" class="line" marker-end="url(#diamond)" />
+    <text x="745" y="132" class="assoc-text">1</text>
+    <text x="775" y="132" class="assoc-text">1..*</text>
+
+    <!-- Action to VerdictDePolitique -->
+    <path d="M 480 350 L 540 350" class="line" />
+    <text x="490" y="342" class="assoc-text">0..*</text>
+    <text x="525" y="342" class="assoc-text">1</text>
+
+    <!-- VerdictDePolitique to Decision -->
+    <path d="M 730 350 L 800 350" class="line" />
+    <text x="740" y="342" class="assoc-text">1</text>
+    <text x="785" y="342" class="assoc-text">1</text>
+
+    <!-- EntreeAudit to Action -->
+    <path d="M 380 520 L 380 400" class="line" />
+    <text x="388" y="460" class="assoc-text">1</text>
+
+    <!-- VerdictDePolitique to Conversation -->
+    <path d="M 635 310 L 635 190" class="line" />
+    <text x="642" y="205" class="assoc-text">1</text>
+    <text x="642" y="295" class="assoc-text">0..*</text>
+
+    <!-- DossierEscalade to Conversation (via shared line) -->
+    <path d="M 730 560 L 760 560 L 760 140" class="line" />
+    <text x="768" y="550" class="assoc-text">0..1</text>
+
+    <!-- Ticket to Client (Wrapping around the right and top) -->
+    <path d="M 380 90 L 380 35 L 1050 35 L 1050 560 L 990 560" class="line" />
+    <text x="390" y="75" class="assoc-text">1</text>
+    <text x="1015" y="550" class="assoc-text">0..*</text>
+  </g>
+
+  <!-- ================= CLASS BOXES ================= -->
+
+  <!-- Value Object: NumeroAppel -->
+  <g id="NumeroAppel">
+    <rect x="35" y="100" width="170" height="75" class="box layer-green" />
+    <line x1="35" y1="135" x2="205" y2="135" class="divider" />
+    <text x="120" y="112" class="label-text">&lt;&lt; objet valeur &gt;&gt;</text>
+    <text x="120" y="126" class="header-text">NumeroAppel</text>
+    <text x="42" y="148" class="body-text">- valeur : Texte</text>
+    <text x="42" y="162" class="body-text">+ estValide() : Boolean</text>
+  </g>
+
+  <!-- Value Object: Montant -->
+  <g id="Montant">
+    <rect x="35" y="280" width="170" height="75" class="box layer-green" />
+    <line x1="35" y1="315" x2="205" y2="315" class="divider" />
+    <text x="120" y="292" class="label-text">&lt;&lt; objet valeur &gt;&gt;</text>
+    <text x="120" y="306" class="header-text">Montant</text>
+    <text x="42" y="328" class="body-text">- valeur : Decimal</text>
+    <text x="42" y="342" class="body-text">- devise : Texte</text>
+  </g>
+
+  <!-- Value Object: IdentiteOperation -->
+  <g id="IdentiteOperation">
+    <rect x="35" y="410" width="170" height="75" class="box layer-green" />
+    <line x1="35" y1="445" x2="205" y2="445" class="divider" />
+    <text x="120" y="422" class="label-text">&lt;&lt; objet valeur &gt;&gt;</text>
+    <text x="120" y="436" class="header-text">IdentiteOperation</text>
+    <text x="42" y="458" class="body-text">- empreinte : Texte</text>
+    <text x="42" y="472" class="body-text">+ correspondA(autre)</text>
+  </g>
+
+  <!-- Client -->
+  <g id="Client">
+    <rect x="280" y="90" width="200" height="100" class="box layer-yellow" />
+    <line x1="280" y1="110" x2="480" y2="110" class="divider" />
+    <text x="380" y="100" class="header-text">Client</text>
+    <text x="288" y="122" class="body-text">- identifiant : Texte</text>
+    <text x="288" y="136" class="body-text">- nomComplet : Texte</text>
+    <text x="288" y="150" class="body-text">- typeAbonnement : Texte</text>
+    <text x="288" y="164" class="body-text">- languePreferee : Langue</text>
+    <text x="288" y="178" class="body-text">- estPrioritaire : Boolean</text>
+  </g>
+
+  <!-- Conversation -->
+  <g id="Conversation">
+    <rect x="540" y="90" width="190" height="100" class="box layer-yellow" />
+    <line x1="540" y1="110" x2="730" y2="110" class="divider" />
+    <text x="635" y="100" class="header-text">Conversation</text>
+    <text x="548" y="122" class="body-text">- identifiant : Texte</text>
+    <text x="548" y="136" class="body-text">- canal : Canal</text>
+    <text x="548" y="150" class="body-text">- langue : Langue</text>
+    <text x="548" y="164" class="body-text">- issue : Texte [0..1]</text>
+    <text x="548" y="178" class="body-text">- creeLe : Horodatage</text>
+  </g>
+
+  <!-- TourDeParole -->
+  <g id="TourDeParole">
+    <rect x="800" y="100" width="190" height="85" class="box layer-yellow" />
+    <line x1="800" y1="120" x2="990" y2="120" class="divider" />
+    <text x="895" y="110" class="header-text">TourDeParole</text>
+    <text x="808" y="132" class="body-text">- identifiant : Texte</text>
+    <text x="808" y="146" class="body-text">- locuteur : Texte</text>
+    <text x="808" y="160" class="body-text">- texte : Texte</text>
+    <text x="808" y="174" class="body-text">- sentiment : Sentiment</text>
+  </g>
+
+  <!-- Action -->
+  <g id="Action">
+    <rect x="280" y="300" width="200" height="100" class="box layer-yellow" />
+    <line x1="280" y1="320" x2="480" y2="320" class="divider" />
+    <text x="380" y="310" class="header-text">Action</text>
+    <text x="288" y="332" class="body-text">- identifiant : Texte</text>
+    <text x="288" y="346" class="body-text">- nature : Texte</text>
+    <text x="288" y="360" class="body-text">- statut : Texte</text>
+    <text x="288" y="374" class="body-text">- montant : Montant [0..1]</text>
+    <text x="288" y="388" class="body-text">- reference : Texte [0..1]</text>
+  </g>
+
+  <!-- VerdictDePolitique -->
+  <g id="VerdictDePolitique">
+    <rect x="540" y="310" width="190" height="85" class="box layer-yellow" />
+    <line x1="540" y1="330" x2="730" y2="330" class="divider" />
+    <text x="635" y="320" class="header-text">VerdictDePolitique</text>
+    <text x="548" y="342" class="body-text">- verdict : Verdict</text>
+    <text x="548" y="356" class="body-text">- identifiantRegle : Texte</text>
+    <text x="548" y="370" class="body-text">- justification : Texte</text>
+    <text x="548" y="384" class="body-text">- creeLe : Horodatage</text>
+  </g>
+
+  <!-- Decision -->
+  <g id="Decision">
+    <rect x="800" y="320" width="190" height="70" class="box layer-yellow" />
+    <line x1="800" y1="340" x2="990" y2="340" class="divider" />
+    <text x="895" y="330" class="header-text">Decision</text>
+    <text x="808" y="352" class="body-text">- action : Texte</text>
+    <text x="808" y="366" class="body-text">- confiance : Reel</text>
+    <text x="808" y="380" class="body-text">- motivation : Texte</text>
+  </g>
+
+  <!-- EntreeAudit -->
+  <g id="EntreeAudit">
+    <rect x="280" y="520" width="200" height="85" class="box layer-yellow" />
+    <line x1="280" y1="540" x2="480" y2="540" class="divider" />
+    <text x="380" y="530" class="header-text">EntreeAudit</text>
+    <text x="288" y="552" class="body-text">- identifiant : Texte</text>
+    <text x="288" y="566" class="body-text">- contenu : Document</text>
+    <text x="288" y="580" class="body-text">- empreintePrecedente : Texte</text>
+    <text x="288" y="594" class="body-text">- empreinte : Texte</text>
+  </g>
+
+  <!-- DossierEscalade -->
+  <g id="DossierEscalade">
+    <rect x="540" y="520" width="190" height="85" class="box layer-yellow" />
+    <line x1="540" y1="540" x2="730" y2="540" class="divider" />
+    <text x="635" y="530" class="header-text">DossierEscalade</text>
+    <text x="548" y="552" class="body-text">- identifiant : Texte</text>
+    <text x="548" y="566" class="body-text">- motif : MotifEscalade</text>
+    <text x="548" y="580" class="body-text">- synthese : Texte</text>
+    <text x="548" y="594" class="body-text">- resolution : Texte [0..1]</text>
+  </g>
+
+  <!-- Ticket -->
+  <g id="Ticket">
+    <rect x="800" y="515" width="190" height="100" class="box layer-yellow" />
+    <line x1="800" y1="535" x2="990" y2="535" class="divider" />
+    <text x="895" y="525" class="header-text">Ticket</text>
+    <text x="808" y="547" class="body-text">- identifiant : Texte</text>
+    <text x="808" y="561" class="body-text">- identifiantExterne : Texte</text>
+    <text x="808" y="575" class="body-text">- objet : Texte</text>
+    <text x="808" y="589" class="body-text">- etat : Texte</text>
+    <text x="808" y="603" class="body-text">- priorite : Texte</text>
+  </g>
+</svg>
+

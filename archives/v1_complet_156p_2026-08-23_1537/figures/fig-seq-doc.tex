@@ -1,0 +1,52 @@
+% Diagramme de séquence système : obtenir une réponse documentaire (figure 2.3)
+\begin{tikzpicture}[x=1cm, y=1cm]
+
+  \def\xA{0}      % Client
+  \def\xB{7.4}    % Système
+  \def\ybas{-8.9}
+
+  % ── En-têtes et lignes de vie ─────────────────────────────
+  \node[entete, minimum width=26mm] (A) at (\xA,0) {Client};
+  \node[entete, minimum width=26mm] (B) at (\xB,0) {: Plateforme};
+  \draw[ligne] (\xA,-0.38) -- (\xA,\ybas);
+  \draw[ligne] (\xB,-0.38) -- (\xB,\ybas);
+
+  % ── Barres d'activation ───────────────────────────────────
+  \fill[figGrisClair, draw=black] (\xB-0.12,-1.05) rectangle (\xB+0.12,-8.35);
+  \fill[figGrisClair, draw=black] (\xA-0.12,-0.85) rectangle (\xA+0.12,-8.55);
+
+  % ── Messages ──────────────────────────────────────────────
+  \draw[message] (\xA,-1.05) -- node[etiq, above] {question formulée oralement} (\xB,-1.05);
+
+  % Fragment optionnel : clarification
+  \draw[draw=black] (\xA-1.15,-1.60) rectangle (\xB+1.35,-3.30);
+  \fill[figGrisClair, draw=black] (\xA-1.15,-1.60) rectangle (\xA-0.05,-1.95);
+  \node[font=\sffamily\tiny\bfseries] at (\xA-0.60,-1.775) {opt};
+  \node[etiqi, anchor=west] at (\xA+0.10,-1.79) {[demande ambiguë]};
+
+  \draw[message] (\xB,-2.30) -- node[etiq, above] {question de clarification unique} (\xA,-2.30);
+  \draw[message] (\xA,-2.90) -- node[etiq, above] {précision apportée} (\xB,-2.90);
+
+  % Fragment alternatif : réponse ou abstention
+  \draw[draw=black] (\xA-1.15,-3.75) rectangle (\xB+1.35,-7.55);
+  \fill[figGrisClair, draw=black] (\xA-1.15,-3.75) rectangle (\xA-0.05,-4.10);
+  \node[font=\sffamily\tiny\bfseries] at (\xA-0.60,-3.925) {alt};
+  \node[etiqi, anchor=west] at (\xA+0.10,-3.94) {[passages pertinents trouvés]};
+
+  \draw[message] (\xB,-4.55) -- node[etiq, above] {réponse ancrée, énoncée brièvement} (\xA,-4.55);
+  \draw[message] (\xB,-5.20) -- node[etiq, above] {proposition d'un complément} (\xA,-5.20);
+
+  \draw[dashed, draw=black] (\xA-1.15,-5.75) -- (\xB+1.35,-5.75);
+  \node[etiqi, anchor=west] at (\xA+0.10,-5.94) {[aucun passage ne franchit les filtres]};
+
+  \draw[message] (\xB,-6.55) -- node[etiq, above] {aveu explicite d'absence d'information} (\xA,-6.55);
+  \draw[message] (\xB,-7.15) -- node[etiq, above] {proposition de prise en charge alternative} (\xA,-7.15);
+
+  % Interruption possible à tout moment
+  \draw[message] (\xA,-8.05) -- node[etiq, above] {interruption éventuelle du client} (\xB,-8.05);
+
+  % ── Note ──────────────────────────────────────────────────
+  \node[note, text width=41mm, anchor=north west] at (\xB+1.75,-1.2)
+       {Le système est vu ici comme\\une boîte noire. Sa décomposition\\interne est présentée au\\chapitre suivant.};
+
+\end{tikzpicture}

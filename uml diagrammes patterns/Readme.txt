@@ -1,0 +1,1 @@
+in all new generated uml diagrams you have to follow these styling in generating uml diagrams so each diagram contains it's specific design style and patter you have to follow it clearly

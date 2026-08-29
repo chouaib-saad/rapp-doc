@@ -1,0 +1,47 @@
+% Diagramme de paquetages des contextes métier (figure 3.2)
+\begin{tikzpicture}[x=1cm, y=1cm]
+
+  \tikzset{pq/.style={fbox, minimum width=33mm, minimum height=11mm,
+                      font=\sffamily\scriptsize, align=center}}
+
+  % ── Contextes de conduite de l'échange ────────────────────
+  \node[pq] (conv)  at (0, 4.2) {Conversation};      \ongletPaquet{conv}
+  \node[pq] (conn)  at (4.6, 4.2) {Connaissance};    \ongletPaquet{conn}
+  \node[pq] (ident) at (9.2, 4.2) {Identité\\et accès}; \ongletPaquet{ident}
+
+  % ── Contextes de décision et d'action ─────────────────────
+  \node[pq] (deci) at (0, 1.3) {Décision\\et politique}; \ongletPaquet{deci}
+  \node[pq] (exec) at (4.6, 1.3) {Exécution};            \ongletPaquet{exec}
+  \node[pq] (rout) at (9.2, 1.3) {Routage\\et escalade};  \ongletPaquet{rout}
+
+  % ── Contextes de support ──────────────────────────────────
+  \node[pq] (tick) at (0,-1.6) {Gestion\\de tickets};  \ongletPaquet{tick}
+  \node[pq] (refe) at (4.6,-1.6) {Référentiels};       \ongletPaquet{refe}
+  \node[pq] (audi) at (9.2,-1.6) {Audit};              \ongletPaquet{audi}
+
+  % ── Dépendances autorisées, orientées et sans cycle ───────
+  \draw[dependance] (conv.east) -- node[etiq, pos=0.5] {$\ll$ use $\gg$} (conn.west);
+  \draw[dependance] (conv.south) -- (deci.north);
+  \draw[dependance] (deci.east) -- (exec.west);
+  \draw[dependance] (deci.south) -- (tick.north);
+  \draw[dependance] (exec.south) -- (refe.north);
+  \draw[dependance] (tick.east) -- (refe.west);
+  \draw[dependance] (ident.south) -- (rout.north);
+  \draw[dependance] (rout.south) -- (audi.north);
+
+  % La décision consulte les référentiels : trajet en diagonale,
+  % dans l'espace laissé libre entre les deux paquetages voisins.
+  \draw[dependance] (deci.south east) -- (refe.north west);
+
+  % L'exécution inscrit ses actes au journal d'audit.
+  \draw[dependance] (exec.south east) -- (audi.north west);
+
+  % La conversation sollicite le routage : contournement par le haut,
+  % à l'écart du paquetage Identité et accès.
+  \draw[dependance] (conv.north) -- ++(0,0.85) -- (11.75,5.05)
+                    -- (11.75,1.30) -- (rout.east);
+
+  \node[note, text width=74mm, anchor=north, align=center] at (4.6,-3.35)
+       {Les dépendances sont orientées et sans cycle. Chaque contexte possède son propre\\vocabulaire et communique par contrat explicite, jamais par structure partagée.};
+
+\end{tikzpicture}
