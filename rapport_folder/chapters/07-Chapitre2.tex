@@ -22,7 +22,7 @@ Un acteur désigne une entité extérieure au système qui interagit avec lui po
 Quatre acteurs principaux ont été retenus. Les trois derniers correspondent à une hiérarchie de responsabilités croissantes, chaque niveau disposant des droits du niveau inférieur augmentés des siens.
 
 \begin{itemize}
-  \item \textbf{Le client.} Abonné de l'opérateur. Il s'adresse à la plateforme pour obtenir une information ou faire réaliser une opération sur sa ligne. Il interagit principalement par la voix, et accède par ailleurs à un portail où il retrouve sa situation, ses demandes et l'historique de ses échanges.
+  \item \textbf{Le client.} Abonné de l'opérateur, disposant d'un compte sur la plateforme. Il peut créer ce compte depuis le portail et vérifier son identité auprès des services de l'opérateur, ce qui lui permet ensuite d'agir avec l'agent. Il s'adresse à la plateforme pour obtenir une information ou faire réaliser une opération sur sa ligne, et accède par ailleurs à un portail où il retrouve sa situation, ses demandes et l'historique de ses échanges.
   \item \textbf{Le conseiller.} Agent du service client. Il prend en charge les conversations qui lui sont transmises par la plateforme et traite les demandes de rappel qui lui sont attribuées. Il dispose du niveau de droits le plus bas parmi les profils internes.
   \item \textbf{Le superviseur.} Responsable de la supervision opérationnelle. Il observe l'activité de la plateforme, consulte les conversations et les décisions prises, suit les indicateurs et organise la disponibilité des conseillers.
   \item \textbf{L'administrateur.} Responsable de la configuration et de la gouvernance du système. Il gère les comptes, les règles métier, les référentiels et la base documentaire, et dispose des moyens de contrôle de l'intégrité des enregistrements.
@@ -47,7 +47,7 @@ Le tableau \ref{tab:acteurs} récapitule le rôle de chaque acteur et son mode d
 \hline
 \textbf{Acteur} & \textbf{Type} & \textbf{Responsabilité principale} & \textbf{Mode d'interaction} \\
 \hline
-Client & Principal & Exprimer une demande et obtenir sa résolution & Conversation vocale ou textuelle, portail client \\
+Client & Principal & Exprimer une demande, obtenir sa résolution ou souscrire à un service & Conversation vocale ou textuelle, portail client \\
 \hline
 Conseiller & Principal & Traiter les conversations transmises et les rappels attribués & Console de supervision, reprise d'appel \\
 \hline
@@ -72,7 +72,7 @@ Les besoins fonctionnels décrivent ce que le système doit faire. Nous les avon
 
 \subsection{Conduite de la conversation}
 
-La plateforme doit permettre au client d'engager un échange parlé ou écrit et de le mener à son terme sans contrainte de formulation. Elle doit conserver le fil de la conversation d'un tour de parole au suivant, de sorte que le client n'ait jamais à répéter une information déjà donnée. Elle doit identifier l'intention exprimée et, lorsque la demande demeure ambiguë, poser une question de clarification unique et précise plutôt qu'une série de questions fermées. Elle doit accepter d'être interrompue à tout moment et reprendre la main sans perdre l'état de l'échange. Elle doit enfin pouvoir changer de langue en cours de conversation à la demande du client.
+La plateforme doit permettre au client d'engager un échange parlé ou écrit et de le mener à son terme sans contrainte de formulation. Elle doit conserver le fil de la conversation d'un tour de parole au suivant, de sorte que le client n'ait jamais à répéter une information déjà donnée. Elle doit identifier l'intention exprimée et, lorsque la demande demeure ambiguë, conduire une clarification bornée. Elle pose une question précise, adapte sa stratégie (question fermée ou épellation de la référence) si la réponse reste inexploitable, et au delà de trois tentatives infructueuses considère que c'est la clarification qui a échoué, et non le client, puis propose le passage à un conseiller. Elle doit accepter d'être interrompue à tout moment et reprendre la main sans perdre l'état de l'échange. Elle doit enfin pouvoir changer de langue en cours de conversation à la demande du client.
 
 \subsection{Construction du contexte client}
 
@@ -88,7 +88,7 @@ Toute opération engageant le compte du client doit être précédée d'une vér
 
 \subsection{Gestion des tickets}
 
-La plateforme doit pouvoir consulter les tickets existants d'un client, en créer de nouveaux, les mettre à jour et les clôturer lorsque le problème est résolu. Elle doit connaître l'historique des tickets du client afin d'éviter la création de doublons et de tenir compte des difficultés déjà signalées.
+La plateforme doit pouvoir consulter les tickets existants d'un client, en créer de nouveaux, les mettre à jour et les clôturer lorsque le problème est résolu. Elle doit connaître l'historique des tickets du client afin d'éviter la création de doublons et de tenir compte des difficultés déjà signalées. Elle doit en outre permettre au client d'ouvrir un litige sur une facture : l'ouverture retire la facture du règlement pendant l'instruction, et sa clôture restaure le statut antérieur.
 
 \subsection{Escalade et rappel}
 
@@ -96,17 +96,117 @@ La plateforme doit reconnaître les situations qui appellent une intervention hu
 
 \subsection{Espace client}
 
-Le client doit disposer d'un espace personnel lui permettant de consulter son profil, sa situation de facturation, ses demandes, ses rappels programmés et l'historique de ses conversations. Il doit également pouvoir consulter et effacer les informations que la plateforme conserve de ses échanges antérieurs, et n'accéder en aucun cas aux données d'un autre client.
+Le client doit disposer d'un espace personnel lui permettant de consulter son profil, sa situation de facturation, ses demandes, ses rappels programmés et l'historique de ses conversations. Il doit également pouvoir consulter et effacer les informations que la plateforme conserve de ses échanges antérieurs, et n'accéder en aucun cas aux données d'un autre client. Depuis cet espace, il peut créer son compte et vérifier son identité auprès des services de l'opérateur, afin de pouvoir ensuite agir avec l'agent.
 
 \subsection{Supervision et administration}
 
-Les profils internes doivent disposer des moyens d'observer et de gouverner le système. Cela recouvre la consultation des conversations et de leurs transcriptions, l'inspection des décisions et des verdicts rendus, le suivi des indicateurs d'activité, la gestion des conseillers et de leurs disponibilités, l'administration des règles métier et des référentiels, la gestion de la base documentaire et le contrôle de l'intégrité du registre des opérations.
+Les profils internes doivent disposer des moyens d'observer et de gouverner le système. Cela recouvre la consultation des conversations et de leurs transcriptions, l'inspection des décisions et des verdicts rendus, le suivi des indicateurs d'activité, et la gestion des conseillers et de leurs disponibilités. S'y ajoutent l'administration des règles métier et des référentiels, la gestion de la base documentaire, et le contrôle de l'intégrité du registre des opérations.
 
 \subsection{Récapitulatif}
 
-La figure \ref{fig:carte-besoins} récapitule ces besoins sous forme de carte, un bloc par domaine. Cette vue d'ensemble sert de repère pour la suite du rapport : la conception du chapitre suivant s'organise autour des mêmes domaines.
+Les tableaux \ref{tab:bf} et \ref{tab:bf-suite} récapitulent ces besoins sous une forme identifiée, reprise au chapitre de réalisation pour établir la correspondance avec les mécanismes qui les mettent en oeuvre. Le premier couvre les domaines de la conversation, du contexte, de la connaissance et du début du traitement des actions. Le second poursuit sur les actions, les tickets, l'escalade, l'espace client, la supervision et l'administration.
 
-\figureTikz{Carte des besoins fonctionnels par domaine}{carte-besoins}{fig-carte-besoins}
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{|p{1.3cm}|p{3.4cm}|p{9.2cm}|}
+\hline
+\multicolumn{3}{|c|}{\textbf{Besoins fonctionnels}} \\
+\hline
+\textbf{Réf.} & \textbf{Domaine} & \textbf{Énoncé} \\
+\hline
+BF01 & Conversation & Engager un échange parlé ou écrit et le mener à son terme sans contrainte de formulation. \\
+\hline
+BF02 & Conversation & Conserver le fil de l'échange d'un tour de parole au suivant. \\
+\hline
+BF03 & Conversation & Identifier l'intention exprimée par le client. \\
+\hline
+BF04 & Conversation & Conduire une clarification bornée à trois tentatives, en adaptant la stratégie, puis proposer un conseiller au delà. \\
+\hline
+BF05 & Conversation & Accepter une interruption du client à tout moment et reprendre sans perdre l'état. \\
+\hline
+BF06 & Conversation & Changer de langue en cours d'échange à la demande du client. \\
+\hline
+BF07 & Contexte & Reconstituer le profil, l'abonnement et la situation de facturation du client. \\
+\hline
+BF08 & Contexte & Récupérer l'historique des demandes et des échanges antérieurs. \\
+\hline
+BF09 & Contexte & Solliciter chaque élément de contexte uniquement lorsque la demande le justifie. \\
+\hline
+BF10 & Connaissance & Répondre aux questions documentaires à partir de la documentation de l'opérateur. \\
+\hline
+BF11 & Connaissance & Signaler explicitement l'absence de réponse plutôt que produire une réponse vraisemblable. \\
+\hline
+BF12 & Connaissance & Permettre l'alimentation et la mise à jour de la base documentaire par l'administrateur. \\
+\hline
+BF13 & Action & Vérifier l'identité du client avant toute opération sensible. \\
+\hline
+BF14 & Action & Produire un verdict explicite : autorisée, refusée, ou à transmettre à un conseiller. \\
+\hline
+\end{tabular}
+\caption{Besoins fonctionnels de la plateforme}
+\label{tab:bf}
+\end{table}
+
+\newpage
+
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{|p{1.3cm}|p{3.4cm}|p{9.2cm}|}
+\hline
+\multicolumn{3}{|c|}{\textbf{Besoins fonctionnels (suite)}} \\
+\hline
+\textbf{Réf.} & \textbf{Domaine} & \textbf{Énoncé} \\
+\hline
+BF15 & Action & Associer à chaque verdict l'identifiant de la règle appliquée et sa justification. \\
+\hline
+BF16 & Action & Exécuter une action autorisée une fois et une seule. \\
+\hline
+BF17 & Action & Confirmer verbalement au client le résultat de l'opération. \\
+\hline
+BF18 & Ticket & Consulter les tickets existants d'un client. \\
+\hline
+BF19 & Ticket & Créer, mettre à jour et clôturer un ticket. \\
+\hline
+BF20 & Ticket & Tenir compte de l'historique des tickets pour éviter les doublons. \\
+\hline
+BF21 & Escalade & Reconnaître les situations appelant une intervention humaine. \\
+\hline
+BF22 & Escalade & Transférer la conversation à un conseiller disponible. \\
+\hline
+BF23 & Escalade & Négocier et réserver un créneau de rappel selon les disponibilités réelles. \\
+\hline
+BF24 & Escalade & Transmettre au conseiller le dossier complet de l'échange. \\
+\hline
+BF25 & Espace client & Consulter profil, facturation, demandes, rappels et historique des conversations. \\
+\hline
+BF26 & Espace client & Consulter et effacer les informations mémorisées par la plateforme. \\
+\hline
+BF27 & Espace client & Interdire l'accès aux données d'un autre client. \\
+\hline
+BF28 & Supervision & Consulter les conversations et leurs transcriptions. \\
+\hline
+BF29 & Supervision & Inspecter les décisions et les verdicts rendus. \\
+\hline
+BF30 & Supervision & Suivre les indicateurs d'activité de la plateforme. \\
+\hline
+BF31 & Supervision & Gérer les conseillers, leurs plannings et leurs indisponibilités. \\
+\hline
+BF32 & Administration & Administrer les règles métier et les référentiels. \\
+\hline
+BF33 & Administration & Gérer la base documentaire et ses versions. \\
+\hline
+BF34 & Administration & Contrôler l'intégrité du registre des opérations. \\
+\hline
+BF35 & Facturation & Ouvrir un litige sur une facture et le clôturer, la facture étant retirée du règlement pendant l'instruction. \\
+\hline
+BF36 & Espace client & Créer son compte depuis le portail et vérifier son identité auprès des services de l'opérateur, afin d'agir avec l'agent. \\
+\hline
+\end{tabular}
+\caption{Besoins fonctionnels de la plateforme (suite)}
+\label{tab:bf-suite}
+\end{table}
 
 \section{Besoins non fonctionnels}
 

@@ -1,62 +1,37 @@
 # Open Tasks
 
-Liste active après la production des figures.
+Active after Phase 2 + final reading + Phase 5 figure 1. No LaTeX build in sandbox.
 
 ## Critical
+- [ ] Cover page (user redoes in French, provides PDF `chapters/00-PageDeGarde.pdf`).
+- [ ] Jury + defence date in `Commands.tex` (`À PRÉCISER` for dateSoutenance / juryPresident).
 
-- [ ] **Page de garde.** L'utilisateur la refait lui même, en français, et fournira le PDF.
-      Le fichier attendu reste `chapters/00-PageDeGarde.pdf`, inclus tel quel par `main.tex`.
-      Le titre du corps du rapport et des métadonnées PDF est :
-      « Plateforme conversationnelle temps réel pour l'automatisation de la relation client
-      dans les télécommunications ». La page de garde devrait porter le même titre, afin
-      d'éviter la contradiction qui existait avec l'ancienne version anglaise.
-
-- [ ] **Jury et date de soutenance.** `Commands.tex` porte encore `À PRÉCISER` pour
-      `dateSoutenance` et `juryPresident`.
-
-## High Priority
-
-- [ ] **18 captures d'interface** pour la section 4.6. Chaque emplacement réservé nomme la
-      route exacte et ce que la capture doit montrer. Elles sont reparties en 8 planches de deux captures et 2 captures pleine largeur. Liste décidée dans `04_CONTENT_PLAN.md`.
-      Portail client : assistant, billing, requests, activity.
-      Console : overview, calls, decisions, policies, knowledge, escalations, availability, audit.
-      Systèmes intégrés : ticket créé dans GLPI, corpus indexé.
-      Observabilité : les deux tableaux de bord Grafana, puis les cibles Prometheus.
-      Exécution : topologie des conteneurs.
-
-- [ ] **Logo de la société** pour la figure 1.1. Fichier à déposer dans `images/`, puis
-      remplacer l'emplacement réservé par
-      `\figureReport{images/logo-amsys.png}{9cm}{Logo de la société Amsys Consulting}{logo-amsys}`.
+## High Priority — Phase 5 diagrams (ONE at a time)
+- [x] **Figure 1: fig-cycle-iteratif.svg** — exact supervisor image inserted, text aligned.
+- [ ] **Figure 2:** fig-deploiement (Ch4) — deployment pattern, 24 containers.
+- [ ] **Figure 3:** fig-cu-general (Ch2) — use-case style.
+- [ ] then the remaining figures in the order below (validate each before the next):
+      fig-cu-doc, fig-cu-action, fig-cu-escalade, fig-seq-*, fig-classes-*, fig-act-*,
+      fig-etats-*, fig-pipeline-agent, fig-orchestration, fig-contexte, fig-chaine-temps-reel,
+      fig-budget-latence, fig-volumetrie, fig-positionnement-fournisseurs, fig-rag-comparaison,
+      fig-concurrence, fig-chronogramme, fig-verifications, fig-securite, fig-composants, etc.
+- [ ] After all figures: report-wide consistency check of figures vs text.
 
 ## Normal Priority
+- [ ] Captures d'écran placeholders (ui-*) — still placeholders awaiting real screenshots; one
+      figure per capture (no side-by-side planches).
+- [ ] Logo Amsys for figure 1.1 if not yet replaced.
 
-- [x] Tableaux de bord Grafana et Prometheus : réalisés et provisionnés par fichiers.
-- [ ] Confirmer si les traces distribuées sont consultables dans une interface, ce qui
-      permettrait une capture supplémentaire.
-
-## Verification Needed
-
-- [ ] Relire la section 1.3 : les affirmations sur PolyAI, Cognigy et Parloa ont été vérifiées
-      contre la documentation publique le 23 août 2026, mais le positionnement de ces éditeurs
-      évolue vite.
-- [ ] Confirmer auprès de l'encadrante que les deux sections ajoutées au chapitre 3
-      (3.3 Conception du système agentique, 3.4 Conception de la sécurité) sont acceptées.
-      Elles sont marquées comme ajouts et justifiées dans `01_REPORT_ROADMAP.md`.
-
-## Content Tasks
-
-- [ ] Facultatif : campagne de mesure instrumentée remplaçant les valeurs de latence
-      reconstituées de la section 4.8. L'instrumentation existe déjà. Si elle est menée, il
-      faut mettre à jour la section 4.8 ET sa note méthodologique, qui annonce actuellement
-      sans détour que les valeurs sont reconstituées.
+## Content / Deferred
+- [ ] Increment count semantic — if re-introduced, must use functional-slice (18) definition, never
+      112/260; requires a memory rule + user decision.
+- [ ] fig-volumetrie row "Périmètre et travail" has 2 cells (9 ops, 3 langues); user chose to leave
+      until Phase-5 restyle.
 
 ## Final Review Tasks
-
+- [ ] User compiles locally (MiKTeX) and reports page count / errors / overfull.
 - [ ] Relecture intégrale par l'utilisateur.
-- [ ] Volume : 156 pages contre une cible annoncée de 90 à 120. Si le volume est jugé
-      excessif, les annexes et la section 4.6 sont les parties les plus compressibles.
+- [ ] Volume check after all diagrams.
 
 ## Task Rule
-
-Chaque tâche doit être actionnable et précise.
-Retirer les tâches terminées ou les déplacer vers `02_PROGRESS.md`.
+Each task actionable & precise. Move finished tasks to `02_PROGRESS.md`.

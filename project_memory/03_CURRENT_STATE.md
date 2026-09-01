@@ -1,45 +1,49 @@
 # Current Report State
 
 ## Current Objective
-Phase 1 (analyse) of the report build. Workspace fully swept; moving to the technical source of truth.
+Phase 5 — finalize all report figures one at a time, using only the established per-family visual
+patterns. Figure 1 (fig-cycle-iteratif) is done and validated; text in Ch1 §1.5 aligned to it.
 
-## Current Chapter
-None written yet.
-
-## Current Section
-None.
+## Current Chapter / Section
+Ch1 §1.5 (cycle figure + text). Phase 5 figure 1/36 complete.
 
 ## Current Task
-Analyse `C:\Users\Chouqib Saad\Desktop\telecom-ai-agent-platform` to build the verified technical picture.
+Generate/validate figure 2/36 next (deploy or use-case or sequence — pending user choice),
+then continue one figure at a time. Before ANY new figure: analysis → proposal → generation →
+verification → discussion → validation.
 
 ## Last Known Good State
-`rapport_folder/chapters` and `rapport_folder/images` are empty. No report content exists yet in the workspace.
-The LaTeX build environment is available locally (MiKTeX 25.12: pdflatex, xelatex, latexmk).
+- Ch2/3/4 restored from archive + Phase 2 Units 1–11 applied & approved.
+- Final reading/lightening pass applied to Ch1–Ch4 (no content invention).
+- Volumétrie: 38 screens, no endpoints, no 112/260; 24 containers consistent.
+- Ch1 §1.5: modèle évolutif + Belgacem citation + exact figure `fig-cycle-iteratif.svg` placed.
+- `fig-cycle-iteratif.svg` (report) is byte-identical to the supervisor reference (sha256 dc3b517e…772cf7e).
 
 ## Current Files Being Worked On
-- project_memory/*.md (being populated for the first time)
+- `rapport_folder/figures/fig-cycle-iteratif.svg` (exact supervisor image, non-modifiable).
+- `rapport_folder/chapters/06-Chapitre1.tex` (text adjusted once to support the figure).
+- Project memory files (being saved now).
 
 ## Recently Changed
-- 00..09 memory files: first real population (they were empty scaffolds).
+- Ch1 §1.5 rewritten to describe the modèle évolutif & the exact figure (30/55/80/100 %, feedback loop).
+- Final-reading lots applied (Ch1×4, Ch2×3, Ch3×5, Ch4×8 approved; several kept original).
+- Phase 5 started; figure 1 done.
 
 ## Current Problems
-None blocking.
+- No LaTeX compiler in sandbox (apt failed, deb.debian.org refused). User compiles locally.
+- SVG cannot be rasterized here for inline preview; opened via the file viewer / user browser.
 
 ## Current Blockers
-None.
+None blocking.
 
 ## Next Immediate Action
-Read the source-of-truth project documentation and code structure, then populate `08_PROJECT_FACTS.md`.
+Save memory; commit & push all current work to `arena/01a052fb-rapp-doc`; then begin figure 2.
 
 ## Important Context From Previous Work
-- The file `latex_template_to_use/rapport_de_pfe_V2.zip` is NOT a neutral template. It is a previous
-  draft (V2) of this very report, already about Amsys Consulting and the telecom agentic platform.
-  Reuse its LaTeX architecture and syntax. Do not reuse its Scrum sprint-per-chapter organisation.
-- `trails_they_disappointed_me/` holds earlier attempts (v1 docx, v2 pdf) judged unsatisfactory.
+- Session is FIXED to branch `arena/01a052fb-rapp-doc`; do not switch/create other branches.
+- Phase 5 rule: one figure at a time; the supervisor-provided SVG must remain byte-identical.
+- Project memory authoritative: 00 Context, 01 Roadmap, 02 Progress, 03 CurrentState, 04 ContentPlan,
+  05 Decisions (D01-D16), 06 OpenTasks, 07 TemplateRules, 08 ProjectFacts, 09 SessionLog.
 
 ## Continuation Rule
-Before starting a new task:
-1. Read this file.
-2. Read `02_PROGRESS.md`.
-3. Read `06_OPEN_TASKS.md`.
-4. Read relevant decisions/rules.
+Before starting a new task: read 03, then 02, then 06, then relevant decisions/rules.

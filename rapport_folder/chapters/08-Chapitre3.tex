@@ -19,11 +19,11 @@ Le chapitre précédent a établi ce que le système doit faire. Celui ci décri
 
 \subsubsection{Le principe retenu}
 
-L'architecture repose sur une séparation en couches concentriques, selon le patron dit hexagonal, également appelé architecture en ports et adaptateurs \cite{cockburn, martin}. Ce choix découle directement de deux besoins non fonctionnels établis au chapitre précédent : l'extensibilité, qui exige qu'un changement de fournisseur externe ne se propage pas dans le système, et la testabilité, qui exige que la logique de décision puisse être vérifiée sans dépendre d'un environnement.
+L'architecture repose sur une séparation en couches concentriques, selon le patron dit hexagonal, également appelé architecture en ports et adaptateurs \cite{cockburn, martin}. Ce choix découle directement de deux besoins non fonctionnels établis au chapitre précédent. L'extensibilité exige qu'un changement de fournisseur externe ne se propage pas dans le système ; la testabilité exige que la logique de décision puisse être vérifiée sans dépendre d'un environnement.
 
-Au centre se trouve le domaine métier, qui porte les entités, les objets valeur et les règles, et qui ne dépend de rien : il ignore par construction l'existence des interfaces, des bases de données et des fournisseurs externes. Il déclare en revanche des interfaces abstraites, les ports, exprimant ce dont il a besoin sans dire comment le lui fournir. Autour viennent les adaptateurs, qui les implémentent.
+Le principe est le suivant. Au centre se trouve le domaine métier, qui contient les entités, les objets valeur et les règles. Ce domaine ne dépend de rien : il ignore par construction l'existence des interfaces utilisateur, des bases de données, des fournisseurs de reconnaissance vocale et des systèmes de l'opérateur. Il déclare en revanche des interfaces abstraites, appelées ports, qui expriment ce dont il a besoin sans dire comment le lui fournir. Autour de ce centre viennent les adaptateurs, qui implémentent ces ports en s'adressant au monde extérieur.
 
-La direction des dépendances s'en trouve inversée : l'infrastructure se conforme au contrat du domaine, et non l'inverse. Remplacer un fournisseur revient dès lors à écrire un adaptateur, sans toucher aux règles.
+La conséquence pratique est que la direction des dépendances est inversée par rapport à une organisation en couches classique. Ce n'est pas le domaine qui dépend de l'infrastructure, c'est l'infrastructure qui se conforme au contrat défini par le domaine. Remplacer un fournisseur revient alors à écrire un nouvel adaptateur, sans toucher ni aux règles ni aux entités.
 
 La figure \ref{fig:archi-hexagonale} présente cette organisation.
 
@@ -31,19 +31,51 @@ La figure \ref{fig:archi-hexagonale} présente cette organisation.
 
 \subsubsection{Les ports du domaine}
 
-Le domaine déclare treize ports, chacun correspondant à une capacité dont il a besoin et dont il refuse de connaître la réalisation. Ils se répartissent en trois familles.
+Le domaine déclare treize ports, chacun correspondant à une capacité dont il a besoin et dont il refuse de connaître la réalisation. Le tableau \ref{tab:ports} les récapitule.
 
-\begin{itemize}
-  \item \textbf{Conduite de la décision.} Les ports de décision, de politique et d'exécution portent respectivement la proposition d'une action candidate, le verdict motivé qui la tranche et sa réalisation idempotente.
-  \item \textbf{Accès au métier de l'opérateur.} Les ports de relation client, de facturation, de solde, de paiement, de provisionnement et de supervision réseau donnent accès aux données et aux opérations détenues par les systèmes de l'opérateur.
-  \item \textbf{Services transverses.} Les ports de connaissance, d'audit, de notification et de gestion de tickets couvrent la recherche documentaire, l'enregistrement infalsifiable, l'acheminement des avis et le cycle de vie des tickets.
-\end{itemize}
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{|p{3.0cm}|p{11.5cm}|}
+\hline
+\textbf{Port} & \textbf{Capacité déclarée} \\
+\hline
+Décision & Proposer une action candidate assortie d'un degré de confiance. \\
+\hline
+Politique & Rendre un verdict motivé sur une action, et contrôler une réponse sortante. \\
+\hline
+Exécution & Réaliser une action approuvée de manière idempotente. \\
+\hline
+Connaissance & Rechercher les passages documentaires pertinents pour une question. \\
+\hline
+Audit & Inscrire un enregistrement infalsifiable et en vérifier la chaîne. \\
+\hline
+Notification & Acheminer un avis vers un client ou un conseiller. \\
+\hline
+Gestion de tickets & Créer, consulter, mettre à jour et clôturer un ticket. \\
+\hline
+Relation client & Accéder au profil et à la situation contractuelle d'un client. \\
+\hline
+Facturation & Consulter les factures et les montants dus. \\
+\hline
+Solde & Consulter et créditer le solde d'une ligne. \\
+\hline
+Paiement & Réaliser une opération de règlement. \\
+\hline
+Supervision réseau & Consulter l'état du réseau et les incidents en cours. \\
+\hline
+Provisionnement & Agir sur la configuration d'une ligne ou d'une carte SIM. \\
+\hline
+\end{tabular}
+\caption{Ports déclarés par le domaine métier}
+\label{tab:ports}
+\end{table}
 
 Le port de politique mérite une remarque particulière, car il déclare deux capacités et non une seule. La première évalue une action avant son exécution. La seconde évalue une réponse avant son émission, ce qui permet de contrôler ce que le système s'apprête à dire au client, et non uniquement ce qu'il s'apprête à faire. Cette symétrie est délibérée : une réponse qui divulguerait une donnée personnelle ou formulerait un engagement non fondé constitue un incident au même titre qu'une action non autorisée.
 
 \subsubsection{Découpage en contextes métier}
 
-Le domaine n'est pas monolithique. Il est découpé en contextes métier délimités, au sens de la conception pilotée par le domaine \cite{evans}, chacun possédant son propre vocabulaire et sa propre logique, et communiquant avec les autres par des contrats explicites plutôt que par des structures partagées. Ce découpage suit les frontières du métier et non celles de la technique.
+Le domaine n'est pas monolithique. Il est découpé en contextes métier délimités, au sens de la conception pilotée par le domaine \cite{evans}. Chacun possède son propre vocabulaire et sa propre logique, et communique avec les autres par des contrats explicites plutôt que par des structures partagées. Ce découpage suit les frontières du métier et non celles de la technique.
 
 \begin{itemize}
   \item \textbf{Conversation.} Le déroulement de l'échange, les tours de parole, l'état de la session et l'issue de la conversation.
@@ -85,7 +117,7 @@ Nous présentons trois diagrammes de classes, chacun répondant à une question 
 
 Le modèle du domaine distingue explicitement deux natures d'objets, distinction qui structure l'ensemble du code.
 
-Les entités possèdent une identité propre qui persiste au delà de leurs valeurs : deux clients restent distincts même si tous leurs attributs coïncident. Le domaine en compte neuf principales : le client, l'intention, le tour de parole, la conversation, la décision, le verdict de politique, l'action, le ticket et le dossier d'escalade, auxquels s'ajoutent l'enregistrement de consentement et l'entrée d'audit.
+Les entités possèdent une identité propre qui persiste au delà de leurs valeurs : deux clients restent distincts même si tous leurs attributs coïncident. Le domaine s'articule autour de plusieurs entités principales : le client, l'intention, le tour de parole, la conversation, la décision, le verdict de politique, l'action, le ticket et le dossier d'escalade. S'y ajoutent l'enregistrement de consentement et l'entrée d'audit.
 
 Les objets valeur, au contraire, n'ont pas d'identité : ils sont définis entièrement par leur contenu et sont immuables. Le domaine en compte trois, et le choix de chacun d'eux est significatif. Le numéro d'appel encapsule sa propre règle de validité, ce qui rend impossible la circulation d'un numéro mal formé dans le système. Le montant transporte indissociablement sa valeur et sa devise, ce qui interdit une addition entre devises différentes. L'identité d'opération, enfin, est la clé qui garantit qu'une action ne sera pas exécutée deux fois.
 
@@ -123,7 +155,47 @@ La figure \ref{fig:classes-politique} présente ce moteur.
 
 Le stockage relationnel est organisé en schémas, un par contexte métier, ce qui prolonge dans les données le découpage établi dans le domaine. Cette organisation autorise un contrôle d'accès différencié par schéma et rend visible, à la seule lecture du modèle, la frontière de chaque contexte.
 
-Quatorze schémas coexistent. Les cinq schémas centraux portent la conversation, la connaissance, la décision et la politique, l'exécution et le routage. Les schémas périphériques reproduisent la structure des systèmes de l'opérateur, à savoir la relation client, la facturation, le solde et l'usage, le provisionnement et l'état des cartes SIM, ainsi que la supervision réseau. Trois schémas transverses complètent l'ensemble : l'identité de portail, l'audit et les référentiels.
+Le tableau \ref{tab:schemas} présente les principaux schémas et leur contenu.
+
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{|p{3.2cm}|p{11.3cm}|}
+\hline
+\textbf{Schéma} & \textbf{Contenu principal} \\
+\hline
+Conversation & Sessions d'appel, tours de parole, transcriptions, sentiment, issue de la conversation. \\
+\hline
+Connaissance & Documents versionnés, fragments, travaux d'ingestion, file de synchronisation vers l'index. \\
+\hline
+Politique & Règles applicables, seuils et verdicts rendus. \\
+\hline
+Exécution & Registre des actions, identités d'opération, statuts et références externes. \\
+\hline
+Gestion de tickets & Projection locale des tickets et de leur cycle de vie. \\
+\hline
+Routage & Conseillers, plannings, indisponibilités, rappels et dossiers d'escalade. \\
+\hline
+Relation client & Profils clients, abonnements et historique d'interaction. \\
+\hline
+Facturation & Comptes, factures et montants dus. \\
+\hline
+Solde et usage & Comptes de solde et consommation. \\
+\hline
+Provisionnement et SIM & État des lignes et des cartes SIM. \\
+\hline
+Supervision réseau & Incidents réseau et zones affectées. \\
+\hline
+Identité de portail & Comptes du portail, sessions et éléments d'authentification. \\
+\hline
+Audit & Chaîne des enregistrements et empreintes de vérification. \\
+\hline
+Référentiels & Catalogues de produits, de recharges, de zones et de règles métier. \\
+\hline
+\end{tabular}
+\caption{Schémas de la base de données et contenu associé}
+\label{tab:schemas}
+\end{table}
 
 \subsubsection{Modèle entités associations}
 
@@ -175,7 +247,7 @@ Le diagramme de la figure \ref{fig:act-ingestion} décrit le traitement appliqu�
 
 Le document est d'abord extrait de son format d'origine et converti en texte. Ses métadonnées sont ensuite déterminées, la langue étant déduite du contenu lorsqu'elle n'est pas déclarée. Le texte est alors segmenté en fragments de taille bornée, avec un recouvrement entre fragments consécutifs. La segmentation respecte les paragraphes plutôt que de découper à taille fixe, afin qu'un fragment demeure une unité de sens et non une tranche arbitraire ; seuls les paragraphes excédant la taille maximale sont scindés. Chaque fragment est ensuite encodé sous deux représentations complémentaires, l'une portant le sens et l'autre les termes exacts. L'ensemble est écrit en une seule transaction, accompagné d'un travail d'ingestion traçable et d'un événement de synchronisation. Un processus distinct consomme ces événements et met l'index à jour.
 
-Deux décisions figurent explicitement dans ce diagramme. La première est le contrôle d'empreinte : un document dont le contenu est inchangé ne produit aucun travail, tandis qu'un contenu modifié engendre une nouvelle version et désactive la précédente. La seconde est le passage par une file d'événements durable plutôt qu'une écriture directe dans l'index : si l'index est indisponible au moment de l'ingestion, l'événement demeure et sera traité ensuite, sans que la référence et l'index divergent durablement.
+Deux décisions figurent explicitement dans ce diagramme. La première est le contrôle d'empreinte : un document dont le contenu est inchangé ne produit aucun travail, tandis qu'un contenu modifié engendre une nouvelle version et désactive la précédente. La seconde est le passage par une file d'événements durable plutôt qu'une écriture directe dans l'index. Si l'index est indisponible au moment de l'ingestion, l'événement demeure et sera traité ensuite, sans que la référence et l'index divergent durablement.
 
 \figureTikz{Diagramme d'activités de l'ingestion documentaire}{act-ingestion}{fig-act-ingestion}
 
@@ -187,7 +259,7 @@ La question est encodée puis soumise à une première sélection fondée sur la
 
 Ce dernier filtre ne s'applique qu'au petit nombre de candidats ayant franchi les étapes précédentes. Cette restriction est ce qui rend son coût acceptable dans une chaîne temps réel, et le chapitre suivant en donne la mesure.
 
-Le point essentiel de ce diagramme est la présence de trois sorties possibles vers un résultat vide. Ce n'est pas une faiblesse du traitement, c'est sa propriété recherchée : le système préfère déclarer qu'il ne sait pas plutôt que remettre à l'agent des passages faiblement pertinents, sur lesquels celui ci fonderait une réponse plausible mais infondée.
+Le point essentiel de ce diagramme est la présence de trois sorties possibles vers un résultat vide. Ce n'est pas une faiblesse du traitement, mais sa propriété recherchée : le système préfère déclarer qu'il ne sait pas plutôt que remettre à l'agent des passages faiblement pertinents, sur lesquels il fonderait une réponse plausible mais infondée.
 
 \figureTikz{Diagramme d'activités de la recherche documentaire}{act-recherche}{fig-act-recherche}
 
@@ -217,7 +289,7 @@ Les deux sections précédentes ont décrit la structure et la dynamique génér
 
 Un agent, au sens retenu ici, n'est pas un modèle de langue auquel on adresse une question. C'est un composant qui reçoit une demande, dispose d'un ensemble borné de capacités, se voit imposer un ensemble de contraintes, et produit soit une réponse, soit l'appel d'une capacité, soit une transmission à un autre agent.
 
-Son fonctionnement suit quatre temps : interpréter la demande à la lumière du contexte, déterminer ce qu'il convient de faire, soumettre cette intention aux contraintes applicables, puis réaliser l'action validée et en restituer le résultat.
+Son fonctionnement suit un enchaînement en quatre temps. L'agent interprète d'abord la demande à la lumière de son contexte. Il détermine ensuite ce qu'il convient de faire, ce qui peut consister à répondre directement, à solliciter une capacité, ou à passer la main. Cette intention est alors soumise aux contraintes applicables, qui peuvent la valider, la refuser ou imposer une intervention humaine. L'action n'est réalisée qu'à l'issue de cette validation, et son résultat est restitué au client.
 
 La distinction entre le deuxième et le troisième temps est la clé de la conception. Le modèle de langue intervient au deuxième temps, où sa capacité d'interprétation est irremplaçable. Il n'intervient pas au troisième, où c'est un mécanisme déterministe qui statue. Le modèle propose, il ne dispose pas. La figure \ref{fig:pipeline-agent} présente cet enchaînement.
 
@@ -292,7 +364,7 @@ Situation de facturation & Montants dus, factures ouvertes & Sur demande relevan
 \hline
 Historique des demandes & Tickets et réclamations en cours & Sur demande le justifiant \\
 \hline
-Mémoire d'appels antérieurs & Synthèse des échanges précédents & À l'ouverture, si le client a un historique \\
+Mémoire d'appels antérieurs & Faits structurés issus des échanges précédents & À l'ouverture, si le client a un historique \\
 \hline
 État de vérification & Identité vérifiée, niveau, horodatage, échéance & Avant toute opération sensible \\
 \hline
@@ -315,17 +387,19 @@ La figure \ref{fig:contexte} illustre cet assemblage.
 
 Deux mémoires coexistent, de nature différente.
 
-La mémoire courte est celle de la conversation en cours. Elle conserve les tours de parole, l'état de vérification, les compteurs de clarification et de transfert, l'évolution du sentiment et les identités des opérations engagées. Elle disparaît avec la session.
+La mémoire courte est celle de la conversation en cours. Elle conserve les tours de parole, l'état de vérification, les compteurs de clarification et de transfert, l'évolution du sentiment et les identités des opérations engagées. Elle disparaît avec la session. C'est elle qui rend le passage de relais transparent et offre à l'agent qui reprend la conversation le même fil, sans obliger le client à se répéter.
 
-La mémoire longue traverse les appels. Elle permet qu'un client rappelant au sujet d'un incident déjà signalé n'ait pas à tout réexpliquer. Elle est présentée à l'agent sous forme d'une synthèse et non d'un historique brut, ce qui en borne le coût.
+La mémoire longue traverse les appels. Elle permet qu'un client rappelant au sujet d'un incident déjà signalé n'ait pas à tout réexpliquer. Elle est présentée à l'agent sous forme de faits structurés, et non d'une synthèse rédigée. Une synthèse est une affirmation sur ce qui a été dit, produite par le même type de modèle qui la relira ensuite comme un fait acquis ; si elle est subtilement fausse, elle le reste à chaque appel. Les faits structurés, au contraire, sont re-dérivés à chaque lecture à partir des échanges conservés : ils bornent le coût sans figer une interprétation susceptible de devenir une source d'erreur persistante.
 
 Trois règles de conception encadrent cette mémoire longue, et chacune répond à un défaut identifié.
 
 \begin{itemize}
   \item \textbf{Ne jamais accueillir le client par ce dont on se souvient.} Un assistant qui ouvre l'échange en énumérant les appels précédents produit une impression de surveillance, et présume par ailleurs du motif de l'appel, qui peut être tout autre. La mémoire est un contexte mobilisable lorsqu'il devient pertinent, non une entrée en matière.
-  \item \textbf{Ne jamais présenter un souvenir comme un fait actuel.} Une demande consignée comme ouverte l'était au moment où la synthèse a été constituée. Affirmer au client qu'elle l'est encore constitue une assertion sur le présent, qui exige une relecture de l'état courant avant d'être formulée.
-  \item \textbf{Ne rien dire lorsqu'il n'y a rien.} Un premier appel et un client ayant désactivé la mémorisation produisent l'un comme l'autre une synthèse vide, qui n'ajoute ni contenu ni comportement.
+  \item \textbf{Ne jamais présenter un élément de mémoire comme un fait actuel.} Un élément consigné comme ouvert l'était au moment où il a été recueilli. Affirmer au client qu'il l'est encore constitue une assertion sur le présent, qui exige une relecture de l'état courant avant d'être formulée.
+  \item \textbf{Ne rien dire lorsqu'il n'y a rien.} Un premier appel et un client ayant désactivé la mémorisation produisent l'un comme l'autre une mémoire vide, qui n'ajoute ni contenu ni comportement.
 \end{itemize}
+
+Lorsque le client demande l'effacement des informations mémorisées, la demande est enregistrée comme un état de remise à zéro : la mémoire repart vide à l'appel suivant, tandis que l'historique de la conversation et la chaîne d'audit demeurent intacts.
 
 Ces règles illustrent une orientation générale de la conception : une capacité n'est utile que si ses conditions d'usage sont définies avec autant de soin que la capacité elle même.
 
@@ -491,9 +565,11 @@ Toute opération administrative ou sensible laisse une trace comportant l'identi
 
 Ces traces sont organisées en chaîne : chaque enregistrement intègre l'empreinte du précédent dans le calcul de la sienne, au moyen d'une fonction de hachage cryptographique normalisée \cite{sha}. La modification d'un enregistrement ancien invalide donc toutes les empreintes postérieures, ce qui rend l'altération détectable par un simple recalcul. La conception ne prétend pas empêcher une modification, ce qu'aucun stockage ne permet réellement ; elle garantit que cette modification ne puisse pas passer inaperçue.
 
+Le respect d'une demande d'effacement de la mémoire est lui même consigné dans la chaîne, sans en briser l'intégrité.
+
 \section*{Conclusion}
 
-Ce chapitre a présenté la conception de la plateforme. La vue statique a établi une architecture en ports et adaptateurs, dans laquelle le domaine métier ne dépend d'aucune technologie et déclare treize interfaces exprimant ses besoins, un découpage en contextes métier délimités, et un modèle de données organisé en schémas assumant deux dissymétries explicites entre sources de vérité et projections. La vue dynamique a décrit le traitement d'un tour de parole, la chaîne conduisant à une action sensible, les deux traitements documentaires et les cycles de vie de la conversation et du ticket.
+Ce chapitre a présenté la conception de la plateforme. La vue statique a permis d'établir une architecture en ports et adaptateurs, dans laquelle le domaine métier reste indépendant de toute technologie et s'appuie sur des interfaces exprimant ses besoins. Elle met également en évidence un découpage en contextes métier délimités ainsi qu'un modèle de données structuré en schémas, prenant explicitement en compte les différences entre les sources de vérité et les projections. La vue dynamique a décrit le traitement d'un tour de parole, la chaîne conduisant à une action sensible, les deux traitements documentaires et les cycles de vie de la conversation et du ticket.
 
 La conception de la couche agentique a ensuite montré comment la responsabilité est répartie entre cinq agents spécialisés, comment leur contexte est assemblé plutôt qu'accumulé, comment deux mémoires de portée différente coexistent, et comment les garde fous encadrent aussi bien les actions que les énoncés. La conception de la sécurité a enfin distingué deux frontières indépendantes, l'accès à la plateforme et l'exécution des opérations sensibles en son sein.
 

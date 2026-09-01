@@ -45,3 +45,28 @@ Problems found:
 
 Next step:
 Retours de l'utilisateur, puis production des 50 figures et intégration des 18 captures.
+
+## 2026-08-31 — Phase 2 corrections (Units 5–11) + state saved
+
+- Unit 5 (§4.8) applied & approved — 3 categories, Mesures réelles, steady-state budget total,
+  "Ce qui manque encore" with scale/stress-test + schedule + limited test users.
+- Unit 6 (§4.3.5) applied & approved — Réparation contextuelle de la requête.
+- Unit 7 (§4.7) applied & approved — Contrôle d'aptitude des agents + Attachement des services row.
+- A8 (notifications) REJECTED by user as out-of-scope lender problem. No change.
+- Volumétrie applied — screens 21+17=38; endpoints removed; 112/260 removed from table, figure,
+  conclusion générale, §1.5.
+- Unit 9 (§4.6 A3) ui-agents matrix + Unit 10 (§4.5.2 A4) telemetry persona applied & approved.
+- Unit 11 (Ch1 §1.5) Belgacem citation + figure tie-in + bibliography entry applied & approved.
+- Memory state saved: 02_PROGRESS, 03_CURRENT_STATE, 06_OPEN_TASKS updated.
+- Next: report-wide coherence pass (anomalies table, then unit approval), then Phase-5 diagrams.
+
+## 2026-09-01 — Phase 5 figure 1 + final reading stored
+- Final reading/lightening lots 2–4 applied to Ch1–Ch4 (many approved, others kept original).
+- Observability §4.6 descriptions restored to original "Avant" (no 12 services / container names).
+- Phase 5 started. Figure 1/36 `fig-cycle-iteratif.svg` = EXACT byte-identical copy of supervisor
+  "image of itrative cycle.svg" (sha256 dc3b517e…772cf7e, cmp identical). No redraw/adaptation.
+- Ch1 §1.5 text adjusted to support that exact figure (modèle évolutif, 6 steps per increment,
+  30/55/80/100 % milestones, client feedback from first increment).
+- User confirmed figure 1; requested memory save then GitHub save.
+- Memory updated: 02_PROGRESS, 03_CURRENT_STATE, 06_OPEN_TASKS, 09_SESSION_LOG.
+- Next: commit & push all work to `arena/01a052fb-rapp-doc`, then figure 2.
