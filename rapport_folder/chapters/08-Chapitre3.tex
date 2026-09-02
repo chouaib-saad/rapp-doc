@@ -505,7 +505,7 @@ Une session authentifiée n'est pas un jeton autoportant dont la validité s'app
 
 \subsection{Autorisation fondée sur le rôle}
 
-L'autorisation repose sur trois rôles internes ordonnés, chacun disposant des droits du précédent augmentés des siens, auxquels s'ajoute le rôle client. Le tableau \ref{tab:rbac} présente la matrice des droits.
+L'autorisation repose sur trois rôles internes, auxquels s'ajoute le rôle client. Le diagramme de cas d'utilisation général du chapitre précédent les réunit sous un acteur unique, l'utilisateur back-office, afin de ne pas surcharger la vue d'ensemble ; la matrice ci-dessous en précise la répartition réelle. L'administrateur gère les connaissances et les règles métier, le superviseur assume la supervision des interactions, et le conseiller prend en charge les demandes escaladées. Chaque rôle dispose des droits du niveau précédent, augmentés des siens. Le tableau \ref{tab:rbac} présente la matrice des droits.
 
 \begin{table}[H]
 \centering

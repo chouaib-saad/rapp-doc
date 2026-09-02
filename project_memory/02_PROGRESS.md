@@ -43,7 +43,12 @@ This file records what has actually been completed.
       (sha256 dc3b517e…772cf7e, cmp identical, no redraw/adaptation).
 - [x] Ch1 §1.5 text adjusted to support this exact figure (modèle évolutif, steps,
       30/55/80/100 %, client feedback from first increment).
-- [ ] Figures 2/36 → 36/36: pending per-figure analysis → proposal → generation → validation.
+- [x] Figure 2/36: `fig-deploiement.svg` = EXACT user-supplied SVG (only internal title block removed
+      per explicit instruction); Ch4 tab:deploiement + §4.6 prose adapted to the architectural layers.
+- [ ] Figure 3/36: `fig-cu-general.svg` = EXACT user-supplied SVG (no modification); placed FULL PAGE;
+      Ch2 actors/tab:acteurs + §cas d'utilisation prose adapted to unified "Utilisateur back-office";
+      Ch3 RBAC now explicits Administrateur/Superviseur/Conseiller. PENDING user confirmation.
+- [ ] Figures 4/36 → 36/36: pending per-figure analysis → proposal → generation → validation.
 
 ## Open / Next
 - [ ] Figures 2–36 (one at a time, per accepted protocol).

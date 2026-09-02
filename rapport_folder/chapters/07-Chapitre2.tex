@@ -19,13 +19,11 @@ Un acteur désigne une entité extérieure au système qui interagit avec lui po
 
 \subsection{Acteurs principaux}
 
-Quatre acteurs principaux ont été retenus. Les trois derniers correspondent à une hiérarchie de responsabilités croissantes, chaque niveau disposant des droits du niveau inférieur augmentés des siens.
+Deux acteurs principaux ont été retenus : le client et l'utilisateur back-office. Ce dernier regroupe les profils internes de l'opérateur ; ses responsabilités de supervision, d'administration et de prise en charge des escalades sont précisées par la matrice des droits présentée au chapitre suivant.
 
 \begin{itemize}
-  \item \textbf{Le client.} Abonné de l'opérateur, disposant d'un compte sur la plateforme. Il peut créer ce compte depuis le portail et vérifier son identité auprès des services de l'opérateur, ce qui lui permet ensuite d'agir avec l'agent. Il s'adresse à la plateforme pour obtenir une information ou faire réaliser une opération sur sa ligne, et accède par ailleurs à un portail où il retrouve sa situation, ses demandes et l'historique de ses échanges.
-  \item \textbf{Le conseiller.} Agent du service client. Il prend en charge les conversations qui lui sont transmises par la plateforme et traite les demandes de rappel qui lui sont attribuées. Il dispose du niveau de droits le plus bas parmi les profils internes.
-  \item \textbf{Le superviseur.} Responsable de la supervision opérationnelle. Il observe l'activité de la plateforme, consulte les conversations et les décisions prises, suit les indicateurs et organise la disponibilité des conseillers.
-  \item \textbf{L'administrateur.} Responsable de la configuration et de la gouvernance du système. Il gère les comptes, les règles métier, les référentiels et la base documentaire, et dispose des moyens de contrôle de l'intégrité des enregistrements.
+  \item \textbf{Le client.} Abonné de l'opérateur, disposant d'un compte sur la plateforme. Il peut créer ce compte depuis le portail et vérifier son identité auprès des services de l'opérateur, ce qui lui permet ensuite d'agir avec l'agent. Il s'adresse à la plateforme pour obtenir une information, faire réaliser une opération sur sa ligne ou signaler un problème, et accède par ailleurs à un portail où il retrouve sa situation, ses demandes et l'historique de ses échanges.
+  \item \textbf{L'utilisateur back-office.} Il rassemble les moyens internes de supervision et de gouvernance du système : observation de l'activité, inspection des décisions, gestion des disponibilités, administration des règles métier et de la base documentaire, traitement des demandes escaladées et contrôle de l'intégrité des enregistrements. La matrice des droits du chapitre suivant distingue les trois rôles réels qui le composent : l'administrateur, le superviseur et le conseiller.
 \end{itemize}
 
 \subsection{Acteurs secondaires}
@@ -49,11 +47,7 @@ Le tableau \ref{tab:acteurs} récapitule le rôle de chaque acteur et son mode d
 \hline
 Client & Principal & Exprimer une demande, obtenir sa résolution ou souscrire à un service & Conversation vocale ou textuelle, portail client \\
 \hline
-Conseiller & Principal & Traiter les conversations transmises et les rappels attribués & Console de supervision, reprise d'appel \\
-\hline
-Superviseur & Principal & Observer l'activité, suivre les indicateurs, organiser les disponibilités & Console de supervision \\
-\hline
-Administrateur & Principal & Configurer les règles, les référentiels et la base documentaire, contrôler l'intégrité & Console d'administration \\
+Utilisateur back-office & Principal & Superviser l'activité, administrer les règles et la base documentaire, traiter les demandes escaladées, contrôler l'intégrité & Console d'administration et de supervision \\
 \hline
 Système de gestion de tickets & Secondaire & Détenir la référence des tickets & Interface de programmation applicative \\
 \hline
@@ -100,7 +94,7 @@ Le client doit disposer d'un espace personnel lui permettant de consulter son pr
 
 \subsection{Supervision et administration}
 
-Les profils internes doivent disposer des moyens d'observer et de gouverner le système. Cela recouvre la consultation des conversations et de leurs transcriptions, l'inspection des décisions et des verdicts rendus, le suivi des indicateurs d'activité, et la gestion des conseillers et de leurs disponibilités. S'y ajoutent l'administration des règles métier et des référentiels, la gestion de la base documentaire, et le contrôle de l'intégrité du registre des opérations.
+L'utilisateur back-office doit disposer des moyens d'observer et de gouverner le système. Cela recouvre la consultation des conversations et de leurs transcriptions, l'inspection des décisions et des verdicts rendus, le suivi des indicateurs d'activité, et la gestion des conseillers et de leurs disponibilités. S'y ajoutent l'administration des règles métier et des référentiels, la gestion de la base documentaire, et le contrôle de l'intégrité du registre des opérations.
 
 \subsection{Récapitulatif}
 
@@ -250,7 +244,7 @@ Les composants portant une garantie du système doivent pouvoir être vérifiés
 
 \subsection{Ergonomie}
 
-L'interaction principale étant vocale, la qualité perçue tient à la nature de l'échange : formulations brèves, absence d'énumérations lues à voix haute, prise en compte immédiate des interruptions. Les interfaces destinées aux profils internes doivent privilégier la lisibilité de l'information opérationnelle.
+L'interaction principale étant vocale, la qualité perçue tient à la nature de l'échange : formulations brèves, absence d'énumérations lues à voix haute, prise en compte immédiate des interruptions. Les interfaces destinées à l'utilisateur back-office doivent privilégier la lisibilité de l'information opérationnelle.
 
 \subsection{Récapitulatif}
 
@@ -296,11 +290,11 @@ BNF12 & Ergonomie & Réponses brèves adaptées à l'oral et prise en compte imm
 
 \subsection{Diagramme de cas d'utilisation général}
 
-Le diagramme de la figure \ref{fig:cu-general} présente une vue d'ensemble des cas d'utilisation de la plateforme et de leur répartition entre les acteurs. Le client y accède aux cas relevant de la conversation et de son espace personnel. Les profils internes accèdent aux cas de supervision et d'administration, selon la hiérarchie de droits établie plus haut. Les systèmes tiers apparaissent en acteurs secondaires des cas qui les sollicitent.
+Le diagramme de la figure \ref{fig:cu-general} présente une vue d'ensemble des cas d'utilisation de la plateforme et de leur répartition entre les acteurs. Le client y conduit l'échange, qu'il s'agisse d'obtenir une information, d'effectuer une opération sécurisée, de gérer son profil, de signaler un problème ou de demander une prise en charge humaine. L'utilisateur back-office, qui regroupe les profils internes, y supervise les interactions, administre la base de connaissances et les règles métier et traite les demandes escaladées. Les systèmes tiers, facturation, gestion de tickets et notification, apparaissent en acteurs secondaires des cas qui les sollicitent ; les rôles précis de chaque utilisateur interne sont détaillés dans la matrice des droits du chapitre suivant.
 
-\figureTikz{Diagramme de cas d'utilisation général de la plateforme}{cu-general}{fig-cu-general}
+\figureSVGPleine{Diagramme de cas d'utilisation général de la plateforme}{cu-general}{fig-cu-general}
 
-Trois cas d'utilisation structurent l'ensemble du système et méritent un traitement détaillé. Le premier couvre le trajet complet d'une question documentaire, de la parole du client jusqu'à la réponse ancrée dans la documentation. Le deuxième couvre l'exécution d'une opération engageant le compte du client, qui concentre l'essentiel des garanties de sûreté de la plateforme. Le troisième couvre le passage à un conseiller humain, qui constitue la frontière entre l'autonomie du système et l'intervention humaine. Chacun fait l'objet d'un diagramme, d'une description textuelle et d'un diagramme de séquence système décrivant son scénario nominal.
+Trois cas d'utilisation structurent l'ensemble du système et méritent un traitement détaillé : obtenir une information, effectuer une opération sécurisée et être mis en relation avec un conseiller humain. Le premier couvre le trajet complet d'une question documentaire, de la parole du client jusqu'à la réponse ancrée dans la documentation. Le deuxième couvre l'exécution d'une opération engageant le compte du client, qui concentre l'essentiel des garanties de sûreté de la plateforme. Le troisième couvre le passage à un conseiller humain, qui constitue la frontière entre l'autonomie du système et l'intervention humaine. Chacun fait l'objet d'un diagramme, d'une description textuelle et d'un diagramme de séquence système décrivant son scénario nominal.
 
 \subsection{Cas d'utilisation : obtenir une réponse documentaire}
 
@@ -472,6 +466,6 @@ La figure \ref{fig:seq-escalade} représente le scénario nominal et son alterna
 
 \section*{Conclusion}
 
-Ce chapitre a transformé les objectifs du projet en spécifications exploitables. Nous avons identifié quatre acteurs principaux, organisés selon une hiérarchie de droits, et trois familles d'acteurs secondaires correspondant aux systèmes que la plateforme sollicite sans les posséder. Nous avons ensuite formulé trente quatre besoins fonctionnels répartis en huit domaines, puis douze besoins non fonctionnels dont chacun impose une propriété identifiée à l'architecture. Les cas d'utilisation ont enfin été présentés dans leur ensemble, et détaillés pour les trois qui structurent le système : la réponse documentaire, l'opération sensible et l'escalade vers un conseiller.
+Ce chapitre a transformé les objectifs du projet en spécifications exploitables. Nous avons identifié deux acteurs principaux, le client et l'utilisateur back-office, ainsi que trois familles d'acteurs secondaires correspondant aux systèmes que la plateforme sollicite sans les posséder. Les responsabilités propres à l'administrateur, au superviseur et au conseiller sont détaillées dans la matrice des droits du chapitre suivant. Nous avons ensuite formulé trente quatre besoins fonctionnels répartis en huit domaines, puis douze besoins non fonctionnels dont chacun impose une propriété identifiée à l'architecture. Les cas d'utilisation ont enfin été présentés dans leur ensemble, et détaillés pour les trois qui structurent le système : la réponse documentaire, l'opération sensible et l'escalade vers un conseiller.
 
 Ces trois cas font apparaître une même exigence sous des formes différentes. La réponse documentaire impose que le système sache reconnaître les limites de ce qu'il sait. L'opération sensible impose qu'il sache reconnaître les limites de ce qu'il a le droit de faire. L'escalade impose qu'il sache reconnaître les limites de ce qu'il peut traiter seul. Le chapitre suivant montre comment l'architecture de la solution répond à ces trois exigences, en présentant d'abord la vue statique du système, puis sa vue dynamique, avant de détailler la conception de la couche agentique et celle du contrôle d'accès.

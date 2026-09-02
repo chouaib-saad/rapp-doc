@@ -8,8 +8,8 @@ Active after Phase 2 + final reading + Phase 5 figure 1. No LaTeX build in sandb
 
 ## High Priority — Phase 5 diagrams (ONE at a time)
 - [x] **Figure 1: fig-cycle-iteratif.svg** — exact supervisor image inserted, text aligned.
-- [ ] **Figure 2:** fig-deploiement (Ch4) — deployment pattern, 24 containers.
-- [ ] **Figure 3:** fig-cu-general (Ch2) — use-case style.
+- [x] **Figure 2:** fig-deploiement (Ch4) — EXACT user SVG + architectural table/text.
+- [ ] **Figure 3:** fig-cu-general (Ch2) — EXACT user SVG, FULL PAGE, back-office/RBAC text adapted. AWAITING user confirmation.
 - [ ] then the remaining figures in the order below (validate each before the next):
       fig-cu-doc, fig-cu-action, fig-cu-escalade, fig-seq-*, fig-classes-*, fig-act-*,
       fig-etats-*, fig-pipeline-agent, fig-orchestration, fig-contexte, fig-chaine-temps-reel,

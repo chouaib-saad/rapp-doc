@@ -70,3 +70,7 @@ Retours de l'utilisateur, puis production des 50 figures et intégration des 18 
 - User confirmed figure 1; requested memory save then GitHub save.
 - Memory updated: 02_PROGRESS, 03_CURRENT_STATE, 06_OPEN_TASKS, 09_SESSION_LOG.
 - Next: commit & push all work to `arena/01a052fb-rapp-doc`, then figure 2.
+
+## 2026-09-02 — Phase 5 figures 2 + 3
+- Figure 2 `fig-deploiement.svg`: EXACT user SVG saved (only internal title block removed per instruction); Ch4 table+§4.6 prose adapted to architectural layers; user CONFIRMED.
+- Figure 3 `fig-cu-general.svg`: EXACT user SVG saved UNMODIFIED (full-page 1700×1350); new `\figureSVGPleine` (full-page, SVG→pdf/png, TikZ fallback) added in Commands.tex; Ch2 actors + tab:acteurs + general use-case prose rewritten around unified **Utilisateur back-office**; Ch3 §RBAC now explicit: Administrateur → connaissances & règles, Superviseur → supervision, Conseiller → escalades; Ch4 "profils internes" occurrences aligned to back-office. PENDING user confirmation.

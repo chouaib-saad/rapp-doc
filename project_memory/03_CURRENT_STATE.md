@@ -2,15 +2,14 @@
 
 ## Current Objective
 Phase 5 — finalize all report figures one at a time, using only the established per-family visual
-patterns. Figure 1 (fig-cycle-iteratif) is done and validated; text in Ch1 §1.5 aligned to it.
+patterns. Figures 1–2 validated. Figure 3 (fig-cu-general) is generated from the EXACT user SVG and is awaiting confirmation; text adapted (back-office unified, RBAC role mapping).
 
 ## Current Chapter / Section
-Ch1 §1.5 (cycle figure + text). Phase 5 figure 1/36 complete.
+Ch2 §4.1 (general use case figure + text) + Ch3 §RBAC. Phase 5 figure 3/36 in validation.
 
 ## Current Task
-Generate/validate figure 2/36 next (deploy or use-case or sequence — pending user choice),
-then continue one figure at a time. Before ANY new figure: analysis → proposal → generation →
-verification → discussion → validation.
+Confirm figure 3/36 (exact user SVG, full page). Then continue one figure at a time. Before ANY new figure:
+analysis → proposal → generation → verification → discussion → validation.
 
 ## Last Known Good State
 - Ch2/3/4 restored from archive + Phase 2 Units 1–11 applied & approved.
@@ -18,10 +17,15 @@ verification → discussion → validation.
 - Volumétrie: 38 screens, no endpoints, no 112/260; 24 containers consistent.
 - Ch1 §1.5: modèle évolutif + Belgacem citation + exact figure `fig-cycle-iteratif.svg` placed.
 - `fig-cycle-iteratif.svg` (report) is byte-identical to the supervisor reference (sha256 dc3b517e…772cf7e).
+- Ch4 §4.6 deployment aligned to user-exact `fig-deploiement.svg` (architectural layers, no 24-container breakdown).
+- Ch2 actors now use unified **Utilisateur back-office**; the three real roles (Administrateur/Superviseur/Conseiller) are explained in Ch3 §RBAC; `fig-cu-general.svg` is the exact user file and is set to a FULL PAGE.
 
 ## Current Files Being Worked On
 - `rapport_folder/figures/fig-cycle-iteratif.svg` (exact supervisor image, non-modifiable).
-- `rapport_folder/chapters/06-Chapitre1.tex` (text adjusted once to support the figure).
+- `rapport_folder/figures/fig-deploiement.svg` (exact user figure, non-modifiable).
+- `rapport_folder/figures/fig-cu-general.svg` (exact user figure, full page, non-modifiable).
+- `rapport_folder/chapters/06-Chapitre1.tex` (text adjusted once to support the cycle figure).
+- `rapport_folder/Commands.tex` (added `\figureSVGPleine` full-page SVG figure command).
 - Project memory files (being saved now).
 
 ## Recently Changed

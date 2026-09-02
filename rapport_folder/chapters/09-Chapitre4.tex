@@ -496,65 +496,39 @@ La figure \ref{fig:concurrence} présente cette organisation.
 
 \subsection{Topologie de déploiement}
 
-La plateforme est déployée sous forme de conteneurs répartis en deux ensembles. Le premier regroupe les services d'infrastructure, le second les services applicatifs développés dans le cadre du projet. Le tableau \ref{tab:deploiement} présente cette répartition.
+La plateforme est déployée selon une organisation par couches, chacune regroupant les éléments qui partagent le même rôle dans le traitement d'une conversation. Le tableau \ref{tab:deploiement} présente cette lecture architecturale.
 
 \begin{table}[H]
 \centering
 \renewcommand{\arraystretch}{1.2}
-\begin{tabular}{|p{3.6cm}|p{1.7cm}|p{9.2cm}|}
+\begin{tabular}{|p{4.0cm}|p{10.5cm}|}
 \hline
-\textbf{Conteneur} & \textbf{Port} & \textbf{Rôle} \\
+\textbf{Couche} & \textbf{Éléments représentés} \\
 \hline
-\multicolumn{3}{|c|}{\textit{Services d'infrastructure}} \\
+Couche cliente & Portail web de l'abonné ; console d'administration et de supervision. \\
 \hline
-Serveur temps réel & 7880 & Transport audio, salles et distribution des sessions. \\
+Couche périphérique et d'entrée & Passerelle d'API et d'ingress, support des flux temps réel, passerelle téléphonique. \\
 \hline
-Base relationnelle & 5432 & Source de vérité, organisée en schémas par contexte. \\
+Cluster d'application : orchestration agentique & Processus porteurs des sessions conversationnelles ; assembleur temps réel. \\
 \hline
-Index documentaire & 6333 & Index à double représentation sémantique et lexicale. \\
+Cluster d'application : intégration & Passerelles d'accès au support, au métier télécom et aux notifications. \\
 \hline
-Stockage d'objets & 9000 & Documents sources de la base de connaissances. \\
+Cluster d'application : services de domaine & Contexte et identité ; connaissance et recherche ; politique et décision ; exécution et audit. \\
 \hline
-Cache & 6379 & États partagés et données de courte durée. \\
+Couche de données et de persistance & Stockage relationnel, index documentaire, stockage d'objets, cache en mémoire, bus d'événements. \\
 \hline
-Collecteur de télémétrie & 4317 & Réception des traces et des métriques. \\
-\hline
-\multicolumn{3}{|c|}{\textit{Services applicatifs}} \\
-\hline
-Service de contexte & 8101 & Constitution du contexte client. \\
-\hline
-Service de connaissance & 8102 & Ingestion documentaire et recherche. \\
-\hline
-Service de décision & 8103 & Proposition d'action et degré de confiance. \\
-\hline
-Service de politique & 8104 & Évaluation déterministe et verdict motivé. \\
-\hline
-Service d'exécution & 8105 & Exécution idempotente et registre des actions. \\
-\hline
-Service de notification & 8106 & Acheminement des avis. \\
-\hline
-Service de jetons & 8107 & Émission des jetons d'accès temps réel. \\
-\hline
-Interface applicative métier & 8108 & Points d'accès du portail et de la console. \\
-\hline
-Passerelle documentaire & 8201 & Exposition contrôlée de la recherche aux agents. \\
-\hline
-Passerelle de gestion de tickets & 8202 & Exposition contrôlée des opérations sur les tickets. \\
-\hline
-Passerelle de messagerie & 8203 & Exposition contrôlée de la messagerie. \\
-\hline
-Processus agent & sans & Exécution des sessions conversationnelles. \\
-\hline
-Simulateurs métier & 8109 à 8111 & Substituts des systèmes de l'opérateur en environnement de développement. \\
+Systèmes d'entreprise externes & Opérations télécom, plateforme de gestion de tickets, fournisseurs d'intelligence artificielle. \\
 \hline
 \end{tabular}
-\caption{Topologie de déploiement de la plateforme}
+\caption{Organisation architecturale du déploiement de la plateforme}
 \label{tab:deploiement}
 \end{table}
 
-Le processus agent est le seul composant à n'exposer aucun port d'écoute. Il ne reçoit pas de requêtes : il se déclare auprès du serveur temps réel, qui lui affecte des sessions. Cette particularité est cohérente avec son rôle, celui d'un exécutant de sessions et non d'un fournisseur de service.
+La figure \ref{fig:deploiement} présente cette organisation sous la forme d'une lecture par couches. En entrée se trouvent le portail web de l'abonné et la console d'administration, qui couvrent respectivement les usages du client et ceux de l'utilisateur back-office. Une couche périphérique et d'entrée en sépare les accès du cœur applicatif : elle reçoit les requêtes protégées, achemine les flux temps réel et porte la téléphonie.
 
-La figure \ref{fig:deploiement} présente le diagramme de déploiement correspondant.
+Au centre, le cluster d'application regroupe les traitements. L'orchestration agentique rassemble les processus qui exécutent les conversations et l'assembleur qui en compose le cycle temps réel. Le plan d'intégration expose les passerelles vers le support, le métier télécom et les notifications. Les services de domaine portent la logique du système : contexte et identité, connaissance et recherche, politique et décision, exécution et audit.
+
+Sous ce cluster, la couche de données et de persistance conserve les états, les documents et les événements. La couche externe représente enfin les systèmes de l'opérateur et les fournisseurs d'intelligence artificielle que la plateforme sollicite.
 
 \figureTikz{Diagramme de déploiement de la plateforme}{deploiement}{fig-deploiement}
 
@@ -610,7 +584,7 @@ Trois recouvrements y sont visibles. La transcription s'effectue pendant que le 
 
 \section{Interfaces de l'application}
 
-Deux interfaces web complètent la plateforme. Le portail client donne à l'abonné accès à l'assistant et à sa situation. La console d'administration donne aux profils internes les moyens d'observer et de gouverner le système. Nous présentons ici les écrans qui correspondent aux capacités décrites dans ce rapport, en écartant les pages secondaires qui n'apportent rien à sa compréhension.
+Deux interfaces web complètent la plateforme. Le portail client donne à l'abonné accès à l'assistant et à sa situation. La console back-office donne à l'utilisateur back-office les moyens d'observer et de gouverner le système. Nous présentons ici les écrans qui correspondent aux capacités décrites dans ce rapport, en écartant les pages secondaires qui n'apportent rien à sa compréhension.
 
 \subsection{Portail client}
 
@@ -636,7 +610,7 @@ Dans la figure \ref{fig:ui-activity}, nous présentons l'historique des échange
 
 La console expose les surfaces de supervision et de gouvernance. Les écrans retenus ci après sont ceux qui rendent visibles les mécanismes décrits au chapitre de conception.
 
-La figure \ref{fig:ui-overview} présente la vue d'ensemble opérationnelle, point d'entrée de la supervision. Elle réunit l'état des services, les indicateurs d'activité récents et les alertes en cours, de manière à ce qu'un superviseur puisse constater en un coup d'oeil si la plateforme fonctionne normalement.
+La figure \ref{fig:ui-overview} présente la vue d'ensemble opérationnelle, point d'entrée de la supervision. Elle réunit l'état des services, les indicateurs d'activité récents et les alertes en cours, de manière à ce qu'un utilisateur back-office puisse constater en un coup d'oeil si la plateforme fonctionne normalement.
 
 \figurePlaceholder{Console d'administration : vue d'ensemble opérationnelle}{ui-overview}{Capture d'écran de la page de vue d'ensemble, présentant l'état des services, les indicateurs d'activité récents et les alertes en cours.}
 
@@ -696,7 +670,7 @@ La figure \ref{fig:ui-prometheus} montre l'interface de collecte des métriques,
 
 \subsection{Environnement d'exécution}
 
-La figure \ref{fig:ui-docker} présente l'environnement conteneurisé en fonctionnement. Les services d'infrastructure et les services applicatifs y apparaissent simultanément avec leur état et leur port, ce qui confronte la topologie décrite au tableau \ref{tab:deploiement} à son exécution réelle.
+La figure \ref{fig:ui-docker} présente l'environnement conteneurisé en fonctionnement. Les couches décrites au tableau \ref{tab:deploiement} y apparaissent simultanément avec leur état et leur port, ce qui confronte cette lecture architecturale à son exécution réelle.
 
 \figurePlaceholder{Topologie des conteneurs en exécution}{ui-docker}{Capture d'écran de l'environnement conteneurisé en fonctionnement, présentant simultanément les services d'infrastructure et les services applicatifs avec leur état et leur port.}
 
@@ -992,6 +966,6 @@ Le résultat dépasse la simple tenue dans l'enveloppe disponible. Cette contrai
 
 Ce chapitre a exposé la réalisation de la plateforme. Nous avons présenté les technologies retenues et les critères qui ont présidé à leur sélection, en situant précisément le rôle du cadriciel temps réel par rapport au travail d'ingénierie propre au projet. Nous avons ensuite détaillé la chaîne de traitement temps réel étape par étape, chacune accompagnée de sa métrique, de ses solutions écartées et du coût de la solution retenue.
 
-La gestion de la concurrence a montré comment les conversations et les opérations sont isolées les unes des autres, et comment les garanties d'exécution unique et d'intégrité de la trace résistent à des accès simultanés. L'architecture physique a établi la correspondance entre la conception et les vingt quatre conteneurs effectivement déployés : six pour l'infrastructure, seize pour les services applicatifs et deux pour l'observabilité. Les interfaces ont donné à voir les surfaces produites pour le client comme pour les profils internes.
+La gestion de la concurrence a montré comment les conversations et les opérations sont isolées les unes des autres, et comment les garanties d'exécution unique et d'intégrité de la trace résistent à des accès simultanés. L'architecture physique a établi la correspondance entre la conception et les vingt quatre conteneurs effectivement déployés : six pour l'infrastructure, seize pour les services applicatifs et deux pour l'observabilité. Les interfaces ont donné à voir les surfaces produites pour le client comme pour l'utilisateur back-office.
 
 La campagne de vérification a enfin été présentée, ainsi que les résultats obtenus, en distinguant explicitement les mesures réelles des valeurs reconstituées. Les difficultés rencontrées ont été rapportées avec leur analyse et leur résolution, car plusieurs d'entre elles ont infléchi la conception plus profondément que ne l'aurait fait une exécution sans obstacle.
