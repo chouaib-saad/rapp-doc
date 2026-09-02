@@ -2,13 +2,13 @@
 
 ## Current Objective
 Phase 5 — finalize all report figures one at a time, using only the established per-family visual
-patterns. Figures 1–2 validated. Figure 3 (fig-cu-general) is generated from the EXACT user SVG and is awaiting confirmation; text adapted (back-office unified, RBAC role mapping).
+patterns. Figures 1–4 validated. Figure 5 (fig-cu-action) next.
 
 ## Current Chapter / Section
-Ch2 §4.1 (general use case figure + text) + Ch3 §RBAC. Phase 5 figure 3/36 in validation.
+Ch2 §cas d'utilisation action. Phase 5 figure 5/36 in progress.
 
 ## Current Task
-Confirm figure 3/36 (exact user SVG, full page). Then continue one figure at a time. Before ANY new figure:
+Confirm figure 5/36 (fig-cu-action). Then continue one figure at a time. Before ANY new figure:
 analysis → proposal → generation → verification → discussion → validation.
 
 ## Last Known Good State
@@ -19,6 +19,7 @@ analysis → proposal → generation → verification → discussion → validat
 - `fig-cycle-iteratif.svg` (report) is byte-identical to the supervisor reference (sha256 dc3b517e…772cf7e).
 - Ch4 §4.6 deployment aligned to user-exact `fig-deploiement.svg` (architectural layers, no 24-container breakdown).
 - Ch2 actors now use unified **Utilisateur back-office**; the three real roles (Administrateur/Superviseur/Conseiller) are explained in Ch3 §RBAC; `fig-cu-general.svg` is the exact user file and is set to a FULL PAGE.
+- Ch2 doc use case renamed to **Obtenir une réponse fondée sur les connaissances**; `fig-cu-doc.svg` is exact user file (5 includes, 2 extends, context + knowledge-base grounding).
 
 ## Current Files Being Worked On
 - `rapport_folder/figures/fig-cycle-iteratif.svg` (exact supervisor image, non-modifiable).

@@ -1,0 +1,153 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1300" height="830" viewBox="0 0 1300 830">
+<rect width="1300" height="830" fill="#FFFFFF"/>
+<defs>
+<style>
+text{font-family:Arial,Helvetica,sans-serif;}
+.title{font-size:18px;font-weight:bold;fill:#111111;text-anchor:middle;}
+.ucname{font-size:13px;fill:#222222;text-anchor:middle;}
+.actor{font-size:13px;fill:#333333;text-anchor:middle;}
+.edge{font-size:12px;fill:#222222;text-anchor:middle;}
+.stereo{font-size:11px;fill:#222222;text-anchor:middle;font-style:italic;}
+.notetitle{font-size:12px;font-weight:bold;fill:#111111;text-anchor:middle;}
+.notetext{font-size:11px;fill:#222222;text-anchor:middle;}
+.bound{fill:none;stroke:#111111;stroke-width:1.5;}
+.uc{fill:#FFFBCC;stroke:#D02A50;stroke-width:1.3;}
+.act{fill:none;stroke:#D02A50;stroke-width:1.7;}
+.sys{fill:#FFFFFF;stroke:#D02A50;stroke-width:1.3;}
+.note{fill:#FFFBE6;stroke:#D02A50;stroke-width:1.2;}
+.lB{fill:none;stroke:#2B3BE0;stroke-width:1.4;}
+.lK{fill:none;stroke:#2B2B2B;stroke-width:1.2;}
+.lCd{fill:none;stroke:#D22B55;stroke-width:1.4;stroke-dasharray:6,4;}
+.lN{fill:none;stroke:#888888;stroke-width:1;stroke-dasharray:3,3;}
+</style>
+<filter id="ds" x="-20%" y="-20%" width="140%" height="140%">
+<feDropShadow dx="3" dy="3" stdDeviation="2.5" flood-color="#8A8A8A" flood-opacity="0.45"/>
+</filter>
+<marker id="aB" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto">
+<path d="M0 0 L8 4 L0 8" fill="none" stroke="#2B3BE0" stroke-width="1.3"/>
+</marker>
+<marker id="aK" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto">
+<path d="M0 0 L8 4 L0 8" fill="none" stroke="#2B2B2B" stroke-width="1.2"/>
+</marker>
+<marker id="aC" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto">
+<path d="M0 0 L8 4 L0 8" fill="none" stroke="#D22B55" stroke-width="1.3"/>
+</marker>
+</defs>
+
+<!-- ===================== SYSTEM BOUNDARY (wrap content) ===================== -->
+<rect x="185" y="55" width="1070" height="640" class="bound" filter="url(#ds)"/>
+<text x="720" y="88" class="title">Obtenir une réponse fondée sur les connaissances</text>
+
+<!-- ===================== ACTOR: Client ===================== -->
+<g class="act" filter="url(#ds)">
+<circle cx="75" cy="330" r="7.5" fill="#FFF6C7"/>
+<path d="M75 337 L75 358"/>
+<path d="M62 344 L88 344"/>
+<path d="M75 358 L63 374"/>
+<path d="M75 358 L87 374"/>
+</g>
+<text x="75" y="393" class="actor">Client</text>
+
+<!-- ===================== USE CASES ===================== -->
+
+<!-- UC_Auth: S'authentifier -->
+<ellipse cx="380" cy="150" rx="85" ry="26" class="uc" filter="url(#ds)"/>
+<text x="380" y="154" class="ucname">S'authentifier</text>
+
+<!-- UC_Principal: Traiter une demande d'information -->
+<ellipse cx="700" cy="260" rx="150" ry="35" class="uc" filter="url(#ds)"/>
+<text x="700" y="254" class="ucname">Traiter une demande</text>
+<text x="700" y="272" class="ucname">d'information</text>
+
+<!-- Rangée des includes (y=440) -->
+
+<!-- UC_Interpret: Interpréter la demande -->
+<ellipse cx="310" cy="440" rx="95" ry="26" class="uc" filter="url(#ds)"/>
+<text x="310" y="444" class="ucname">Interpréter la demande</text>
+
+<!-- UC_Context: Prendre en compte le contexte de l'échange -->
+<ellipse cx="545" cy="440" rx="115" ry="26" class="uc" filter="url(#ds)"/>
+<text x="545" y="434" class="ucname">Prendre en compte le contexte</text>
+<text x="545" y="452" class="ucname">de l'échange</text>
+
+<!-- UC_Search: Rechercher dans la base de connaissances -->
+<ellipse cx="800" cy="440" rx="120" ry="26" class="uc" filter="url(#ds)"/>
+<text x="800" y="434" class="ucname">Rechercher dans la base</text>
+<text x="800" y="452" class="ucname">de connaissances</text>
+
+<!-- UC_Ground: Fonder la réponse sur les connaissances retrouvées -->
+<ellipse cx="1080" cy="440" rx="140" ry="26" class="uc" filter="url(#ds)"/>
+<text x="1080" y="434" class="ucname">Fonder la réponse sur les</text>
+<text x="1080" y="452" class="ucname">connaissances retrouvées</text>
+
+<!-- Rangée des extends (y=610) -->
+
+<!-- UC_Clarify: Clarifier la demande -->
+<ellipse cx="310" cy="610" rx="95" ry="26" class="uc" filter="url(#ds)"/>
+<text x="310" y="614" class="ucname">Clarifier la demande</text>
+
+<!-- UC_NoInfo: Indiquer l'absence d'information pertinente -->
+<ellipse cx="1080" cy="610" rx="135" ry="26" class="uc" filter="url(#ds)"/>
+<text x="1080" y="604" class="ucname">Indiquer l'absence d'information</text>
+<text x="1080" y="622" class="ucname">pertinente</text>
+
+<!-- ===================== NOTES ===================== -->
+
+<!-- Note pour UC_Context (en haut à droite, sans chevauchement) -->
+<rect x="960" y="105" width="270" height="90" class="note" filter="url(#ds)"/>
+<text x="1095" y="125" class="notetitle">Contexte conversationnel</text>
+<text x="1095" y="143" class="notetext">Le système exploite les échanges précédents</text>
+<text x="1095" y="158" class="notetext">afin de conserver les informations utiles</text>
+<text x="1095" y="173" class="notetext">à l'interprétation de la demande courante.</text>
+
+<!-- Note pour UC_NoInfo (en bas, hors boundary) -->
+<rect x="930" y="715" width="300" height="100" class="note" filter="url(#ds)"/>
+<text x="1080" y="735" class="notetitle">Réponse sans information fiable</text>
+<text x="1080" y="753" class="notetext">Si aucune connaissance pertinente n'est retrouvée,</text>
+<text x="1080" y="768" class="notetext">le système indique qu'il ne dispose pas d'une</text>
+<text x="1080" y="783" class="notetext">information suffisante pour répondre.</text>
+
+<!-- ===================== ASSOCIATIONS ===================== -->
+<!-- Client → UC_Principal -->
+<path d="M95 325 L550 268" class="lB"/>
+
+<!-- ===================== INCLUDES (dashed crimson) ===================== -->
+
+<!-- UC_Principal ..> UC_Auth -->
+<path d="M610 238 L445 172" class="lCd" marker-end="url(#aC)"/>
+<text x="510" y="195" class="edge">&#171;include&#187;</text>
+
+<!-- UC_Principal ..> UC_Interpret -->
+<path d="M620 290 L370 418" class="lCd" marker-end="url(#aC)"/>
+<text x="475" y="350" class="edge">&#171;include&#187;</text>
+
+<!-- UC_Principal ..> UC_Context -->
+<path d="M665 292 L575 414" class="lCd" marker-end="url(#aC)"/>
+<text x="635" y="355" class="edge">&#171;include&#187;</text>
+
+<!-- UC_Principal ..> UC_Search -->
+<path d="M755 290 L790 414" class="lCd" marker-end="url(#aC)"/>
+<text x="790" y="355" class="edge">&#171;include&#187;</text>
+
+<!-- UC_Principal ..> UC_Ground -->
+<path d="M840 280 L1010 418" class="lCd" marker-end="url(#aC)"/>
+<text x="945" y="340" class="edge">&#171;include&#187;</text>
+
+<!-- ===================== EXTENDS (dashed crimson) ===================== -->
+
+<!-- UC_Clarify ..> UC_Interpret -->
+<path d="M310 584 L310 466" class="lCd" marker-end="url(#aC)"/>
+<text x="330" y="530" class="edge">&#171;extend&#187;</text>
+
+<!-- UC_NoInfo ..> UC_Search -->
+<path d="M1010 592 L870 462" class="lCd" marker-end="url(#aC)"/>
+<text x="960" y="520" class="edge">&#171;extend&#187;</text>
+
+<!-- ===================== NOTE CONNECTIONS ===================== -->
+<!-- Note Contexte → UC_Context -->
+<path d="M960 180 L660 430" class="lN"/>
+
+<!-- Note NoInfo → UC_NoInfo -->
+<path d="M1080 715 L1080 636" class="lN"/>
+
+</svg>

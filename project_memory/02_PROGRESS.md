@@ -48,7 +48,8 @@ This file records what has actually been completed.
 - [ ] Figure 3/36: `fig-cu-general.svg` = EXACT user-supplied SVG (no modification); placed FULL PAGE;
       Ch2 actors/tab:acteurs + §cas d'utilisation prose adapted to unified "Utilisateur back-office";
       Ch3 RBAC now explicits Administrateur/Superviseur/Conseiller. PENDING user confirmation.
-- [ ] Figures 4/36 → 36/36: pending per-figure analysis → proposal → generation → validation.
+- [x] Figure 4/36: `fig-cu-doc.svg` = EXACT user-supplied SVG (1300×830, title "Obtenir une réponse fondée sur les connaissances", 5 includes + 2 extends + notes); Ch2 use-case section/table renamed and adapted to this figure (contexte de l'échange, base de connaissances). CONFIRMED.
+- [ ] Figures 5/36 → 36/36: pending per-figure analysis → proposal → generation → validation.
 
 ## Open / Next
 - [ ] Figures 2–36 (one at a time, per accepted protocol).

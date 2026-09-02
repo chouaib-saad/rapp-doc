@@ -9,9 +9,11 @@ Active after Phase 2 + final reading + Phase 5 figure 1. No LaTeX build in sandb
 ## High Priority — Phase 5 diagrams (ONE at a time)
 - [x] **Figure 1: fig-cycle-iteratif.svg** — exact supervisor image inserted, text aligned.
 - [x] **Figure 2:** fig-deploiement (Ch4) — EXACT user SVG + architectural table/text.
-- [ ] **Figure 3:** fig-cu-general (Ch2) — EXACT user SVG, FULL PAGE, back-office/RBAC text adapted. AWAITING user confirmation.
+- [x] **Figure 3:** fig-cu-general (Ch2) — EXACT user SVG, FULL PAGE, back-office/RBAC text adapted. CONFIRMED.
+- [x] **Figure 4:** fig-cu-doc (Ch2) — EXACT user SVG named 'Obtenir une réponse fondée sur les connaissances'; Ch2 rename + table/prose adapted (context, knowledge base). CONFIRMED.
+- [ ] **Figure 5:** fig-cu-action (Ch2) — use-case pattern, opération sensible.
 - [ ] then the remaining figures in the order below (validate each before the next):
-      fig-cu-doc, fig-cu-action, fig-cu-escalade, fig-seq-*, fig-classes-*, fig-act-*,
+      fig-cu-action, fig-cu-escalade, fig-seq-*, fig-classes-*, fig-act-*,
       fig-etats-*, fig-pipeline-agent, fig-orchestration, fig-contexte, fig-chaine-temps-reel,
       fig-budget-latence, fig-volumetrie, fig-positionnement-fournisseurs, fig-rag-comparaison,
       fig-concurrence, fig-chronogramme, fig-verifications, fig-securite, fig-composants, etc.

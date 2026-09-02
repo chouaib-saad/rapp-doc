@@ -74,3 +74,11 @@ Retours de l'utilisateur, puis production des 50 figures et intégration des 18 
 ## 2026-09-02 — Phase 5 figures 2 + 3
 - Figure 2 `fig-deploiement.svg`: EXACT user SVG saved (only internal title block removed per instruction); Ch4 table+§4.6 prose adapted to architectural layers; user CONFIRMED.
 - Figure 3 `fig-cu-general.svg`: EXACT user SVG saved UNMODIFIED (full-page 1700×1350); new `\figureSVGPleine` (full-page, SVG→pdf/png, TikZ fallback) added in Commands.tex; Ch2 actors + tab:acteurs + general use-case prose rewritten around unified **Utilisateur back-office**; Ch3 §RBAC now explicit: Administrateur → connaissances & règles, Superviseur → supervision, Conseiller → escalades; Ch4 "profils internes" occurrences aligned to back-office. PENDING user confirmation.
+
+## 2026-09-03 — Phase 5 figure 4
+- Figure 4 `fig-cu-doc.svg`: EXACT user SVG saved (1300×830) with title 'Obtenir une réponse fondée sur les connaissances'; 5 includes (S'authentifier, Interpréter la demande, Prendre en compte le contexte de l'échange, Rechercher dans la base de connaissances, Fonder la réponse sur les connaissances retrouvées), 2 extends (Clarifier la demande, Indiquer l'absence d'information pertinente), 2 notes (contexte conversationnel, réponse sans information fiable). No modification.
+- Ch2 §cas d'utilisation documentaire renamed to 'obtenir une réponse fondée sur les connaissances'; table/scénario/objectif/pre/post-conditions/alternatives + Ch2 conclusion adapted; sequence figure caption renamed. Roles back-office retained. PENDING user confirmation.
+
+## 2026-09-03 — Phase 5 figure 4 CONFIRMED
+- User confirmed figure 4/36 `fig-cu-doc.svg` (exact SVG, renamed use case, Ch2 adapted). Memory saved.
+- Next figure 5/36: fig-cu-action (Ch2, opération sensible).
