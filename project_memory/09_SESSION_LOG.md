@@ -82,3 +82,12 @@ Retours de l'utilisateur, puis production des 50 figures et intégration des 18 
 ## 2026-09-03 — Phase 5 figure 4 CONFIRMED
 - User confirmed figure 4/36 `fig-cu-doc.svg` (exact SVG, renamed use case, Ch2 adapted). Memory saved.
 - Next figure 5/36: fig-cu-action (Ch2, opération sensible).
+
+## 2026-09-03 — Phase 5 figure 5
+- Figure 5 `fig-cu-action.svg`: EXACT user SVG saved (1500×900), title 'Réalisation d'une opération sécurisée'.
+- 4 includes (Vérifier l'identité par CIN, Valider l'opération, Transmettre au système métier, Enregistrer dans le journal d'audit), 3 extends (Restituer résultat existant, Notifier le refus, Transmettre à un conseiller), systèmes métier as secondary actor, 2 notes.
+- Ch2 §cas d'utilisation action adapted: CIN, journal d'audit, issues conditionnelles ('opération déjà traitée', 'conditions non satisfaites', 'non traitable automatiquement'). PENDING confirmation.
+
+## 2026-09-03 — Phase 5 figure 5 CONFIRMED
+- User confirmed figure 5/36 `fig-cu-action.svg` (exact SVG, CIN/journal d'audit/issue conditions aligned in Ch2). Memory saved.
+- Next figure 6/36: fig-cu-escalade (Ch2, escalade vers conseiller).

@@ -2,13 +2,13 @@
 
 ## Current Objective
 Phase 5 — finalize all report figures one at a time, using only the established per-family visual
-patterns. Figures 1–4 validated. Figure 5 (fig-cu-action) next.
+patterns. Figures 1–5 validated. Figure 6 (fig-cu-escalade) next.
 
 ## Current Chapter / Section
-Ch2 §cas d'utilisation action. Phase 5 figure 5/36 in progress.
+Ch2 §cas d'utilisation escalade. Phase 5 figure 6/36 in progress.
 
 ## Current Task
-Confirm figure 5/36 (fig-cu-action). Then continue one figure at a time. Before ANY new figure:
+Confirm figure 6/36 (fig-cu-escalade). Then continue one figure at a time. Before ANY new figure:
 analysis → proposal → generation → verification → discussion → validation.
 
 ## Last Known Good State

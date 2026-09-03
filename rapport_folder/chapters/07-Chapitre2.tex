@@ -357,6 +357,8 @@ La figure \ref{fig:seq-doc} représente le scénario nominal sous forme d'échan
 
 Ce cas, présenté à la figure \ref{fig:cu-action}, concentre les garanties de sûreté de la plateforme. Il couvre toute opération produisant un effet sur le compte du client, qu'il s'agisse d'un règlement, d'un report d'échéance, d'une recharge, d'un changement de forfait ou d'une opération sur la carte SIM ou sur la ligne.
 
+La figure \ref{fig:cu-action} présente la réalisation d'une opération sécurisée. Avant toute exécution, le système vérifie l'identité du client par\,\acro{CIN}, valide l'opération au moyen des règles métier, la transmet au système métier concerné et l'enregistre dans le journal d'audit. Trois issues conditionnelles complètent ce trajet : restituer le résultat lorsqu'une opération a déjà été traitée, notifier le refus lorsque les conditions ne sont pas satisfaites, ou transmettre la demande à un conseiller lorsque l'opération ne peut être traitée automatiquement.
+
 \figureTikz{Diagramme du cas d'utilisation Exécuter une opération sensible}{cu-action}{fig-cu-action}
 
 \subsubsection{Description textuelle}
@@ -374,30 +376,30 @@ Le tableau \ref{tab:cu-action} détaille ce cas, qui est le plus contraint de la
 \hline
 \textbf{Acteurs secondaires} & Systèmes métier de l'opérateur \\
 \hline
-\textbf{Objectif} & Faire exécuter une opération produisant un effet sur le compte du client, avec la garantie qu'elle est autorisée, exécutée une seule fois et consignée. \\
+\textbf{Objectif} & Réaliser une opération sécurisée produisant un effet sur le compte du client, avec la garantie qu'elle est autorisée, exécutée une seule fois et consignée. \\
 \hline
-\textbf{Préconditions} & Une conversation est établie. Le client est rattaché à un compte. L'opération demandée figure parmi les opérations reconnues par le système. \\
+\textbf{Préconditions} & Une conversation est établie. Le client est rattaché à un compte. L'opération demandée figure parmi les opérations reconnues par le système. Une identité vérifiée par\,\acro{CIN} est exigée avant toute transmission au système métier. \\
 \hline
-\textbf{Postconditions} & L'opération a été exécutée et confirmée, ou refusée avec un motif, ou transmise à un conseiller. Dans tous les cas, un verdict motivé et une trace vérifiable ont été enregistrés. \\
+\textbf{Postconditions} & L'opération a été exécutée et confirmée, ou refusée avec un motif, ou transmise à un conseiller. Dans tous les cas, un verdict motivé a été consigné dans le journal d'audit. \\
 \hline
 \textbf{Scénario nominal} &
 1. Le client exprime la demande d'opération. \newline
 2. Le système récapitule l'opération et sollicite une confirmation verbale explicite. \newline
 3. Le client confirme. \newline
-4. Le système vérifie l'identité du client si cette vérification n'est pas déjà valide. \newline
+4. Le système vérifie l'identité du client par\,\acro{CIN}, si cette vérification n'est pas déjà valide. \newline
 5. Le système constitue le contexte de la décision à partir de la situation vérifiée du client. \newline
-6. Le système soumet l'opération aux règles métier, qui rendent un verdict motivé. \newline
+6. Le système valide l'opération : il la soumet aux règles métier, qui rendent un verdict motivé. \newline
 7. Le verdict étant favorable, le système transmet l'opération au système métier concerné, en garantissant qu'une reprise éventuelle ne produira pas de seconde exécution. \newline
-8. Le système consigne l'opération et son verdict dans le registre. \newline
+8. Le système consigne l'opération et son verdict dans le journal d'audit. \newline
 9. Le système confirme le résultat au client à l'oral. \\
 \hline
-\textbf{Alternative A : identité non confirmée} & À l'étape 4, si la vérification échoue après le nombre d'essais autorisé, l'opération est abandonnée, le client en est informé, et le refus est consigné. \\
+\textbf{Alternative A : identité non confirmée} & À l'étape 4, si la vérification par\,\acro{CIN} échoue après le nombre d'essais autorisé, l'opération est abandonnée, le client en est informé, et le refus est consigné. \\
 \hline
-\textbf{Alternative B : opération refusée} & À l'étape 6, si le verdict est défavorable, le système énonce au client le motif du refus dans des termes compréhensibles. L'opération n'est pas transmise. Le verdict est consigné. \\
+\textbf{Alternative B : opération refusée} & À l'étape 6, si les conditions de l'opération ne sont pas satisfaites, le système notifie le refus en énonçant au client le motif du refus dans des termes compréhensibles. L'opération n'est pas transmise. Le verdict est consigné. \\
 \hline
-\textbf{Alternative C : transmission à un conseiller} & À l'étape 6, si le verdict impose une intervention humaine, le système engage le cas d'utilisation d'escalade en transmettant le contexte constitué. \\
+\textbf{Alternative C : transmission à un conseiller} & À l'étape 6, si l'opération ne peut être traitée automatiquement, le système engage le cas d'utilisation d'escalade en transmettant le contexte constitué. \\
 \hline
-\textbf{Alternative D : reprise} & Si la même opération est présentée une seconde fois pour la même conversation, le système restitue le résultat de la première exécution sans exécuter à nouveau. \\
+\textbf{Alternative D : opération déjà traitée} & Si la même opération est présentée une seconde fois pour la même conversation, le système restitue le résultat enregistré de la première exécution sans exécuter à nouveau. \\
 \hline
 \end{tabular}
 \caption{Description textuelle du cas Exécuter une opération sensible}
@@ -406,7 +408,7 @@ Le tableau \ref{tab:cu-action} détaille ce cas, qui est le plus contraint de la
 
 \subsubsection{Diagramme de séquence système}
 
-La figure \ref{fig:seq-action} représente le scénario nominal de ce cas. Elle met en évidence la confirmation verbale, la vérification d'identité et le caractère bloquant du verdict, qui conditionne toute transmission au système métier.
+La figure \ref{fig:seq-action} représente le scénario nominal de ce cas. Elle met en évidence la confirmation verbale, la vérification d'identité par\,\acro{CIN} et le caractère bloquant du verdict, qui conditionne toute transmission au système métier.
 
 \figureTikz{Diagramme de séquence système du cas Exécuter une opération sensible}{seq-action}{fig-seq-action}
 
