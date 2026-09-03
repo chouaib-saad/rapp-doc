@@ -15,6 +15,7 @@ text{font-family:Arial,Helvetica,sans-serif;}
 .act{fill:none;stroke:#D02A50;stroke-width:1.7;}
 .sys{fill:#FFFFFF;stroke:#D02A50;stroke-width:1.3;}
 .note{fill:#FFFBE6;stroke:#D02A50;stroke-width:1.2;}
+.notefold{fill:none;stroke:#D02A50;stroke-width:1.2;}
 .lB{fill:none;stroke:#2B3BE0;stroke-width:1.4;}
 .lK{fill:none;stroke:#2B2B2B;stroke-width:1.2;}
 .lCd{fill:none;stroke:#D22B55;stroke-width:1.4;stroke-dasharray:6,4;}
@@ -91,17 +92,19 @@ text{font-family:Arial,Helvetica,sans-serif;}
 <text x="1080" y="604" class="ucname">Indiquer l'absence d'information</text>
 <text x="1080" y="622" class="ucname">pertinente</text>
 
-<!-- ===================== NOTES ===================== -->
+<!-- ===================== NOTES (forme UML avec coin plié en haut à droite) ===================== -->
 
 <!-- Note pour UC_Context (en haut à droite, sans chevauchement) -->
-<rect x="960" y="105" width="270" height="90" class="note" filter="url(#ds)"/>
+<path d="M960 105 L1212 105 L1230 123 L1230 195 L960 195 Z" class="note" filter="url(#ds)"/>
+<path d="M1212 105 L1212 123 L1230 123" class="notefold"/>
 <text x="1095" y="125" class="notetitle">Contexte conversationnel</text>
 <text x="1095" y="143" class="notetext">Le système exploite les échanges précédents</text>
 <text x="1095" y="158" class="notetext">afin de conserver les informations utiles</text>
 <text x="1095" y="173" class="notetext">à l'interprétation de la demande courante.</text>
 
 <!-- Note pour UC_NoInfo (en bas, hors boundary) -->
-<rect x="930" y="715" width="300" height="100" class="note" filter="url(#ds)"/>
+<path d="M930 715 L1212 715 L1230 733 L1230 815 L930 815 Z" class="note" filter="url(#ds)"/>
+<path d="M1212 715 L1212 733 L1230 733" class="notefold"/>
 <text x="1080" y="735" class="notetitle">Réponse sans information fiable</text>
 <text x="1080" y="753" class="notetext">Si aucune connaissance pertinente n'est retrouvée,</text>
 <text x="1080" y="768" class="notetext">le système indique qu'il ne dispose pas d'une</text>
