@@ -91,3 +91,13 @@ Retours de l'utilisateur, puis production des 50 figures et intégration des 18 
 ## 2026-09-03 — Phase 5 figure 5 CONFIRMED
 - User confirmed figure 5/36 `fig-cu-action.svg` (exact SVG, CIN/journal d'audit/issue conditions aligned in Ch2). Memory saved.
 - Next figure 6/36: fig-cu-escalade (Ch2, escalade vers conseiller).
+
+## 2026-09-03 — Phase 5 figure 6
+- Figure 6 `fig-cu-escalade.svg`: EXACT user SVG saved (1250×700), title 'Gestion d'une demande d'assistance humaine'.
+- 2 actors (Client + Conseiller), 7 UC, 2 external systems (gestion tickets, notification), 4 include, 2 extends, note exclusivité.
+- Ch2 §escalade renamed to 'gestion d'une demande d'assistance humaine'; intro/table/prose adapted (ticket de suivi, notification). PENDING confirmation.
+
+## 2026-09-03 — Phase 5 figure 6 CONFIRMED
+- User confirmed figure 6/36 `fig-cu-escalade.svg` (exact SVG; Ch2 renamed to 'Gestion d'une demande d'assistance humaine'; ticket de suivi + notification added). Memory saved.
+- Ch2 conclusion aligned to new case name (gestion d'une demande d'assistance humaine).
+- Next figure 7/36: fig-seq-doc (Ch2, séquence du cas documentaire).

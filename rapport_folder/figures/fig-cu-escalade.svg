@@ -1,0 +1,156 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1250" height="700" viewBox="0 0 1250 700">
+<rect width="1250" height="700" fill="#FFFFFF"/>
+<defs>
+<style>
+text{font-family:Arial,Helvetica,sans-serif;}
+.title{font-size:16px;font-weight:bold;fill:#111111;text-anchor:middle;}
+.ucname{font-size:13px;fill:#222222;text-anchor:middle;}
+.actor{font-size:13px;fill:#333333;text-anchor:middle;}
+.edge{font-size:11px;fill:#222222;text-anchor:middle;}
+.stereo{font-size:11px;fill:#222222;text-anchor:middle;font-style:italic;}
+.notetext{font-size:11px;fill:#222222;text-anchor:middle;}
+.bound{fill:none;stroke:#111111;stroke-width:1.5;}
+.uc{fill:#FFFBCC;stroke:#D02A50;stroke-width:1.3;}
+.act{fill:none;stroke:#D02A50;stroke-width:1.7;}
+.sys{fill:#FFFFFF;stroke:#D02A50;stroke-width:1.3;}
+.note{fill:#FFFBE6;stroke:#D02A50;stroke-width:1.2;}
+.notefold{fill:none;stroke:#D02A50;stroke-width:1.2;}
+.lB{fill:none;stroke:#2B3BE0;stroke-width:1.4;}
+.lK{fill:none;stroke:#2B2B2B;stroke-width:1.2;}
+.lCd{fill:none;stroke:#D22B55;stroke-width:1.4;stroke-dasharray:6,4;}
+.lN{fill:none;stroke:#888888;stroke-width:1;stroke-dasharray:3,3;}
+</style>
+<filter id="ds" x="-20%" y="-20%" width="140%" height="140%">
+<feDropShadow dx="3" dy="3" stdDeviation="2.5" flood-color="#8A8A8A" flood-opacity="0.45"/>
+</filter>
+<marker id="aB" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto">
+<path d="M0 0 L8 4 L0 8" fill="none" stroke="#2B3BE0" stroke-width="1.3"/>
+</marker>
+<marker id="aK" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto">
+<path d="M0 0 L8 4 L0 8" fill="none" stroke="#2B2B2B" stroke-width="1.2"/>
+</marker>
+<marker id="aC" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto">
+<path d="M0 0 L8 4 L0 8" fill="none" stroke="#D22B55" stroke-width="1.3"/>
+</marker>
+</defs>
+
+<!-- ===================== SYSTEM BOUNDARY ===================== -->
+<rect x="140" y="15" width="890" height="650" class="bound" filter="url(#ds)"/>
+<text x="585" y="40" class="title">Gestion d'une demande d'assistance humaine</text>
+
+<!-- ===================== ACTOR: Client ===================== -->
+<g class="act" filter="url(#ds)">
+<circle cx="60" cy="105" r="7.5" fill="#FFF6C7"/>
+<path d="M60 112 L60 133"/>
+<path d="M47 119 L73 119"/>
+<path d="M60 133 L48 149"/>
+<path d="M60 133 L72 149"/>
+</g>
+<text x="60" y="168" class="actor">Client</text>
+
+<!-- ===================== ACTOR: Conseiller ===================== -->
+<g class="act" filter="url(#ds)">
+<circle cx="60" cy="255" r="7.5" fill="#FFF6C7"/>
+<path d="M60 262 L60 283"/>
+<path d="M47 269 L73 269"/>
+<path d="M60 283 L48 299"/>
+<path d="M60 283 L72 299"/>
+</g>
+<text x="60" y="318" class="actor">Conseiller</text>
+
+<!-- ===================== USE CASES ===================== -->
+<!-- UC: Escalader vers un conseiller humain -->
+<ellipse cx="520" cy="140" rx="115" ry="30" class="uc" filter="url(#ds)"/>
+<text x="520" y="134" class="ucname">Escalader vers un</text>
+<text x="520" y="152" class="ucname">conseiller humain</text>
+
+<!-- UC: Constituer le dossier -->
+<ellipse cx="850" cy="140" rx="95" ry="26" class="uc" filter="url(#ds)"/>
+<text x="850" y="144" class="ucname">Constituer le dossier</text>
+
+<!-- UC: Rechercher un conseiller disponible -->
+<ellipse cx="820" cy="270" rx="115" ry="30" class="uc" filter="url(#ds)"/>
+<text x="820" y="264" class="ucname">Rechercher un conseiller</text>
+<text x="820" y="282" class="ucname">disponible</text>
+
+<!-- UC: Transférer l'appel -->
+<ellipse cx="265" cy="270" rx="85" ry="26" class="uc" filter="url(#ds)"/>
+<text x="265" y="274" class="ucname">Transférer l'appel</text>
+
+<!-- UC: Planifier un rappel -->
+<ellipse cx="255" cy="400" rx="85" ry="26" class="uc" filter="url(#ds)"/>
+<text x="255" y="404" class="ucname">Planifier un rappel</text>
+
+<!-- UC: Créer un ticket de suivi -->
+<ellipse cx="540" cy="390" rx="100" ry="26" class="uc" filter="url(#ds)"/>
+<text x="540" y="394" class="ucname">Créer un ticket de suivi</text>
+
+<!-- UC: Notifier le client -->
+<ellipse cx="560" cy="470" rx="80" ry="26" class="uc" filter="url(#ds)"/>
+<text x="560" y="474" class="ucname">Notifier le client</text>
+
+<!-- ===================== EXTERNAL SYSTEMS (rectangles) ===================== -->
+<!-- Système de gestion de tickets -->
+<rect x="1050" y="350" width="185" height="70" class="sys" filter="url(#ds)"/>
+<text x="1142" y="368" class="stereo">&lt;&lt;acteur secondaire&gt;&gt;</text>
+<text x="1142" y="386" class="ucname">Système de gestion</text>
+<text x="1142" y="401" class="ucname">de tickets</text>
+
+<!-- Service de notification -->
+<rect x="1050" y="470" width="185" height="70" class="sys" filter="url(#ds)"/>
+<text x="1142" y="488" class="stereo">&lt;&lt;acteur secondaire&gt;&gt;</text>
+<text x="1142" y="506" class="ucname">Service de notification</text>
+
+<!-- ===================== NOTE ===================== -->
+<path d="M170 505 L465 505 L480 520 L480 600 L170 600 Z" class="note" filter="url(#ds)"/>
+<path d="M465 505 L465 520 L480 520" class="notefold"/>
+<text x="325" y="527" class="notetext">Les deux cas étendus sont exclusifs :</text>
+<text x="325" y="545" class="notetext">le rappel n'est proposé que si aucun</text>
+<text x="325" y="560" class="notetext">conseiller n'est disponible, ou si</text>
+<text x="325" y="575" class="notetext">le transfert a échoué.</text>
+
+<!-- ===================== ASSOCIATIONS ===================== -->
+<!-- Client → Escalader vers un conseiller humain (blue) -->
+<path d="M78 112 L405 133" class="lB" marker-end=""/>
+
+<!-- Escalader vers un conseiller humain → Conseiller (blue) -->
+<path d="M405 152 Q250 195 82 258" class="lB" marker-end=""/>
+
+<!-- ===================== INCLUDES (dashed crimson) ===================== -->
+<!-- Escalader ..> Constituer le dossier -->
+<path d="M635 140 L755 140" class="lCd" marker-end="url(#aC)"/>
+<text x="695" y="128" class="edge">&#171;include&#187;</text>
+
+<!-- Escalader ..> Rechercher un conseiller disponible -->
+<path d="M600 162 L725 248" class="lCd" marker-end="url(#aC)"/>
+<text x="685" y="195" class="edge">&#171;include&#187;</text>
+
+<!-- Planifier un rappel ..> Créer un ticket de suivi -->
+<path d="M340 393 L440 390" class="lCd" marker-end="url(#aC)"/>
+<text x="390" y="378" class="edge">&#171;include&#187;</text>
+
+<!-- Planifier un rappel ..> Notifier le client -->
+<path d="M330 415 L480 462" class="lCd" marker-end="url(#aC)"/>
+<text x="400" y="448" class="edge">&#171;include&#187;</text>
+
+<!-- ===================== EXTENDS (dashed crimson) ===================== -->
+<!-- Transférer l'appel ..> Escalader -->
+<path d="M330 255 L450 165" class="lCd" marker-end="url(#aC)"/>
+<text x="365" y="200" class="edge">&#171;extends&#187;</text>
+
+<!-- Planifier un rappel ..> Escalader -->
+<path d="M300 385 L470 170" class="lCd" marker-end="url(#aC)"/>
+<text x="355" y="290" class="edge">&#171;extends&#187;</text>
+
+<!-- ===================== EXTERNAL SYSTEM CONNECTIONS (black) ===================== -->
+<!-- Créer un ticket de suivi → Système de gestion de tickets -->
+<path d="M640 390 L1050 380" class="lK" marker-end="url(#aK)"/>
+
+<!-- Notifier le client → Service de notification -->
+<path d="M640 470 L1050 500" class="lK" marker-end="url(#aK)"/>
+
+<!-- ===================== NOTE CONNECTION ===================== -->
+<!-- Note → Planifier un rappel -->
+<path d="M255 428 L255 505" class="lN"/>
+
+</svg>

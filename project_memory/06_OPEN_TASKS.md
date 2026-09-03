@@ -12,7 +12,8 @@ Active after Phase 2 + final reading + Phase 5 figure 1. No LaTeX build in sandb
 - [x] **Figure 3:** fig-cu-general (Ch2) — EXACT user SVG, FULL PAGE, back-office/RBAC text adapted. CONFIRMED.
 - [x] **Figure 4:** fig-cu-doc (Ch2) — EXACT user SVG named 'Obtenir une réponse fondée sur les connaissances'; Ch2 rename + table/prose adapted (context, knowledge base). CONFIRMED.
 - [x] **Figure 5:** fig-cu-action (Ch2) — EXACT user SVG 'Réalisation d'une opération sécurisée'; Ch2 table/prose adapted (CIN, journal d'audit, issues). CONFIRMED.
-- [ ] **Figure 6:** fig-cu-escalade (Ch2) — use-case pattern, escalade vers conseiller.
+- [x] **Figure 6:** fig-cu-escalade (Ch2) — EXACT user SVG 'Gestion d'une demande d'assistance humaine'; Ch2 renamed + table/prose adapted (ticket de suivi, notification). CONFIRMED.
+- [ ] **Figure 7:** fig-seq-doc (Ch2) — sequence diagram, scenario nominal.
 - [ ] then the remaining figures in the order below (validate each before the next):
       fig-cu-action, fig-cu-escalade, fig-seq-*, fig-classes-*, fig-act-*,
       fig-etats-*, fig-pipeline-agent, fig-orchestration, fig-contexte, fig-chaine-temps-reel,
