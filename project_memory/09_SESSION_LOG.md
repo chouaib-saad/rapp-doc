@@ -117,3 +117,13 @@ Retours de l'utilisateur, puis production des 50 figures et intégration des 18 
 ## 2026-09-04 — Phase 5 figure 8 CONFIRMED
 - User confirmed figure 8/36 `fig-seq-action.svg` (exact sequence SVG). Case renamed 'Réalisation d'une opération sécurisée'; invariant integrated. Ch2 updated.
 - Next figure 9/36: fig-seq-escalade (Ch2, séquence du cas assistance humaine).
+
+## 2026-09-04 — Phase 5 figure 9
+- Figure 9 `fig-seq-escalade.svg`: EXACT user sequence SVG saved (1250×1210). Lifelines: Client, Agent de Supervision (Orchestrateur), Service de Routage (Availability), Système de Tickets, Service de Notification, Conseiller. Fragment alt [Un conseiller est disponible]/[Aucun ou transfert échoué]. Note: Dossier d'escalade (transmis au conseiller).
+- Ch2 case renamed BACK to 'Escalade vers un conseiller humain'; sequence intro + use-case intro adapted to these 6 participants/ticket de rappel/notification. PENDING confirmation.
+- NOTE: confirmed `fig-cu-escalade.svg` still has internal title 'Gestion d'une demande d'assistance humaine' — ask user whether to update it to 'Escalade vers un conseiller humain' (title line only).
+
+## 2026-09-04 — Phase 5 figure 9 CONFIRMED
+- User confirmed figure 9/36 `fig-seq-escalade.svg` (exact sequence SVG). Ch2 case renamed back to 'Escalade vers un conseiller humain'.
+- `fig-cu-escalade.svg` internal title updated to 'Escalade vers un conseiller humain' (title line only); rest of figure untouched.
+- Next figure 10/36: fig-classes-domaine (Ch3, modèle du domaine).

@@ -36,7 +36,7 @@ text{font-family:Arial,Helvetica,sans-serif;}
 
 <!-- ===================== SYSTEM BOUNDARY ===================== -->
 <rect x="140" y="15" width="890" height="650" class="bound" filter="url(#ds)"/>
-<text x="585" y="40" class="title">Gestion d'une demande d'assistance humaine</text>
+<text x="585" y="40" class="title">Escalade vers un conseiller humain</text>
 
 <!-- ===================== ACTOR: Client ===================== -->
 <g class="act" filter="url(#ds)">

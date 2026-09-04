@@ -413,13 +413,13 @@ La figure \ref{fig:seq-action} représente la réalisation d'une opération séc
 
 \figureTikz{Diagramme de séquence système du cas Réalisation d'une opération sécurisée}{seq-action}{fig-seq-action}
 
-\subsection{Cas d'utilisation : gestion d'une demande d'assistance humaine}
+\subsection{Cas d'utilisation : escalade vers un conseiller humain}
 
 \subsubsection{Diagramme du cas}
 
-Ce cas, présenté à la figure \ref{fig:cu-escalade}, décrit le passage de la prise en charge automatique à la prise en charge humaine. Il peut être déclenché par une règle métier, par une demande explicite du client ou par la constatation d'un mécontentement persistant au fil de la conversation. La figure représente la gestion d'une demande d'assistance humaine : le système constitue le dossier, recherche un conseiller disponible, puis transfère l'appel ou planifie un rappel. Dans ce dernier cas, il crée un ticket de suivi auprès du système de gestion de tickets et notifie le client par le service de notification.
+Ce cas, présenté à la figure \ref{fig:cu-escalade}, décrit le passage de la prise en charge automatique à la prise en charge humaine. Il peut être déclenché par une règle métier, par une demande explicite du client ou par la constatation d'un mécontentement persistant au fil de la conversation. La figure \ref{fig:cu-escalade} représente l'escalade vers un conseiller humain : le système constitue le dossier de l'échange, recherche un conseiller disponible, puis transfère l'appel ou planifie un rappel. Dans ce dernier cas, il crée un ticket de rappel auprès du système de gestion de tickets et notifie le conseiller assigné par le service de notification. Le dossier complet, constitué dans les deux cas, est remis au conseiller avec le transfert.
 
-\figureTikz{Diagramme du cas d'utilisation Gestion d'une demande d'assistance humaine}{cu-escalade}{fig-cu-escalade}
+\figureTikz{Diagramme du cas d'utilisation Escalade vers un conseiller humain}{cu-escalade}{fig-cu-escalade}
 
 \subsubsection{Description textuelle}
 
@@ -430,7 +430,7 @@ Le tableau \ref{tab:cu-escalade} détaille ce cas.
 \renewcommand{\arraystretch}{1.25}
 \begin{tabular}{|p{3.0cm}|p{11.5cm}|}
 \hline
-\multicolumn{2}{|c|}{\textbf{Cas d'utilisation : gestion d'une demande d'assistance humaine}} \\
+\multicolumn{2}{|c|}{\textbf{Cas d'utilisation : escalade vers un conseiller humain}} \\
 \hline
 \textbf{Acteur principal} & Client \\
 \hline
@@ -457,18 +457,18 @@ Le tableau \ref{tab:cu-escalade} détaille ce cas.
 \textbf{Alternative C : refus du rappel} & Si le client décline la proposition de rappel, le système clôt l'échange en récapitulant ce qui a été fait et en indiquant les moyens de contact disponibles, sans créer de rappel. \\
 \hline
 \end{tabular}
-\caption{Description textuelle du cas Gestion d'une demande d'assistance humaine}
+\caption{Description textuelle du cas Escalade vers un conseiller humain}
 \label{tab:cu-escalade}
 \end{table}
 
 \subsubsection{Diagramme de séquence système}
 
-La figure \ref{fig:seq-escalade} représente le scénario nominal et son alternative principale, la planification d'un rappel.
+La figure \ref{fig:seq-escalade} représente le scénario nominal et son alternative principale sous la forme des échanges entre le client, l'agent de supervision, le service de routage, le système de tickets, le service de notification et le conseiller. L'agent de supervision constitue le dossier et recherche un conseiller disponible. Le fragment \texttt{alt} sépare le cas où un conseiller est disponible, avec transfert de l'appel et remise du dossier, de celui où aucun conseiller n'est disponible ou où le transfert échoue, qui conduit à la création d'un ticket de rappel, à la notification du conseiller assigné et à la confirmation orale de l'horaire retenu.
 
-\figureTikz{Diagramme de séquence système du cas Gestion d'une demande d'assistance humaine}{seq-escalade}{fig-seq-escalade}
+\figureTikz{Diagramme de séquence système du cas Escalade vers un conseiller humain}{seq-escalade}{fig-seq-escalade}
 
 \section*{Conclusion}
 
-Ce chapitre a transformé les objectifs du projet en spécifications exploitables. Nous avons identifié deux acteurs principaux, le client et l'utilisateur back-office, ainsi que trois familles d'acteurs secondaires correspondant aux systèmes que la plateforme sollicite sans les posséder. Les responsabilités propres à l'administrateur, au superviseur et au conseiller sont détaillées dans la matrice des droits du chapitre suivant. Nous avons ensuite formulé trente quatre besoins fonctionnels répartis en huit domaines, puis douze besoins non fonctionnels dont chacun impose une propriété identifiée à l'architecture. Les cas d'utilisation ont enfin été présentés dans leur ensemble, et détaillés pour les trois qui structurent le système : la recherche et la génération d'une réponse fondée sur les connaissances, la réalisation d'une opération sécurisée et la gestion d'une demande d'assistance humaine.
+Ce chapitre a transformé les objectifs du projet en spécifications exploitables. Nous avons identifié deux acteurs principaux, le client et l'utilisateur back-office, ainsi que trois familles d'acteurs secondaires correspondant aux systèmes que la plateforme sollicite sans les posséder. Les responsabilités propres à l'administrateur, au superviseur et au conseiller sont détaillées dans la matrice des droits du chapitre suivant. Nous avons ensuite formulé trente quatre besoins fonctionnels répartis en huit domaines, puis douze besoins non fonctionnels dont chacun impose une propriété identifiée à l'architecture. Les cas d'utilisation ont enfin été présentés dans leur ensemble, et détaillés pour les trois qui structurent le système : la recherche et la génération d'une réponse fondée sur les connaissances, la réalisation d'une opération sécurisée et l'escalade vers un conseiller humain.
 
-Ces trois cas font apparaître une même exigence sous des formes différentes. La recherche et la génération d'une réponse fondée sur les connaissances imposent que le système sache reconnaître les limites de ce qu'il sait. La réalisation d'une opération sécurisée impose qu'il sache reconnaître les limites de ce qu'il a le droit de faire. La gestion d'une demande d'assistance humaine impose qu'il sache reconnaître les limites de ce qu'il peut traiter seul. Le chapitre suivant montre comment l'architecture de la solution répond à ces trois exigences, en présentant d'abord la vue statique du système, puis sa vue dynamique, avant de détailler la conception de la couche agentique et celle du contrôle d'accès.
+Ces trois cas font apparaître une même exigence sous des formes différentes. La recherche et la génération d'une réponse fondée sur les connaissances imposent que le système sache reconnaître les limites de ce qu'il sait. La réalisation d'une opération sécurisée impose qu'il sache reconnaître les limites de ce qu'il a le droit de faire. L'escalade vers un conseiller humain impose qu'il sache reconnaître les limites de ce qu'il peut traiter seul. Le chapitre suivant montre comment l'architecture de la solution répond à ces trois exigences, en présentant d'abord la vue statique du système, puis sa vue dynamique, avant de détailler la conception de la couche agentique et celle du contrôle d'accès.
