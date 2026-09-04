@@ -101,3 +101,11 @@ Retours de l'utilisateur, puis production des 50 figures et intégration des 18 
 - User confirmed figure 6/36 `fig-cu-escalade.svg` (exact SVG; Ch2 renamed to 'Gestion d'une demande d'assistance humaine'; ticket de suivi + notification added). Memory saved.
 - Ch2 conclusion aligned to new case name (gestion d'une demande d'assistance humaine).
 - Next figure 7/36: fig-seq-doc (Ch2, séquence du cas documentaire).
+
+## 2026-09-04 — Phase 5 figure 7
+- Figure 7 `fig-seq-doc.svg`: EXACT user sequence SVG saved (1250×1080). Lifelines: Client, Agent spécialisé (Orchestrateur), Base de connaissances, Base vectorielle, Moteur d'inférence (LLM). Fragments opt [demande ambiguë], loop [pour chaque requête], alt [pertinence confirmée / aucun passage pertinent]. 2 notes (absence info fiable, continuité conversationnelle).
+- Use case renamed to 'Recherche et génération d'une réponse fondée sur les connaissances' throughout Ch2; fig-cu-doc.svg internal title updated to match (title line only, per user request). Scenario steps + alternatives + seq intro aligned to the sequence diagram. PENDING confirmation.
+
+## 2026-09-04 — Phase 5 figure 7 CONFIRMED
+- User confirmed figure 7/36 `fig-seq-doc.svg` (exact sequence SVG; case renamed + Ch2 adapted).
+- Next figure 8/36: fig-seq-action (Ch2, séquence du cas opération sécurisée).

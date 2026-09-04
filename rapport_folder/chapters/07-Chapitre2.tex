@@ -296,13 +296,13 @@ Le diagramme de la figure \ref{fig:cu-general} présente une vue d'ensemble des 
 
 Trois cas d'utilisation structurent l'ensemble du système et méritent un traitement détaillé : obtenir une information, effectuer une opération sécurisée et être mis en relation avec un conseiller humain. Le premier couvre le trajet complet d'une question documentaire, de la parole du client jusqu'à la réponse ancrée dans la documentation. Le deuxième couvre l'exécution d'une opération engageant le compte du client, qui concentre l'essentiel des garanties de sûreté de la plateforme. Le troisième couvre le passage à un conseiller humain, qui constitue la frontière entre l'autonomie du système et l'intervention humaine. Chacun fait l'objet d'un diagramme, d'une description textuelle et d'un diagramme de séquence système décrivant son scénario nominal.
 
-\subsection{Cas d'utilisation : obtenir une réponse fondée sur les connaissances}
+\subsection{Cas d'utilisation : recherche et génération d'une réponse fondée sur les connaissances}
 
 \subsubsection{Diagramme du cas}
 
-Ce cas d'utilisation, présenté à la figure \ref{fig:cu-doc}, décrit la situation la plus fréquente : le client pose une question portant sur les offres, les procédures ou les conditions de service, et attend une réponse exacte. La réponse est établie à partir de la base de connaissances de l'opérateur ; le système interprète la demande, tient compte du contexte des échanges précédents afin de comprendre une question qui les prolonge, puis fonde sa réponse sur les connaissances retrouvées.
+Ce cas d'utilisation, présenté à la figure \ref{fig:cu-doc}, décrit la situation la plus fréquente : le client pose une question portant sur les offres, les procédures ou les conditions de service, et attend une réponse exacte. La réponse est établie à partir de la base de connaissances de l'opérateur. Le système interprète la demande, tient compte du contexte des échanges précédents afin de comprendre une question qui les prolonge, recherche les passages pertinents, les fusionne et évalue leur pertinence, puis génère une réponse fondée sur les connaissances retenues et accompagnée de leurs sources.
 
-\figureTikz{Diagramme du cas d'utilisation Obtenir une réponse fondée sur les connaissances}{cu-doc}{fig-cu-doc}
+\figureTikz{Diagramme du cas d'utilisation Recherche et génération d'une réponse fondée sur les connaissances}{cu-doc}{fig-cu-doc}
 
 \subsubsection{Description textuelle}
 
@@ -313,7 +313,7 @@ Le tableau \ref{tab:cu-doc} détaille le déroulement de ce cas.
 \renewcommand{\arraystretch}{1.25}
 \begin{tabular}{|p{3.0cm}|p{11.5cm}|}
 \hline
-\multicolumn{2}{|c|}{\textbf{Cas d'utilisation : obtenir une réponse fondée sur les connaissances}} \\
+\multicolumn{2}{|c|}{\textbf{Cas d'utilisation : recherche et génération d'une réponse fondée sur les connaissances}} \\
 \hline
 \textbf{Acteur principal} & Client \\
 \hline
@@ -328,28 +328,29 @@ Le tableau \ref{tab:cu-doc} détaille le déroulement de ce cas.
 \textbf{Scénario nominal} &
 1. Le client formule sa question à l'oral. \newline
 2. Le système transcrit la parole et interprète la demande, en tenant compte du contexte des échanges précédents. \newline
-3. Le système interroge la base de connaissances avec une requête dérivée de la question. \newline
-4. Le système reçoit les passages pertinents accompagnés de leur source. \newline
-5. Le système formule une réponse brève, fondée uniquement sur ces passages. \newline
-6. Le système énonce la réponse et propose au client d'en obtenir le détail. \newline
-7. L'échange est consigné dans le journal de conversation. \\
+3. Le système recherche les passages pertinents dans la base de connaissances, puis dans la base vectorielle. \newline
+4. Le système fusionne les passages candidats et évalue leur pertinence. \newline
+5. Le système augmente la requête avec le contexte retenu et la transmet au moteur d'inférence. \newline
+6. Le moteur d'inférence génère une réponse brève avec des références aux sources. \newline
+7. Le système énonce la réponse au client et propose d'en obtenir le détail. \newline
+8. L'échange est consigné dans le journal de conversation. \\
 \hline
-\textbf{Alternative A : demande ambiguë} & À l'étape 2, si la demande ne peut être interprétée avec certitude, le système pose une question de clarification unique, puis reprend à l'étape 1. \\
+\textbf{Alternative A : demande ambiguë} & À l'étape 2, si la demande ne peut être interprétée avec certitude, le système pose une question de clarification unique, le client fournit la précision demandée, puis le traitement reprend à l'étape 3. \\
 \hline
-\textbf{Alternative B : absence d'information} & À l'étape 4, si aucune connaissance pertinente n'est retrouvée, le système indique au client qu'il ne dispose pas d'une information suffisante pour répondre et lui propose une prise en charge alternative. Le cas se termine. \\
+\textbf{Alternative B : absence d'information} & À l'étape 4, si aucun passage suffisamment pertinent n'est retrouvé, le système n'envoie aucune requête au moteur d'inférence : il indique au client qu'il ne dispose pas d'une information suffisante pour répondre et lui propose une prise en charge alternative. Le cas se termine. \\
 \hline
 \textbf{Alternative C : interruption} & À toute étape postérieure à 5, le client peut interrompre l'énoncé. Le système cesse de parler immédiatement et traite le nouveau tour de parole. \\
 \hline
 \end{tabular}
-\caption{Description textuelle du cas Obtenir une réponse fondée sur les connaissances}
+\caption{Description textuelle du cas Recherche et génération d'une réponse fondée sur les connaissances}
 \label{tab:cu-doc}
 \end{table}
 
 \subsubsection{Diagramme de séquence système}
 
-La figure \ref{fig:seq-doc} représente le scénario nominal sous forme d'échanges entre le client et le système, considéré ici comme une boîte noire.
+La figure \ref{fig:seq-doc} représente le scénario nominal sous la forme des échanges entre le client, l'agent spécialisé, la base de connaissances, la base vectorielle et le moteur d'inférence. Elle fait apparaître la prise en compte du contexte, la recherche en deux temps, la fusion et l'évaluation de la pertinence, puis la génération de la réponse avec ses références. Le fragment \texttt{opt} traduit la clarification en cas de demande ambiguë ; le fragment \texttt{alt} sépare le cas où la pertinence est confirmée de celui où aucun passage pertinent n'est retrouvé.
 
-\figureTikz{Diagramme de séquence système du cas Obtenir une réponse fondée sur les connaissances}{seq-doc}{fig-seq-doc}
+\figureTikz{Diagramme de séquence système du cas Recherche et génération d'une réponse fondée sur les connaissances}{seq-doc}{fig-seq-doc}
 
 \subsection{Cas d'utilisation : exécuter une opération sensible}
 
@@ -468,6 +469,6 @@ La figure \ref{fig:seq-escalade} représente le scénario nominal et son alterna
 
 \section*{Conclusion}
 
-Ce chapitre a transformé les objectifs du projet en spécifications exploitables. Nous avons identifié deux acteurs principaux, le client et l'utilisateur back-office, ainsi que trois familles d'acteurs secondaires correspondant aux systèmes que la plateforme sollicite sans les posséder. Les responsabilités propres à l'administrateur, au superviseur et au conseiller sont détaillées dans la matrice des droits du chapitre suivant. Nous avons ensuite formulé trente quatre besoins fonctionnels répartis en huit domaines, puis douze besoins non fonctionnels dont chacun impose une propriété identifiée à l'architecture. Les cas d'utilisation ont enfin été présentés dans leur ensemble, et détaillés pour les trois qui structurent le système : la réponse fondée sur les connaissances, l'opération sensible et la gestion d'une demande d'assistance humaine.
+Ce chapitre a transformé les objectifs du projet en spécifications exploitables. Nous avons identifié deux acteurs principaux, le client et l'utilisateur back-office, ainsi que trois familles d'acteurs secondaires correspondant aux systèmes que la plateforme sollicite sans les posséder. Les responsabilités propres à l'administrateur, au superviseur et au conseiller sont détaillées dans la matrice des droits du chapitre suivant. Nous avons ensuite formulé trente quatre besoins fonctionnels répartis en huit domaines, puis douze besoins non fonctionnels dont chacun impose une propriété identifiée à l'architecture. Les cas d'utilisation ont enfin été présentés dans leur ensemble, et détaillés pour les trois qui structurent le système : la recherche et la génération d'une réponse fondée sur les connaissances, l'opération sensible et la gestion d'une demande d'assistance humaine.
 
-Ces trois cas font apparaître une même exigence sous des formes différentes. La réponse fondée sur les connaissances impose que le système sache reconnaître les limites de ce qu'il sait. L'opération sensible impose qu'il sache reconnaître les limites de ce qu'il a le droit de faire. La gestion d'une demande d'assistance humaine impose qu'il sache reconnaître les limites de ce qu'il peut traiter seul. Le chapitre suivant montre comment l'architecture de la solution répond à ces trois exigences, en présentant d'abord la vue statique du système, puis sa vue dynamique, avant de détailler la conception de la couche agentique et celle du contrôle d'accès.
+Ces trois cas font apparaître une même exigence sous des formes différentes. La recherche et la génération d'une réponse fondée sur les connaissances imposent que le système sache reconnaître les limites de ce qu'il sait. L'opération sensible impose qu'il sache reconnaître les limites de ce qu'il a le droit de faire. La gestion d'une demande d'assistance humaine impose qu'il sache reconnaître les limites de ce qu'il peut traiter seul. Le chapitre suivant montre comment l'architecture de la solution répond à ces trois exigences, en présentant d'abord la vue statique du système, puis sa vue dynamique, avant de détailler la conception de la couche agentique et celle du contrôle d'accès.

@@ -37,7 +37,7 @@ text{font-family:Arial,Helvetica,sans-serif;}
 
 <!-- ===================== SYSTEM BOUNDARY (wrap content) ===================== -->
 <rect x="185" y="55" width="1070" height="640" class="bound" filter="url(#ds)"/>
-<text x="720" y="88" class="title">Obtenir une réponse fondée sur les connaissances</text>
+<text x="720" y="88" class="title">Recherche et génération d’une réponse fondée sur les connaissances</text>
 
 <!-- ===================== ACTOR: Client ===================== -->
 <g class="act" filter="url(#ds)">
