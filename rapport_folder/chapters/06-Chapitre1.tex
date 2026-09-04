@@ -83,7 +83,7 @@ Avant de concevoir notre solution, nous avons examiné ce qui existe déjà, à 
 
 \subsection{Le dispositif en place chez les opérateurs}
 
-Le dispositif historique combine un serveur vocal interactif, une équipe de conseillers outillée par des scripts, et un système de gestion de tickets pour les demandes qui ne se résolvent pas au premier contact. Sa robustesse tient à sa simplicité : le parcours est entièrement déterminé à l'avance et son comportement est parfaitement prévisible. Cette même propriété constitue sa limite. Une arborescence de menus ne peut couvrir que les cas anticipés lors de sa conception, elle impose au client de traduire son besoin dans le vocabulaire du système, et elle ne transporte pratiquement aucune information d'une étape à la suivante.
+Le dispositif historique combine un serveur vocal interactif, une équipe de conseillers outillée par des scripts, et un système de gestion de tickets pour les demandes qui ne se résolvent pas au premier contact. Sa robustesse tient à sa simplicité : le parcours est entièrement déterminé à l'avance et son comportement est parfaitement prévisible. Cette même propriété constitue sa limite. Une arborescence de menus ne peut couvrir que les cas anticipés lors de sa conception. Elle impose au client de traduire son besoin dans le vocabulaire du système, et ne transporte pratiquement aucune information d'une étape à la suivante.
 
 \subsection{Les plateformes commerciales d'automatisation conversationnelle}
 
@@ -91,7 +91,7 @@ Trois acteurs européens structurent aujourd'hui ce segment. Nous les avons rete
 
 \subsubsection{PolyAI}
 
-PolyAI est un éditeur britannique d'assistants vocaux destinés à l'automatisation du service client. La plateforme prend en charge les appels entrants et sortants, le débordement de file d'attente, le routage par intention et l'escalade vers un conseiller, avec une prise en charge multilingue étendue et des intégrations vers les systèmes de gestion de la relation client, les plateformes de réservation, les systèmes de paiement et les logiciels de centre de contact \cite{polyai}. Ses points forts reconnus sont la qualité de la voix synthétisée et la gestion des tours de parole, y compris les interruptions et les corrections en cours d'énoncé.
+PolyAI est un éditeur britannique d'assistants vocaux destinés à l'automatisation du service client. La plateforme prend en charge les appels entrants et sortants, le débordement de file d'attente, le routage par intention et l'escalade vers un conseiller. Elle offre une prise en charge multilingue étendue et des intégrations vers les systèmes de gestion de la relation client, les plateformes de réservation, les systèmes de paiement et les logiciels de centre de contact \cite{polyai}. Ses points forts reconnus sont la qualité de la voix synthétisée et la gestion des tours de parole, y compris les interruptions et les corrections en cours d'énoncé.
 
 La solution est livrée comme un service géré. Ce choix de distribution simplifie considérablement le déploiement, mais il place la chaîne de raisonnement interne hors du périmètre de l'équipe cliente. La décomposition en agents spécialisés, la stratégie de recherche documentaire et le contrôle granulaire des politiques métier ne constituent pas des surfaces de conception exposées, et l'adaptation à un système d'information particulier passe par une intégration conduite par l'éditeur.
 
@@ -199,29 +199,29 @@ Août & Interfaces et durcissement & Portail client, console d'administration, o
 \label{tab:phases}
 \end{table}
 
-Ces phases se recouvrent partiellement. Plusieurs travaux engagés lors d'une phase se sont poursuivis pendant la suivante, notamment l'optimisation de la chaîne vocale, qui a fait l'objet d'ajustements jusqu'aux dernières semaines à mesure que les mesures de latence se précisaient.
+Ces phases se recouvrent partiellement. Plusieurs travaux engagés lors d'une phase se sont poursuivis pendant la suivante. L'optimisation de la chaîne vocale, notamment, a fait l'objet d'ajustements jusqu'aux dernières semaines, à mesure que les mesures de latence se précisaient.
 
 \section{Processus de développement}
 
 \subsection{Le choix d'un cycle itératif et incrémental}
 
-Nous avons conduit ce projet selon un cycle de vie itératif et incrémental. Ce choix ne relève pas d'une préférence méthodologique mais d'une contrainte propre au sujet.
+Nous avons conduit ce projet selon le modèle évolutif \cite{belgacem}, qui repose sur un développement incrémental et itératif. Ce choix ne relève pas d'une préférence méthodologique mais d'une contrainte propre au sujet.
 
-Un cycle séquentiel suppose que le comportement attendu du logiciel puisse être spécifié complètement avant d'être construit. Cette hypothèse ne tenait pas ici. Une part importante des décisions de conception dépendait de grandeurs qui n'existent qu'une fois le composant en fonctionnement : le temps réellement consommé par une étape de la chaîne vocale, la qualité effective d'une recherche documentaire sur un corpus multilingue, le comportement d'un modèle face à une instruction ambiguë. Ces grandeurs ne se déduisent pas d'une étude préalable, elles se mesurent. Le développement devait donc procéder par constructions successives, chacune suffisamment complète pour être mesurée, puis conservée, corrigée ou remplacée selon le résultat obtenu.
+Un cycle séquentiel suppose que le comportement attendu du logiciel puisse être spécifié complètement avant d'être construit. Cette hypothèse ne tenait pas ici. Une part importante des décisions de conception dépendait de grandeurs qui n'existent qu'une fois le composant en fonctionnement : le temps réellement consommé par une étape de la chaîne vocale, la qualité effective d'une recherche documentaire sur un corpus multilingue, le comportement d'un modèle face à une instruction ambiguë. Ces grandeurs ne se déduisent pas d'une étude préalable, elles se mesurent. Le modèle évolutif répond à cette contrainte : il décompose le projet en incréments fonctionnels développés en ordre de priorité, chacun livrant une portion du produit suffisamment complète pour être utilisée et mesurée. Il garantit ainsi une livraison rapide de produits fonctionnels, une collaboration régulière avec le client et une flexibilité face à l'évolution des besoins.
 
 \subsection{La forme concrète des itérations}
 
-Chaque itération a pris la forme d'un incrément numéroté, associé à une branche de développement dédiée et à un document décrivant son contenu, son intention et son résultat. Le projet compte à son terme cent douze incréments de ce type, pour deux cent soixante validations enregistrées dans l'historique du dépôt.
+Chaque itération a pris la forme d'un incrément numéroté, associé à une branche de développement dédiée et à un document décrivant son contenu, son intention et son résultat. Un incrément traverse toujours les mêmes étapes : spécification, conception, développement et tests, intégration, puis validation.
 
 Cette granularité fine répond à un besoin précis. Un incrément qui isole une modification unique reste réversible : si une mesure ultérieure invalide un choix, il est possible de revenir sur ce choix sans défaire ce qui a été construit autour. Nous avons appliqué cette règle avec une rigueur particulière aux mécanismes que nous qualifions de porteurs, ceux dont dépend une garantie du système. Une modification touchant l'un d'eux fait l'objet d'un incrément à part entière, accompagné de la justification du changement.
 
-La figure \ref{fig:cycle-iteratif} illustre le cycle appliqué à chaque incrément.
+Chaque incrément livré apporte une valeur ajoutée à la version globale du logiciel en ajoutant une fonctionnalité réelle et souhaitée par le client. La figure \ref{fig:cycle-iteratif} illustre le modèle évolutif appliqué au projet : le produit devient utilisable dès le premier incrément, puis sa couverture s'étend au fil des suivants, matérialisée par les jalons de 30 %, 55 %, 80 % et 100 %. Les retours du client, recueillis à partir du premier incrément, orientent l'ajout des fonctionnalités suivantes.
 
-\figureTikz{Cycle itératif et incrémental appliqué au projet}{cycle-iteratif}{fig-cycle-iteratif}
+\figureTikz{Cycle de la méthodologie évolutive appliqué au projet}{cycle-iteratif}{fig-cycle-iteratif}
 
 \subsection{Vérification continue}
 
-La mesure occupant une place centrale dans ce cycle, elle devait être disponible en permanence et non à l'issue du développement. Nous avons donc constitué progressivement un ensemble de vérifications automatisées couvrant les comportements que le système doit garantir quelles que soient ses évolutions ultérieures : le caractère déterministe des décisions, l'exécution unique des actions sensibles, le refus de répondre en l'absence de source documentaire, le comportement en cas de défaillance d'un fournisseur externe, et le respect de la langue de l'échange. Le chapitre de réalisation revient en détail sur cet ensemble et sur ce que chaque famille de vérifications protège.
+La mesure occupant une place centrale dans ce cycle, elle devait être disponible en permanence et non à l'issue du développement. Nous avons donc constitué progressivement un ensemble de vérifications automatisées. Elles couvrent les comportements que le système doit garantir quelles que soient ses évolutions ultérieures : le caractère déterministe des décisions, l'exécution unique des actions sensibles, le refus de répondre en l'absence de source documentaire, le comportement en cas de défaillance d'un fournisseur externe, et le respect de la langue de l'échange. Le chapitre de réalisation revient en détail sur cet ensemble et sur ce que chaque famille de vérifications protège.
 
 \section*{Conclusion}
 

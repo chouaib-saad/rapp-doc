@@ -1,0 +1,250 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1700" height="1350" viewBox="0 0 1700 1350">
+<rect width="1700" height="1350" fill="#FFFFFF"/>
+<defs>
+<style>
+text{font-family:Arial,Helvetica,sans-serif;}
+.title{font-size:18px;font-weight:bold;fill:#111111;text-anchor:middle;}
+.ucname{font-size:13px;fill:#222222;text-anchor:middle;}
+.actor{font-size:13px;fill:#333333;text-anchor:middle;}
+.edge{font-size:12px;fill:#222222;text-anchor:middle;}
+.stereo{font-size:11px;fill:#222222;text-anchor:middle;font-style:italic;}
+.bound{fill:none;stroke:#111111;stroke-width:1.5;}
+.uc{fill:#FFFBCC;stroke:#D02A50;stroke-width:1.3;}
+.act{fill:none;stroke:#D02A50;stroke-width:1.7;}
+.sys{fill:#FFFFFF;stroke:#D02A50;stroke-width:1.3;}
+.lB{fill:none;stroke:#2B3BE0;stroke-width:1.4;}
+.lK{fill:none;stroke:#2B2B2B;stroke-width:1.2;}
+.lCd{fill:none;stroke:#D22B55;stroke-width:1.4;stroke-dasharray:6,4;}
+.lGen{fill:none;stroke:#2B2B2B;stroke-width:1.2;}
+</style>
+<filter id="ds" x="-20%" y="-20%" width="140%" height="140%">
+<feDropShadow dx="3" dy="3" stdDeviation="2.5" flood-color="#8A8A8A" flood-opacity="0.45"/>
+</filter>
+<marker id="aB" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto">
+<path d="M0 0 L8 4 L0 8" fill="none" stroke="#2B3BE0" stroke-width="1.3"/>
+</marker>
+<marker id="aK" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto">
+<path d="M0 0 L8 4 L0 8" fill="none" stroke="#2B2B2B" stroke-width="1.2"/>
+</marker>
+<marker id="aC" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto">
+<path d="M0 0 L8 4 L0 8" fill="none" stroke="#D22B55" stroke-width="1.3"/>
+</marker>
+<marker id="gen" markerWidth="14" markerHeight="14" refX="13" refY="7" orient="auto">
+<path d="M0 0 L13 7 L0 14 Z" fill="#FFFFFF" stroke="#2B2B2B" stroke-width="1.2"/>
+</marker>
+</defs>
+
+<!-- ===================== SYSTEM BOUNDARY (centrée) ===================== -->
+<rect x="280" y="50" width="1140" height="1250" class="bound" filter="url(#ds)"/>
+<text x="850" y="85" class="title">Plateforme conversationnelle temps réel</text>
+
+<!-- ===================== ACTOR: Client ===================== -->
+<g class="act" filter="url(#ds)">
+<circle cx="100" cy="250" r="7.5" fill="#FFF6C7"/>
+<path d="M100 257 L100 278"/>
+<path d="M87 264 L113 264"/>
+<path d="M100 278 L88 294"/>
+<path d="M100 278 L112 294"/>
+</g>
+<text x="100" y="313" class="actor">Client</text>
+
+<!-- ===================== ACTOR: Utilisateur back-office ===================== -->
+<g class="act" filter="url(#ds)">
+<circle cx="100" cy="1150" r="7.5" fill="#FFF6C7"/>
+<path d="M100 1157 L100 1178"/>
+<path d="M87 1164 L113 1164"/>
+<path d="M100 1178 L88 1194"/>
+<path d="M100 1178 L112 1194"/>
+</g>
+<text x="100" y="1203" class="actor">Utilisateur</text>
+<text x="100" y="1218" class="actor">back-office</text>
+
+<!-- ===================== USE CASES ===================== -->
+<!-- UC_Conv: Gérer une interaction vocale -->
+<ellipse cx="680" cy="200" rx="110" ry="28" class="uc" filter="url(#ds)"/>
+<text x="680" y="195" class="ucname">Gérer une interaction</text>
+<text x="680" y="211" class="ucname">vocale</text>
+
+<!-- UC_Question: Obtenir une information -->
+<ellipse cx="980" cy="200" rx="95" ry="28" class="uc" filter="url(#ds)"/>
+<text x="980" y="204" class="ucname">Obtenir une information</text>
+
+<!-- UC_Op: Effectuer une opération sécurisée -->
+<ellipse cx="760" cy="380" rx="110" ry="28" class="uc" filter="url(#ds)"/>
+<text x="760" y="374" class="ucname">Effectuer une opération</text>
+<text x="760" y="392" class="ucname">sécurisée</text>
+
+<!-- UC_Verify: Vérifier l'identité par CIN -->
+<ellipse cx="1040" cy="380" rx="95" ry="28" class="uc" filter="url(#ds)"/>
+<text x="1040" y="374" class="ucname">Vérifier l'identité</text>
+<text x="1040" y="392" class="ucname">par CIN</text>
+
+<!-- UC_Profile: Gérer son profil -->
+<ellipse cx="450" cy="480" rx="90" ry="28" class="uc" filter="url(#ds)"/>
+<text x="450" y="484" class="ucname">Gérer son profil</text>
+
+<!-- UC_Human: Être mis en relation avec un conseiller -->
+<ellipse cx="500" cy="900" rx="110" ry="28" class="uc" filter="url(#ds)"/>
+<text x="500" y="894" class="ucname">Être mis en relation</text>
+<text x="500" y="912" class="ucname">avec un conseiller</text>
+
+<!-- UC_Callback: Programmer un rappel -->
+<ellipse cx="500" cy="1040" rx="95" ry="28" class="uc" filter="url(#ds)"/>
+<text x="500" y="1044" class="ucname">Programmer un rappel</text>
+
+<!-- UC_Auth: S'authentifier (déplacé à droite) -->
+<ellipse cx="1250" cy="700" rx="90" ry="28" class="uc" filter="url(#ds)"/>
+<text x="1250" y="704" class="ucname">S'authentifier</text>
+
+<!-- UC_Supervise: Superviser les interactions -->
+<ellipse cx="800" cy="1060" rx="115" ry="28" class="uc" filter="url(#ds)"/>
+<text x="800" y="1064" class="ucname">Superviser les interactions</text>
+
+<!-- UC_AdminRules: Gérer la base de connaissances et les règles métier -->
+<ellipse cx="800" cy="1150" rx="140" ry="28" class="uc" filter="url(#ds)"/>
+<text x="800" y="1144" class="ucname">Gérer la base de connaissances</text>
+<text x="800" y="1162" class="ucname">et les règles métier</text>
+
+<!-- UC_Escalade: Traiter les demandes escaladées -->
+<ellipse cx="800" cy="1240" rx="110" ry="28" class="uc" filter="url(#ds)"/>
+<text x="800" y="1234" class="ucname">Traiter les demandes</text>
+<text x="800" y="1252" class="ucname">escaladées</text>
+
+<!-- ===================== Enfants de Obtenir une information ===================== -->
+<ellipse cx="1250" cy="120" rx="90" ry="28" class="uc" filter="url(#ds)"/>
+<text x="1250" y="124" class="ucname">Consulter le solde</text>
+
+<ellipse cx="1250" cy="200" rx="90" ry="28" class="uc" filter="url(#ds)"/>
+<text x="1250" y="195" class="ucname">Consulter une</text>
+<text x="1250" y="211" class="ucname">facture</text>
+
+<ellipse cx="1250" cy="270" rx="90" ry="28" class="uc" filter="url(#ds)"/>
+<text x="1250" y="274" class="ucname">Consulter les offres</text>
+
+<!-- ===================== Signaler un problème (parent, remonté) ===================== -->
+<ellipse cx="520" cy="630" rx="95" ry="28" class="uc" filter="url(#ds)"/>
+<text x="520" y="625" class="ucname">Signaler un</text>
+<text x="520" y="641" class="ucname">problème</text>
+
+<!-- ===================== Enfants de Signaler un problème (éventail, remonté) ===================== -->
+<ellipse cx="430" cy="760" rx="80" ry="28" class="uc" filter="url(#ds)"/>
+<text x="430" y="755" class="ucname">Signaler un</text>
+<text x="430" y="771" class="ucname">problème technique</text>
+
+<ellipse cx="570" cy="785" rx="80" ry="28" class="uc" filter="url(#ds)"/>
+<text x="570" y="780" class="ucname">Signaler un problème</text>
+<text x="570" y="796" class="ucname">de facturation</text>
+
+<ellipse cx="710" cy="760" rx="80" ry="28" class="uc" filter="url(#ds)"/>
+<text x="710" y="755" class="ucname">Signaler un incident</text>
+<text x="710" y="771" class="ucname">de service</text>
+
+<!-- ===================== EXTERNAL SYSTEMS ===================== -->
+<!-- Facturation (remonté de 35px supplémentaires) -->
+<rect x="1470" y="280" width="220" height="55" class="sys" filter="url(#ds)"/>
+<text x="1580" y="298" class="stereo">&lt;&lt;acteur secondaire&gt;&gt;</text>
+<text x="1580" y="316" class="ucname">Système de facturation</text>
+<text x="1580" y="331" class="ucname">de l'opérateur</text>
+
+<!-- Tickets (remonté de 35px supplémentaires) -->
+<rect x="1470" y="820" width="220" height="55" class="sys" filter="url(#ds)"/>
+<text x="1580" y="838" class="stereo">&lt;&lt;acteur secondaire&gt;&gt;</text>
+<text x="1580" y="856" class="ucname">Système de gestion</text>
+<text x="1580" y="871" class="ucname">des tickets</text>
+
+<!-- Notification -->
+<rect x="1470" y="930" width="220" height="55" class="sys" filter="url(#ds)"/>
+<text x="1580" y="948" class="stereo">&lt;&lt;acteur secondaire&gt;&gt;</text>
+<text x="1580" y="966" class="ucname">Service de notification</text>
+
+<!-- ===================== ASSOCIATIONS ===================== -->
+<!-- Client to Gérer une interaction vocale -->
+<path d="M120 244 L570 205" class="lB"/>
+
+<!-- Client to Gérer son profil -->
+<path d="M120 268 L360 470" class="lB"/>
+
+<!-- Admin (black) -->
+<path d="M120 1138 L685 1064" class="lK"/>
+<path d="M120 1150 L660 1150" class="lK"/>
+<path d="M120 1162 L690 1236" class="lK"/>
+
+<!-- ===================== INCLUDES (dashed crimson) ===================== -->
+<!-- UC_Conv ..> UC_Question (Corrigé: flèche inversée pour extend) -->
+<path d="M885 200 L790 200" class="lCd" marker-end="url(#aC)"/>
+<text x="838" y="190" class="edge">&#171;extend&#187;</text>
+
+<!-- UC_Conv ..> UC_Op (Corrigé: flèche inversée pour extend) -->
+<path d="M745 352 L700 226" class="lCd" marker-end="url(#aC)"/>
+<text x="742" y="290" class="edge">&#171;extend&#187;</text>
+
+<!-- UC_Op ..> UC_Verify -->
+<path d="M870 380 L945 380" class="lCd" marker-end="url(#aC)"/>
+<text x="908" y="370" class="edge">&#171;include&#187;</text>
+
+<!-- UC_Conv ..> UC_Auth -->
+<path d="M790 208 Q1250 250 1328 686" class="lCd" marker-end="url(#aC)"/>
+<text x="1120" y="470" class="edge">&#171;include&#187;</text>
+
+<!-- UC_Profile ..> UC_Auth -->
+<path d="M540 490 L1160 690" class="lCd" marker-end="url(#aC)"/>
+<text x="800" y="585" class="edge">&#171;include&#187;</text>
+
+<!-- UC_Supervise ..> UC_Auth -->
+<path d="M900 1040 L1200 728" class="lCd" marker-end="url(#aC)"/>
+<text x="1075" y="880" class="edge">&#171;include&#187;</text>
+
+<!-- UC_AdminRules ..> UC_Auth -->
+<path d="M930 1130 L1225 730" class="lCd" marker-end="url(#aC)"/>
+<text x="1100" y="940" class="edge">&#171;include&#187;</text>
+
+<!-- UC_Escalade ..> UC_Auth -->
+<path d="M915 1222 L1245 730" class="lCd" marker-end="url(#aC)"/>
+<text x="1115" y="1000" class="edge">&#171;include&#187;</text>
+
+<!-- ===================== EXTENDS (dashed crimson) ===================== -->
+<!-- UC_Signaler ..> UC_Conv -->
+<path d="M560 605 C600 460, 600 350, 660 228" class="lCd" marker-end="url(#aC)"/>
+<text x="585" y="420" class="edge">&#171;extend&#187;</text>
+
+<!-- UC_Human ..> UC_Conv -->
+<path d="M440 872 C330 640, 320 400, 600 222" class="lCd" marker-end="url(#aC)"/>
+<text x="395" y="560" class="edge">&#171;extend&#187;</text>
+
+<!-- UC_Callback ..> UC_Human -->
+<path d="M500 1012 L500 928" class="lCd" marker-end="url(#aC)"/>
+<text x="517" y="972" class="edge">&#171;extend&#187;</text>
+
+<!-- ===================== GENERALIZATIONS (triangle vide) ===================== -->
+<!-- Consulter le solde △→ Obtenir une information -->
+<path d="M1162 128 L1062 172" class="lGen" marker-end="url(#gen)"/>
+
+<!-- Consulter une facture △→ Obtenir une information -->
+<path d="M1160 200 L1075 200" class="lGen" marker-end="url(#gen)"/>
+
+<!-- Consulter les offres △→ Obtenir une information -->
+<path d="M1162 272 L1062 228" class="lGen" marker-end="url(#gen)"/>
+
+<!-- Signaler un problème technique △→ Signaler un problème -->
+<path d="M460 735 L495 658" class="lGen" marker-end="url(#gen)"/>
+
+<!-- Signaler un problème de facturation △→ Signaler un problème -->
+<path d="M560 757 L540 658" class="lGen" marker-end="url(#gen)"/>
+
+<!-- Signaler un incident de service △→ Signaler un problème -->
+<path d="M675 735 L565 658" class="lGen" marker-end="url(#gen)"/>
+
+<!-- ===================== EXTERNAL SYSTEM CONNECTIONS (black) ===================== -->
+<!-- UC_Op -> Facturation (ligne droite ajustée) -->
+<path d="M800 354 L1470 307" class="lK" marker-end="url(#aK)"/>
+
+<!-- UC_Signaler -> Tickets (ajusté pour nouvelle position) -->
+<path d="M615 635 L1470 847" class="lK" marker-end="url(#aK)"/>
+
+<!-- UC_Human -> Tickets (ajusté pour nouvelle position) -->
+<path d="M610 900 L1470 847" class="lK" marker-end="url(#aK)"/>
+
+<!-- UC_Callback -> Notification -->
+<path d="M595 1040 L1470 957" class="lK" marker-end="url(#aK)"/>
+
+</svg>

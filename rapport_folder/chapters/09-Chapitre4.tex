@@ -52,11 +52,7 @@ Intégration & Serveurs MCP internes & Exposition contrôlée des capacités doc
 \hline
 Interfaces & TypeScript, React, TanStack Start & Portail client et console d'administration, avec exécution côté serveur des appels métier. \\
 \hline
-Observabilité & Prometheus & Collecte des métriques d'exécution, interrogées directement sur chaque service. \\
-\hline
-Observabilité & Grafana & Restitution des métriques sous forme de tableaux de bord provisionnés. \\
-\hline
-Observabilité & OpenTelemetry & Identifiant de corrélation et traces réparties lorsqu'un collecteur est déployé. \\
+Observabilité & OpenTelemetry et Prometheus & Collecte des traces et des métriques, dont les temps de première réponse. \\
 \hline
 Exécution & Docker et Docker Compose & Isolation, reproductibilité et orchestration locale des services. \\
 \hline
@@ -134,7 +130,7 @@ Qualité & Ruff et Mypy & Analyse statique et vérification des types. \\
 \hline
 Exploration d'interfaces & Postman & Vérification manuelle des points d'accès applicatifs. \\
 \hline
-Observabilité & Prometheus 2.55 et Grafana 11.3 & Collecte des métriques et tableaux de bord de supervision. \\
+Observabilité & Collecteur OpenTelemetry et Prometheus & Collecte des traces et des métriques d'exécution. \\
 \hline
 \end{tabular}
 \caption{Environnement logiciel de développement}
@@ -149,13 +145,15 @@ Deux modes d'exécution coexistent. Le premier lance chaque service directement 
 
 La contrainte énoncée au premier chapitre trouve ici sa traduction concrète. Un échange parlé demeure naturel tant que le délai entre la fin de la phrase du client et le début de la réponse reste dans le rythme d'une conversation ordinaire. Ce délai n'est pas produit par un composant, il est la somme des contributions de tous.
 
-Il en découle qu'aucune étape ne peut être optimisée isolément : celle qui dépasse son budget le retire à toutes les autres. Chaque composant ajouté introduit par ailleurs un point de rupture, si bien que l'allongement de cette chaîne est toujours une décision à justifier.
+Cette propriété a une conséquence méthodologique qu'il faut énoncer avant d'entrer dans le détail. Aucune étape ne peut être optimisée isolément, et aucune ne peut être négligée sous prétexte que sa contribution paraît faible. Une étape qui consomme deux cents millisecondes de plus que prévu ne dégrade pas seulement sa propre performance : elle retire ces deux cents millisecondes à toutes les autres. Chaque composant introduit par ailleurs un point de rupture possible, et l'ajout d'un composant à cette chaîne est donc une décision qui se justifie, jamais une commodité.
 
 La figure \ref{fig:chaine-temps-reel} présente la chaîne complète et la contribution de chaque étape.
 
 \figureTikz{Chaîne de traitement temps réel et contribution des étapes}{chaine-temps-reel}{fig-chaine-temps-reel}
 
-Les valeurs issues de la configuration ou du code sont exactes. Les temps de traitement, eux, relèvent d'une reconstitution dont la section consacrée aux résultats précise le statut.
+Les sept sous sections qui suivent traitent chacune une étape. Elles suivent toutes la même progression : le rôle de l'étape, sa réalisation, la mesure qui la caractérise, les solutions écartées et ce que le choix retenu a coûté.
+
+Une précision sur les valeurs présentées. Les grandeurs issues directement de la configuration ou du code sont exactes et données comme telles. Les temps de traitement de bout en bout proviennent d'une reconstitution fondée sur l'architecture réelle, la configuration réelle et le comportement observé des composants, faute d'une campagne de mesure instrumentée complète sur la durée du projet. Ces valeurs sont volontairement conservatrices et la section consacrée aux résultats revient explicitement sur leur statut.
 
 \subsection{Établissement de la session et transport}
 
@@ -171,13 +169,13 @@ Le transport lui même repose sur les mécanismes de communication temps réel d
 
 \subsubsection{Ce que le choix a coûté}
 
-Restreindre le jeton impose de gérer le cycle de vie des salles côté serveur, ce qu'un jeton permissif aurait délégué au client. Le coût est assumé : cette latitude serait sans rapport avec le besoin réel du client.
+Restreindre le jeton impose de gérer explicitement le cycle de vie des salles côté serveur, alors qu'un jeton permissif aurait laissé le client s'en charger. Ce coût est assumé : un client capable de créer des salles ou de modifier ses attributs disposerait d'une latitude sans rapport avec son besoin.
 
 \subsubsection{Sortie vers la téléphonie}
 
 Cette même couche de transport porte le transfert vers un conseiller humain. Lorsqu'un appel provient du réseau téléphonique, le transfert s'effectue au moyen d'une redirection normalisée du protocole d'établissement de session \cite{sip}, appliquée au participant téléphonique de la conversation.
 
-Ce mécanisme présente une particularité qu'il faut connaître pour l'employer correctement : la redirection porte sur l'identité du participant telle qu'elle a été attribuée lors de l'établissement de la session, et non sur le numéro d'appel du client. Fournir le numéro plutôt que cette identité provoque un rejet pour discordance. Le transfert est par ailleurs terminal du point de vue de la plateforme : une fois abouti, la session temps réel du client prend fin, l'échange se poursuivant directement avec le conseiller. C'est la raison pour laquelle le dossier de l'échange doit être constitué et transmis avant le transfert, et non pendant.
+Ce mécanisme présente une particularité qu'il faut connaître pour l'employer correctement : la redirection porte sur l'identité du participant attribuée lors de l'établissement de la session, et non sur le numéro d'appel du client. Fournir le numéro plutôt que cette identité provoque un rejet pour discordance. Le transfert est par ailleurs terminal du point de vue de la plateforme : une fois abouti, la session temps réel du client prend fin, l'échange se poursuivant directement avec le conseiller. C'est la raison pour laquelle le dossier de l'échange doit être constitué et transmis avant le transfert, et non pendant.
 
 \subsection{Détection de fin d'énoncé et gestion des tours de parole}
 
@@ -201,7 +199,7 @@ Ce mécanisme ne réduit pas le temps de calcul total : il en déplace une parti
 
 \subsubsection{Rôle et métriques}
 
-La transcription convertit le flux audio en texte. Deux grandeurs la caractérisent : le taux d'erreur sur les mots, qui mesure l'exactitude, et le facteur temps réel, qui rapporte la durée de traitement à celle de l'audio traité. Une valeur inférieure à un est nécessaire au fonctionnement en flux continu. Les formules figurent en annexe.
+La transcription convertit le flux audio en texte. Deux grandeurs la caractérisent. Le taux d'erreur sur les mots rapporte le nombre de substitutions, d'omissions et d'insertions au nombre de mots de la référence : il mesure l'exactitude. Le facteur temps réel rapporte la durée de traitement à la durée de l'audio traité : une valeur inférieure à un signifie que le composant traite plus vite que la parole n'arrive, condition nécessaire à un fonctionnement en flux continu. Les définitions complètes et les formules figurent en annexe.
 
 Une troisième exigence, non métrique, est déterminante : la transcription doit être diffusée en continu. Un composant qui attendrait la fin de l'énoncé pour rendre le texte ajouterait à lui seul la durée de la phrase au délai de réponse.
 
@@ -260,7 +258,7 @@ Un modèle affaibli produit certes des réponses plus vite, mais il suit moins b
 
 \subsubsection{Réalisation}
 
-Le modèle principal retenu est Gemini 2.5 Flash, dont le profil combine un délai avant premier jeton faible, un appel d'outils fiable et une fenêtre de contexte largement suffisante. Une bascule de configuration permet de placer GPT-4o mini en tête de chaîne, les deux modèles ayant été évalués sur le même comportement.
+Le modèle principal retenu est GPT-4o mini, dont le profil combine un délai avant premier jeton faible, un appel d'outils fiable et une fenêtre de contexte largement suffisante. Gemini 2.5 Flash constitue le premier repli, les deux modèles ayant été évalués sur le même comportement et une bascule de configuration permettant de le placer en tête de chaîne si son profil devenait plus favorable.
 
 La chaîne se poursuit par deux fournisseurs de repli reposant sur des modèles ouverts de la famille Llama, l'un hébergé sur une infrastructure d'inférence spécialisée, l'autre sur une infrastructure optimisée pour le débit. Ces deux recours ne visent pas la qualité maximale mais la continuité de service : ils permettent à une conversation de se poursuivre lorsque les fournisseurs principaux sont indisponibles ou saturés.
 
@@ -273,9 +271,9 @@ Le tableau \ref{tab:llm-chaine} présente cette chaîne.
 \hline
 \textbf{Rang} & \textbf{Modèle} & \textbf{Justification de la position} \\
 \hline
-1 & Gemini 2.5 Flash & Délai avant premier jeton faible, appel d'outils fiable, large fenêtre de contexte. \\
+1 & GPT-4o mini & Délai avant premier jeton faible, appel d'outils fiable, large fenêtre de contexte. \\
 \hline
-2 & GPT-4o mini & Profil comparable, activable en tête de chaîne par configuration. \\
+2 & Gemini 2.5 Flash & Profil comparable, activable en tête de chaîne par configuration. \\
 \hline
 3 & Llama 3.1 sur infrastructure d'inférence spécialisée & Continuité de service, modèle ouvert, délai d'attente porté à quarante cinq secondes. \\
 \hline
@@ -290,7 +288,7 @@ Une tentative auprès d'un fournisseur est abandonnée au bout de douze secondes
 
 \subsubsection{Travaux sur l'exécution locale}
 
-Nous avons évalué l'exécution locale d'un modèle ouvert de la famille Llama sur le poste de développement. Les résultats confirment que cette voie est praticable pour un traitement différé, mais qu'elle ne l'est pas dans les conditions du projet. La mémoire disponible, partagée avec l'ensemble des services conteneurisés et les modèles d'encodage documentaire, ne permet pas d'héberger un modèle de taille suffisante tout en préservant les marges nécessaires au reste de la plateforme, et le délai avant premier jeton obtenu reste incompatible avec la contrainte conversationnelle. Cette évaluation a néanmoins orienté la conception : elle a confirmé que l'inférence devait rester derrière une interface substituable, afin qu'un passage à une exécution locale reste possible sur un matériel adapté sans remise en cause de l'architecture.
+Nous avons évalué l'exécution locale d'un modèle ouvert de la famille Llama sur le poste de développement. Les résultats confirment que cette voie est praticable pour un traitement différé, mais qu'elle ne l'est pas dans les conditions du projet. La mémoire disponible, partagée avec l'ensemble des services conteneurisés et les modèles d'encodage documentaire, ne permet pas d'héberger un modèle de taille suffisante tout en préservant les marges nécessaires au reste de la plateforme. Le délai avant premier jeton obtenu reste, de plus, incompatible avec la contrainte conversationnelle. Cette évaluation a néanmoins orienté la conception : elle a confirmé que l'inférence devait rester derrière une interface substituable, afin qu'un passage à une exécution locale reste possible sur un matériel adapté sans remise en cause de l'architecture.
 
 \subsection{Récupération documentaire sous contrainte temps réel}
 
@@ -302,7 +300,7 @@ Le principe consistant à fonder la réponse d'un modèle sur des passages récu
 
 Le modèle d'encodage retenu \cite{e5} produit des représentations de trois cent quatre vingt quatre dimensions et couvre une centaine de langues dans un espace unique. Cette dernière propriété a une conséquence directe et précieuse : une question posée en français peut retrouver une procédure rédigée en anglais sans qu'aucune traduction intervienne.
 
-Ce modèle est asymétrique : il attend qu'on lui indique si le texte encodé est une question ou un passage. L'indication est appliquée à l'intérieur du composant, de sorte qu'aucun appelant ne puisse l'omettre, et la dimension de chaque représentation produite est vérifiée plutôt que laissée à l'index.
+Ce modèle est asymétrique : il attend qu'on lui indique si le texte qu'il encode est une question ou un passage de document. Cette indication est appliquée à l'intérieur du composant d'encodage, de sorte qu'aucun appelant ne puisse l'omettre. Le composant vérifie par ailleurs la dimension de chaque représentation produite et signale une anomalie plutôt que de laisser l'index accepter silencieusement une donnée inexploitable.
 
 Le choix d'un modèle exécuté localement plutôt que d'un service distant a été délibéré. Un service distant aurait ajouté un aller retour réseau et un point de rupture supplémentaire à chaque question posée, sur le chemin le plus contraint du système. Le modèle retenu fonctionne sur processeur, sans matériel graphique, sans clé d'accès, sans quota et sans limitation de débit.
 
@@ -332,7 +330,13 @@ Fusion des rangs & Combinaison des deux classements par leurs rangs et non par l
 
 Le dernier filtre est le plus coûteux, de l'ordre de quatre vingts à cent cinquante millisecondes. Il n'est acceptable dans une chaîne temps réel que parce qu'il ne s'applique qu'au petit nombre de candidats ayant franchi les filtres précédents, qui sont eux très peu coûteux. Placer ce filtre en tête aurait produit exactement la même qualité pour un coût prohibitif : l'ordre des filtres est ici aussi déterminant que leur nature.
 
-Deux délais encadrent cette étape et leur ordre est un invariant. Le budget accordé au service de recherche est de cinq secondes, celui du client qui l'appelle de neuf secondes. Le second doit rester strictement supérieur au premier, faute de quoi l'appelant abandonnerait avant que le service ait pu répondre, et une absence de réponse deviendrait indiscernable d'une lenteur.
+Deux délais encadrent cette étape et leur ordre est un invariant. Le budget accordé au service de recherche est de cinq secondes, celui du client qui l'appelle de neuf secondes. Le second doit rester strictement supérieur au premier. Sans cette condition, l'appelant abandonnerait avant que le service ait pu répondre, et une absence de réponse deviendrait indiscernable d'une lenteur.
+
+\subsubsection{Réparation contextuelle de la requête}
+
+Dans un échange naturel, les requêtes du client sont souvent elliptiques : « Quel est son prix ? » ou « Je veux l'activer » ne désignent rien sans le contexte de la conversation. Une recherche portant directement sur ces termes est privée du sens qui les rendrait exploitable.
+
+La chaîne de récupération intègre donc une étape de réparation préalable. Avant d'interroger le corpus, un modèle rapide reformule l'énoncé en substituant aux pronoms et aux sous entendus les entités correspondantes issues de la mémoire courte de l'échange. La recherche s'opère ainsi sur une requête complète et autonome, ce qui préserve la pertinence des fragments retournés sans alourdir sensiblement la latence perçue.
 
 \subsubsection{Ce que le choix a coûté}
 
@@ -342,7 +346,9 @@ Le dispositif retenu privilégie la précision au détriment du rappel. Un passa
 
 \subsubsection{Rôle et métrique déterminante}
 
-La synthèse vocale produit la réponse sonore. La grandeur déterminante n'est pas la durée totale de synthèse mais le délai avant le premier fragment audio : un composant lent à produire l'ensemble mais rapide à en produire le début est préférable à l'inverse. C'est aussi à cette étape que se joue la qualité perçue, la prosodie déterminant si l'échange est ressenti comme une conversation ou comme la lecture d'un texte.
+La synthèse vocale produit la réponse sonore. La grandeur déterminante n'est pas la durée totale de synthèse mais le délai avant le premier fragment audio, puisque le client commence à entendre la réponse dès ce moment. Un composant lent à produire l'ensemble mais rapide à produire le début est préférable à l'inverse.
+
+Cette étape est également celle où se joue une part importante de la qualité perçue. La justesse de la prosodie, du rythme et de l'intonation détermine si l'échange est ressenti comme une conversation ou comme la lecture d'un texte.
 
 \subsubsection{Une exigence éliminatoire}
 
@@ -392,7 +398,7 @@ Les trois étapes qui dépendent d'un service externe obéissent au même arbitr
 
 Le client doit pouvoir interrompre l'assistant à tout moment. Le traitement de cette situation met en jeu trois opérations quasi simultanées : l'arrêt immédiat de la diffusion audio, l'abandon de la génération en cours, et la prise en compte du nouvel énoncé comme un tour de parole ordinaire.
 
-La difficulté tient à la cohérence de l'état après l'interruption. Une réponse interrompue a été partiellement entendue par le client. Le système doit donc consigner ce qui a effectivement été prononcé et non ce qu'il avait prévu de dire, faute de quoi l'historique de la conversation divergerait de ce que le client a réellement perçu, et les tours suivants raisonneraient sur une conversation qui n'a pas eu lieu.
+La difficulté tient à la cohérence de l'état après l'interruption. Une réponse interrompue a été partiellement entendue par le client. Le système doit donc consigner ce qui a effectivement été prononcé et non ce qu'il avait prévu de dire. Sans quoi l'historique de la conversation divergerait de ce que le client a réellement perçu, et les tours suivants raisonneraient sur une conversation qui n'a pas eu lieu.
 
 \subsubsection{Budget de latence}
 
@@ -413,13 +419,13 @@ Assemblage du contexte & 30 à 60 ms & 30 à 60 ms & Reconstitution \\
 \hline
 Recherche documentaire & sans objet & 200 à 350 ms & Reconstitution, dont 80 à 150 ms mesurés pour le filtre conjoint \\
 \hline
-Délai avant premier jeton & 400 à 700 ms & 400 à 700 ms & Reconstitution \\
+Délai avant premier jeton, régime établi & 1,0 à 1,2 s & 1,0 à 1,2 s & Relevé réel, tour hors cache \\
 \hline
 Délai avant premier fragment audio & 150 à 250 ms & 150 à 250 ms & Reconstitution \\
 \hline
 Transport et gigue réseau & 50 à 100 ms & 50 à 100 ms & Reconstitution \\
 \hline
-\textbf{Total perçu} & \textbf{1,0 à 1,6 s} & \textbf{1,2 à 2,0 s} & \textbf{Somme} \\
+\textbf{Total perçu en régime établi} & \textbf{1,6 à 2,1 s} & \textbf{1,8 à 2,5 s} & \textbf{Somme} \\
 \hline
 \end{tabular}
 \caption{Répartition du délai entre la fin de l'énoncé et le début de la réponse}
@@ -427,6 +433,8 @@ Transport et gigue réseau & 50 à 100 ms & 50 à 100 ms & Reconstitution \\
 \end{table}
 
 Deux enseignements se dégagent de cette répartition. Le premier est que le raisonnement constitue le poste dominant, ce qui justifie l'attention portée au délai avant premier jeton dans le choix du modèle plutôt qu'à sa vitesse de génération globale. Le second est que la génération anticipée décrite plus haut retire une part de ce poste du délai perçu, ce qui explique qu'elle ait été retenue malgré le travail parfois abandonné qu'elle implique.
+
+Le total en régime établi est celui d'une conversation ordinaire : c'est le rythme auquel le client s'attend à être entendu une fois la session engagée. Le tout premier contact est plus coûteux, car la première connexion du processus porte encore le coût de la négociation avec le fournisseur. Ce surcoût est toutefois soustrait du chemin perçu dès l'ouverture : la salutation est énoncée à partir d'un texte fixe pendant qu'une connexion est préparée en arrière plan. Lorsque l'échange aborde son régime de croisière, le réseau est déjà établi et le client n'en voit jamais l'effet.
 
 La figure \ref{fig:budget-latence} présente cette répartition sous forme graphique.
 
@@ -456,13 +464,13 @@ Chaque opération sensible reçoit une identité propre, calculée à partir des
 
 La composition de cette identité a fait l'objet d'une correction significative, qui illustre la subtilité du problème.
 
-Certains éléments du contexte transmis au moteur de règles servent au jugement sans définir l'opération. Le montant restant dû, le nombre de reports déjà accordés dans l'année, le nombre de réclamations ouvertes et l'état de la ligne appartiennent à cette catégorie. Or chacune de ces valeurs change entre une première tentative et sa reprise, et elle change précisément parce que la première tentative a abouti : le nombre de réclamations ouvertes passe de zéro à un dès qu'une réclamation est déposée, l'état de la ligne passe d'en attente à active dès qu'une activation est réalisée.
+Certains éléments du contexte transmis au moteur de règles servent au jugement sans définir l'opération. Le montant restant dû, le nombre de reports déjà accordés dans l'année, le nombre de réclamations ouvertes et l'état de la ligne appartiennent à cette catégorie. Or chacune de ces valeurs change entre une première tentative et sa reprise, précisément parce que la première tentative a abouti. Le nombre de réclamations ouvertes passe ainsi de zéro à un dès qu'une réclamation est déposée ; l'état de la ligne passe d'en attente à active dès qu'une activation est réalisée.
 
-Les inclure aurait produit l'effet inverse de celui recherché : une reprise aurait présenté une identité différente, aurait été traitée comme une opération nouvelle, et aurait déposé une seconde réclamation. Ils sont donc exclus du calcul de l'identité tout en restant transmis au moteur de règles.
+Inclure ces éléments dans l'identité de l'opération aurait donc produit exactement l'effet inverse de celui recherché. Une reprise aurait présenté une identité différente, aurait été considérée comme une opération nouvelle, et aurait déposé une seconde réclamation ou relancé une activation. Ces éléments sont donc explicitement exclus du calcul de l'identité tout en demeurant transmis au moteur de règles pour le jugement.
 
 \subsubsection{Garantie sous concurrence réelle}
 
-Un contrôle applicatif de l'identité ne suffit pas lorsque deux tentatives se présentent simultanément : les deux peuvent constater l'absence d'exécution antérieure avant que l'une d'elles n'ait écrit quoi que ce soit. La garantie est donc portée par la base de données, au moyen d'une contrainte d'unicité sur l'identité d'opération. La seconde écriture échoue, l'échec est intercepté, et la tentative est traitée comme une reprise. La propriété d'exécution au plus une fois tient ainsi même en situation de compétition, et non seulement dans le cas nominal.
+Un contrôle applicatif de l'identité ne suffit pas lorsque deux tentatives se présentent simultanément. Les deux peuvent constater l'absence d'exécution antérieure avant que l'une d'elles n'ait écrit quoi que ce soit. La garantie est donc portée par la base de données, au moyen d'une contrainte d'unicité sur l'identité d'opération. La seconde écriture échoue, l'échec est intercepté, et la tentative est traitée comme une reprise. La propriété d'exécution au plus une fois tient ainsi même en situation de compétition, et non seulement dans le cas nominal.
 
 \subsection{Ordonnancement des écritures d'audit}
 
@@ -488,11 +496,41 @@ La figure \ref{fig:concurrence} présente cette organisation.
 
 \subsection{Topologie de déploiement}
 
-La plateforme est déployée sous forme de vingt quatre conteneurs répartis en trois ensembles : six services d'infrastructure, seize services applicatifs développés dans le cadre du projet, et deux services d'observabilité. La figure \ref{fig:deploiement} présente cette répartition, chaque conteneur y figurant avec le port qu'il expose.
+La plateforme est déployée selon une organisation par couches, chacune regroupant les éléments qui partagent le même rôle dans le traitement d'une conversation. Le tableau \ref{tab:deploiement} présente cette lecture architecturale.
+
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{|p{4.0cm}|p{10.5cm}|}
+\hline
+\textbf{Couche} & \textbf{Éléments représentés} \\
+\hline
+Couche cliente & Portail web de l'abonné ; console d'administration et de supervision. \\
+\hline
+Couche périphérique et d'entrée & Passerelle d'API et d'ingress, support des flux temps réel, passerelle téléphonique. \\
+\hline
+Cluster d'application : orchestration agentique & Processus porteurs des sessions conversationnelles ; assembleur temps réel. \\
+\hline
+Cluster d'application : intégration & Passerelles d'accès au support, au métier télécom et aux notifications. \\
+\hline
+Cluster d'application : services de domaine & Contexte et identité ; connaissance et recherche ; politique et décision ; exécution et audit. \\
+\hline
+Couche de données et de persistance & Stockage relationnel, index documentaire, stockage d'objets, cache en mémoire, bus d'événements. \\
+\hline
+Systèmes d'entreprise externes & Opérations télécom, plateforme de gestion de tickets, fournisseurs d'intelligence artificielle. \\
+\hline
+\end{tabular}
+\caption{Organisation architecturale du déploiement de la plateforme}
+\label{tab:deploiement}
+\end{table}
+
+La figure \ref{fig:deploiement} présente cette organisation sous la forme d'une lecture par couches. En entrée se trouvent le portail web de l'abonné et la console d'administration, qui couvrent respectivement les usages du client et ceux de l'utilisateur back-office. Une couche périphérique et d'entrée en sépare les accès du cœur applicatif : elle reçoit les requêtes protégées, achemine les flux temps réel et porte la téléphonie.
+
+Au centre, le cluster d'application regroupe les traitements. L'orchestration agentique rassemble les processus qui exécutent les conversations et l'assembleur qui en compose le cycle temps réel. Le plan d'intégration expose les passerelles vers le support, le métier télécom et les notifications. Les services de domaine portent la logique du système : contexte et identité, connaissance et recherche, politique et décision, exécution et audit.
+
+Sous ce cluster, la couche de données et de persistance conserve les états, les documents et les événements. La couche externe représente enfin les systèmes de l'opérateur et les fournisseurs d'intelligence artificielle que la plateforme sollicite.
 
 \figureTikz{Diagramme de déploiement de la plateforme}{deploiement}{fig-deploiement}
-
-Le processus agent est le seul composant à n'exposer aucun port d'écoute pour les requêtes métier. Il ne reçoit pas de requêtes : il se déclare auprès du serveur temps réel, qui lui affecte des sessions. Cette particularité est cohérente avec son rôle, celui d'un exécutant de sessions et non d'un fournisseur de service.
 
 \subsection{Chaîne d'observabilité}
 
@@ -508,9 +546,11 @@ Les deux mécanismes ont été rendus inconditionnels. L'identifiant de corréla
 
 Un service de collecte interroge toutes les quinze secondes le point de mesure des douze services instrumentés, en les désignant par leur nom de conteneur. Les mesures sont conservées quinze jours, durée suffisante pour observer un cycle hebdomadaire et une régression par rapport à ce cycle, sans que le volume stocké demande une surveillance particulière.
 
-Un service de restitution en tire deux tableaux de bord. Le premier suit la santé de la plateforme : services actifs, débit, part de réponses en erreur, latence au quatre vingt quinzième centile et routes les plus lentes. Le second, plus spécifique, suit le comportement de la couche agentique : répartition des verdicts et son évolution, règles qui refusent et qui escaladent le plus, registre des actions par issue, déclencheurs d'escalade, notifications non délivrées, bascules de fournisseur, et délais de première réponse audible et de premier jeton par langue.
+Un service de restitution en tire deux tableaux de bord. Le premier suit la santé de la plateforme : services actifs, débit, part de réponses en erreur, latence au quatre vingt quinzième centile et routes les plus lentes. Le second, plus spécifique, suit le comportement de la couche agentique : répartition des verdicts et son évolution, règles qui refusent et qui escaladent le plus, registre des actions par issue, déclencheurs d'escalade. Il reporte également les bascules de fournisseur et les délais de première réponse audible et de premier jeton par langue.
 
-C'est le second qui présente le plus d'intérêt. Le premier décrirait n'importe quel service web, tandis que le second décrit cette plateforme en particulier, et la part de verdicts autorisés y constitue l'indicateur le plus révélateur : il se déplace avant tout le reste lorsqu'un seuil, un catalogue ou un système amont change.
+C'est le second qui présente le plus d'intérêt. Le premier décrirait n'importe quel service web, tandis que le second décrit cette plateforme en particulier. La part de verdicts autorisés y constitue l'indicateur le plus révélateur : il se déplace avant tout le reste lorsqu'un seuil, un catalogue ou un système amont change.
+
+Le second tableau de bord fait encore apparaître une limite dans l'information disponible : il indique combien d'appels d'outils une persona a effectués, mais pas ce qu'elle en a fait. Cette information est captée là où elle existe, au moment où la session tient encore l'agent qui parle, et rattachée à la persona concernée. Elle complète ainsi la lecture du registre des décisions, qui montre le verdict rendu mais non le chemin qui y a mené.
 
 \subsubsection{Trois décisions de conception}
 
@@ -541,71 +581,98 @@ La figure \ref{fig:chronogramme} présente le chronogramme d'un échange complet
 Trois recouvrements y sont visibles. La transcription s'effectue pendant que le client parle et non après. La génération de la réponse débute avant la confirmation de fin de tour, grâce à la génération anticipée. La synthèse vocale émet ses premiers fragments avant que la réponse complète ne soit produite. C'est ce recouvrement qui explique que le délai perçu soit sensiblement inférieur à la somme des durées de traitement.
 
 \figureTikz{Chronogramme d'un échange conversationnel complet}{chronogramme}{fig-chronogramme}
+
 \section{Interfaces de l'application}
 
-Deux interfaces web complètent la plateforme : un portail destiné au client et une console destinée aux profils internes. Nous ne présentons ici que les écrans qui rendent visible un mécanisme décrit dans ce rapport.
+Deux interfaces web complètent la plateforme. Le portail client donne à l'abonné accès à l'assistant et à sa situation. La console back-office donne à l'utilisateur back-office les moyens d'observer et de gouverner le système. Nous présentons ici les écrans qui correspondent aux capacités décrites dans ce rapport, en écartant les pages secondaires qui n'apportent rien à sa compréhension.
 
 \subsection{Portail client}
 
-Le portail s'organise autour de l'assistant conversationnel, les autres écrans donnant accès aux informations que la conversation peut mobiliser. La planche \ref{fig:ui-client-a} présente l'assistant en session et la situation de facturation, la planche \ref{fig:ui-client-b} les demandes du client et l'historique de ses échanges.
+Le portail client est organisé autour de l'assistant conversationnel, les autres écrans donnant accès aux informations que la conversation peut mobiliser.
 
-\planchePlaceholder{Portail client : assistant conversationnel et facturation}{ui-client-a}
-  {Capture de la page assistant pendant une conversation vocale active : indicateur d'état de la session, transcription progressive, commandes de contrôle de l'appel.}{Assistant en session}
-  {Capture de la page de facturation : solde, factures et montants dus, tels que l'agent de facturation les consulte pendant l'échange.}{Situation de facturation}
+Dans la figure \ref{fig:ui-assistant}, nous présentons l'écran de l'assistant pendant une conversation active. On y observe l'indicateur d'état de la session, la transcription qui se construit au fil de l'échange et les commandes de contrôle de l'appel. Cet écran est la traduction visible de la chaîne temps réel décrite plus haut.
 
-\planchePlaceholder{Portail client : demandes en cours et historique des échanges}{ui-client-b}
-  {Capture de la page des demandes : tickets en cours et rappels programmés, avec le créneau effectivement réservé.}{Demandes et rappels}
-  {Capture de la page d'activité : historique des conversations avec leur date, leur durée et leur issue.}{Historique des échanges}
+\figurePlaceholder{Portail client : session conversationnelle en cours}{ui-assistant}{Capture d'écran de la page assistant du portail client, pendant une conversation vocale active. Doit montrer l'indicateur d'état de la session, la transcription progressive de l'échange et les commandes de contrôle de l'appel.}
 
-Un rappel négocié pendant une conversation apparaît sur cette dernière planche avec le créneau réellement réservé, ce qui rend visible la continuité entre l'échange parlé et l'espace personnel.
+La figure \ref{fig:ui-billing} présente la situation de facturation du client, telle que l'agent de facturation la consulte lorsque la demande relève de son domaine. Les montants affichés proviennent des mêmes sources que celles interrogées pendant la conversation, ce qui garantit la cohérence entre ce que le client voit et ce que l'assistant lui annonce.
+
+\figurePlaceholder{Portail client : situation de facturation}{ui-billing}{Capture d'écran de la page de facturation du portail client, présentant le solde, les factures et les montants dus.}
+
+La figure \ref{fig:ui-requests} montre les demandes du client, tickets en cours et rappels programmés. Cet écran rend visible le résultat des chaînes de gestion de tickets et d'escalade : un rappel négocié pendant une conversation y apparaît avec le créneau effectivement réservé.
+
+\figurePlaceholder{Portail client : demandes et rappels}{ui-requests}{Capture d'écran de la page des demandes du portail client, présentant les tickets en cours et les rappels programmés avec leur état.}
+
+Dans la figure \ref{fig:ui-activity}, nous présentons l'historique des échanges. Chaque conversation y figure avec sa date, sa durée et son issue. C'est la vue côté client de l'enregistrement conversationnel décrit à la section consacrée à la concurrence.
+
+\figurePlaceholder{Portail client : historique des échanges}{ui-activity}{Capture d'écran de la page d'activité du portail client, présentant l'historique des conversations avec leur date, leur durée et leur issue.}
 
 \subsection{Console d'administration et de supervision}
 
-La console expose les surfaces de supervision et de gouvernance. Deux écrans méritent une présentation isolée car ils rendent observables les garanties centrales de la plateforme.
+La console expose les surfaces de supervision et de gouvernance. Les écrans retenus ci après sont ceux qui rendent visibles les mécanismes décrits au chapitre de conception.
 
-La figure \ref{fig:ui-decisions} présente l'inspection des décisions. Pour une action donnée y figurent la proposition formulée, le verdict rendu, l'identifiant de la règle appliquée et sa justification. Cet écran permet de répondre non seulement à la question de savoir ce qui a été décidé, mais à celle de savoir en vertu de quoi.
+La figure \ref{fig:ui-overview} présente la vue d'ensemble opérationnelle, point d'entrée de la supervision. Elle réunit l'état des services, les indicateurs d'activité récents et les alertes en cours, de manière à ce qu'un utilisateur back-office puisse constater en un coup d'oeil si la plateforme fonctionne normalement.
 
-\figurePlaceholder{Console d'administration : inspection des décisions et des verdicts}{ui-decisions}{Capture de la page des décisions, présentant pour une action donnée la proposition, le verdict rendu, l'identifiant de la règle appliquée et sa justification.}
+\figurePlaceholder{Console d'administration : vue d'ensemble opérationnelle}{ui-overview}{Capture d'écran de la page de vue d'ensemble, présentant l'état des services, les indicateurs d'activité récents et les alertes en cours.}
 
-La figure \ref{fig:ui-audit} présente le registre d'audit. Elle ne se contente pas d'afficher les enregistrements : elle rend compte du recalcul de la chaîne d'empreintes et signale toute discordance, ce qui matérialise la propriété de traçabilité vérifiable.
+La figure \ref{fig:ui-calls} montre l'historique des appels et le détail d'une conversation ouverte sur sa transcription. Cet écran donne accès à l'enregistrement durable de l'échange, avec sa durée, sa langue et son issue, et constitue le point de départ de toute analyse a posteriori.
 
-\figurePlaceholder{Console d'administration : registre d'audit et vérification d'intégrité}{ui-audit}{Capture de la page d'audit, présentant les entrées du registre et le résultat de la vérification de la chaîne d'empreintes.}
+\figurePlaceholder{Console d'administration : historique des appels et transcription}{ui-calls}{Capture d'écran de la page d'historique des appels, avec la liste des sessions et le détail d'une conversation ouverte sur sa transcription, sa durée, sa langue et son issue.}
 
-Les planches \ref{fig:ui-admin-a} et \ref{fig:ui-admin-b} rassemblent les autres surfaces de supervision : la vue d'ensemble opérationnelle et l'historique des appels, puis la gouvernance des règles et de la base documentaire.
+La figure \ref{fig:ui-decisions} est la plus significative de cet ensemble. Elle présente, pour une action donnée, la proposition formulée, le verdict rendu, l'identifiant de la règle appliquée et sa justification. Elle rend donc directement observable la chaîne déterministe décrite au chapitre de conception. Elle permet ainsi de répondre non seulement à la question de savoir ce qui a été décidé, mais aussi à celle de savoir en vertu de quoi.
 
-\planchePlaceholder{Console d'administration : supervision de l'activité}{ui-admin-a}
-  {Capture de la vue d'ensemble : état des services, indicateurs d'activité récents, alertes en cours.}{Vue d'ensemble opérationnelle}
-  {Capture de l'historique des appels, avec le détail d'une conversation ouverte sur sa transcription.}{Appels et transcriptions}
+\figurePlaceholder{Console d'administration : inspection des décisions et des verdicts}{ui-decisions}{Capture d'écran de la page des décisions, présentant pour une action donnée la proposition, le verdict rendu, l'identifiant de la règle appliquée et sa justification.}
 
-\planchePlaceholder{Console d'administration : gouvernance du comportement}{ui-admin-b}
-  {Capture de la page des règles métier : catalogue des règles applicables, seuils et état.}{Règles métier}
-  {Capture de la base de connaissances : documents, version et état d'indexation.}{Base documentaire}
+Dans la figure \ref{fig:ui-policies}, nous présentons la gestion des règles métier. Le catalogue des règles applicables et leurs seuils y sont administrables, ce qui satisfait l'exigence formulée au chapitre précédent : le comportement du système doit pouvoir évoluer sans intervention sur le code.
 
-La planche \ref{fig:ui-admin-c} présente enfin les surfaces d'escalade : les cas transmis à un conseiller avec leur motif, et le registre des conseillers dont les créneaux alimentent la négociation d'un rappel.
+\figurePlaceholder{Console d'administration : gestion des règles métier}{ui-policies}{Capture d'écran de la page des règles, présentant le catalogue des règles applicables, leurs seuils et leur état.}
 
-\planchePlaceholder{Console d'administration : escalade et disponibilités}{ui-admin-c}
-  {Capture de la page des escalades : cas transmis à un conseiller, motif issu de la liste fermée, dossier associé.}{Escalades et dossiers}
-  {Capture de la page des disponibilités : registre des conseillers, créneaux et indisponibilités.}{Conseillers et créneaux}
+La figure \ref{fig:ui-knowledge} présente la base documentaire. On y observe les documents, leur version et l'état de leur indexation. La présence explicite du numéro de version illustre le mécanisme d'ingestion décrit plus haut, où un contenu modifié engendre une nouvelle version et désactive la précédente.
 
-\subsection{Systèmes intégrés et environnement d'exécution}
+\figurePlaceholder{Console d'administration : base documentaire}{ui-knowledge}{Capture d'écran de la page de la base de connaissances, présentant les documents, leur version, leur langue et l'état de leur indexation.}
 
-La planche \ref{fig:ui-integ} établit que les intégrations décrites opèrent sur des systèmes réels : un ticket créé par la plateforme y figure dans le système de gestion de tickets de l'organisation, avec le vocabulaire de ce système, et le corpus documentaire y apparaît indexé.
+La figure \ref{fig:ui-escalations} montre les cas transmis à un conseiller, avec leur motif et le dossier constitué. Le motif affiché provient de la liste fermée établie au chapitre de conception, ce qui rend les escalades dénombrables par cause.
 
-\planchePlaceholder{Intégrations effectives}{ui-integ}
-  {Capture du système de gestion de tickets montrant un ticket créé par la plateforme au cours d'une conversation, avec son demandeur, sa catégorie et son état.}{Ticket créé dans le système de référence}
-  {Capture de la console de l'index documentaire : collection indexée et nombre de fragments.}{Corpus indexé}
+\figurePlaceholder{Console d'administration : escalades et dossiers}{ui-escalations}{Capture d'écran de la page des escalades, présentant les cas transmis à un conseiller, leur motif et le dossier associé.}
 
-Les deux tableaux de bord décrits à la section précédente constituent la surface d'exploitation de la plateforme. La planche \ref{fig:ui-observabilite} les présente : la santé des services d'un côté, le comportement de la couche agentique de l'autre.
+La figure \ref{fig:ui-availability} présente le registre des conseillers et leurs créneaux. Ce sont ces données qui alimentent la négociation d'un rappel pendant une conversation, ce qui explique qu'un créneau proposé au client corresponde toujours à une disponibilité réelle.
 
-\planchePlaceholder{Tableaux de bord de supervision}{ui-observabilite}
-  {Capture du tableau de bord \emph{Plateforme, santé des services} : services actifs, débit, part de réponses en erreur, latence au quatre vingt quinzième centile, routes les plus lentes.}{Santé des services}
-  {Capture du tableau de bord \emph{Agent IA, décisions, actions et voix} : répartition des verdicts et son évolution, règles qui refusent le plus, actions par issue, délais de première réponse audible par langue.}{Comportement de la couche agentique}
+\figurePlaceholder{Console d'administration : conseillers et disponibilités}{ui-availability}{Capture d'écran de la page des disponibilités, présentant le registre des conseillers, leurs créneaux et leurs indisponibilités.}
 
-La planche \ref{fig:ui-exploit} présente enfin la collecte elle même et la topologie en fonctionnement, cette dernière confrontant le diagramme de déploiement de la figure \ref{fig:deploiement} à son exécution réelle.
+La figure \ref{fig:ui-audit} présente le registre d'audit et le résultat de la vérification de la chaîne d'empreintes. Cet écran matérialise la propriété de traçabilité vérifiable : il ne se contente pas d'afficher les enregistrements, il rend compte du recalcul de la chaîne et signale toute discordance.
 
-\planchePlaceholder{Collecte des mesures et topologie en exécution}{ui-exploit}
-  {Capture de l'interface de collecte : liste des cibles interrogées avec leur état, et interrogation d'une mesure de latence ou de verdict.}{Cibles interrogées}
-  {Capture de l'environnement conteneurisé en fonctionnement : services d'infrastructure, applicatifs et d'observabilité, avec leur état et leur port.}{Topologie en exécution}
+\figurePlaceholder{Console d'administration : registre d'audit et vérification d'intégrité}{ui-audit}{Capture d'écran de la page d'audit, présentant les entrées du registre et le résultat de la vérification de la chaîne d'empreintes.}
+
+La figure \ref{fig:ui-agents} présente l'onglet agents de la console d'administration. Il rassemble la matrice croisant les personas aux outils mobilisables et une courbe de tendance d'utilisation. La matrice répond en un coup d'oeil à la question de savoir quel agent dispose de quel outil : une case renseignée indique une capacité réellement attachée, une case vide une capacité absente. Elle fait ainsi apparaître les redondances comme les lacunes. Une matrice est préférée à cinq diagrammes individuels, car elle permet de comparer les agents sur une même dimension et de repérer aussitôt une promesse faite au client qui ne reposerait sur aucun service joignable.
+
+\figurePlaceholder{Console d'administration : onglet agents et matrice des capacités}{ui-agents}{Capture d'écran de l'onglet agents de la console d'administration, présentant la matrice croisant les agents spécialisés aux outils mobilisables et une courbe de tendance d'utilisation.}
+
+\subsection{Systèmes intégrés}
+
+Les deux captures suivantes établissent que les intégrations décrites dans ce rapport opèrent sur des systèmes réels et non sur des substituts.
+
+La figure \ref{fig:ui-glpi} présente, dans le système de gestion de tickets de l'organisation, un ticket créé par la plateforme au cours d'une conversation. Le demandeur, la catégorie et l'état y apparaissent avec le vocabulaire du système de référence, ce qui confirme que la plateforme écrit bien dans le système faisant autorité et non dans une copie locale.
+
+\figurePlaceholder{Ticket créé par la plateforme dans le système de gestion de tickets}{ui-glpi}{Capture d'écran du système de gestion de tickets, présentant un ticket créé par la plateforme au cours d'une conversation, avec son demandeur, sa catégorie et son état.}
+
+La figure \ref{fig:ui-index} présente la collection documentaire indexée et le nombre de fragments qu'elle contient. Ce décompte permet de vérifier la correspondance entre le corpus relationnel, qui fait référence, et l'index qui en dérive.
+
+\figurePlaceholder{Corpus documentaire indexé}{ui-index}{Capture d'écran de la console de l'index documentaire ou du stockage d'objets, présentant la collection indexée et le nombre de fragments qu'elle contient.}
+
+\subsection{Supervision et observabilité}
+
+La figure \ref{fig:ui-grafana} présente le tableau de bord de supervision de la chaîne temps réel. On y suit l'évolution des délais de première réponse, le volume de sessions et la répartition des issues de conversation. C'est l'instrument qui permettra de conduire la campagne de mesure évoquée en conclusion, l'instrumentation nécessaire étant déjà en place.
+
+\figurePlaceholder{Tableau de bord de supervision de la chaîne temps réel}{ui-grafana}{Capture d'écran du tableau de bord de supervision, présentant l'évolution des délais de première réponse, le volume de sessions et la répartition des issues de conversation.}
+
+La figure \ref{fig:ui-prometheus} montre l'interface de collecte des métriques, avec les cibles surveillées et l'interrogation d'une métrique de latence. Elle établit que les grandeurs discutées dans ce chapitre sont effectivement collectées et non seulement définies.
+
+\figurePlaceholder{Collecte des métriques d'exécution}{ui-prometheus}{Capture d'écran de l'interface de collecte des métriques, présentant les cibles surveillées et l'interrogation d'une métrique de latence.}
+
+\subsection{Environnement d'exécution}
+
+La figure \ref{fig:ui-docker} présente l'environnement conteneurisé en fonctionnement. Les couches décrites au tableau \ref{tab:deploiement} y apparaissent simultanément avec leur état et leur port, ce qui confronte cette lecture architecturale à son exécution réelle.
+
+\figurePlaceholder{Topologie des conteneurs en exécution}{ui-docker}{Capture d'écran de l'environnement conteneurisé en fonctionnement, présentant simultanément les services d'infrastructure et les services applicatifs avec leur état et leur port.}
 
 \section{Vérification et évaluation}
 
@@ -617,15 +684,57 @@ Nous avons donc retenu un principe simple. Ce qui doit être garanti quelles que
 
 \subsection{Familles de vérifications}
 
-La figure \ref{fig:verifications} présente les familles de vérifications constituées au cours du projet et la propriété que chacune protège.
+Le tableau \ref{tab:tests} présente les familles de vérifications constituées au cours du projet et la propriété que chacune protège.
 
-\figureTikz{Familles de vérifications et propriétés protégées}{verifications}{fig-verifications}
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{|p{4.4cm}|p{10.1cm}|}
+\hline
+\textbf{Famille} & \textbf{Propriété protégée} \\
+\hline
+Règles et verdicts & Un contexte donné produit toujours le même verdict, le même identifiant de règle et la même justification. \\
+\hline
+Identité d'opération & Une reprise ne produit jamais une seconde exécution, y compris lorsque les éléments contextuels ont changé entre les deux tentatives. \\
+\hline
+Vérification d'identité & Le nombre de tentatives est borné, la hiérarchie des délais est respectée et une entrée inexploitable ne consomme pas une tentative valide. \\
+\hline
+Abstention documentaire & En l'absence de passage franchissant les filtres, la réponse est un aveu d'ignorance et non une reformulation. \\
+\hline
+Cohérence des personas & Les instructions d'un agent ne mentionnent aucune capacité qu'il ne possède pas. \\
+\hline
+Attachement des services & Chaque capacité exposée par une persona correspond à un service réellement joignable ; une promesse faite au client n'est jamais portée par un service inaccessible. \\
+\hline
+Transfert et escalade & Un transfert est terminal, le consentement est recueilli, et une planification de rappel ne coexiste jamais avec un transfert abouti. \\
+\hline
+Résilience des fournisseurs & La défaillance provoquée du fournisseur principal d'une étape déclenche effectivement le passage au suivant, sans interruption de la session. \\
+\hline
+Mécontentement et escalade & L'accumulation du signal de mécontentement suit le comportement attendu et déclenche l'escalade au seuil prévu. \\
+\hline
+Interruption & Une interruption arrête la restitution et consigne ce qui a réellement été prononcé. \\
+\hline
+Enregistrement conversationnel & Les tours sont consignés hors du chemin critique et une indisponibilité du stockage n'affecte pas la session. \\
+\hline
+Multilinguisme & L'échange se déroule dans la langue du client et un changement de langue en cours de conversation est pris en compte. \\
+\hline
+Journalisation des métriques & Les délais de première réponse et la consommation de jetons sont effectivement collectés et attribués au bon agent. \\
+\hline
+\end{tabular}
+\caption{Familles de vérifications et propriétés protégées}
+\label{tab:tests}
+\end{table}
 
 \subsection{Vérification par injection de défaillance}
 
 La chaîne de repli présente une difficulté de vérification bien connue : elle ne s'exerce jamais en fonctionnement nominal, et un mécanisme de secours jamais éprouvé est un mécanisme dont on ignore s'il fonctionne.
 
 Le système comporte donc un dispositif d'injection de défaillance, activable par configuration pour chacune des trois étapes dépendant de fournisseurs externes. Ce dispositif substitue au fournisseur principal une configuration invalide, ce qui provoque son échec réel et non simulé. Le chemin de repli est ainsi exercé dans les conditions exactes de son déclenchement en production, et la vérification porte sur la continuité effective de la session.
+
+\subsubsection{Contrôle d'aptitude des agents}
+
+Une persona peut être cohérente avec elle-même et tenir un outil dont le service amont est indisponible : ses instructions ne mentent pas, mais la capacité qu'elle annonce ne peut être satisfaite. Le client entend alors une promesse puis un échec, qui est plus dommageable qu'une orientation immédiate.
+
+La vérification ne s'arrête donc pas à la cohérence interne des instructions. Elle part des outils exposés par chaque persona et vérifie que chacun correspond à un service réellement joignable. Cette famille rejoint la logique d'injection de défaillance : elle exerce le chemin entre la capacité annoncée et le service qui la porte, plutôt que de se contenter d'une déclaration.
 
 \subsection{Contrôle d'intégrité}
 
@@ -635,13 +744,21 @@ La vérification de la chaîne d'audit constitue une catégorie à part, puisqu'
 
 \subsection{Statut des mesures présentées}
 
-Cette section appelle une précision méthodologique préalable, énoncée sans détour.
+Cette section distingue trois catégories de valeurs, que nous séparons nettement afin qu'aucune ne soit confondue avec une autre.
 
-Les mesures relatives à la qualité de la recherche documentaire sont réelles. Elles ont été obtenues au moyen d'un instrument de sondage développé pour ce projet et exécuté sur le corpus réel. Elles sont reproduites telles qu'obtenues.
+La première est constituée des mesures réelles. La qualité de la recherche documentaire a été obtenue au moyen d'un instrument de sondage développé pour le projet et exécuté sur le corpus réel ; elle est reproduite telle qu'obtenue. S'y ajoute un relevé de latence pris sur un appel réel du portail, ainsi que les principales grandeurs relevées en continu par les tableaux de bord : délai avant la première réponse audible, délai avant le premier jeton par langue, verdicts par règle et bascules de fournisseur.
 
-Les mesures de latence de bout en bout, en revanche, procèdent d'une reconstitution. La chaîne d'observabilité décrite plus haut relève bien ces grandeurs en continu, et les tableaux de bord les affichent par langue ; mais une campagne conduite sur une période représentative, avec exécutions répétées et analyse statistique, n'a pas pu être menée dans le temps imparti au projet. Les valeurs présentées sont donc établies à partir de l'architecture réelle, de la configuration réelle et du comportement observé de chaque composant, avec une volonté délibérée de rester en deçà plutôt qu'au delà des performances plausibles. Elles décrivent un comportement attendu et cohérent, non un relevé expérimental.
+La deuxième est constituée du budget reconstitué. Le tableau de latence de la section précédente comporte des valeurs de configuration exactes et des temps de traitement estimés. Nous les recalibrons ici sur les relevés réels, en distinguant le premier appel du régime établi.
 
-La distinction est doublement utile. Elle évite de présenter comme mesuré ce qui ne l'est pas, et elle circonscrit précisément ce qui reste à faire : l'instrument existe et fonctionne, seule la campagne manque.
+La troisième est ce qui manque encore. Une campagne sur une période représentative, avec exécutions répétées et analyse statistique, n'a pas pu être menée dans le temps imparti. L'instrument existe et fonctionne ; seule la campagne fait défaut.
+
+\subsection{Mesures réelles}
+
+Le relevé suivant a été pris sur un appel réel du portail. À l'ouverture de la session, l'échange commence par la salutation du Triage. Le premier jeton du modèle de langue arrive 3,48 s après l'ouverture de la session, et le premier fragment de synthèse vocale 0,25 s plus tard : le client entend le premier son environ 4,2 s après l'ouverture.
+
+Ce premier appel ne représente pas le régime de croisière. Sur un tour ultérieur, avec une requête hors cache de 3 909 jetons, le délai avant premier jeton est de 1,12 s. L'écart entre ces deux valeurs ne s'explique ni par un chargement préalable du texte (le premier appel n'était pas mis en cache) ni par la longueur du traitement, puisque la requête de 3 909 jetons revient plus vite que celle de 2 536 jetons. Il s'explique par la première connexion HTTPS du processus, qui paie la résolution DNS, l'établissement TCP et la négociation TLS.
+
+La conséquence est une séquence de mesures : le premier appel est pénalisé par la connexion à froid, les appels suivants bénéficient d'une connexion déjà établie. C'est le motif pour lequel la salutation de la session est produite à partir d'un texte fixe, et un amorçage de connexion est lancé en arrière plan pendant qu'elle est prononcée : le temps de la connexion est retiré du chemin perçu par le client.
 
 \subsection{Qualité de la recherche documentaire}
 
@@ -715,11 +832,49 @@ Encodage lexical & négligeable & quelques millisecondes & Retenu, filtre compl�
 \label{tab:rag-modeles}
 \end{table}
 
+\subsection{Ce qui manque encore}
+
+Une campagne sur une période représentative reste à conduire. Bien que l'instrumentation relève les grandeurs en continu, une analyse statistique complète a dû être différée en raison des contraintes de calendrier, mais également du nombre limité d'utilisateurs en phase de test. Sans essais de montée en charge à grande échelle suscitant une forte concurrence, nous manquons aujourd'hui des données empiriques requises pour certifier formellement la scalabilité et la tolérance aux pannes du système sous charge maximale.
+
 \subsection{Volumétrie du système réalisé}
 
-La figure \ref{fig:volumetrie} récapitule les grandeurs qui caractérisent l'étendue du système produit.
+Le tableau \ref{tab:volumetrie} présente quelques grandeurs caractérisant l'étendue du système produit.
 
-\figureTikz{Volumétrie du système réalisé}{volumetrie}{fig-volumetrie}
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{|p{8.0cm}|p{6.5cm}|}
+\hline
+\textbf{Élément} & \textbf{Valeur} \\
+\hline
+Services applicatifs déployés & 16 conteneurs \\
+\hline
+Services d'infrastructure & 6 conteneurs \\
+\hline
+Services d'observabilité & 2 conteneurs \\
+\hline
+Bibliothèques partagées & 10 \\
+\hline
+Interfaces déclarées par le domaine & 13 \\
+\hline
+Modules de persistance & 16 \\
+\hline
+Écrans de la console d'administration & 21 \\
+\hline
+Écrans du portail client & 17 \\
+\hline
+Agents conversationnels spécialisés & 5 \\
+\hline
+Domaines métier déclarés & 3 \\
+\hline
+Types d'opérations sensibles reconnues & 9 \\
+\hline
+Langues prises en charge & 3 \\
+\hline
+\end{tabular}
+\caption{Volumétrie du système réalisé}
+\label{tab:volumetrie}
+\end{table}
 
 \subsection{Comportement en situation de défaillance}
 
@@ -799,7 +954,7 @@ La décision fut de distinguer explicitement les éléments qui définissent une
 
 \subsection{La contrainte de mémoire et ses conséquences}
 
-Le constat s'est imposé progressivement. Le poste de développement devait accueillir simultanément vingt deux conteneurs applicatifs et d'infrastructure, les modèles d'encodage documentaire et les environnements de développement des deux interfaces, dans seize gigaoctets de mémoire.
+Le constat s'est imposé progressivement. Le poste de développement devait accueillir simultanément vingt deux conteneurs, les modèles d'encodage documentaire et les environnements de développement des deux interfaces, dans seize gigaoctets de mémoire.
 
 L'analyse a conduit à hiérarchiser les besoins plutôt qu'à chercher un gain uniforme. Les modèles exécutés localement constituaient le poste dominant, et c'est là que les décisions ont porté.
 
@@ -811,6 +966,6 @@ Le résultat dépasse la simple tenue dans l'enveloppe disponible. Cette contrai
 
 Ce chapitre a exposé la réalisation de la plateforme. Nous avons présenté les technologies retenues et les critères qui ont présidé à leur sélection, en situant précisément le rôle du cadriciel temps réel par rapport au travail d'ingénierie propre au projet. Nous avons ensuite détaillé la chaîne de traitement temps réel étape par étape, chacune accompagnée de sa métrique, de ses solutions écartées et du coût de la solution retenue.
 
-La gestion de la concurrence a montré comment les conversations et les opérations sont isolées les unes des autres, et comment les garanties d'exécution unique et d'intégrité de la trace résistent à des accès simultanés. L'architecture physique a établi la correspondance entre la conception et les vingt quatre conteneurs effectivement déployés, et décrit la chaîne d'observabilité qui rend le comportement du système mesurable en fonctionnement. Les interfaces ont donné à voir les surfaces produites pour le client comme pour les profils internes.
+La gestion de la concurrence a montré comment les conversations et les opérations sont isolées les unes des autres, et comment les garanties d'exécution unique et d'intégrité de la trace résistent à des accès simultanés. L'architecture physique a établi la correspondance entre la conception et les vingt quatre conteneurs effectivement déployés : six pour l'infrastructure, seize pour les services applicatifs et deux pour l'observabilité. Les interfaces ont donné à voir les surfaces produites pour le client comme pour l'utilisateur back-office.
 
 La campagne de vérification a enfin été présentée, ainsi que les résultats obtenus, en distinguant explicitement les mesures réelles des valeurs reconstituées. Les difficultés rencontrées ont été rapportées avec leur analyse et leur résolution, car plusieurs d'entre elles ont infléchi la conception plus profondément que ne l'aurait fait une exécution sans obstacle.

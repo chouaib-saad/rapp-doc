@@ -1,0 +1,172 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1500" height="900" viewBox="0 0 1500 900">
+<rect width="1500" height="900" fill="#FFFFFF"/>
+<defs>
+<style>
+text { font-family: Arial, Helvetica, sans-serif; }
+.title { font-size: 18px; font-weight: bold; fill: #111111; text-anchor: middle; }
+.ucname { font-size: 13px; fill: #222222; text-anchor: middle; }
+.actor { font-size: 13px; fill: #333333; text-anchor: middle; }
+.edge { font-size: 11px; fill: #222222; text-anchor: middle; font-style: italic; }
+.condition { font-size: 10px; fill: #555555; text-anchor: middle; }
+.stereo { font-size: 11px; fill: #222222; text-anchor: middle; font-style: italic; }
+.notetitle { font-size: 12px; font-weight: bold; fill: #111111; text-anchor: middle; }
+.notetext { font-size: 11px; fill: #222222; text-anchor: middle; }
+.bound { fill: none; stroke: #111111; stroke-width: 1.5; }
+.uc { fill: #FFFBCC; stroke: #D02A50; stroke-width: 1.3; }
+.act { fill: none; stroke: #D02A50; stroke-width: 1.7; }
+.sys { fill: #FFFFFF; stroke: #D02A50; stroke-width: 1.3; }
+.note { fill: #FFFBE6; stroke: #D02A50; stroke-width: 1.2; }
+.notefold { fill: none; stroke: #D02A50; stroke-width: 1.2; }
+.lB { fill: none; stroke: #2B3BE0; stroke-width: 1.4; }
+.lK { fill: none; stroke: #2B2B2B; stroke-width: 1.2; }
+.lCd { fill: none; stroke: #D22B55; stroke-width: 1.4; stroke-dasharray: 6,4; }
+.lN { fill: none; stroke: #888888; stroke-width: 1; stroke-dasharray: 3,3; }
+</style>
+<filter id="ds" x="-20%" y="-20%" width="140%" height="140%">
+<feDropShadow dx="3" dy="3" stdDeviation="2.5" flood-color="#8A8A8A" flood-opacity="0.45"/>
+</filter>
+<marker id="aB" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto">
+<path d="M0 0 L8 4 L0 8" fill="none" stroke="#2B3BE0" stroke-width="1.3"/>
+</marker>
+<marker id="aK" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto">
+<path d="M0 0 L8 4 L0 8" fill="none" stroke="#2B2B2B" stroke-width="1.2"/>
+</marker>
+<marker id="aC" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto">
+<path d="M0 0 L8 4 L0 8" fill="none" stroke="#D22B55" stroke-width="1.3"/>
+</marker>
+</defs>
+
+<!-- ===================== SYSTEM BOUNDARY ===================== -->
+<rect x="180" y="45" width="1120" height="720" class="bound" filter="url(#ds)"/>
+<text x="740" y="78" class="title">Réalisation d'une opération sécurisée</text>
+
+<!-- ===================== ACTOR: Client ===================== -->
+<g class="act" filter="url(#ds)">
+<circle cx="80" cy="300" r="9" fill="#FFF6C7"/>
+<path d="M80 309 L80 335"/>
+<path d="M64 317 L96 317"/>
+<path d="M80 335 L66 355"/>
+<path d="M80 335 L94 355"/>
+</g>
+<text x="80" y="380" class="actor">Client</text>
+
+<!-- ===================== USE CASE PRINCIPAL ===================== -->
+<ellipse cx="600" cy="260" rx="175" ry="38" class="uc" filter="url(#ds)"/>
+<text x="600" y="254" class="ucname">Effectuer une opération</text>
+<text x="600" y="274" class="ucname">sécurisée</text>
+
+<!-- ===================== INCLUDES (colonne droite) ===================== -->
+
+<!-- UC: Vérifier l'identité par CIN -->
+<ellipse cx="1020" cy="140" rx="125" ry="26" class="uc" filter="url(#ds)"/>
+<text x="1020" y="144" class="ucname">Vérifier l'identité par CIN</text>
+
+<!-- UC: Valider l'opération -->
+<ellipse cx="1040" cy="240" rx="120" ry="26" class="uc" filter="url(#ds)"/>
+<text x="1040" y="244" class="ucname">Valider l'opération</text>
+
+<!-- UC: Transmettre l'opération au système métier -->
+<ellipse cx="1060" cy="340" rx="150" ry="28" class="uc" filter="url(#ds)"/>
+<text x="1060" y="334" class="ucname">Transmettre l'opération</text>
+<text x="1060" y="352" class="ucname">au système métier</text>
+
+<!-- UC: Enregistrer l'opération dans le journal d'audit -->
+<ellipse cx="1060" cy="440" rx="155" ry="28" class="uc" filter="url(#ds)"/>
+<text x="1060" y="434" class="ucname">Enregistrer l'opération</text>
+<text x="1060" y="452" class="ucname">dans le journal d'audit</text>
+
+<!-- ===================== EXTENDS (ligne basse) ===================== -->
+
+<!-- UC: Restituer le résultat existant -->
+<ellipse cx="340" cy="600" rx="135" ry="28" class="uc" filter="url(#ds)"/>
+<text x="340" y="594" class="ucname">Restituer le résultat</text>
+<text x="340" y="612" class="ucname">existant</text>
+
+<!-- UC: Notifier le refus de l'opération -->
+<ellipse cx="660" cy="600" rx="135" ry="28" class="uc" filter="url(#ds)"/>
+<text x="660" y="594" class="ucname">Notifier le refus</text>
+<text x="660" y="612" class="ucname">de l'opération</text>
+
+<!-- UC: Transmettre la demande à un conseiller -->
+<ellipse cx="1000" cy="600" rx="145" ry="28" class="uc" filter="url(#ds)"/>
+<text x="1000" y="594" class="ucname">Transmettre la demande</text>
+<text x="1000" y="612" class="ucname">à un conseiller</text>
+
+<!-- ===================== EXTERNAL SYSTEM (à droite de Enregistrer l'opération) ===================== -->
+<rect x="1310" y="410" width="170" height="60" class="sys" filter="url(#ds)"/>
+<text x="1395" y="428" class="stereo">« acteur secondaire »</text>
+<text x="1395" y="446" class="ucname">Systèmes métier</text>
+<text x="1395" y="461" class="ucname">de l'opérateur</text>
+
+<!-- ===================== NOTES ===================== -->
+
+<!-- Note: Vérification d'identité -->
+<path d="M50 80 L290 80 L305 95 L305 160 L50 160 Z" class="note" filter="url(#ds)"/>
+<path d="M290 80 L290 95 L305 95" class="notefold"/>
+<text x="177" y="102" class="notetitle">Vérification d'identité</text>
+<text x="177" y="120" class="notetext">Le client communique les</text>
+<text x="177" y="135" class="notetext">chiffres de son CIN, vérifiés</text>
+<text x="177" y="150" class="notetext">avant l'opération sécurisée.</text>
+
+<!-- Note: Protection contre la réexécution -->
+<path d="M50 680 L330 680 L345 695 L345 745 L50 745 Z" class="note" filter="url(#ds)"/>
+<path d="M330 680 L330 695 L345 695" class="notefold"/>
+<text x="197" y="702" class="notetitle">Protection contre la réexécution</text>
+<text x="197" y="720" class="notetext">Si l'opération a déjà été traitée,</text>
+<text x="197" y="735" class="notetext">son résultat enregistré est restitué.</text>
+
+<!-- ===================== ASSOCIATIONS ===================== -->
+
+<!-- Client → UC principal (blue) -->
+<path d="M105 305 L425 268" class="lB" marker-end="url(#aB)"/>
+
+<!-- ===================== INCLUDES (dashed crimson) ===================== -->
+
+<!-- UC principal ..> Vérifier l'identité par CIN -->
+<path d="M720 240 L900 155" class="lCd" marker-end="url(#aC)"/>
+<text x="810" y="190" class="edge">«include»</text>
+
+<!-- UC principal ..> Valider l'opération -->
+<path d="M755 255 L920 245" class="lCd" marker-end="url(#aC)"/>
+<text x="835" y="243" class="edge">«include»</text>
+
+<!-- UC principal ..> Transmettre l'opération au système métier -->
+<path d="M745 285 L915 330" class="lCd" marker-end="url(#aC)"/>
+<text x="830" y="300" class="edge">«include»</text>
+
+<!-- UC principal ..> Enregistrer l'opération dans le journal d'audit -->
+<path d="M720 295 L910 425" class="lCd" marker-end="url(#aC)"/>
+<text x="820" y="375" class="edge">«include»</text>
+
+<!-- ===================== EXTENDS (dashed crimson) ===================== -->
+
+<!-- Restituer le résultat existant ..> UC principal -->
+<path d="M360 575 L540 295" class="lCd" marker-end="url(#aC)"/>
+<text x="420" y="430" class="edge">«extend»</text>
+<text x="420" y="445" class="condition">[opération déjà traitée]</text>
+
+<!-- Notifier le refus ..> UC principal -->
+<path d="M655 572 L615 298" class="lCd" marker-end="url(#aC)"/>
+<text x="605" y="445" class="edge">«extend»</text>
+<text x="605" y="460" class="condition">[conditions non satisfaites]</text>
+
+<!-- Transmettre la demande à un conseiller ..> UC principal -->
+<path d="M975 575 L680 292" class="lCd" marker-end="url(#aC)"/>
+<text x="850" y="460" class="edge">«extend»</text>
+<text x="850" y="475" class="condition">[opération non traitable automatiquement]</text>
+
+<!-- ===================== SYSTEM CONNECTIONS ===================== -->
+
+<!-- Système → Enregistrer l'opération dans le journal d'audit -->
+<path d="M1310 440 L1218 440" class="lK" marker-end="url(#aK)"/>
+
+<!-- ===================== NOTE CONNECTIONS ===================== -->
+
+<!-- Note identité → Vérifier l'identité par CIN -->
+<path d="M305 130 L895 140" class="lN"/>
+
+<!-- Note réexécution → Restituer le résultat existant -->
+<path d="M345 720 L370 625" class="lN"/>
+
+
+</svg>

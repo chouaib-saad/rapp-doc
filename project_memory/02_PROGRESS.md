@@ -3,7 +3,6 @@
 This file records what has actually been completed.
 
 ## Completed
-
 - [x] Workspace analysis (every folder swept, markdown read first)
 - [x] Template analysis (V2 zip studied, class/main/Commands understood)
 - [x] LaTeX build environment set up and verified in `rapport_folder/`
@@ -14,60 +13,54 @@ This file records what has actually been completed.
 - [x] Chapitre 2 — Spécification des besoins
 - [x] Chapitre 3 — Conception
 - [x] Chapitre 4 — Réalisation
-- [x] Introduction Générale
-- [x] Conclusion Générale
-- [x] Résumé (FR) et Abstract (EN)
-- [x] Annexes A, B, C, D
-- [x] Bibliographie (19 entrées) et Nétographie (18 entrées)
-- [x] Liste des abréviations
-- [x] Final compilation verification
-- [x] Figures vectorielles : 36 diagrammes TikZ produits, verifies et integres
-- [x] Allegement : 156 -> 123 pages, tableaux redondants supprimes, chiffres convertis en illustrations
-- [ ] Captures d ecran (14, regroupees en planches de deux) et logo (1) : a fournir
-- [ ] Cover page correction (see 06_OPEN_TASKS)
-- [ ] Final read-through by the user
+- [x] Introduction Générale / Conclusion Générale / Résumé (FR) & Abstract (EN)
+- [x] Annexes A–D, Bibliographie (20 entrées), Nétographie (18 entrées), Liste des abréviations
+
+## Phase 1 — Restoration (approved)
+- [x] Restored Ch2/3/4 from `archives/v1_complet_156p_2026-08-23_1537/` as the working base.
+
+## Phase 2 — Content/conception corrections (approved)
+- [x] Unit 1 (Ch2) client unified; bounded clarification 3 tries; BF04; litige/souscription merged; BF35/BF36 appended.
+- [x] Unit 2 (Ch3) memory = structured facts; short-term continuity; erasure = "état de remise à zéro"; no watermark/filigrane; no "souvenir".
+- [x] Unit 3 (Ch4) supplier positioning + `fig-positionnement-fournisseurs`.
+- [x] GPT-4o mini primary LLM, Gemini 2.5 Flash first fallback (consistent everywhere).
+- [x] Unit 4 (Ch4 §4.5.2) observability chain (4 subsubsections).
+- [x] Unit 5 (Ch4 §4.8) real measures / reconstituted budget / missing; steady-state latency total 1.6–2.1 / 1.8–2.5; "Ce qui manque encore" (scale/stress/schedule).
+- [x] Unit 6 (Ch4 §4.3.5) Réparation contextuelle de la requête.
+- [x] Unit 7 (Ch4 §4.7) Contrôle d'aptitude des agents + "Attachement des services" row.
+- [x] A8 notifications REJECTED (out-of-scope supplier problem); no change.
+- [x] Volumétrie F4/F5: 38 screens (21 console/17 portail); endpoints removed; 112/260 removed (table, figure, conclusion, §1.5).
+- [x] Unit 9 (Ch4 §4.6 A3) ui-agents matrix + Unit 10 (Ch4 §4.5.2 A4) telemetry persona.
+- [x] Unit 11 (Ch1 §1.5) Belgacem citation + bibliography entry.
+
+## Final reading/lightening pass (approved)
+- [x] Sorted/lightened heavy prose sentences in Ch1–Ch4 (lots 1–4), no content invented, no info lost.
+- [x] Observability figure descriptions in §4.6 kept as original "Avant" (no 12 services, no container names).
+
+## Phase 5 — diagrams (in progress, ONE at a time)
+- [x] Figure 1/36: `fig-cycle-iteratif.svg` = EXACT unmodified copy of
+      `uml diagrammes patterns/part must include in chapter 1/image of itrative cycle.svg`
+      (sha256 dc3b517e…772cf7e, cmp identical, no redraw/adaptation).
+- [x] Ch1 §1.5 text adjusted to support this exact figure (modèle évolutif, steps,
+      30/55/80/100 %, client feedback from first increment).
+- [x] Figure 2/36: `fig-deploiement.svg` = EXACT user-supplied SVG (only internal title block removed
+      per explicit instruction); Ch4 tab:deploiement + §4.6 prose adapted to the architectural layers.
+- [ ] Figure 3/36: `fig-cu-general.svg` = EXACT user-supplied SVG (no modification); placed FULL PAGE;
+      Ch2 actors/tab:acteurs + §cas d'utilisation prose adapted to unified "Utilisateur back-office";
+      Ch3 RBAC now explicits Administrateur/Superviseur/Conseiller. PENDING user confirmation.
+- [x] Figure 4/36: `fig-cu-doc.svg` = EXACT user-supplied SVG (1300×830, title "Obtenir une réponse fondée sur les connaissances", 5 includes + 2 extends + notes); Ch2 use-case section/table renamed and adapted to this figure (contexte de l'échange, base de connaissances). CONFIRMED.
+- [x] Figure 5/36: `fig-cu-action.svg` = EXACT user-supplied SVG (1500×900, internal title "Réalisation d'une opération sécurisée", 4 includes + 3 extends + 2 notes + systèmes métier secondary actor); Ch2 use-case table/prose adapted (CIN, journal d'audit, résultats conditionnels). CONFIRMED.
+- [x] Figure 6/36: `fig-cu-escalade.svg` = EXACT user-supplied SVG (1250×700, internal title "Gestion d'une demande d'assistance humaine", 2 actors Client+Conseiller, 7 UC, 2 external systems tickets+notification, 4 include + 2 extends + note exclusivity). Ch2 use-case section/table/prose renamed and adapted to this figure (ticket de suivi, notification). CONFIRMED.
+- [x] Figure 7/36: `fig-seq-doc.svg` = EXACT user-supplied sequence SVG (1250×1080, 5 lifelines Client/Agent spécialisé/Base connaissances/Base vectorielle/Moteur d'inférence, fragments opt+loop+alt, 2 notes). Title renamed to 'Recherche et génération d'une réponse fondée sur les connaissances'; fig-cu-doc.svg internal title updated to match (title line only); Ch2 section/table/prose/seq adapted. CONFIRMED.
+- [ ] Figures 8/36 → 36/36: pending per-figure analysis → proposal → generation → validation.
+
+## Open / Next
+- [ ] Figures 2–36 (one at a time, per accepted protocol).
+- [ ] Report-wide coherence check across figures/values after all diagrams.
+- [ ] Final read-through and PDF build by the user (sandbox has no LaTeX compiler).
 
 ## Current Completion State
+Phase 2 units 1–11 + final-reading lots done. Phase 5 underway: figure 1 done (exact supervisor SVG).
 
-Overall progress:
-`Rapport allege : 123 pages, 46 figures, 22 tableaux. 0 erreur, 0 debordement, 0 reference non resolue.`
-
-Document statistics at the last successful build:
-  * 123 pages (156 avant allegement)
-  * 46 figures, toutes citees dans le texte (36 produites, 10 en attente de capture)
-  * 22 tableaux, tous cites dans le texte
-  * 19 bibliography entries, all cited at their point of use
-  * 18 netography entries
-  * 0 LaTeX errors, 0 overfull boxes, 0 undefined references or citations
-
-Current chapter:
-`Aucun. Redaction terminee.`
-
-Current task:
-`Attente des retours de l'utilisateur, puis production des figures.`
-
-## Recently Completed
-
-### Date: 2026-08-23
-### Task: Redaction complete du rapport
-### Result:
-  * Four chapters written section by section, each compiled and validated before moving on.
-  * Every technical claim traced to the source-of-truth project and recorded in 08_PROJECT_FACTS.
-  * Every figure and table introduced by its reference in the prose, per the supervisor rule.
-  * Citations placed at their point of use; academic references verified against live sources
-    rather than quoted from memory.
-### Files Changed:
-  * rapport_folder/main.tex, Commands.tex, pfe-report.cls, build.sh
-  * rapport_folder/chapters/01 to 12 (all content files)
-  * project_memory/01, 02, 03, 04, 05, 07, 08, 09
-### Important Notes:
-  * The class as shipped does NOT compile: ctable was loaded before tikz. Fixed and documented.
-  * MiKTeX aborts at the end of a run because PATH contains a file entry
-    (C:\Windows\System32\wbem\WMIC.exe). build.sh strips such entries; do not remove that guard.
-  * `commands.md` in the source project has stale ports. Never cite it.
-  * PROJECT_RECAP.md and PHASE1_CODEBASE_COMPREHENSION.md are a v90 snapshot. The tree is at
-    v112 and several gaps they list are closed. See the correction section of 08_PROJECT_FACTS.
-
-## Important Rule
-
-Only mark something as completed after it has actually been implemented and verified.
+## Current chapter / task
+`Phase 5 diagram 1 validated; next: diagram 2.`
