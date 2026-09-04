@@ -52,7 +52,8 @@ This file records what has actually been completed.
 - [x] Figure 5/36: `fig-cu-action.svg` = EXACT user-supplied SVG (1500×900, internal title "Réalisation d'une opération sécurisée", 4 includes + 3 extends + 2 notes + systèmes métier secondary actor); Ch2 use-case table/prose adapted (CIN, journal d'audit, résultats conditionnels). CONFIRMED.
 - [x] Figure 6/36: `fig-cu-escalade.svg` = EXACT user-supplied SVG (1250×700, internal title "Gestion d'une demande d'assistance humaine", 2 actors Client+Conseiller, 7 UC, 2 external systems tickets+notification, 4 include + 2 extends + note exclusivity). Ch2 use-case section/table/prose renamed and adapted to this figure (ticket de suivi, notification). CONFIRMED.
 - [x] Figure 7/36: `fig-seq-doc.svg` = EXACT user-supplied sequence SVG (1250×1080, 5 lifelines Client/Agent spécialisé/Base connaissances/Base vectorielle/Moteur d'inférence, fragments opt+loop+alt, 2 notes). Title renamed to 'Recherche et génération d'une réponse fondée sur les connaissances'; fig-cu-doc.svg internal title updated to match (title line only); Ch2 section/table/prose/seq adapted. CONFIRMED.
-- [ ] Figures 8/36 → 36/36: pending per-figure analysis → proposal → generation → validation.
+- [x] Figure 8/36: `fig-seq-action.svg` = EXACT user-supplied sequence SVG (1250×1660, 5 lifelines Client/Agent Spécialisé/Moteur de Politique/Système Métier/Journal d'Audit, fragments opt+opt/nested alt idempotence, 1 note). Ch2 case renamed to 'Réalisation d'une opération sécurisée'; seq intro updated (verdict persisté avant exécution, invariant "aucune opération sans verdict favorable"). CONFIRMED.
+- [ ] Figures 9/36 → 36/36: pending per-figure analysis → proposal → generation → validation.
 
 ## Open / Next
 - [ ] Figures 2–36 (one at a time, per accepted protocol).

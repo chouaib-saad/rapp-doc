@@ -352,7 +352,7 @@ La figure \ref{fig:seq-doc} représente le scénario nominal sous la forme des �
 
 \figureTikz{Diagramme de séquence système du cas Recherche et génération d'une réponse fondée sur les connaissances}{seq-doc}{fig-seq-doc}
 
-\subsection{Cas d'utilisation : exécuter une opération sensible}
+\subsection{Cas d'utilisation : réalisation d'une opération sécurisée}
 
 \subsubsection{Diagramme du cas}
 
@@ -360,7 +360,7 @@ Ce cas, présenté à la figure \ref{fig:cu-action}, concentre les garanties de 
 
 La figure \ref{fig:cu-action} présente la réalisation d'une opération sécurisée. Avant toute exécution, le système vérifie l'identité du client par\,\acro{CIN}, valide l'opération au moyen des règles métier, la transmet au système métier concerné et l'enregistre dans le journal d'audit. Trois issues conditionnelles complètent ce trajet : restituer le résultat lorsqu'une opération a déjà été traitée, notifier le refus lorsque les conditions ne sont pas satisfaites, ou transmettre la demande à un conseiller lorsque l'opération ne peut être traitée automatiquement.
 
-\figureTikz{Diagramme du cas d'utilisation Exécuter une opération sensible}{cu-action}{fig-cu-action}
+\figureTikz{Diagramme du cas d'utilisation Réalisation d'une opération sécurisée}{cu-action}{fig-cu-action}
 
 \subsubsection{Description textuelle}
 
@@ -371,7 +371,7 @@ Le tableau \ref{tab:cu-action} détaille ce cas, qui est le plus contraint de la
 \renewcommand{\arraystretch}{1.25}
 \begin{tabular}{|p{3.0cm}|p{11.5cm}|}
 \hline
-\multicolumn{2}{|c|}{\textbf{Cas d'utilisation : exécuter une opération sensible}} \\
+\multicolumn{2}{|c|}{\textbf{Cas d'utilisation : réalisation d'une opération sécurisée}} \\
 \hline
 \textbf{Acteur principal} & Client \\
 \hline
@@ -403,15 +403,15 @@ Le tableau \ref{tab:cu-action} détaille ce cas, qui est le plus contraint de la
 \textbf{Alternative D : opération déjà traitée} & Si la même opération est présentée une seconde fois pour la même conversation, le système restitue le résultat enregistré de la première exécution sans exécuter à nouveau. \\
 \hline
 \end{tabular}
-\caption{Description textuelle du cas Exécuter une opération sensible}
+\caption{Description textuelle du cas Réalisation d'une opération sécurisée}
 \label{tab:cu-action}
 \end{table}
 
 \subsubsection{Diagramme de séquence système}
 
-La figure \ref{fig:seq-action} représente le scénario nominal de ce cas. Elle met en évidence la confirmation verbale, la vérification d'identité par\,\acro{CIN} et le caractère bloquant du verdict, qui conditionne toute transmission au système métier.
+La figure \ref{fig:seq-action} représente la réalisation d'une opération sécurisée sous la forme des échanges entre le client, l'agent spécialisé, le moteur de politique, le système métier et le journal d'audit. Elle fait apparaître la confirmation verbale, la vérification d'identité par\,\acro{CIN} (fragment \texttt{opt}), puis la décision d'autorisation persistée avant toute exécution (fragment \texttt{alt} à trois branches : autorisée, refusée, traitement humain requis). Le fragment imbriqué d'idempotence garantit qu'une opération déjà traitée restitue son résultat sans seconde exécution. Aucune opération n'atteint le système métier sans un verdict favorable préalable, persisté et identifié.
 
-\figureTikz{Diagramme de séquence système du cas Exécuter une opération sensible}{seq-action}{fig-seq-action}
+\figureTikz{Diagramme de séquence système du cas Réalisation d'une opération sécurisée}{seq-action}{fig-seq-action}
 
 \subsection{Cas d'utilisation : gestion d'une demande d'assistance humaine}
 
@@ -469,6 +469,6 @@ La figure \ref{fig:seq-escalade} représente le scénario nominal et son alterna
 
 \section*{Conclusion}
 
-Ce chapitre a transformé les objectifs du projet en spécifications exploitables. Nous avons identifié deux acteurs principaux, le client et l'utilisateur back-office, ainsi que trois familles d'acteurs secondaires correspondant aux systèmes que la plateforme sollicite sans les posséder. Les responsabilités propres à l'administrateur, au superviseur et au conseiller sont détaillées dans la matrice des droits du chapitre suivant. Nous avons ensuite formulé trente quatre besoins fonctionnels répartis en huit domaines, puis douze besoins non fonctionnels dont chacun impose une propriété identifiée à l'architecture. Les cas d'utilisation ont enfin été présentés dans leur ensemble, et détaillés pour les trois qui structurent le système : la recherche et la génération d'une réponse fondée sur les connaissances, l'opération sensible et la gestion d'une demande d'assistance humaine.
+Ce chapitre a transformé les objectifs du projet en spécifications exploitables. Nous avons identifié deux acteurs principaux, le client et l'utilisateur back-office, ainsi que trois familles d'acteurs secondaires correspondant aux systèmes que la plateforme sollicite sans les posséder. Les responsabilités propres à l'administrateur, au superviseur et au conseiller sont détaillées dans la matrice des droits du chapitre suivant. Nous avons ensuite formulé trente quatre besoins fonctionnels répartis en huit domaines, puis douze besoins non fonctionnels dont chacun impose une propriété identifiée à l'architecture. Les cas d'utilisation ont enfin été présentés dans leur ensemble, et détaillés pour les trois qui structurent le système : la recherche et la génération d'une réponse fondée sur les connaissances, la réalisation d'une opération sécurisée et la gestion d'une demande d'assistance humaine.
 
-Ces trois cas font apparaître une même exigence sous des formes différentes. La recherche et la génération d'une réponse fondée sur les connaissances imposent que le système sache reconnaître les limites de ce qu'il sait. L'opération sensible impose qu'il sache reconnaître les limites de ce qu'il a le droit de faire. La gestion d'une demande d'assistance humaine impose qu'il sache reconnaître les limites de ce qu'il peut traiter seul. Le chapitre suivant montre comment l'architecture de la solution répond à ces trois exigences, en présentant d'abord la vue statique du système, puis sa vue dynamique, avant de détailler la conception de la couche agentique et celle du contrôle d'accès.
+Ces trois cas font apparaître une même exigence sous des formes différentes. La recherche et la génération d'une réponse fondée sur les connaissances imposent que le système sache reconnaître les limites de ce qu'il sait. La réalisation d'une opération sécurisée impose qu'il sache reconnaître les limites de ce qu'il a le droit de faire. La gestion d'une demande d'assistance humaine impose qu'il sache reconnaître les limites de ce qu'il peut traiter seul. Le chapitre suivant montre comment l'architecture de la solution répond à ces trois exigences, en présentant d'abord la vue statique du système, puis sa vue dynamique, avant de détailler la conception de la couche agentique et celle du contrôle d'accès.

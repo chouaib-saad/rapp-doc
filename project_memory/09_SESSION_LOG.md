@@ -109,3 +109,11 @@ Retours de l'utilisateur, puis production des 50 figures et intégration des 18 
 ## 2026-09-04 — Phase 5 figure 7 CONFIRMED
 - User confirmed figure 7/36 `fig-seq-doc.svg` (exact sequence SVG; case renamed + Ch2 adapted).
 - Next figure 8/36: fig-seq-action (Ch2, séquence du cas opération sécurisée).
+
+## 2026-09-04 — Phase 5 figure 8
+- Figure 8 `fig-seq-action.svg`: EXACT user sequence SVG saved (1250×1660). Lifelines: Client, Agent Spécialisé (Orchestrateur), Moteur de Politique (Policy Engine), Système Métier (Business Service), Journal d'Audit (Audit Repository). Fragments: opt [identité non vérifiée], nested opt [vérification échouée], main alt [autorisée/refusée/humain], nested alt idempotence [déjà traitée / 1ère exécution]. Note: vérification avant opération.
+- Ch2 §cas renamed to 'Réalisation d'une opération sécurisée'; sequence intro updated with invariant 'Aucune opération n'atteint le système métier sans un verdict favorable préalable, persisté et identifié.' PENDING confirmation.
+
+## 2026-09-04 — Phase 5 figure 8 CONFIRMED
+- User confirmed figure 8/36 `fig-seq-action.svg` (exact sequence SVG). Case renamed 'Réalisation d'une opération sécurisée'; invariant integrated. Ch2 updated.
+- Next figure 9/36: fig-seq-escalade (Ch2, séquence du cas assistance humaine).

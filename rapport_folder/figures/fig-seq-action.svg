@@ -1,0 +1,257 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1250" height="1660" viewBox="0 0 1250 1660">
+<rect width="1250" height="1660" fill="#FFFFFF"/>
+<defs>
+<style>
+text{font-family:Arial,Helvetica,sans-serif;}
+.plab{font-size:12px;font-weight:bold;fill:#333333;text-anchor:middle;}
+.pst{font-size:10px;font-style:italic;fill:#555555;text-anchor:middle;}
+.bname{font-size:12px;font-weight:bold;fill:#222222;text-anchor:middle;dominant-baseline:middle;}
+.mlab{font-size:12px;fill:#222222;text-anchor:middle;}
+.mlabL{font-size:12px;fill:#222222;}
+.fword{font-size:12px;font-weight:bold;fill:#111111;}
+.fcond{font-size:11px;font-style:italic;fill:#111111;}
+.life{fill:none;stroke:#D02A50;stroke-width:1;stroke-dasharray:5,4;}
+.act{fill:none;stroke:#D02A50;stroke-width:1.7;}
+.pB{fill:#96D5F2;stroke:#D02A50;stroke-width:1.3;}
+.pG{fill:#CDF2CD;stroke:#D02A50;stroke-width:1.3;}
+.dbbody{fill:#FFB340;stroke:#C77800;stroke-width:1.3;}
+.dbtop{fill:#FFC466;stroke:#C77800;stroke-width:1.3;}
+.actbar{fill:#d8d8d8;stroke:#333333;stroke-width:1;}
+.msg{fill:none;stroke:#D02A50;stroke-width:1.4;}
+.msgR{fill:none;stroke:#2EA843;stroke-width:1.4;stroke-dasharray:7,5;}
+.frag{fill:none;stroke:#D02A50;stroke-width:1.3;}
+.ftab{fill:#f1a7c1;stroke:#D02A50;stroke-width:1.1;}
+.ftabN{fill:#F0F4F8;stroke:#D02A50;stroke-width:1.1;}
+.sep{stroke:#D02A50;stroke-width:1.1;stroke-dasharray:6,5;}
+.callout{fill:#fff4a6;stroke:#D02A50;stroke-width:1.2;}
+.fold{fill:#F0E08A;stroke:#D02A50;stroke-width:1.2;}
+.ct{font-size:10px;font-style:italic;fill:#111111;}
+.ctb{font-size:10px;font-weight:bold;font-style:italic;fill:#111111;}
+</style>
+<filter id="ds" x="-30%" y="-30%" width="160%" height="160%">
+<feDropShadow dx="3" dy="3" stdDeviation="2" flood-color="#8A8A8A" flood-opacity="0.45"/>
+</filter>
+<marker id="mM" markerWidth="9" markerHeight="9" refX="7" refY="3.5" orient="auto"><path d="M0 0 L7 3.5 L0 7 Z" fill="#D02A50"/></marker>
+<marker id="mGo" markerWidth="10" markerHeight="10" refX="8" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8" fill="none" stroke="#2EA843" stroke-width="1.6"/></marker>
+<marker id="mSelf" markerWidth="9" markerHeight="9" refX="7" refY="3.5" orient="auto"><path d="M0 0 L7 3.5 L0 7 Z" fill="#D02A50"/></marker>
+</defs>
+
+<!-- ===================== LIFELINES ===================== -->
+<path d="M120 132 L120 1540" class="life"/>
+<path d="M380 132 L380 1540" class="life"/>
+<path d="M660 132 L660 1540" class="life"/>
+<path d="M920 132 L920 1540" class="life"/>
+<path d="M1140 132 L1140 1540" class="life"/>
+
+<!-- ===================== TOP PARTICIPANTS ===================== -->
+<!-- Client : Actor -->
+<g class="act" filter="url(#ds)">
+<circle cx="120" cy="45" r="8" fill="#FFF6C7"/>
+<path d="M120 53 L120 78"/><path d="M106 60 L134 60"/><path d="M120 78 L107 96"/><path d="M120 78 L133 96"/>
+</g>
+<text x="120" y="112" class="plab">Client</text>
+<text x="120" y="126" class="pst">&lt;&lt;Actor&gt;&gt;</text>
+
+<!-- Agent Spécialisé : Control (rectangle bleu) -->
+<rect x="295" y="48" width="170" height="34" class="pB" filter="url(#ds)"/>
+<text x="380" y="65" class="bname">Agent Spécialisé</text>
+<text x="380" y="106" class="pst">&lt;&lt;Orchestrateur&gt;&gt;</text>
+
+<!-- Moteur de Politique : Control (rectangle vert) -->
+<rect x="575" y="48" width="170" height="34" class="pG" filter="url(#ds)"/>
+<text x="660" y="65" class="bname">Moteur de Politique</text>
+<text x="660" y="106" class="pst">&lt;&lt;Policy Engine&gt;&gt;</text>
+
+<!-- Système Métier : Control (rectangle bleu) -->
+<rect x="835" y="48" width="170" height="34" class="pB" filter="url(#ds)"/>
+<text x="920" y="65" class="bname">Système Métier</text>
+<text x="920" y="106" class="pst">&lt;&lt;Business Service&gt;&gt;</text>
+
+<!-- Journal d'Audit : Database orange -->
+<g filter="url(#ds)">
+<path d="M1115 50 L1115 82 A25 8 0 0 0 1165 82 L1165 50" class="dbbody"/>
+<ellipse cx="1140" cy="50" rx="25" ry="8" class="dbtop"/>
+</g>
+<text x="1140" y="106" class="plab">Journal d'Audit</text>
+<text x="1140" y="120" class="pst">&lt;&lt;Audit Repository&gt;&gt;</text>
+
+<!-- ===================== ACTIVATION BARS ===================== -->
+<rect x="374" y="140" width="12" height="1370" class="actbar"/>
+<rect x="654" y="620" width="12" height="100" class="actbar"/>
+<rect x="914" y="1095" width="12" height="40" class="actbar"/>
+<rect x="1134" y="455" width="12" height="40" class="actbar"/>
+<rect x="1134" y="770" width="12" height="45" class="actbar"/>
+<rect x="1134" y="1190" width="12" height="40" class="actbar"/>
+<rect x="1134" y="1320" width="12" height="35" class="actbar"/>
+<rect x="1134" y="1450" width="12" height="35" class="actbar"/>
+
+<!-- ===================== FRAGMENT opt : Identity Verification ===================== -->
+<rect x="60" y="260" width="1120" height="265" class="frag"/>
+<path d="M60,260 L115,260 L130,275 L60,275 Z" class="ftab"/>
+<text x="70" y="272" class="fword">opt</text>
+<text x="140" y="273" class="fcond">[ Identité non vérifiée ou expirée ]</text>
+
+<!-- Nested OPT: verification failure -->
+<rect x="320" y="425" width="860" height="90" class="frag"/>
+<path d="M320,425 L365,425 L380,440 L320,440 Z" class="ftabN"/>
+<text x="330" y="437" class="fword">opt</text>
+<text x="395" y="438" class="fcond">[ Vérification échouée — opération abandonnée ]</text>
+
+<!-- ===================== MAIN ALT FRAME ===================== -->
+<rect x="60" y="880" width="1120" height="620" class="frag"/>
+<path d="M60,880 L115,880 L130,895 L60,895 Z" class="ftab"/>
+<text x="70" y="892" class="fword">alt</text>
+<text x="140" y="893" class="fcond">[ Opération autorisée ]</text>
+
+<line x1="60" y1="1270" x2="1180" y2="1270" class="sep"/>
+<text x="70" y="1290" class="fcond">[ Opération refusée ]</text>
+
+<line x1="60" y1="1400" x2="1180" y2="1400" class="sep"/>
+<text x="70" y="1420" class="fcond">[ Traitement humain requis ]</text>
+
+<!-- Nested ALT Frame: Idempotence -->
+<rect x="320" y="970" width="660" height="185" class="frag"/>
+<path d="M320,970 L365,970 L380,985 L320,985 Z" class="ftabN"/>
+<text x="330" y="982" class="fword">alt</text>
+<text x="395" y="983" class="fcond">[ Opération déjà traitée ]</text>
+<line x1="320" y1="1055" x2="980" y2="1055" class="sep"/>
+<text x="330" y="1072" class="fcond">[ Première exécution ]</text>
+
+<!-- ===================== MESSAGES ===================== -->
+<!-- 1. Demande initiale -->
+<path d="M120 150 L374 150" class="msg" marker-end="url(#mM)"/>
+<text x="247" y="140" class="mlab">Demande l'exécution de l'opération</text>
+
+<!-- 2. Récapitulatif (return) -->
+<path d="M374 190 L126 190" class="msgR" marker-end="url(#mGo)"/>
+<text x="247" y="180" class="mlab">Récapitulatif et demande de confirmation</text>
+
+<!-- 3. Confirmation -->
+<path d="M120 230 L374 230" class="msg" marker-end="url(#mM)"/>
+<text x="247" y="220" class="mlab">Confirmation explicite</text>
+
+<!-- ========== OPT Identity ========== -->
+<!-- Demande de vérification -->
+<path d="M374 300 L126 300" class="msgR" marker-end="url(#mGo)"/>
+<text x="250" y="290" class="mlab">Demander la vérification de l'identité</text>
+
+<!-- CIN du client -->
+<path d="M120 340 L374 340" class="msg" marker-end="url(#mM)"/>
+<text x="250" y="330" class="mlab">CIN du client</text>
+
+<!-- Validation self -->
+<path d="M386,380 L450,380 L450,400 L386,400" fill="none" stroke="#D02A50" stroke-width="1.4" marker-end="url(#mSelf)"/>
+<text x="395" y="370" class="mlabL">Validation (tentatives et délais bornés)</text>
+
+<!-- ========== Nested OPT: failure ========== -->
+<!-- Consigne le refus (audit) -->
+<path d="M386 460 L1134 460" class="msg" marker-end="url(#mM)"/>
+<text x="760" y="450" class="mlab">Enregistrer le refus et l'abandon de l'opération</text>
+
+<!-- Informe client -->
+<path d="M374 495 L126 495" class="msgR" marker-end="url(#mGo)"/>
+<text x="250" y="485" class="mlab">Informer le client de l'abandon</text>
+
+<!-- ========== Decision context ========== -->
+<path d="M386,560 L460,560 L460,580 L386,580" fill="none" stroke="#D02A50" stroke-width="1.4" marker-end="url(#mSelf)"/>
+<text x="395" y="550" class="mlabL">Constitution du contexte de décision</text>
+
+<!-- Soumission -->
+<path d="M386 620 L654 620" class="msg" marker-end="url(#mM)"/>
+<text x="520" y="610" class="mlab">Soumettre l'opération pour autorisation</text>
+
+<!-- Évaluation self -->
+<path d="M666,660 L730,660 L730,680 L666,680" fill="none" stroke="#D02A50" stroke-width="1.4" marker-end="url(#mSelf)"/>
+<text x="675" y="650" class="mlabL">Évaluer les règles d'autorisation</text>
+
+<!-- Décision (return) -->
+<path d="M654 720 L386 720" class="msgR" marker-end="url(#mGo)"/>
+<text x="520" y="710" class="mlab">Décision d'autorisation</text>
+
+<!-- Enregistrer la décision -->
+<path d="M386 770 L1134 770" class="msg" marker-end="url(#mM)"/>
+<text x="760" y="760" class="mlab">Enregistrer la décision d'autorisation</text>
+
+<!-- Confirmation enregistrement (return) -->
+<path d="M1134 810 L386 810" class="msgR" marker-end="url(#mGo)"/>
+<text x="760" y="800" class="mlab">Confirmation de l'enregistrement de la décision</text>
+
+<!-- ========== ALT 1: Autorisé ========== -->
+<!-- Contrôle idempotence -->
+<path d="M386,920 L470,920 L470,940 L386,940" fill="none" stroke="#D02A50" stroke-width="1.4" marker-end="url(#mSelf)"/>
+<text x="395" y="910" class="mlabL">Vérifier si l'opération a déjà été traitée (Contrôle d'idempotence)</text>
+
+<!-- Restitution (nested alt - déjà traitée) -->
+<path d="M386,1010 L460,1010 L460,1030 L386,1030" fill="none" stroke="#D02A50" stroke-width="1.4" marker-end="url(#mSelf)"/>
+<text x="395" y="1000" class="mlabL">Restituer le résultat existant</text>
+
+<!-- Exécution système métier -->
+<path d="M386 1095 L914 1095" class="msg" marker-end="url(#mM)"/>
+<text x="650" y="1085" class="mlab">Exécuter l'opération autorisée</text>
+
+<!-- Référence d'exécution (return) -->
+<path d="M914 1135 L386 1135" class="msgR" marker-end="url(#mGo)"/>
+<text x="650" y="1125" class="mlab">Référence d'exécution</text>
+
+<!-- Consigne acte (audit) -->
+<path d="M386 1190 L1134 1190" class="msg" marker-end="url(#mM)"/>
+<text x="760" y="1180" class="mlab">Consigne l'acte et le résultat</text>
+
+<!-- Confirmation orale (return) -->
+<path d="M374 1230 L126 1230" class="msgR" marker-end="url(#mGo)"/>
+<text x="250" y="1220" class="mlab">Confirmation orale du résultat</text>
+
+<!-- ========== ALT 2: Refusé ========== -->
+<path d="M386 1320 L1134 1320" class="msg" marker-end="url(#mM)"/>
+<text x="760" y="1310" class="mlab">Consigne le refus et son motif</text>
+
+<path d="M374 1360 L126 1360" class="msgR" marker-end="url(#mGo)"/>
+<text x="250" y="1350" class="mlab">Énonce le motif du refus</text>
+
+<!-- ========== ALT 3: Escalade ========== -->
+<path d="M386 1450 L1134 1450" class="msg" marker-end="url(#mM)"/>
+<text x="760" y="1440" class="mlab">Consigne l'escalade et le contexte</text>
+
+<path d="M374 1480 L126 1480" class="msgR" marker-end="url(#mGo)"/>
+<text x="250" y="1470" class="mlab">Annonce du passage à un conseiller</text>
+
+<!-- ===================== NOTE (forme UML avec coin plié — unique note conservée) ===================== -->
+<path d="M760 285 L1020 285 L1035 299 L1035 338 L760 338 Z" class="callout" filter="url(#ds)"/>
+<path d="M1020 285 L1020 299 L1035 299 Z" class="fold"/>
+<text x="770" y="302" class="ctb">Vérification avant opération :</text>
+<text x="770" y="316" class="ct">l'ouverture de session ne suffit pas</text>
+<text x="770" y="329" class="ct">à autoriser une opération sur le compte.</text>
+
+<!-- ===================== BOTTOM PARTICIPANTS ===================== -->
+<!-- Client bottom -->
+<text x="120" y="1556" class="plab">Client</text>
+<text x="120" y="1570" class="pst">&lt;&lt;Actor&gt;&gt;</text>
+<g class="act" filter="url(#ds)">
+<circle cx="120" cy="1584" r="8" fill="#FFF6C7"/>
+<path d="M120 1592 L120 1617"/><path d="M106 1599 L134 1599"/><path d="M120 1617 L107 1633"/><path d="M120 1617 L133 1633"/>
+</g>
+
+<!-- Agent Spécialisé bottom : Rectangle bleu -->
+<text x="380" y="1570" class="pst">&lt;&lt;Orchestrateur&gt;&gt;</text>
+<rect x="295" y="1584" width="170" height="34" class="pB" filter="url(#ds)"/>
+<text x="380" y="1601" class="bname">Agent Spécialisé</text>
+
+<!-- Moteur de Politique bottom : Rectangle vert -->
+<text x="660" y="1570" class="pst">&lt;&lt;Policy Engine&gt;&gt;</text>
+<rect x="575" y="1584" width="170" height="34" class="pG" filter="url(#ds)"/>
+<text x="660" y="1601" class="bname">Moteur de Politique</text>
+
+<!-- Système Métier bottom : Rectangle bleu -->
+<text x="920" y="1570" class="pst">&lt;&lt;Business Service&gt;&gt;</text>
+<rect x="835" y="1584" width="170" height="34" class="pB" filter="url(#ds)"/>
+<text x="920" y="1601" class="bname">Système Métier</text>
+
+<!-- Journal d'Audit bottom : Database orange -->
+<text x="1140" y="1556" class="plab">Journal d'Audit</text>
+<text x="1140" y="1570" class="pst">&lt;&lt;Audit Repository&gt;&gt;</text>
+<g filter="url(#ds)">
+<path d="M1115 1584 L1115 1616 A25 8 0 0 0 1165 1616 L1165 1584" class="dbbody"/>
+<ellipse cx="1140" cy="1584" rx="25" ry="8" class="dbtop"/>
+</g>
+
+</svg>

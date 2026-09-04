@@ -2,10 +2,10 @@
 
 ## Current Objective
 Phase 5 — finalize all report figures one at a time, using only the established per-family visual
-patterns. Figures 1–7 validated. Figure 8 (fig-seq-action) next.
+patterns. Figures 1–8 validated. Figure 9 (fig-seq-escalade) next.
 
 ## Current Chapter / Section
-Ch2 §séquence opération sensible. Phase 5 figure 8/36 (fig-seq-action) in progress.
+Ch2 §séquence assistance humaine. Phase 5 figure 9/36 (fig-seq-escalade) in progress.
 
 ## Current Task
 Confirm figure 6/36 (fig-cu-escalade). Then continue one figure at a time. Before ANY new figure:
