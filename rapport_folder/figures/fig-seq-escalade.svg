@@ -55,7 +55,7 @@ text{font-family:Arial,Helvetica,sans-serif;}
 
 <rect x="415" y="48" width="170" height="34" class="pG" filter="url(#ds)"/>
 <text x="500" y="65" class="bname">Service de Routage</text>
-<text x="500" y="106" class="pst">&lt;&lt;Availability&gt;&gt;</text>
+<text x="500" y="106" class="pst">&lt;&lt;Service&gt;&gt;</text>
 
 <rect x="635" y="48" width="170" height="34" class="pB" filter="url(#ds)"/>
 <text x="720" y="65" class="bname">Système de Tickets</text>
@@ -63,7 +63,7 @@ text{font-family:Arial,Helvetica,sans-serif;}
 
 <rect x="855" y="48" width="170" height="34" class="pG" filter="url(#ds)"/>
 <text x="940" y="65" class="bname">Service de Notification</text>
-<text x="940" y="106" class="pst">&lt;&lt;External System&gt;&gt;</text>
+<text x="940" y="106" class="pst">&lt;&lt;External Service&gt;&gt;</text>
 
 <g class="act" filter="url(#ds)">
 <circle cx="1140" cy="45" r="8" fill="#FFF6C7"/>
@@ -84,7 +84,7 @@ text{font-family:Arial,Helvetica,sans-serif;}
 
 <!-- ===================== MESSAGES (PHASE INITIALE) ===================== -->
 <path d="M100 150 L294 150" class="msg" marker-end="url(#mM)"/>
-<text x="197" y="140" class="mlab">Demande d'assistance humaine</text>
+<text x="197" y="140" class="mlab">Demande d'assistance</text>
 
 <path d="M306,190 L380,190 L380,210 L306,210" fill="none" stroke="#D02A50" stroke-width="1.4" marker-end="url(#mSelf)"/>
 <text x="315" y="180" class="mlabL">Constituer le dossier de l'échange</text>
@@ -93,22 +93,20 @@ text{font-family:Arial,Helvetica,sans-serif;}
 <line x1="380" y1="200" x2="755" y2="200" stroke="#888888" stroke-width="1" stroke-dasharray="3,3"/>
 
 <path d="M294 230 L106 230" class="msgR" marker-end="url(#mGo)"/>
-<text x="197" y="220" class="mlab">Annonce de l'escalade</text>
+<text x="197" y="220" class="mlab">Informer de l'escalade</text>
 
 <path d="M306 270 L494 270" class="msg" marker-end="url(#mM)"/>
-<text x="400" y="260" class="mlab">Rechercher un conseiller disponible</text>
+<text x="400" y="260" class="mlab">Vérifier la disponibilité d'un conseiller</text>
 
 <path d="M494 310 L306 310" class="msgR" marker-end="url(#mGo)"/>
 <text x="400" y="300" class="mlab">Statut des disponibilités</text>
 
-<!-- ===================== NOTE (Parfaitement alignée et aérée) ===================== -->
+<!-- ===================== NOTE ===================== -->
 <path d="M755 150 L1060 150 L1075 165 L1075 250 L755 250 Z" class="callout" filter="url(#ds)"/>
 <path d="M1060 150 L1060 165 L1075 165 Z" class="fold"/>
-<text x="765" y="172" class="ctb">Dossier d'escalade</text>
-<text x="765" y="194" class="ct">Chaque transfert ou rappel transmet</text>
-<text x="765" y="208" class="ct">au conseiller le dossier complet :</text>
-<text x="765" y="222" class="ct">demande exprimée, opérations tentées</text>
-<text x="765" y="236" class="ct">et verdicts rendus.</text>
+<text x="765" y="172" class="ctb">Contexte transmis au conseiller</text>
+<text x="765" y="196" class="ct">Le dossier contient la demande du client, le contexte</text>
+<text x="765" y="210" class="ct">utile et les actions déjà effectuées.</text>
 
 <!-- ===================== MAIN ALT FRAME ===================== -->
 <rect x="60" y="360" width="1120" height="740" class="frag"/>
@@ -124,20 +122,20 @@ text{font-family:Arial,Helvetica,sans-serif;}
 <text x="400" y="400" class="mlab">Réserver le conseiller</text>
 
 <path d="M494 450 L306 450" class="msgR" marker-end="url(#mGo)"/>
-<text x="400" y="440" class="mlab">Confirmation de réservation</text>
+<text x="400" y="440" class="mlab">Confirmer la réservation</text>
 
 <path d="M306 490 L1134 490" class="msg" marker-end="url(#mM)"/>
-<text x="720" y="480" class="mlab">Transférer l'appel et remettre le dossier</text>
+<text x="720" y="480" class="mlab">Transférer l'appel et transmettre le dossier</text>
 
 <path d="M1134 530 L306 530" class="msgR" marker-end="url(#mGo)"/>
-<text x="720" y="520" class="mlab">Prise en charge de la conversation</text>
+<text x="720" y="520" class="mlab">Prise en charge de l'appel</text>
 
 <path d="M294 570 L106 570" class="msgR" marker-end="url(#mGo)"/>
-<text x="197" y="560" class="mlab">Appel connecté au conseiller</text>
+<text x="197" y="560" class="mlab">Confirmation de la mise en relation</text>
 
 <!-- ========== ALT 2 : RAPPEL PLANIFIÉ ========== -->
 <path d="M306 670 L494 670" class="msg" marker-end="url(#mM)"/>
-<text x="400" y="660" class="mlab">Obtenir les prochains créneaux réels</text>
+<text x="400" y="660" class="mlab">Récupérer les créneaux disponibles</text>
 
 <path d="M494 710 L306 710" class="msgR" marker-end="url(#mGo)"/>
 <text x="400" y="700" class="mlab">Liste des créneaux disponibles</text>
@@ -149,10 +147,10 @@ text{font-family:Arial,Helvetica,sans-serif;}
 <text x="197" y="780" class="mlab">Choix d'un créneau</text>
 
 <path d="M306 830 L714 830" class="msg" marker-end="url(#mM)"/>
-<text x="510" y="820" class="mlab">Créer un ticket de rappel</text>
+<text x="510" y="820" class="mlab">Créer la demande de rappel</text>
 
 <path d="M714 870 L306 870" class="msgR" marker-end="url(#mGo)"/>
-<text x="510" y="860" class="mlab">Confirmation du ticket</text>
+<text x="510" y="860" class="mlab">Confirmation de création</text>
 
 <path d="M306 910 L934 910" class="msg" marker-end="url(#mM)"/>
 <text x="620" y="900" class="mlab">Notifier le conseiller assigné</text>
@@ -162,13 +160,13 @@ text{font-family:Arial,Helvetica,sans-serif;}
 
 <!-- Interactions avec le Conseiller -->
 <path d="M946 990 L1134 990" class="msg" marker-end="url(#mM)"/>
-<text x="1040" y="980" class="mlab">Avis de rappel planifié</text>
+<text x="1040" y="980" class="mlab">Notification du rappel planifié</text>
 
 <path d="M1134 1030 L946 1030" class="msgR" marker-end="url(#mGo)"/>
 <text x="1040" y="1020" class="mlab">Accusé de réception du dossier</text>
 
 <path d="M294 1070 L106 1070" class="msgR" marker-end="url(#mGo)"/>
-<text x="197" y="1060" class="mlab">Confirmation orale de l'horaire retenu</text>
+<text x="197" y="1060" class="mlab">Confirmer l'horaire du rappel</text>
 
 <!-- ===================== BOTTOM PARTICIPANTS ===================== -->
 <text x="100" y="1126" class="plab">Client</text>
@@ -182,7 +180,7 @@ text{font-family:Arial,Helvetica,sans-serif;}
 <rect x="215" y="1154" width="170" height="34" class="pB" filter="url(#ds)"/>
 <text x="300" y="1171" class="bname">Agent de Supervision</text>
 
-<text x="500" y="1140" class="pst">&lt;&lt;Availability&gt;&gt;</text>
+<text x="500" y="1140" class="pst">&lt;&lt;Service&gt;&gt;</text>
 <rect x="415" y="1154" width="170" height="34" class="pG" filter="url(#ds)"/>
 <text x="500" y="1171" class="bname">Service de Routage</text>
 
@@ -190,7 +188,7 @@ text{font-family:Arial,Helvetica,sans-serif;}
 <rect x="635" y="1154" width="170" height="34" class="pB" filter="url(#ds)"/>
 <text x="720" y="1171" class="bname">Système de Tickets</text>
 
-<text x="940" y="1140" class="pst">&lt;&lt;External System&gt;&gt;</text>
+<text x="940" y="1140" class="pst">&lt;&lt;External Service&gt;&gt;</text>
 <rect x="855" y="1154" width="170" height="34" class="pG" filter="url(#ds)"/>
 <text x="940" y="1171" class="bname">Service de Notification</text>
 
