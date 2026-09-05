@@ -127,3 +127,7 @@ Retours de l'utilisateur, puis production des 50 figures et intégration des 18 
 - User confirmed figure 9/36 `fig-seq-escalade.svg` (exact sequence SVG). Ch2 case renamed back to 'Escalade vers un conseiller humain'.
 - `fig-cu-escalade.svg` internal title updated to 'Escalade vers un conseiller humain' (title line only); rest of figure untouched.
 - Next figure 10/36: fig-classes-domaine (Ch3, modèle du domaine).
+
+## 2026-09-04 — Phase 5 figure 10
+- Figure 10 `fig-classes-domaine.svg`: EXACT user class diagram SVG saved (1700×1200). 5 aggregate roots (Client, Conversation, DossierAssistance, Operation Template Method, RegleMetier Strategy), 4 value objects (Msisdn, Montant, IdentifiantOperation, Creneau), entities (Abonnement, Compte, TourDeParole, Intention, EntreeAudit, Ticket, Affectation assoc class, Conseiller, DecisionAutorisation), 6 concrete subclasses (PaiementFacture, Reclamation, GestionAbonnement, RegleSeuil, RegleNiveauVerification), 11 enums (package Énumérations).
+- Ch3 §Modèle du domaine prose adapted to this diagram (aggregates, value objects, enums). CONFIRMED by user; committing/pushing.

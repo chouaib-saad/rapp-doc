@@ -1,0 +1,579 @@
+<svg viewBox="0 0 1700 1200" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="shadow" x="-5%" y="-5%" width="120%" height="120%">
+      <feDropShadow dx="2" dy="2" stdDeviation="2" flood-color="#000000" flood-opacity="0.15"/>
+    </filter>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <polygon points="0,2 10,6 0,10" fill="#333333"/>
+    </marker>
+    <marker id="triangle" markerWidth="14" markerHeight="14" refX="12" refY="7" orient="auto">
+      <polygon points="1,2 12,7 1,12" fill="#ffffff" stroke="#333333" stroke-width="1.2"/>
+    </marker>
+    <marker id="diamond" markerWidth="16" markerHeight="14" refX="14" refY="7" orient="auto">
+      <polygon points="1,7 7,1 13,7 7,13" fill="#ffffff" stroke="#333333" stroke-width="1.2"/>
+    </marker>
+    <marker id="diamondFilled" markerWidth="16" markerHeight="14" refX="14" refY="7" orient="auto">
+      <polygon points="1,7 7,1 13,7 7,13" fill="#333333" stroke="#333333" stroke-width="1.2"/>
+    </marker>
+  </defs>
+
+  <style>
+    .bg { fill: #fffdf7; }
+    .box { stroke: #333333; stroke-width: 1.2; }
+    .layer-yellow { fill: #fff4a6; filter: url(#shadow); }
+    .layer-pink { fill: #f28e8e; filter: url(#shadow); }
+    .layer-blue { fill: #a9e5ef; filter: url(#shadow); }
+    .layer-green { fill: #a9efb0; filter: url(#shadow); }
+    .layer-purple { fill: #e2d4f5; filter: url(#shadow); }
+    .agg-box { fill: none; stroke: #555555; stroke-width: 1.2; stroke-dasharray: 8,5; }
+    .pkg-box { fill: none; stroke: #333333; stroke-width: 1.2; }
+    .pkg-tab { fill: none; stroke: #333333; stroke-width: 1.2; }
+    .divider { stroke: #333333; stroke-width: 1.2; }
+    .line { stroke: #333333; stroke-width: 1.2; fill: none; }
+    .dashed-line { stroke: #333333; stroke-width: 1.2; fill: none; stroke-dasharray: 4,4; }
+    .stereo-text { font-family: Arial, Helvetica, sans-serif; font-size: 10px; fill: #000000; text-anchor: middle; dominant-baseline: middle; }
+    .header-text { font-family: Arial, Helvetica, sans-serif; font-size: 12px; font-weight: bold; fill: #000000; text-anchor: middle; dominant-baseline: middle; }
+    .abstract-name { font-style: italic; }
+    .body-text { font-family: Arial, Helvetica, sans-serif; font-size: 11px; fill: #000000; dominant-baseline: middle; }
+    .abstract-op { font-style: italic; }
+    .assoc-text { font-family: Arial, Helvetica, sans-serif; font-size: 11px; fill: #555555; dominant-baseline: middle; text-anchor: middle; }
+    .role-text { font-family: Arial, Helvetica, sans-serif; font-size: 11px; font-style: italic; fill: #555555; dominant-baseline: middle; text-anchor: middle; }
+    .role-left { font-family: Arial, Helvetica, sans-serif; font-size: 11px; font-style: italic; fill: #555555; dominant-baseline: middle; text-anchor: start; }
+    .zone-label { font-family: Arial, Helvetica, sans-serif; font-size: 11px; font-weight: bold; font-style: italic; fill: #444444; dominant-baseline: middle; }
+    .pkg-label { font-family: Arial, Helvetica, sans-serif; font-size: 10px; font-weight: bold; fill: #333333; text-anchor: middle; dominant-baseline: middle; }
+  </style>
+
+  <!-- Background -->
+  <rect class="bg" width="1700" height="1200"/>
+
+  <!-- ================= ZONES (agrégats, pattern, paquetage) ================= -->
+  <g id="zones">
+    <!-- Agrégat Client -->
+    <rect x="30" y="166" width="260" height="466" rx="6" class="agg-box"/>
+    <text x="34" y="156" class="zone-label">Agrégat Client</text>
+
+    <!-- Agrégat Conversation -->
+    <rect x="330" y="76" width="510" height="412" rx="6" class="agg-box"/>
+    <text x="334" y="66" class="zone-label">Agrégat Conversation</text>
+
+    <!-- Agrégat Assistance -->
+    <rect x="880" y="76" width="760" height="308" rx="6" class="agg-box"/>
+    <text x="884" y="66" class="zone-label">Agrégat Assistance</text>
+
+    <!-- Agrégat Opération (Template Method) -->
+    <rect x="330" y="510" width="640" height="370" rx="6" class="agg-box"/>
+    <text x="334" y="500" class="zone-label">Agrégat Opération · «Template Method»</text>
+
+    <!-- Moteur de politique (Strategy) -->
+    <rect x="1010" y="528" width="650" height="300" rx="6" class="agg-box"/>
+    <text x="1014" y="518" class="zone-label">Moteur de politique · «Strategy»</text>
+
+    <!-- Paquetage Énumérations -->
+    <rect x="40" y="900" width="130" height="14" class="pkg-tab"/>
+    <text x="105" y="907" class="pkg-label">Énumérations</text>
+    <rect x="40" y="914" width="1620" height="270" class="pkg-box"/>
+  </g>
+
+  <!-- ================= CONNECTIONS ================= -->
+  <g id="connections">
+
+    <!-- Client -> Msisdn (dépendance, type d'attribut) -->
+    <path d="M 155 180 L 155 128" class="dashed-line" marker-end="url(#arrow)"/>
+
+    <!-- Client - Abonnement (1 - 0..*) -->
+    <path d="M 155 308 L 155 370" class="line"/>
+    <text x="167" y="320" class="assoc-text">1</text>
+    <text x="172" y="360" class="assoc-text">0..*</text>
+    <text x="125" y="339" class="role-text">souscrit</text>
+
+    <!-- Abonnement - Compte (0..* - 1) -->
+    <path d="M 155 456 L 155 520" class="line"/>
+    <text x="172" y="468" class="assoc-text">0..*</text>
+    <text x="167" y="510" class="assoc-text">1</text>
+    <text x="118" y="488" class="role-text">facturé sur</text>
+
+    <!-- Client - Compte (1 - 0..*) : association simple, route gauche -->
+    <path d="M 60 296 L 44 296 L 44 540 L 60 540" class="line"/>
+    <text x="50" y="284" class="assoc-text">1</text>
+    <text x="46" y="554" class="assoc-text">0..*</text>
+
+    <!-- Compte -> Montant (dépendance) -->
+    <path d="M 155 606 L 155 780" class="dashed-line" marker-end="url(#arrow)"/>
+
+    <!-- PaiementFacture -> Montant (dépendance) -->
+    <path d="M 350 816 L 250 816" class="dashed-line" marker-end="url(#arrow)"/>
+
+    <!-- Client - Conversation (1 - 0..*) -->
+    <path d="M 250 220 L 340 220" class="line"/>
+    <text x="266" y="210" class="assoc-text">1</text>
+    <text x="324" y="210" class="assoc-text">0..*</text>
+    <text x="295" y="232" class="role-text">mène</text>
+
+    <!-- Conversation compose TourDeParole (1 - 1..*, ordonné) -->
+    <path d="M 620 130 L 540 130" class="line" marker-end="url(#diamondFilled)"/>
+    <text x="552" y="120" class="assoc-text">1</text>
+    <text x="606" y="120" class="assoc-text">1..*</text>
+    <text x="580" y="142" class="role-text">{ordonné}</text>
+
+    <!-- Conversation - DossierAssistance (1 - 0..1), route supérieure -->
+    <path d="M 500 90 L 500 56 L 1000 56 L 1000 90" class="line"/>
+    <text x="514" y="70" class="assoc-text">1</text>
+    <text x="985" y="70" class="assoc-text">0..1</text>
+    <text x="750" y="46" class="role-text">fait l'objet de</text>
+
+    <!-- Conversation - EntreeAudit (1 - 0..*) -->
+    <path d="M 440 264 L 440 330" class="line"/>
+    <text x="452" y="276" class="assoc-text">1</text>
+    <text x="458" y="320" class="assoc-text">0..*</text>
+    <text x="402" y="297" class="role-text">journalise</text>
+
+    <!-- EntreeAudit auto-association : précédente (chaîne d'empreintes) -->
+    <path d="M 540 370 L 575 370 L 575 410 L 540 410" class="line" marker-end="url(#arrow)"/>
+    <text x="598" y="390" class="assoc-text">0..1</text>
+    <text x="592" y="424" class="role-text">précédente</text>
+
+    <!-- TourDeParole - Intention (1 - 0..1) -->
+    <path d="M 715 204 L 715 310" class="line"/>
+    <text x="727" y="218" class="assoc-text">1</text>
+    <text x="733" y="298" class="assoc-text">0..1</text>
+    <text x="680" y="257" class="role-text">exprime</text>
+
+    <!-- Intention - Operation (1 - 0..1) -->
+    <path d="M 715 382 L 715 520" class="line"/>
+    <text x="727" y="396" class="assoc-text">1</text>
+    <text x="733" y="508" class="assoc-text">0..1</text>
+    <text x="676" y="451" class="role-text">déclenche</text>
+
+    <!-- Compte - Operation (0..1 - 0..*) -->
+    <path d="M 250 540 L 630 540" class="line"/>
+    <text x="272" y="530" class="assoc-text">0..1</text>
+    <text x="612" y="530" class="assoc-text">0..*</text>
+    <text x="440" y="552" class="role-text">porte sur</text>
+
+    <!-- Operation -> IdentifiantOperation (dépendance, clé d'idempotence) -->
+    <path d="M 630 630 L 560 630" class="dashed-line" marker-end="url(#arrow)"/>
+
+    <!-- Operation - DecisionAutorisation (1 - 0..*) -->
+    <path d="M 850 600 L 1040 600" class="line"/>
+    <text x="862" y="590" class="assoc-text">1</text>
+    <text x="1026" y="590" class="assoc-text">0..*</text>
+    <text x="945" y="612" class="role-text">évaluée par</text>
+
+    <!-- DecisionAutorisation - RegleMetier (0..* - 1) -->
+    <path d="M 1240 600 L 1300 600" class="line"/>
+    <text x="1256" y="590" class="assoc-text">0..*</text>
+    <text x="1288" y="590" class="assoc-text">1</text>
+    <text x="1270" y="612" class="role-text">applique</text>
+
+    <!-- DossierAssistance agrège Operation (0..1 - 0..*) : opérations tentées -->
+    <path d="M 850 540 L 870 540 L 870 170 L 900 170" class="line" marker-end="url(#diamond)"/>
+    <text x="859" y="530" class="assoc-text">0..*</text>
+    <text x="877" y="158" class="assoc-text">0..1</text>
+    <text x="878" y="480" class="role-left">opérations tentées</text>
+
+    <!-- DossierAssistance - Ticket (1 - 0..1) -->
+    <path d="M 985 204 L 985 260" class="line"/>
+    <text x="996" y="214" class="assoc-text">1</text>
+    <text x="1002" y="250" class="assoc-text">0..1</text>
+    <text x="957" y="232" class="role-text">génère</text>
+
+    <!-- DossierAssistance - Conseiller (0..* - 0..1) + classe d'association -->
+    <path d="M 1100 130 L 1400 130" class="line"/>
+    <text x="1118" y="120" class="assoc-text">0..*</text>
+    <text x="1384" y="120" class="assoc-text">0..1</text>
+    <path d="M 1250 130 L 1250 260" class="dashed-line"/>
+
+    <!-- Affectation -> Creneau (dépendance) -->
+    <path d="M 1345 310 L 1400 310" class="dashed-line" marker-end="url(#arrow)"/>
+
+    <!-- Généralisation Operation <- PaiementFacture / Reclamation / GestionAbonnement -->
+    <path d="M 740 740 L 740 698" class="line" marker-end="url(#triangle)"/>
+    <path d="M 440 740 L 860 740" class="line"/>
+    <path d="M 440 740 L 440 780" class="line"/>
+    <path d="M 650 740 L 650 780" class="line"/>
+    <path d="M 860 740 L 860 780" class="line"/>
+
+    <!-- Généralisation RegleMetier <- RegleSeuil / RegleNiveauVerification -->
+    <path d="M 1405 700 L 1405 660" class="line" marker-end="url(#triangle)"/>
+    <path d="M 1330 700 L 1540 700" class="line"/>
+    <path d="M 1330 700 L 1330 740" class="line"/>
+    <path d="M 1540 700 L 1540 740" class="line"/>
+  </g>
+
+  <!-- ================= OBJETS VALEUR (vert) ================= -->
+
+  <g id="Msisdn" transform="translate(60,70)">
+    <rect width="190" height="58" class="box layer-green"/>
+    <line x1="0" y1="36" x2="190" y2="36" class="divider"/>
+    <text x="95" y="12" class="stereo-text">&lt;&lt;objet valeur&gt;&gt;</text>
+    <text x="95" y="27" class="header-text">Msisdn</text>
+    <text x="8" y="48" class="body-text">- valeur : Texte {E.164}</text>
+  </g>
+
+  <g id="Montant" transform="translate(60,780)">
+    <rect width="190" height="72" class="box layer-green"/>
+    <line x1="0" y1="36" x2="190" y2="36" class="divider"/>
+    <text x="95" y="12" class="stereo-text">&lt;&lt;objet valeur&gt;&gt;</text>
+    <text x="95" y="27" class="header-text">Montant</text>
+    <text x="8" y="48" class="body-text">- valeur : Decimal</text>
+    <text x="8" y="62" class="body-text">- devise : Texte</text>
+  </g>
+
+  <g id="IdentifiantOperation" transform="translate(370,590)">
+    <rect width="190" height="80" class="box layer-green"/>
+    <line x1="0" y1="36" x2="190" y2="36" class="divider"/>
+    <line x1="0" y1="58" x2="190" y2="58" class="divider"/>
+    <text x="95" y="12" class="stereo-text">&lt;&lt;objet valeur&gt;&gt;</text>
+    <text x="95" y="27" class="header-text">IdentifiantOperation</text>
+    <text x="8" y="48" class="body-text">- empreinte : Texte</text>
+    <text x="8" y="70" class="body-text">+ correspondA(autre) : Booleen</text>
+  </g>
+
+  <g id="Creneau" transform="translate(1400,274)">
+    <rect width="130" height="72" class="box layer-green"/>
+    <line x1="0" y1="36" x2="130" y2="36" class="divider"/>
+    <text x="65" y="12" class="stereo-text">&lt;&lt;objet valeur&gt;&gt;</text>
+    <text x="65" y="27" class="header-text">Creneau</text>
+    <text x="8" y="48" class="body-text">- debut : Horodatage</text>
+    <text x="8" y="62" class="body-text">- fin : Horodatage</text>
+  </g>
+
+  <!-- ================= RACINES D'AGRÉGAT / ABSTRAITES (rose) ================= -->
+
+  <g id="Client" transform="translate(60,180)">
+    <rect width="190" height="128" class="box layer-pink"/>
+    <line x1="0" y1="36" x2="190" y2="36" class="divider"/>
+    <text x="95" y="12" class="stereo-text">&lt;&lt;racine d'agrégat&gt;&gt;</text>
+    <text x="95" y="27" class="header-text">Client</text>
+    <text x="8" y="48" class="body-text">- identifiant : Texte</text>
+    <text x="8" y="62" class="body-text">- nomComplet : Texte</text>
+    <text x="8" y="76" class="body-text">- telephone : Msisdn</text>
+    <text x="8" y="90" class="body-text">- languePreferee : Langue</text>
+    <text x="8" y="104" class="body-text">- niveauVerification : Entier</text>
+    <text x="8" y="118" class="body-text">- estPrioritaire : Booleen</text>
+  </g>
+
+  <g id="Conversation" transform="translate(340,90)">
+    <rect width="200" height="174" class="box layer-pink"/>
+    <line x1="0" y1="36" x2="200" y2="36" class="divider"/>
+    <line x1="0" y1="124" x2="200" y2="124" class="divider"/>
+    <text x="100" y="12" class="stereo-text">&lt;&lt;racine d'agrégat&gt;&gt;</text>
+    <text x="100" y="27" class="header-text">Conversation</text>
+    <text x="8" y="48" class="body-text">- identifiant : Texte</text>
+    <text x="8" y="62" class="body-text">- canal : Canal</text>
+    <text x="8" y="76" class="body-text">- langue : Langue</text>
+    <text x="8" y="90" class="body-text">- debutLe : Horodatage</text>
+    <text x="8" y="104" class="body-text">- finLe : Horodatage [0..1]</text>
+    <text x="8" y="118" class="body-text">- issue : MotifCloture [0..1]</text>
+    <text x="8" y="136" class="body-text">+ ajouterTour(tour)</text>
+    <text x="8" y="150" class="body-text">+ escalader(motif)</text>
+    <text x="8" y="164" class="body-text">+ clore(issue)</text>
+  </g>
+
+  <g id="DossierAssistance" transform="translate(900,90)">
+    <rect width="200" height="114" class="box layer-pink"/>
+    <line x1="0" y1="36" x2="200" y2="36" class="divider"/>
+    <text x="100" y="12" class="stereo-text">&lt;&lt;racine d'agrégat&gt;&gt;</text>
+    <text x="100" y="27" class="header-text">DossierAssistance</text>
+    <text x="8" y="48" class="body-text">- identifiant : Texte</text>
+    <text x="8" y="62" class="body-text">- motif : MotifEscalade</text>
+    <text x="8" y="76" class="body-text">- synthese : Texte</text>
+    <text x="8" y="90" class="body-text">- creeLe : Horodatage</text>
+    <text x="8" y="104" class="body-text">- resolution : Texte [0..1]</text>
+  </g>
+
+  <g id="Operation" transform="translate(630,520)">
+    <rect width="220" height="178" class="box layer-pink"/>
+    <line x1="0" y1="36" x2="220" y2="36" class="divider"/>
+    <line x1="0" y1="126" x2="220" y2="126" class="divider"/>
+    <text x="110" y="12" class="stereo-text">&lt;&lt;racine d'agrégat · Template Method&gt;&gt;</text>
+    <text x="110" y="27" class="header-text abstract-name">Operation</text>
+    <text x="8" y="48" class="body-text">- identifiant : Texte</text>
+    <text x="8" y="62" class="body-text">- statut : StatutOperation</text>
+    <text x="8" y="76" class="body-text">- reference : Texte [0..1]</text>
+    <text x="8" y="90" class="body-text">- creeLe : Horodatage</text>
+    <text x="8" y="104" class="body-text">- confirmeeLe : Horodatage [0..1]</text>
+    <text x="8" y="118" class="body-text">- identite : IdentifiantOperation</text>
+    <text x="8" y="138" class="body-text">+ traiter()</text>
+    <text x="8" y="152" class="body-text">+ estAutorisee() : Booleen</text>
+    <text x="8" y="166" class="body-text abstract-op">+ executer()</text>
+  </g>
+
+  <g id="RegleMetier" transform="translate(1300,540)">
+    <rect width="210" height="120" class="box layer-pink"/>
+    <line x1="0" y1="36" x2="210" y2="36" class="divider"/>
+    <line x1="0" y1="84" x2="210" y2="84" class="divider"/>
+    <text x="105" y="12" class="stereo-text">&lt;&lt;Strategy&gt;&gt;</text>
+    <text x="105" y="27" class="header-text abstract-name">RegleMetier</text>
+    <text x="8" y="48" class="body-text">- identifiant : Texte</text>
+    <text x="8" y="62" class="body-text">- description : Texte</text>
+    <text x="8" y="76" class="body-text">- estActive : Booleen</text>
+    <text x="8" y="96" class="body-text abstract-op">+ evaluer(op, client) : Decision</text>
+    <text x="8" y="110" class="body-text">+ sAppliqueA(op) : Booleen</text>
+  </g>
+
+  <!-- ================= ENTITÉS (jaune) ================= -->
+
+  <g id="Abonnement" transform="translate(60,370)">
+    <rect width="190" height="86" class="box layer-yellow"/>
+    <line x1="0" y1="22" x2="190" y2="22" class="divider"/>
+    <text x="95" y="12" class="header-text">Abonnement</text>
+    <text x="8" y="34" class="body-text">- msisdn : Msisdn</text>
+    <text x="8" y="48" class="body-text">- offre : Texte</text>
+    <text x="8" y="62" class="body-text">- statut : Texte</text>
+    <text x="8" y="76" class="body-text">- activeLe : Horodatage</text>
+  </g>
+
+  <g id="Compte" transform="translate(60,520)">
+    <rect width="190" height="86" class="box layer-yellow"/>
+    <line x1="0" y1="22" x2="190" y2="22" class="divider"/>
+    <text x="95" y="12" class="header-text">Compte</text>
+    <text x="8" y="34" class="body-text">- numeroCompte : Texte</text>
+    <text x="8" y="48" class="body-text">- type : Texte</text>
+    <text x="8" y="62" class="body-text">- solde : Montant</text>
+    <text x="8" y="76" class="body-text">- statut : Texte</text>
+  </g>
+
+  <g id="TourDeParole" transform="translate(620,90)">
+    <rect width="190" height="114" class="box layer-yellow"/>
+    <line x1="0" y1="22" x2="190" y2="22" class="divider"/>
+    <text x="95" y="12" class="header-text">TourDeParole</text>
+    <text x="8" y="34" class="body-text">- numero : Entier</text>
+    <text x="8" y="48" class="body-text">- locuteur : Locuteur</text>
+    <text x="8" y="62" class="body-text">- transcription : Texte</text>
+    <text x="8" y="76" class="body-text">- sentiment : Sentiment</text>
+    <text x="8" y="90" class="body-text">- horodatage : Horodatage</text>
+    <text x="8" y="104" class="body-text">- latenceMs : Entier [0..1]</text>
+  </g>
+
+  <g id="Intention" transform="translate(620,310)">
+    <rect width="190" height="72" class="box layer-yellow"/>
+    <line x1="0" y1="22" x2="190" y2="22" class="divider"/>
+    <text x="95" y="12" class="header-text">Intention</text>
+    <text x="8" y="34" class="body-text">- libelle : Texte</text>
+    <text x="8" y="48" class="body-text">- confiance : Reel</text>
+    <text x="8" y="62" class="body-text">- parametres : Dictionnaire</text>
+  </g>
+
+  <g id="EntreeAudit" transform="translate(340,330)">
+    <rect width="200" height="136" class="box layer-yellow"/>
+    <line x1="0" y1="22" x2="200" y2="22" class="divider"/>
+    <line x1="0" y1="112" x2="200" y2="112" class="divider"/>
+    <text x="100" y="12" class="header-text">EntreeAudit</text>
+    <text x="8" y="34" class="body-text">- sequence : Entier</text>
+    <text x="8" y="48" class="body-text">- evenement : Texte</text>
+    <text x="8" y="62" class="body-text">- contenu : Document</text>
+    <text x="8" y="76" class="body-text">- horodatage : Horodatage</text>
+    <text x="8" y="90" class="body-text">- empreinte : Texte</text>
+    <text x="8" y="104" class="body-text">- empreintePrecedente : Texte</text>
+    <text x="8" y="124" class="body-text">+ verifierChaine() : Booleen</text>
+  </g>
+
+  <g id="Ticket" transform="translate(900,260)">
+    <rect width="170" height="86" class="box layer-yellow"/>
+    <line x1="0" y1="22" x2="170" y2="22" class="divider"/>
+    <text x="85" y="12" class="header-text">Ticket</text>
+    <text x="8" y="34" class="body-text">- identifiantExterne : Texte</text>
+    <text x="8" y="48" class="body-text">- objet : Texte</text>
+    <text x="8" y="62" class="body-text">- priorite : Priorite</text>
+    <text x="8" y="76" class="body-text">- etat : EtatTicket</text>
+  </g>
+
+  <g id="Affectation" transform="translate(1155,260)">
+    <rect width="190" height="100" class="box layer-yellow"/>
+    <line x1="0" y1="36" x2="190" y2="36" class="divider"/>
+    <text x="95" y="12" class="stereo-text">&lt;&lt;classe d'association&gt;&gt;</text>
+    <text x="95" y="27" class="header-text">Affectation</text>
+    <text x="8" y="48" class="body-text">- mode : ModeAssistance</text>
+    <text x="8" y="62" class="body-text">- affecteeLe : Horodatage</text>
+    <text x="8" y="76" class="body-text">- creneauRappel : Creneau [0..1]</text>
+    <text x="8" y="90" class="body-text">- accuseeLe : Horodatage [0..1]</text>
+  </g>
+
+  <g id="Conseiller" transform="translate(1400,90)">
+    <rect width="190" height="86" class="box layer-yellow"/>
+    <line x1="0" y1="22" x2="190" y2="22" class="divider"/>
+    <text x="95" y="12" class="header-text">Conseiller</text>
+    <text x="8" y="34" class="body-text">- identifiant : Texte</text>
+    <text x="8" y="48" class="body-text">- nom : Texte</text>
+    <text x="8" y="62" class="body-text">- competences : Texte [1..*]</text>
+    <text x="8" y="76" class="body-text">- estDisponible : Booleen</text>
+  </g>
+
+  <g id="DecisionAutorisation" transform="translate(1040,564)">
+    <rect width="200" height="72" class="box layer-yellow"/>
+    <line x1="0" y1="22" x2="200" y2="22" class="divider"/>
+    <text x="100" y="12" class="header-text">DecisionAutorisation</text>
+    <text x="8" y="34" class="body-text">- decision : Decision</text>
+    <text x="8" y="48" class="body-text">- justification : Texte</text>
+    <text x="8" y="62" class="body-text">- renduLe : Horodatage</text>
+  </g>
+
+  <!-- ================= SPÉCIALISATIONS CONCRÈTES (bleu) ================= -->
+
+  <g id="PaiementFacture" transform="translate(350,780)">
+    <rect width="180" height="72" class="box layer-blue"/>
+    <line x1="0" y1="22" x2="180" y2="22" class="divider"/>
+    <text x="90" y="12" class="header-text">PaiementFacture</text>
+    <text x="8" y="34" class="body-text">- montant : Montant</text>
+    <text x="8" y="48" class="body-text">- referenceFacture : Texte</text>
+    <text x="8" y="62" class="body-text">- moyenPaiement : Texte</text>
+  </g>
+
+  <g id="Reclamation" transform="translate(560,780)">
+    <rect width="180" height="72" class="box layer-blue"/>
+    <line x1="0" y1="22" x2="180" y2="22" class="divider"/>
+    <text x="90" y="12" class="header-text">Reclamation</text>
+    <text x="8" y="34" class="body-text">- objet : Texte</text>
+    <text x="8" y="48" class="body-text">- description : Texte</text>
+    <text x="8" y="62" class="body-text">- canalReponse : Texte</text>
+  </g>
+
+  <g id="GestionAbonnement" transform="translate(770,780)">
+    <rect width="180" height="72" class="box layer-blue"/>
+    <line x1="0" y1="22" x2="180" y2="22" class="divider"/>
+    <text x="90" y="12" class="header-text">GestionAbonnement</text>
+    <text x="8" y="34" class="body-text">- msisdn : Msisdn</text>
+    <text x="8" y="48" class="body-text">- action : Texte</text>
+    <text x="8" y="62" class="body-text">- offreCible : Texte [0..1]</text>
+  </g>
+
+  <g id="RegleSeuil" transform="translate(1240,740)">
+    <rect width="180" height="72" class="box layer-blue"/>
+    <line x1="0" y1="22" x2="180" y2="22" class="divider"/>
+    <text x="90" y="12" class="header-text">RegleSeuil</text>
+    <text x="8" y="34" class="body-text">- grandeur : Texte</text>
+    <text x="8" y="48" class="body-text">- seuil : Reel</text>
+    <text x="8" y="62" class="body-text">- periode : Texte</text>
+  </g>
+
+  <g id="RegleNiveauVerification" transform="translate(1440,740)">
+    <rect width="200" height="58" class="box layer-blue"/>
+    <line x1="0" y1="22" x2="200" y2="22" class="divider"/>
+    <text x="100" y="12" class="header-text">RegleNiveauVerification</text>
+    <text x="8" y="34" class="body-text">- niveauRequis : Entier</text>
+    <text x="8" y="48" class="body-text">- natures : Texte [1..*]</text>
+  </g>
+
+  <!-- ================= ÉNUMÉRATIONS (violet) — rangée 1 ================= -->
+
+  <g id="Locuteur" transform="translate(80,930)">
+    <rect width="180" height="86" class="box layer-purple"/>
+    <line x1="0" y1="36" x2="180" y2="36" class="divider"/>
+    <text x="90" y="12" class="stereo-text">&lt;&lt;énumération&gt;&gt;</text>
+    <text x="90" y="27" class="header-text">Locuteur</text>
+    <text x="8" y="48" class="body-text">CLIENT</text>
+    <text x="8" y="62" class="body-text">ASSISTANT</text>
+    <text x="8" y="76" class="body-text">CONSEILLER</text>
+  </g>
+
+  <g id="Sentiment" transform="translate(340,930)">
+    <rect width="180" height="100" class="box layer-purple"/>
+    <line x1="0" y1="36" x2="180" y2="36" class="divider"/>
+    <text x="90" y="12" class="stereo-text">&lt;&lt;énumération&gt;&gt;</text>
+    <text x="90" y="27" class="header-text">Sentiment</text>
+    <text x="8" y="48" class="body-text">POSITIF</text>
+    <text x="8" y="62" class="body-text">NEUTRE</text>
+    <text x="8" y="76" class="body-text">NEGATIF</text>
+    <text x="8" y="90" class="body-text">AGRESSIF</text>
+  </g>
+
+  <g id="Langue" transform="translate(600,930)">
+    <rect width="180" height="86" class="box layer-purple"/>
+    <line x1="0" y1="36" x2="180" y2="36" class="divider"/>
+    <text x="90" y="12" class="stereo-text">&lt;&lt;énumération&gt;&gt;</text>
+    <text x="90" y="27" class="header-text">Langue</text>
+    <text x="8" y="48" class="body-text">FRANCAIS</text>
+    <text x="8" y="62" class="body-text">ARABE</text>
+    <text x="8" y="76" class="body-text">ANGLAIS</text>
+  </g>
+
+  <g id="Canal" transform="translate(860,930)">
+    <rect width="180" height="72" class="box layer-purple"/>
+    <line x1="0" y1="36" x2="180" y2="36" class="divider"/>
+    <text x="90" y="12" class="stereo-text">&lt;&lt;énumération&gt;&gt;</text>
+    <text x="90" y="27" class="header-text">Canal</text>
+    <text x="8" y="48" class="body-text">VOIX</text>
+    <text x="8" y="62" class="body-text">TEXTE</text>
+  </g>
+
+  <g id="MotifCloture" transform="translate(1120,930)">
+    <rect width="180" height="100" class="box layer-purple"/>
+    <line x1="0" y1="36" x2="180" y2="36" class="divider"/>
+    <text x="90" y="12" class="stereo-text">&lt;&lt;énumération&gt;&gt;</text>
+    <text x="90" y="27" class="header-text">MotifCloture</text>
+    <text x="8" y="48" class="body-text">RESOLUE</text>
+    <text x="8" y="62" class="body-text">ESCALADEE</text>
+    <text x="8" y="76" class="body-text">RAPPEL_PLANIFIE</text>
+    <text x="8" y="90" class="body-text">ABANDONNEE</text>
+  </g>
+
+  <g id="Decision" transform="translate(1380,930)">
+    <rect width="180" height="100" class="box layer-purple"/>
+    <line x1="0" y1="36" x2="180" y2="36" class="divider"/>
+    <text x="90" y="12" class="stereo-text">&lt;&lt;énumération&gt;&gt;</text>
+    <text x="90" y="27" class="header-text">Decision</text>
+    <text x="8" y="48" class="body-text">AUTORISE</text>
+    <text x="8" y="62" class="body-text">CONFIRMATION_REQUISE</text>
+    <text x="8" y="76" class="body-text">REFUSE</text>
+    <text x="8" y="90" class="body-text">ESCALADE</text>
+  </g>
+
+  <!-- ================= ÉNUMÉRATIONS (violet) — rangée 2 ================= -->
+
+  <g id="StatutOperation" transform="translate(210,1050)">
+    <rect width="180" height="114" class="box layer-purple"/>
+    <line x1="0" y1="36" x2="180" y2="36" class="divider"/>
+    <text x="90" y="12" class="stereo-text">&lt;&lt;énumération&gt;&gt;</text>
+    <text x="90" y="27" class="header-text">StatutOperation</text>
+    <text x="8" y="48" class="body-text">PROPOSEE</text>
+    <text x="8" y="62" class="body-text">CONFIRMEE</text>
+    <text x="8" y="76" class="body-text">EXECUTEE</text>
+    <text x="8" y="90" class="body-text">REFUSEE</text>
+    <text x="8" y="104" class="body-text">ECHOUEE</text>
+  </g>
+
+  <g id="MotifEscalade" transform="translate(470,1050)">
+    <rect width="180" height="114" class="box layer-purple"/>
+    <line x1="0" y1="36" x2="180" y2="36" class="divider"/>
+    <text x="90" y="12" class="stereo-text">&lt;&lt;énumération&gt;&gt;</text>
+    <text x="90" y="27" class="header-text">MotifEscalade</text>
+    <text x="8" y="48" class="body-text">DEMANDE_CLIENT</text>
+    <text x="8" y="62" class="body-text">MECONTENTEMENT</text>
+    <text x="8" y="76" class="body-text">REGLE_METIER</text>
+    <text x="8" y="90" class="body-text">INCOMPREHENSION</text>
+    <text x="8" y="104" class="body-text">INCIDENT_TECHNIQUE</text>
+  </g>
+
+  <g id="ModeAssistance" transform="translate(730,1050)">
+    <rect width="180" height="72" class="box layer-purple"/>
+    <line x1="0" y1="36" x2="180" y2="36" class="divider"/>
+    <text x="90" y="12" class="stereo-text">&lt;&lt;énumération&gt;&gt;</text>
+    <text x="90" y="27" class="header-text">ModeAssistance</text>
+    <text x="8" y="48" class="body-text">TRANSFERT</text>
+    <text x="8" y="62" class="body-text">RAPPEL</text>
+  </g>
+
+  <g id="Priorite" transform="translate(990,1050)">
+    <rect width="180" height="100" class="box layer-purple"/>
+    <line x1="0" y1="36" x2="180" y2="36" class="divider"/>
+    <text x="90" y="12" class="stereo-text">&lt;&lt;énumération&gt;&gt;</text>
+    <text x="90" y="27" class="header-text">Priorite</text>
+    <text x="8" y="48" class="body-text">BASSE</text>
+    <text x="8" y="62" class="body-text">NORMALE</text>
+    <text x="8" y="76" class="body-text">HAUTE</text>
+    <text x="8" y="90" class="body-text">CRITIQUE</text>
+  </g>
+
+  <g id="EtatTicket" transform="translate(1250,1050)">
+    <rect width="180" height="100" class="box layer-purple"/>
+    <line x1="0" y1="36" x2="180" y2="36" class="divider"/>
+    <text x="90" y="12" class="stereo-text">&lt;&lt;énumération&gt;&gt;</text>
+    <text x="90" y="27" class="header-text">EtatTicket</text>
+    <text x="8" y="48" class="body-text">OUVERT</text>
+    <text x="8" y="62" class="body-text">AFFECTE</text>
+    <text x="8" y="76" class="body-text">EN_COURS</text>
+    <text x="8" y="90" class="body-text">CLOS</text>
+  </g>
+
+</svg>

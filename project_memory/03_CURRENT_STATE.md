@@ -2,10 +2,10 @@
 
 ## Current Objective
 Phase 5 — finalize all report figures one at a time, using only the established per-family visual
-patterns. Figures 1–9 validated. Figure 10 (fig-classes-domaine) next.
+patterns. Figures 1–9 validated. Figures 1–10 validated. Figure 11 (fig-classes-agents) next.
 
 ## Current Chapter / Section
-Ch2 §escalade vers un conseiller humain done. Phase 5 figure 10/36 (fig-classes-domaine) in progress.
+Ch3 §modèle du domaine done. Phase 5 figure 11/36 (fig-classes-agents) next.
 
 ## Current Task
 Confirm figure 6/36 (fig-cu-escalade). Then continue one figure at a time. Before ANY new figure:
