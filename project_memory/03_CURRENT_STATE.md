@@ -2,10 +2,10 @@
 
 ## Current Objective
 Phase 5 — finalize all report figures one at a time, using only the established per-family visual
-patterns. Figures 1–9 validated. Figures 1–10 validated. Figure 11 (fig-classes-agents) next.
+patterns. Figures 1–9 validated. Figures 1–10 validated & pushed (fig10 b779191 + MSISDN→Numéro d'appel rename). Figure 11 (fig-classes-agents) AWAITING user-supplied SVG.
 
 ## Current Chapter / Section
-Ch3 §modèle du domaine done. Phase 5 figure 11/36 (fig-classes-agents) next.
+Ch3 §modèle du domaine done. Phase 5 figure 11/36 (fig-classes-agents) awaiting user-complete SVG; do NOT present draft.
 
 ## Current Task
 Confirm figure 6/36 (fig-cu-escalade). Then continue one figure at a time. Before ANY new figure:

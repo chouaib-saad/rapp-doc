@@ -16,7 +16,8 @@ Active after Phase 2 + final reading + Phase 5 figure 1. No LaTeX build in sandb
 - [x] **Figure 7:** fig-seq-doc (Ch2) — EXACT user sequence SVG; case renamed 'Recherche et génération d'une réponse fondée sur les connaissances'; Ch2 adapted. CONFIRMED.
 - [x] **Figure 8:** fig-seq-action (Ch2) — EXACT user sequence SVG; Ch2 case renamed 'Réalisation d'une opération sécurisée'; seq intro + invariant integrated. CONFIRMED.
 - [x] **Figure 9:** fig-seq-escalade (Ch2) — EXACT user sequence SVG; Ch2 case renamed BACK to 'Escalade vers un conseiller humain'; seq intro adapted to 6 participants/alt/ticket. CONFIRMED. fig-cu-escalade.svg title line updated.
-- [x] **Figure 10:** fig-classes-domaine (Ch3) — EXACT user class diagram; Ch3 §Modèle du domaine adapted to aggregates/value objects/enums. CONFIRMED.
+- [x] **Figure 10:** fig-classes-domaine (Ch3) — EXACT user class diagram; Ch3 §Modèle du domaine adapted to aggregates/value objects/enums. CONFIRMED (b779191). Post-confirm: MSISDN renamed to 'Numéro d'appel' in fig-classes-domaine.svg + fig-mcd.tex.
+- [ ] **Figure 11:** fig-classes-agents (Ch3) — AWAITING user-supplied complete SVG. Do NOT use the draft; user will send the final SVG.
 - [ ] then the remaining figures in the order below (validate each before the next):
       fig-cu-action, fig-cu-escalade, fig-seq-*, fig-classes-*, fig-act-*,
       fig-etats-*, fig-pipeline-agent, fig-orchestration, fig-contexte, fig-chaine-temps-reel,
