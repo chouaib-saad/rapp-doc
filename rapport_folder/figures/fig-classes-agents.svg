@@ -394,9 +394,9 @@
 <rect class="shd" x="922.6" y="842.6" width="250" height="126"/>
 <rect x="920" y="840" width="250" height="126" class="bx pink"/>
 <text x="1045" y="858" text-anchor="middle" class="cname">AgentTechnique</text>
-<line class="sep" x1="920" y="866" x2="1170" y="866"/>
+<line class="sep" x1="920" y1="866" x2="1170" y2="866"/>
 <text x="932" y="883" class="feat">domaine = TECHNIQUE</text>
-<line class="sep" x1="920" y="892" x2="1170" y="892"/>
+<line class="sep" x1="920" y1="892" x2="1170" y2="892"/>
 <text x="932" y="909" class="feat">diagnostiquerLigne()</text>
 <text x="932" y="925" class="feat">verifierCouverture()</text>
 <text x="932" y="941" class="feat">reinitialiserSIM()</text>
