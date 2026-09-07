@@ -2,10 +2,10 @@
 
 ## Current Objective
 Phase 5 — finalize all report figures one at a time, using only the established per-family visual
-patterns. Figures 1–9 validated. Figures 1–11 validated & integrated (fig10 b779191 + MSISDN→Numéro d'appel rename; fig11 exact user SVG, couche agents). Figure 12 (fig-classes-politique) next.
+patterns. Figures 1–9 validated. Figures 1–12 validated & integrated (fig12 exact user SVG, moteur de politique; Ch3/Ch2/Ch4 aligned to 4 verdicts). Figure 13 (fig-seq-tour, Ch3) next.
 
 ## Current Chapter / Section
-Ch3 §couche des agents done. Phase 5 figure 12/36 (fig-classes-politique) next.
+Ch3 §moteur de politique done. Phase 5 figure 13/36 (fig-seq-tour) next.
 
 ## Current Task
 Confirm figure 6/36 (fig-cu-escalade). Then continue one figure at a time. Before ANY new figure:

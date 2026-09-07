@@ -464,9 +464,9 @@ Chaque opération sensible reçoit une identité propre, calculée à partir des
 
 La composition de cette identité a fait l'objet d'une correction significative, qui illustre la subtilité du problème.
 
-Certains éléments du contexte transmis au moteur de règles servent au jugement sans définir l'opération. Le montant restant dû, le nombre de reports déjà accordés dans l'année, le nombre de réclamations ouvertes et l'état de la ligne appartiennent à cette catégorie. Or chacune de ces valeurs change entre une première tentative et sa reprise, précisément parce que la première tentative a abouti. Le nombre de réclamations ouvertes passe ainsi de zéro à un dès qu'une réclamation est déposée ; l'état de la ligne passe d'en attente à active dès qu'une activation est réalisée.
+Certains éléments du contexte transmis au moteur de politique servent au jugement sans définir l'opération. Le montant restant dû, le nombre de reports déjà accordés dans l'année, le nombre de réclamations ouvertes et l'état de la ligne appartiennent à cette catégorie. Or chacune de ces valeurs change entre une première tentative et sa reprise, précisément parce que la première tentative a abouti. Le nombre de réclamations ouvertes passe ainsi de zéro à un dès qu'une réclamation est déposée ; l'état de la ligne passe d'en attente à active dès qu'une activation est réalisée.
 
-Inclure ces éléments dans l'identité de l'opération aurait donc produit exactement l'effet inverse de celui recherché. Une reprise aurait présenté une identité différente, aurait été considérée comme une opération nouvelle, et aurait déposé une seconde réclamation ou relancé une activation. Ces éléments sont donc explicitement exclus du calcul de l'identité tout en demeurant transmis au moteur de règles pour le jugement.
+Inclure ces éléments dans l'identité de l'opération aurait donc produit exactement l'effet inverse de celui recherché. Une reprise aurait présenté une identité différente, aurait été considérée comme une opération nouvelle, et aurait déposé une seconde réclamation ou relancé une activation. Ces éléments sont donc explicitement exclus du calcul de l'identité tout en demeurant transmis au moteur de politique pour le jugement.
 
 \subsubsection{Garantie sous concurrence réelle}
 
@@ -948,7 +948,7 @@ La décision fut d'ajouter au démarrage une vérification refusant l'exécution
 
 Le constat s'est manifesté lors de la vérification de la reprise des opérations : une seconde réclamation était déposée alors que le mécanisme d'exécution unique aurait dû l'empêcher.
 
-L'analyse a identifié la cause. L'identité de l'opération incluait des éléments du contexte transmis au moteur de règles, dont le nombre de réclamations ouvertes. Or cette valeur passait de zéro à un précisément parce que la première tentative avait réussi. La reprise présentait donc une identité différente et était traitée comme une opération nouvelle. Le mécanisme fonctionnait exactement comme il était écrit, mais il avait été écrit sur une définition erronée de l'identité.
+L'analyse a identifié la cause. L'identité de l'opération incluait des éléments du contexte transmis au moteur de politique, dont le nombre de réclamations ouvertes. Or cette valeur passait de zéro à un précisément parce que la première tentative avait réussi. La reprise présentait donc une identité différente et était traitée comme une opération nouvelle. Le mécanisme fonctionnait exactement comme il était écrit, mais il avait été écrit sur une définition erronée de l'identité.
 
 La décision fut de distinguer explicitement les éléments qui définissent une opération de ceux qui servent seulement à la juger, et d'exclure les seconds du calcul de l'identité tout en les conservant dans le contexte transmis aux règles. Le résultat est une propriété d'exécution unique effective, y compris lorsque l'état du client évolue entre une tentative et sa reprise.
 
