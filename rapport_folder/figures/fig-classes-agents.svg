@@ -96,9 +96,9 @@
   <!-- Auto-association : transfert d'agent à agent -->
   <path d="M 500,470 L 430,470 L 430,515 L 500,515" class="rel" marker-end="url(#nav)"/>
   <text x="448" y="462" text-anchor="middle" class="role">source</text>
-  <text x="492" y="462" text-anchor="middle" class="mult">0..*</text>
+  <text x="485" y="462" text-anchor="middle" class="mult">0..*</text>
   <text x="452" y="531" text-anchor="middle" class="role">cible</text>
-  <text x="492" y="531" text-anchor="middle" class="mult">0..*</text>
+  <text x="485" y="531" text-anchor="middle" class="mult">0..*</text>
   <text x="422" y="494" text-anchor="end" class="role">transfère vers</text>
   <!-- rattachement de la classe d'association Transfert -->
   <path d="M 430,515 L 430,610" class="reld"/>
@@ -148,7 +148,7 @@
   <path d="M 760,805 L 760,840" class="rel"/>
   <path d="M 1045,805 L 1045,840" class="rel"/>
   <path d="M 1325,805 L 1325,840" class="rel"/>
-  <text x="660" y="793" text-anchor="start" class="cons">{disjoint, complet}</text>
+  <text x="660" y="793" text-anchor="start" class="cons"></text>
 
   <!-- AgentEscalade crée DossierEscalade -->
   <path d="M 1325,966 L 1325,1030" class="reld" marker-end="url(#dep)"/>
