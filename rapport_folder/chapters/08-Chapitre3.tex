@@ -111,7 +111,7 @@ Ces trois règles servent un objectif unique. Elles garantissent qu'aucun chemin
 
 \subsection{Diagrammes de classes}
 
-Nous présentons trois diagrammes de classes, chacun répondant à une question distincte. Le premier décrit le modèle du domaine. Le deuxième décrit la hiérarchie des agents conversationnels. Le troisième décrit le moteur de décision déterministe.
+Nous présentons trois diagrammes de classes, chacun répondant à une question distincte. Le premier décrit le modèle du domaine. Le deuxième décrit la couche des agents conversationnels. Le troisième décrit le moteur de décision déterministe.
 
 \subsubsection{Modèle du domaine}
 
@@ -127,15 +127,21 @@ La figure \ref{fig:classes-domaine} présente ce modèle.
 
 \figureTikz{Diagramme de classes du modèle du domaine}{classes-domaine}{fig-classes-domaine}
 
-\subsubsection{Hiérarchie des agents conversationnels}
+\subsubsection{Couche des agents conversationnels}
 
-La couche conversationnelle repose sur une hiérarchie simple mais dont la contrainte principale est peu commune. Une classe de base porte tout ce qui est commun à l'ensemble des agents : l'observation de chaque tour de parole du client, l'évaluation du sentiment, l'enregistrement de l'échange, le protocole de clôture, la politique de langue et la règle d'abstention documentaire. Cinq agents spécialisés en dérivent, chacun couvrant un périmètre précis.
+La couche conversationnelle ne tient pas dans une simple hiérarchie : quatre classes d'orchestration en constituent la colonne vertébrale. La session vocale pilote le pipeline vocal, journalise l'échange dans la conversation, applique les règles de session, compose le contexte de session et détient l'agent actif. Le registre des agents agrège les agents et compose les définitions de domaine ; il sait renvoyer l'agent initial, l'agent d'un domaine ou celui qui correspond à une intention. Le générateur d'instructions compose les instructions d'un agent à partir de sa définition de domaine, de ses outils et de la langue, puis les adapte au contexte. Les règles de session bornent enfin l'ensemble : nombre maximal de transferts et de clarifications, seuil de mécontentement, autorisation d'un transfert, exigence d'une clarification ou d'une escalade.
 
-La contrainte notable tient à la relation entre les instructions d'un agent et les capacités dont il dispose. Ces instructions ne sont pas rédigées à la main indépendamment de l'outillage : elles sont dérivées de l'ensemble des capacités effectivement attachées à l'agent. Il en résulte qu'un agent ne peut pas recevoir l'instruction d'utiliser une capacité qu'il ne possède pas. Cette propriété élimine par construction une classe entière de défauts, celle où une consigne mentionne une capacité absente et où l'agent, ne pouvant l'exécuter, produit un comportement imprévisible.
+Les agents proprement dits forment une hiérarchie à deux niveaux. \emph{AgentDeBase} porte le domaine, les instructions et les comportements communs — se présenter, traiter un tour, déterminer si une intention relève de son périmètre, exposer ses outils spécifiques, demander un transfert, journaliser le tour. Cinq agents en dérivent, et la généralisation porte la contrainte \{disjoint, complet\} : un même domaine est traité par un seul agent et aucun domaine n'est laissé sans agent. L'agent d'accueil ouvre la conversation, vérifie l'identité et qualifie la demande. Trois agents spécialisés couvrent les domaines métier : la facturation, l'abonnement et le technique. L'agent d'escalade — celui que la vue dynamique désigne comme agent de supervision — constitue le dossier, transfère au conseiller, planifie un rappel ou ouvre un ticket.
 
-La figure \ref{fig:classes-agents} présente cette hiérarchie.
+Cette structure explique la propriété essentielle de la couche. Une définition de domaine décrit le domaine, les sujets couverts et la phrase de transition ; le registre des agents compose ces définitions, et le générateur d'instructions en déduit les instructions de l'agent à partir des outils réellement exposés. Il devient impossible qu'un agent soit chargé d'une capacité qu'il ne possède pas : la consigne et l'outillage dérivent de la même source, puisqu'une consigne ne peut mentionner que les outils de la définition associée.
 
-\figureTikz{Diagramme de classes de la hiérarchie des agents}{classes-agents}{fig-classes-agents}
+L'outillage n'est pas une collection hétérogène. La classe abstraite \emph{Outil} décrit un outil par son nom, sa description, son schéma d'arguments, la confirmation qu'il requiert et le niveau de vérification nécessaire. Deux spécialisations la matérialisent : \emph{OutilMCP}, qui délègue à \emph{PortOutilsMCP}, et \emph{OutilMetier}, qui délègue à \emph{PortMetier}. Ce dernier est à son tour spécialisé en interfaces dédiées aux clients, à la facturation, aux abonnements, à l'assistance et aux connaissances. La frontière avec le domaine est ainsi portée par des interfaces typées plutôt que par des appels directs.
+
+Enfin, le passage de relais et le contexte sont modélisés explicitement. Une auto-association relie un agent source à un agent cible ; la classe d'association \emph{Transfert} en porte le rang, le motif, le résumé, l'horodatage et l'acceptation. Le contexte de session référence le client identifié et rassemble la langue, le niveau de vérification, le sentiment courant, le résumé et les compteurs de transfert et de clarification ; les règles de session s'appuient sur ces compteurs pour trancher.
+
+La figure \ref{fig:classes-agents} présente cette couche.
+
+\figureTikz{Diagramme de classes de la couche agents}{classes-agents}{fig-classes-agents}
 
 \subsubsection{Moteur de décision déterministe}
 
@@ -301,7 +307,7 @@ La distinction entre le deuxième et le troisième temps est la clé de la conce
 
 Un agent unique chargé de l'ensemble des domaines pose trois difficultés. Ses instructions deviennent longues, et une instruction longue est moins bien suivie qu'une instruction courte. Ses capacités deviennent nombreuses, et un ensemble de capacités étendu augmente la probabilité d'un appel inapproprié. Enfin, toute évolution d'un domaine impose de reconsidérer l'ensemble, puisque rien n'est isolé.
 
-Nous avons donc réparti la charge entre cinq agents. Un agent d'accueil ouvre la conversation et détermine la nature de la demande. Trois agents spécialisés couvrent chacun un domaine métier. Un agent de supervision traite les situations qui débordent des trois domaines et pilote les cas d'escalade. Chacun ne porte que les instructions et les capacités de son périmètre.
+Nous avons donc réparti la charge entre cinq agents. Un agent d'accueil ouvre la conversation et détermine la nature de la demande. Trois agents spécialisés couvrent chacun un domaine métier : la facturation, l'abonnement et le technique. Un agent d'escalade traite les situations qui débordent des trois domaines métier et pilote les cas d'escalade. Chacun ne porte que les instructions et les capacités de son périmètre.
 
 \subsubsection{Déclaration unique des domaines}
 
@@ -320,7 +326,7 @@ Le tableau \ref{tab:domaines} présente cette déclaration.
 \hline
 Facturation & Solde, facture, règlement, report d'échéance & Phrase de transition déterministe, énoncée dans la langue de l'échange \\
 \hline
-Gestion de compte & Forfait, recharge, itinérance, ligne téléphonique & Idem \\
+Abonnement & Forfait, recharge, itinérance, ligne téléphonique & Idem \\
 \hline
 Technique & Carte SIM, réseau, connectivité & Idem \\
 \hline
@@ -335,7 +341,7 @@ Le caractère déterministe de la phrase de transition mérite une justification
 
 Lorsqu'un agent transmet la conversation à un autre, le contexte déjà constitué est conservé : le client n'a pas à se réidentifier ni à reformuler sa demande. Ce comportement est la traduction directe du besoin exprimé au chapitre précédent, où la perte de contexte lors des transferts avait été identifiée comme l'une des faiblesses majeures du dispositif existant.
 
-Le passage de relais est par ailleurs encadré par un garde fou contre les boucles. Le nombre de transferts et le rang du tour de parole auquel le dernier a eu lieu sont suivis, de sorte que deux agents ne puissent pas se renvoyer indéfiniment une demande qu'aucun des deux ne reconnaît comme sienne. Au delà d'un certain nombre de passages, la demande est traitée comme débordant des domaines couverts.
+Le passage de relais est par ailleurs encadré par un garde fou contre les boucles. Le nombre de transferts et le rang du tour de parole auquel le dernier a eu lieu sont suivis, de sorte que deux agents ne puissent pas se renvoyer indéfiniment une demande qu'aucun des deux ne reconnaît comme sienne. Au delà d'un certain nombre de passages, la demande est traitée comme débordant des domaines couverts. Cette borne est portée par le contexte de session et contrôlée par les règles de session, tandis que chaque passage est consigné par la classe d'association \emph{Transfert}.
 
 La figure \ref{fig:orchestration} présente l'organisation des agents et les transitions possibles entre eux.
 
@@ -372,7 +378,7 @@ Sentiment courant & Score cumulé et nombre de tours négatifs consécutifs & Sy
 \hline
 Connaissance documentaire & Passages pertinents et leur source & Sur question documentaire uniquement \\
 \hline
-Capacités disponibles & Ensemble des capacités de l'agent actif & Déterminé par l'agent actif \\
+Outils disponibles & Ensemble des outils exposés par l'agent actif & Déterminé par l'agent actif \\
 \hline
 \end{tabular}
 \caption{Sources du contexte et conditions de sollicitation}

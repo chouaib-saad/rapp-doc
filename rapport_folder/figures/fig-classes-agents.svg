@@ -1,0 +1,470 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 1700 1200" width="1700" height="1200">
+<title>fig-classes-agents — Diagramme de classes de la couche agents</title>
+<style><![CDATA[
+.cname{font-family:Arial,Helvetica,sans-serif;font-size:13.5px;font-weight:700;fill:#111111;}
+.cnameA{font-family:Arial,Helvetica,sans-serif;font-size:13.5px;font-weight:700;font-style:italic;fill:#111111;}
+.stereo{font-family:Arial,Helvetica,sans-serif;font-size:11px;font-style:italic;fill:#444444;}
+.feat{font-family:Arial,Helvetica,sans-serif;font-size:11.5px;fill:#222222;}
+.featA{font-family:Arial,Helvetica,sans-serif;font-size:11.5px;font-style:italic;fill:#222222;}
+.mult{font-family:Arial,Helvetica,sans-serif;font-size:10.5px;fill:#333333;paint-order:stroke;stroke:#FFFDF7;stroke-width:3.2;stroke-linejoin:round;}
+.role{font-family:Arial,Helvetica,sans-serif;font-size:11px;fill:#333333;paint-order:stroke;stroke:#FFFDF7;stroke-width:3.2;stroke-linejoin:round;}
+.roleI{font-family:Arial,Helvetica,sans-serif;font-size:11px;font-style:italic;fill:#333333;paint-order:stroke;stroke:#FFFDF7;stroke-width:3.2;stroke-linejoin:round;}
+.cons{font-family:Arial,Helvetica,sans-serif;font-size:11px;font-style:italic;fill:#333333;paint-order:stroke;stroke:#FFFDF7;stroke-width:3.2;stroke-linejoin:round;}
+.rel{fill:none;stroke:#333333;stroke-width:1.4;stroke-linejoin:round;}
+.reld{fill:none;stroke:#333333;stroke-width:1.4;stroke-linejoin:round;stroke-dasharray:7,5;}
+.sep{stroke:#333333;stroke-width:1.2;}
+.shd{fill:#C9C9C9;opacity:0.45;}
+.bx{stroke:#333333;stroke-width:1.5;}
+.pink{fill:#F28E8E;} .green{fill:#A9EFB0;} .yellow{fill:#FFF4A6;} .blue{fill:#A9E5EF;} .purple{fill:#E2D4F5;} .grey{fill:#E3E3E3;}
+]]></style>
+<defs>
+<marker id="gen" viewBox="0 0 13 12" refX="12.3" refY="6" markerWidth="13" markerHeight="12" orient="auto" markerUnits="userSpaceOnUse"><path d="M0.8,0.9 L12.2,6 L0.8,11.1 Z" fill="#FFFDF7" stroke="#333333" stroke-width="1.2" stroke-linejoin="round"/></marker>
+<marker id="dep" viewBox="0 0 12 12" refX="10.6" refY="6" markerWidth="12" markerHeight="12" orient="auto" markerUnits="userSpaceOnUse"><path d="M1,1.4 L10.4,6 L1,10.6" fill="none" stroke="#333333" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></marker>
+<marker id="nav" viewBox="0 0 12 12" refX="10.6" refY="6" markerWidth="12" markerHeight="12" orient="auto" markerUnits="userSpaceOnUse"><path d="M1,1.4 L10.4,6 L1,10.6" fill="none" stroke="#333333" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></marker>
+<marker id="comp" viewBox="0 0 18 11" refX="1.0" refY="5.5" markerWidth="18" markerHeight="11" orient="auto" markerUnits="userSpaceOnUse"><path d="M1,5.5 L9,1.3 L17,5.5 L9,9.7 Z" fill="#333333" stroke="#333333" stroke-width="1" stroke-linejoin="round"/></marker>
+<marker id="aggr" viewBox="0 0 18 11" refX="1.0" refY="5.5" markerWidth="18" markerHeight="11" orient="auto" markerUnits="userSpaceOnUse"><path d="M1,5.5 L9,1.3 L17,5.5 L9,9.7 Z" fill="#FFFDF7" stroke="#333333" stroke-width="1.2" stroke-linejoin="round"/></marker>
+</defs>
+
+<rect x="0" y="0" width="1700" height="1200" fill="#FFFDF7"/>
+
+<!-- ============================ RELATIONS ============================ -->
+<g id="relations">
+
+  <!-- SessionVocale pilote PipelineVocal -->
+  <path d="M 360,130 L 310,130" class="rel"/>
+  <text x="335" y="124" text-anchor="middle" class="role">pilote</text>
+  <text x="322" y="146" text-anchor="middle" class="mult">1</text>
+  <text x="348" y="146" text-anchor="middle" class="mult">1</text>
+
+  <!-- SessionVocale journalise dans Conversation -->
+  <path d="M 505,60 L 505,34 L 1540,34 L 1540,60" class="rel"/>
+  <text x="1022" y="28" text-anchor="middle" class="role">journalise dans</text>
+  <text x="517" y="52" text-anchor="middle" class="mult">1</text>
+  <text x="1528" y="52" text-anchor="middle" class="mult">1</text>
+
+  <!-- SessionVocale consulte RegistreDesAgents -->
+  <path d="M 650,130 L 710,130" class="rel"/>
+  <text x="680" y="124" text-anchor="middle" class="role">consulte</text>
+  <text x="662" y="146" text-anchor="middle" class="mult">0..*</text>
+  <text x="698" y="146" text-anchor="middle" class="mult">1</text>
+
+  <!-- SessionVocale applique ReglesDeSession -->
+  <path d="M 360,230 L 310,230" class="rel"/>
+  <text x="335" y="224" text-anchor="middle" class="role">applique</text>
+  <text x="348" y="246" text-anchor="middle" class="mult">1</text>
+  <text x="322" y="246" text-anchor="middle" class="mult">1</text>
+
+  <!-- SessionVocale compose ContexteDeSession -->
+  <path d="M 410,250 L 410,352 L 195,352 L 195,380" class="rel" marker-start="url(#comp)"/>
+  <text x="422" y="268" text-anchor="middle" class="mult">1</text>
+  <text x="185" y="372" text-anchor="end" class="mult">1</text>
+  <text x="300" y="346" text-anchor="middle" class="role">contexte</text>
+
+  <!-- SessionVocale détient l'agent actif -->
+  <path d="M 590,250 L 590,340" class="rel"/>
+  <text x="598" y="300" text-anchor="start" class="role">agentActif</text>
+  <text x="582" y="268" text-anchor="end" class="mult">0..*</text>
+  <text x="582" y="332" text-anchor="end" class="mult">1</text>
+
+  <!-- RegistreDesAgents agrège les agents -->
+  <path d="M 770,170 L 770,340" class="rel" marker-start="url(#aggr)"/>
+  <text x="760" y="190" text-anchor="end" class="mult">1</text>
+  <text x="760" y="332" text-anchor="end" class="mult">1..*</text>
+  <text x="778" y="258" text-anchor="start" class="role">enregistre</text>
+
+  <!-- RegistreDesAgents compose les définitions de domaine -->
+  <path d="M 950,170 L 950,340" class="rel" marker-start="url(#comp)"/>
+  <text x="940" y="190" text-anchor="end" class="mult">1</text>
+  <text x="940" y="332" text-anchor="end" class="mult">1..*</text>
+  <text x="958" y="258" text-anchor="start" class="role">déclare</text>
+
+  <!-- RegistreDesAgents utilise GenerateurDInstructions -->
+  <path d="M 1010,120 L 1070,120" class="reld" marker-end="url(#dep)"/>
+  <text x="1040" y="113" text-anchor="middle" class="roleI">« utilise »</text>
+
+  <!-- AgentDeBase est décrit par une DefinitionDeDomaine -->
+  <path d="M 800,380 L 880,380" class="rel"/>
+  <text x="840" y="374" text-anchor="middle" class="role">définition</text>
+  <text x="812" y="396" text-anchor="middle" class="mult">1</text>
+  <text x="868" y="396" text-anchor="middle" class="mult">1</text>
+
+  <!-- AgentDeBase utilise ContexteDeSession -->
+  <path d="M 500,440 L 330,440" class="reld" marker-end="url(#dep)"/>
+  <text x="415" y="434" text-anchor="middle" class="roleI">« utilise »</text>
+
+  <!-- Auto-association : transfert d'agent à agent -->
+  <path d="M 500,470 L 430,470 L 430,515 L 500,515" class="rel" marker-end="url(#nav)"/>
+  <text x="448" y="462" text-anchor="middle" class="role">source</text>
+  <text x="492" y="462" text-anchor="middle" class="mult">0..*</text>
+  <text x="452" y="531" text-anchor="middle" class="role">cible</text>
+  <text x="492" y="531" text-anchor="middle" class="mult">0..*</text>
+  <text x="422" y="494" text-anchor="end" class="role">transfère vers</text>
+  <!-- rattachement de la classe d'association Transfert -->
+  <path d="M 430,515 L 430,610" class="reld"/>
+
+  <!-- ContexteDeSession référence le Client identifié -->
+  <path d="M 175,602 L 175,680" class="rel"/>
+  <text x="183" y="641" text-anchor="start" class="role">client identifié</text>
+  <text x="167" y="618" text-anchor="end" class="mult">1</text>
+  <text x="167" y="672" text-anchor="end" class="mult">0..1</text>
+
+  <!-- AgentDeBase agrège ses Outils -->
+  <path d="M 800,500 L 1160,500" class="rel" marker-start="url(#aggr)"/>
+  <text x="980" y="494" text-anchor="middle" class="role">expose</text>
+  <text x="814" y="514" text-anchor="middle" class="mult">1</text>
+  <text x="1146" y="514" text-anchor="middle" class="mult">1..*</text>
+
+  <!-- Généralisation des outils -->
+  <path d="M 1185,737 L 1185,565 L 1275,565 L 1275,540" class="rel" marker-end="url(#gen)"/>
+  <path d="M 1210,622 L 1185,622" class="rel"/>
+  <path d="M 1210,737 L 1185,737" class="rel"/>
+
+  <!-- OutilMCP délègue à PortOutilsMCP -->
+  <path d="M 1360,622 L 1480,622" class="rel"/>
+  <text x="1420" y="616" text-anchor="middle" class="role">délègue à</text>
+  <text x="1374" y="638" text-anchor="middle" class="mult">0..*</text>
+  <text x="1466" y="638" text-anchor="middle" class="mult">1</text>
+
+  <!-- OutilMetier délègue à PortMetier -->
+  <path d="M 1360,737 L 1480,737" class="rel"/>
+  <text x="1420" y="731" text-anchor="middle" class="role">délègue à</text>
+  <text x="1374" y="753" text-anchor="middle" class="mult">0..*</text>
+  <text x="1466" y="753" text-anchor="middle" class="mult">1</text>
+
+  <!-- Généralisation des ports métier -->
+  <path d="M 1500,1074 L 1500,784" class="rel" marker-end="url(#gen)"/>
+  <path d="M 1520,842 L 1500,842" class="rel"/>
+  <path d="M 1520,900 L 1500,900" class="rel"/>
+  <path d="M 1520,958 L 1500,958" class="rel"/>
+  <path d="M 1520,1016 L 1500,1016" class="rel"/>
+  <path d="M 1520,1074 L 1500,1074" class="rel"/>
+
+  <!-- Généralisation des agents -->
+  <path d="M 650,805 L 650,530" class="rel" marker-end="url(#gen)"/>
+  <path d="M 185,805 L 1325,805" class="rel"/>
+  <path d="M 185,805 L 185,840" class="rel"/>
+  <path d="M 470,805 L 470,840" class="rel"/>
+  <path d="M 760,805 L 760,840" class="rel"/>
+  <path d="M 1045,805 L 1045,840" class="rel"/>
+  <path d="M 1325,805 L 1325,840" class="rel"/>
+  <text x="660" y="793" text-anchor="start" class="cons">{disjoint, complet}</text>
+
+  <!-- AgentEscalade crée DossierEscalade -->
+  <path d="M 1325,966 L 1325,1030" class="reld" marker-end="url(#dep)"/>
+  <text x="1333" y="1002" text-anchor="start" class="roleI">« crée »</text>
+</g>
+
+<!-- ============================ ORCHESTRATION (vert) ============================ -->
+
+<!-- SessionVocale -->
+<rect class="shd" x="362.6" y="62.6" width="290" height="190"/>
+<rect x="360" y="60" width="290" height="190" class="bx green"/>
+<text x="505" y="78" text-anchor="middle" class="cname">SessionVocale</text>
+<line class="sep" x1="360" y1="86" x2="650" y2="86"/>
+<text x="372" y="103" class="feat">identifiant : Texte</text>
+<text x="372" y="119" class="feat">debutLe : Horodatage</text>
+<text x="372" y="135" class="feat">finLe : Horodatage [0..1]</text>
+<line class="sep" x1="360" y1="144" x2="650" y2="144"/>
+<text x="372" y="161" class="feat">demarrer()</text>
+<text x="372" y="177" class="feat">traiterTour(tour : TourDeParole)</text>
+<text x="372" y="193" class="feat">activer(agent : AgentDeBase)</text>
+<text x="372" y="209" class="feat">transferer(cible : Domaine, motif) : Transfert</text>
+<text x="372" y="225" class="feat">escalader(motif : MotifEscalade)</text>
+<text x="372" y="241" class="feat">clore(issue : Texte)</text>
+
+<!-- RegistreDesAgents -->
+<rect class="shd" x="712.6" y="62.6" width="300" height="110"/>
+<rect x="710" y="60" width="300" height="110" class="bx green"/>
+<text x="860" y="78" text-anchor="middle" class="cname">RegistreDesAgents</text>
+<line class="sep" x1="710" y1="86" x2="1010" y2="86"/>
+<line class="sep" x1="710" y1="96" x2="1010" y2="96"/>
+<text x="722" y="113" class="feat">agentInitial() : AgentDeBase</text>
+<text x="722" y="129" class="feat">agentPour(domaine : Domaine) : AgentDeBase</text>
+<text x="722" y="145" class="feat">agentPour(intention : Intention) : AgentDeBase</text>
+<text x="722" y="161" class="feat">creerAgent(domaine : Domaine) : AgentDeBase</text>
+
+<!-- GenerateurDInstructions -->
+<rect class="shd" x="1072.6" y="62.6" width="300" height="78"/>
+<rect x="1070" y="60" width="300" height="78" class="bx green"/>
+<text x="1220" y="78" text-anchor="middle" class="cname">GenerateurDInstructions</text>
+<line class="sep" x1="1070" y1="86" x2="1370" y2="86"/>
+<line class="sep" x1="1070" y1="96" x2="1370" y2="96"/>
+<text x="1082" y="113" class="feat">composer(definition, outils, langue) : Texte</text>
+<text x="1082" y="129" class="feat">adapter(instructions, contexte) : Texte</text>
+
+<!-- ReglesDeSession -->
+<rect class="shd" x="62.6" y="192.6" width="250" height="142"/>
+<rect x="60" y="190" width="250" height="142" class="bx green"/>
+<text x="185" y="208" text-anchor="middle" class="cname">ReglesDeSession</text>
+<line class="sep" x1="60" y1="216" x2="310" y2="216"/>
+<text x="72" y="233" class="feat">maxTransferts : Entier</text>
+<text x="72" y="249" class="feat">maxClarifications : Entier</text>
+<text x="72" y="265" class="feat">seuilMecontentement : Reel</text>
+<line class="sep" x1="60" y1="274" x2="310" y2="274"/>
+<text x="72" y="291" class="feat">autoriseTransfert(contexte) : Booleen</text>
+<text x="72" y="307" class="feat">exigeClarification(contexte) : Booleen</text>
+<text x="72" y="323" class="feat">exigeEscalade(contexte) : Booleen</text>
+
+<!-- ============================ INTERFACES ET OUTILS (bleu) ============================ -->
+
+<!-- PipelineVocal -->
+<rect class="shd" x="62.6" y="62.6" width="250" height="110"/>
+<rect x="60" y="60" width="250" height="110" class="bx blue"/>
+<text x="185" y="77" text-anchor="middle" class="stereo">« interface »</text>
+<text x="185" y="94" text-anchor="middle" class="cname">PipelineVocal</text>
+<line class="sep" x1="60" y1="102" x2="310" y2="102"/>
+<line class="sep" x1="60" y1="112" x2="310" y2="112"/>
+<text x="72" y="129" class="feat">ecouter() : TourDeParole</text>
+<text x="72" y="145" class="feat">repondre(texte : Texte)</text>
+<text x="72" y="161" class="feat">interrompre()</text>
+
+<!-- Outil (abstraite) -->
+<rect class="shd" x="1162.6" y="382.6" width="230" height="160"/>
+<rect x="1160" y="380" width="230" height="160" class="bx blue"/>
+<text x="1275" y="397" text-anchor="middle" class="cnameA">Outil</text>
+<text x="1275" y="412" text-anchor="middle" class="stereo">{abstract}</text>
+<line class="sep" x1="1160" y1="422" x2="1390" y2="422"/>
+<text x="1172" y="439" class="feat">nom : Texte</text>
+<text x="1172" y="455" class="feat">description : Texte</text>
+<text x="1172" y="471" class="feat">schemaArguments : Document</text>
+<text x="1172" y="487" class="feat">necessiteConfirmation : Booleen</text>
+<text x="1172" y="503" class="feat">niveauVerificationRequis : Entier</text>
+<line class="sep" x1="1160" y1="512" x2="1390" y2="512"/>
+<text x="1172" y="529" class="featA">invoquer(arguments, contexte) : Resultat</text>
+
+<!-- OutilMCP -->
+<rect class="shd" x="1212.6" y="597.6" width="150" height="54"/>
+<rect x="1210" y="595" width="150" height="54" class="bx blue"/>
+<text x="1285" y="613" text-anchor="middle" class="cname">OutilMCP</text>
+<line class="sep" x1="1210" y1="621" x2="1360" y2="621"/>
+<text x="1222" y="638" class="feat">serveur : Serveur</text>
+
+<!-- OutilMetier -->
+<rect class="shd" x="1212.6" y="712.6" width="150" height="54"/>
+<rect x="1210" y="710" width="150" height="54" class="bx blue"/>
+<text x="1285" y="728" text-anchor="middle" class="cname">OutilMetier</text>
+<line class="sep" x1="1210" y1="736" x2="1360" y2="736"/>
+<text x="1222" y="753" class="feat">commande : Commande </text>
+
+<!-- PortOutilsMCP -->
+<rect class="shd" x="1482.6" y="577.6" width="190" height="94"/>
+<rect x="1480" y="575" width="190" height="94" class="bx blue"/>
+<text x="1575" y="592" text-anchor="middle" class="stereo">« interface »</text>
+<text x="1575" y="609" text-anchor="middle" class="cname">PortOutilsMCP</text>
+<line class="sep" x1="1480" y1="617" x2="1670" y2="617"/>
+<line class="sep" x1="1480" y1="627" x2="1670" y2="627"/>
+<text x="1492" y="644" class="feat">listerOutils() : Liste&lt;Outil&gt;</text>
+<text x="1492" y="660" class="feat">appeler(nom, arguments) : Resultat</text>
+
+<!-- PortMetier -->
+<rect class="shd" x="1482.6" y="692.6" width="190" height="94"/>
+<rect x="1480" y="690" width="190" height="94" class="bx blue"/>
+<text x="1575" y="707" text-anchor="middle" class="stereo">« interface »</text>
+<text x="1575" y="724" text-anchor="middle" class="cname">PortMetier</text>
+<line class="sep" x1="1480" y1="732" x2="1670" y2="732"/>
+<line class="sep" x1="1480" y1="742" x2="1670" y2="742"/>
+<text x="1492" y="759" class="feat">executer(commande) : Resultat</text>
+<text x="1492" y="775" class="feat">estDisponible() : Booleen</text>
+
+<!-- Ports métier spécialisés -->
+<rect class="shd" x="1522.6" y="822.6" width="150" height="44"/>
+<rect x="1520" y="820" width="150" height="44" class="bx blue"/>
+<text x="1595" y="837" text-anchor="middle" class="stereo">« interface »</text>
+<text x="1595" y="854" text-anchor="middle" class="cname">PortClient</text>
+
+<rect class="shd" x="1522.6" y="880.6" width="150" height="44"/>
+<rect x="1520" y="878" width="150" height="44" class="bx blue"/>
+<text x="1595" y="895" text-anchor="middle" class="stereo">« interface »</text>
+<text x="1595" y="912" text-anchor="middle" class="cname">PortFacturation</text>
+
+<rect class="shd" x="1522.6" y="938.6" width="150" height="44"/>
+<rect x="1520" y="936" width="150" height="44" class="bx blue"/>
+<text x="1595" y="953" text-anchor="middle" class="stereo">« interface »</text>
+<text x="1595" y="970" text-anchor="middle" class="cname">PortAbonnement</text>
+
+<rect class="shd" x="1522.6" y="996.6" width="150" height="44"/>
+<rect x="1520" y="994" width="150" height="44" class="bx blue"/>
+<text x="1595" y="1011" text-anchor="middle" class="stereo">« interface »</text>
+<text x="1595" y="1028" text-anchor="middle" class="cname">PortAssistance</text>
+
+<rect class="shd" x="1522.6" y="1054.6" width="150" height="44"/>
+<rect x="1520" y="1052" width="150" height="44" class="bx blue"/>
+<text x="1595" y="1069" text-anchor="middle" class="stereo">« interface »</text>
+<text x="1595" y="1086" text-anchor="middle" class="cname">PortConnaissances</text>
+
+<!-- ============================ ÉTAT ET DONNÉES (jaune) ============================ -->
+
+<!-- ContexteDeSession -->
+<rect class="shd" x="62.6" y="382.6" width="270" height="222"/>
+<rect x="60" y="380" width="270" height="222" class="bx yellow"/>
+<text x="195" y="398" text-anchor="middle" class="cname">ContexteDeSession</text>
+<line class="sep" x1="60" y1="406" x2="330" y2="406"/>
+<text x="72" y="423" class="feat">identifiantSession : Texte</text>
+<text x="72" y="439" class="feat">langue : Langue</text>
+<text x="72" y="455" class="feat">niveauVerification : Entier</text>
+<text x="72" y="471" class="feat">sentimentCourant : Sentiment</text>
+<text x="72" y="487" class="feat">resume : Texte</text>
+<text x="72" y="503" class="feat">nbTransferts : Entier</text>
+<text x="72" y="519" class="feat">nbClarifications : Entier</text>
+<text x="72" y="535" class="feat">derniereIntention : Intention [0..1]</text>
+<line class="sep" x1="60" y1="544" x2="330" y2="544"/>
+<text x="72" y="561" class="feat">estVerifie() : Booleen</text>
+<text x="72" y="577" class="feat">enregistrerTransfert(transfert : Transfert)</text>
+<text x="72" y="593" class="feat">actualiserSentiment(sentiment : Sentiment)</text>
+
+<!-- DefinitionDeDomaine -->
+<rect class="shd" x="882.6" y="342.6" width="260" height="126"/>
+<rect x="880" y="340" width="260" height="126" class="bx yellow"/>
+<text x="1010" y="358" text-anchor="middle" class="cname">DefinitionDeDomaine</text>
+<line class="sep" x1="880" y1="366" x2="1140" y2="366"/>
+<text x="892" y="383" class="feat">domaine : Domaine</text>
+<text x="892" y="399" class="feat">sujetsCouverts : Liste&lt;Texte&gt;</text>
+<text x="892" y="415" class="feat">phraseDeTransition : Table&lt;Langue, Texte&gt;</text>
+<line class="sep" x1="880" y1="424" x2="1140" y2="424"/>
+<text x="892" y="441" class="feat">couvre(sujet : Texte) : Booleen</text>
+
+<!-- Transfert (classe d'association) -->
+<rect class="shd" x="382.6" y="612.6" width="220" height="132"/>
+<rect x="380" y="610" width="220" height="132" class="bx yellow"/>
+<text x="490" y="627" text-anchor="middle" class="stereo">« classe d'association »</text>
+<text x="490" y="644" text-anchor="middle" class="cname">Transfert</text>
+<line class="sep" x1="380" y1="652" x2="600" y2="652"/>
+<text x="392" y="669" class="feat">rang : Entier</text>
+<text x="392" y="685" class="feat">motif : MotifTransfert</text>
+<text x="392" y="701" class="feat">resume : Texte</text>
+<text x="392" y="717" class="feat">horodatage : Horodatage</text>
+<text x="392" y="733" class="feat">accepte : Booleen</text>
+
+<!-- ============================ AGENTS (rose) ============================ -->
+
+<!-- AgentDeBase (abstraite) -->
+<rect class="shd" x="502.6" y="342.6" width="300" height="190"/>
+<rect x="500" y="340" width="300" height="190" class="bx pink"/>
+<text x="650" y="357" text-anchor="middle" class="cnameA">AgentDeBase</text>
+<text x="650" y="372" text-anchor="middle" class="stereo">{abstract}</text>
+<line class="sep" x1="500" y1="382" x2="800" y2="382"/>
+<text x="512" y="399" class="feat">domaine : Domaine</text>
+<text x="512" y="415" class="feat">instructions : Texte</text>
+<line class="sep" x1="500" y1="424" x2="800" y2="424"/>
+<text x="512" y="441" class="feat">sePresenter()</text>
+<text x="512" y="457" class="feat">traiterTour(tour : TourDeParole)</text>
+<text x="512" y="473" class="featA">peutTraiter(intention : Intention) : Booleen</text>
+<text x="512" y="489" class="featA">outilsSpecifiques() : Ensemble&lt;Outil&gt;</text>
+<text x="512" y="505" class="feat">demanderTransfert(cible : Domaine, motif) : Transfert</text>
+<text x="512" y="521" class="feat">journaliser(tour : TourDeParole)</text>
+
+<!-- AgentAccueil -->
+<rect class="shd" x="62.6" y="842.6" width="250" height="126"/>
+<rect x="60" y="840" width="250" height="126" class="bx pink"/>
+<text x="185" y="858" text-anchor="middle" class="cname">AgentAccueil</text>
+<line class="sep" x1="60" y1="866" x2="310" y2="866"/>
+<text x="72" y="883" class="feat">domaine = ACCUEIL</text>
+<line class="sep" x1="60" y1="892" x2="310" y2="892"/>
+<text x="72" y="909" class="feat">accueillir()</text>
+<text x="72" y="925" class="feat">verifierIdentite() : Booleen</text>
+<text x="72" y="941" class="feat">qualifierDemande() : Intention</text>
+<text x="72" y="957" class="feat">orienter(intention : Intention) : Transfert</text>
+
+<!-- AgentFacturation -->
+<rect class="shd" x="342.6" y="842.6" width="260" height="126"/>
+<rect x="340" y="840" width="260" height="126" class="bx pink"/>
+<text x="470" y="858" text-anchor="middle" class="cname">AgentFacturation</text>
+<line class="sep" x1="340" y1="866" x2="600" y2="866"/>
+<text x="352" y="883" class="feat">domaine = FACTURATION</text>
+<line class="sep" x1="340" y1="892" x2="600" y2="892"/>
+<text x="352" y="909" class="feat">consulterSolde()</text>
+<text x="352" y="925" class="feat">expliquerFacture()</text>
+<text x="352" y="941" class="feat">reporterEcheance()</text>
+<text x="352" y="957" class="feat">contesterFacture()</text>
+
+<!-- AgentAbonnement -->
+<rect class="shd" x="632.6" y="842.6" width="260" height="126"/>
+<rect x="630" y="840" width="260" height="126" class="bx pink"/>
+<text x="760" y="858" text-anchor="middle" class="cname">AgentAbonnement</text>
+<line class="sep" x1="630" y1="866" x2="890" y2="866"/>
+<text x="642" y="883" class="feat">domaine = ABONNEMENT</text>
+<line class="sep" x1="630" y1="892" x2="890" y2="892"/>
+<text x="642" y="909" class="feat">consulterForfait()</text>
+<text x="642" y="925" class="feat">changerForfait()</text>
+<text x="642" y="941" class="feat">recharger()</text>
+<text x="642" y="957" class="feat">bloquerLigne()</text>
+
+<!-- AgentTechnique -->
+<rect class="shd" x="922.6" y="842.6" width="250" height="126"/>
+<rect x="920" y="840" width="250" height="126" class="bx pink"/>
+<text x="1045" y="858" text-anchor="middle" class="cname">AgentTechnique</text>
+<line class="sep" x1="920" y="866" x2="1170" y="866"/>
+<text x="932" y="883" class="feat">domaine = TECHNIQUE</text>
+<line class="sep" x1="920" y="892" x2="1170" y="892"/>
+<text x="932" y="909" class="feat">diagnostiquerLigne()</text>
+<text x="932" y="925" class="feat">verifierCouverture()</text>
+<text x="932" y="941" class="feat">reinitialiserSIM()</text>
+<text x="932" y="957" class="feat">signalerIncident()</text>
+
+<!-- AgentEscalade -->
+<rect class="shd" x="1202.6" y="842.6" width="250" height="126"/>
+<rect x="1200" y="840" width="250" height="126" class="bx pink"/>
+<text x="1325" y="858" text-anchor="middle" class="cname">AgentEscalade</text>
+<line class="sep" x1="1200" y1="866" x2="1450" y2="866"/>
+<text x="1212" y="883" class="feat">domaine = ESCALADE</text>
+<line class="sep" x1="1200" y1="892" x2="1450" y2="892"/>
+<text x="1212" y="909" class="feat">constituerDossier() : DossierEscalade</text>
+<text x="1212" y="925" class="feat">transfererAuConseiller()</text>
+<text x="1212" y="941" class="feat">planifierRappel(creneau : Creneau)</text>
+<text x="1212" y="957" class="feat">ouvrirTicket() : Ticket</text>
+
+<!-- ============================ CLASSES DU MODÈLE DU DOMAINE (gris) ============================ -->
+
+<!-- Conversation -->
+<rect class="shd" x="1422.6" y="62.6" width="240" height="84"/>
+<rect x="1420" y="60" width="240" height="84" class="bx grey"/>
+<text x="1540" y="78" text-anchor="middle" class="cname">ModeleDuDomaine::Conversation</text>
+<line class="sep" x1="1420" y1="86" x2="1660" y2="86"/>
+<text x="1432" y="103" class="feat">identifiant : Texte</text>
+<text x="1432" y="119" class="feat">canal : Texte</text>
+<text x="1432" y="135" class="feat">debutLe : Horodatage</text>
+
+<!-- Client -->
+<rect class="shd" x="62.6" y="682.6" width="230" height="84"/>
+<rect x="60" y="680" width="230" height="84" class="bx grey"/>
+<text x="175" y="698" text-anchor="middle" class="cname">ModeleDuDomaine::Client</text>
+<line class="sep" x1="60" y1="706" x2="290" y2="706"/>
+<text x="72" y="723" class="feat">identifiant : Texte</text>
+<text x="72" y="739" class="feat">nomComplet : Texte</text>
+<text x="72" y="755" class="feat">languePreferee : Langue</text>
+
+<!-- DossierEscalade -->
+<rect class="shd" x="1197.6" y="1032.6" width="260" height="84"/>
+<rect x="1195" y="1030" width="260" height="84" class="bx grey"/>
+<text x="1325" y="1048" text-anchor="middle" class="cname">ModeleDuDomaine::DossierEscalade</text>
+<line class="sep" x1="1195" y1="1056" x2="1455" y2="1056"/>
+<text x="1207" y="1073" class="feat">identifiant : Texte</text>
+<text x="1207" y="1089" class="feat">motif : MotifEscalade</text>
+<text x="1207" y="1105" class="feat">synthese : Texte</text>
+
+<!-- ============================ ÉNUMÉRATIONS (violet) ============================ -->
+
+<rect class="shd" x="472.6" y="1032.6" width="180" height="132"/>
+<rect x="470" y="1030" width="180" height="132" class="bx purple"/>
+<text x="560" y="1047" text-anchor="middle" class="stereo">« énumération »</text>
+<text x="560" y="1064" text-anchor="middle" class="cname">Domaine</text>
+<line class="sep" x1="470" y1="1072" x2="650" y2="1072"/>
+<text x="482" y="1089" class="feat">ACCUEIL</text>
+<text x="482" y="1105" class="feat">FACTURATION</text>
+<text x="482" y="1121" class="feat">ABONNEMENT</text>
+<text x="482" y="1137" class="feat">TECHNIQUE</text>
+<text x="482" y="1153" class="feat">ESCALADE</text>
+
+<rect class="shd" x="712.6" y="1032.6" width="240" height="132"/>
+<rect x="710" y="1030" width="240" height="132" class="bx purple"/>
+<text x="830" y="1047" text-anchor="middle" class="stereo">« énumération »</text>
+<text x="830" y="1064" text-anchor="middle" class="cname">MotifTransfert</text>
+<line class="sep" x1="710" y1="1072" x2="950" y2="1072"/>
+<text x="722" y="1089" class="feat">HORS_PERIMETRE</text>
+<text x="722" y="1105" class="feat">DEMANDE_CLIENT</text>
+<text x="722" y="1121" class="feat">INCOMPREHENSION_REPETEE</text>
+<text x="722" y="1137" class="feat">MECONTENTEMENT</text>
+<text x="722" y="1153" class="feat">REGLE_METIER</text>
+
+</svg>
