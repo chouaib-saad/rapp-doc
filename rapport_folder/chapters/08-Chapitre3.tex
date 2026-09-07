@@ -155,69 +155,6 @@ La figure \ref{fig:classes-politique} présente ce moteur.
 
 \figureTikz{Diagramme de classes du moteur de politique}{classes-politique}{fig-classes-politique}
 
-\subsection{Conception de la base de données}
-
-\subsubsection{Organisation en schémas}
-
-Le stockage relationnel est organisé en schémas, un par contexte métier, ce qui prolonge dans les données le découpage établi dans le domaine. Cette organisation autorise un contrôle d'accès différencié par schéma et rend visible, à la seule lecture du modèle, la frontière de chaque contexte.
-
-Le tableau \ref{tab:schemas} présente les principaux schémas et leur contenu.
-
-\begin{table}[H]
-\centering
-\renewcommand{\arraystretch}{1.2}
-\begin{tabular}{|p{3.2cm}|p{11.3cm}|}
-\hline
-\textbf{Schéma} & \textbf{Contenu principal} \\
-\hline
-Conversation & Sessions d'appel, tours de parole, transcriptions, sentiment, issue de la conversation. \\
-\hline
-Connaissance & Documents versionnés, fragments, travaux d'ingestion, file de synchronisation vers l'index. \\
-\hline
-Politique & Règles applicables, seuils et verdicts rendus. \\
-\hline
-Exécution & Registre des actions, identités d'opération, statuts et références externes. \\
-\hline
-Gestion de tickets & Projection locale des tickets et de leur cycle de vie. \\
-\hline
-Routage & Conseillers, plannings, indisponibilités, rappels et dossiers d'escalade. \\
-\hline
-Relation client & Profils clients, abonnements et historique d'interaction. \\
-\hline
-Facturation & Comptes, factures et montants dus. \\
-\hline
-Solde et usage & Comptes de solde et consommation. \\
-\hline
-Provisionnement et SIM & État des lignes et des cartes SIM. \\
-\hline
-Supervision réseau & Incidents réseau et zones affectées. \\
-\hline
-Identité de portail & Comptes du portail, sessions et éléments d'authentification. \\
-\hline
-Audit & Chaîne des enregistrements et empreintes de vérification. \\
-\hline
-Référentiels & Catalogues de produits, de recharges, de zones et de règles métier. \\
-\hline
-\end{tabular}
-\caption{Schémas de la base de données et contenu associé}
-\label{tab:schemas}
-\end{table}
-
-\subsubsection{Modèle entités associations}
-
-La figure \ref{fig:mcd} présente le modèle entités associations des schémas centraux, à savoir la conversation, la décision, l'exécution, la gestion de tickets et le routage. Les schémas périphériques, qui reproduisent la structure des systèmes de l'opérateur, ne sont pas détaillés ici afin de préserver la lisibilité du modèle.
-
-\figureTikz{Modèle entités associations des schémas centraux}{mcd}{fig-mcd}
-
-\subsubsection{Deux asymétries assumées}
-
-Le modèle de données comporte deux dissymétries volontaires, qu'il importe d'expliciter car elles paraîtraient incohérentes sans justification.
-
-La première concerne la connaissance. Le stockage relationnel constitue la référence des documents et de leurs fragments. L'index de recherche, lui, est un dérivé : il est reconstructible intégralement à partir de la référence. Cette dissymétrie permet de reconstruire l'index après un incident, de changer sa structure ou d'en modifier les paramètres sans risque de perte, puisque la source demeure intacte. L'identifiant d'un point de l'index est d'ailleurs celui du fragment dont il dérive, ce qui rend la réconciliation entre les deux immédiate.
-
-La seconde concerne les tickets. Le système de gestion de tickets de l'organisation demeure la référence. La table locale est une projection destinée à la lecture : elle rend l'historique d'un client consultable pendant la conversation sans dépendre d'un appel distant, dont le délai serait incompatible avec la contrainte temps réel. Les écritures s'adressent toujours d'abord au système de référence, et la projection est mise à jour ensuite. Cette organisation applique la séparation entre le chemin d'écriture et le chemin de lecture \cite{fowler}, et elle interdit explicitement de considérer la projection comme faisant autorité.
-
-Ces deux cas relèvent du même principe : lorsqu'une donnée doit être à la fois fiable et rapidement accessible, on maintient une source de vérité et une projection optimisée, en gardant la direction de la dépendance parfaitement claire.
 
 \section{Vue dynamique de l'application}
 
@@ -575,7 +512,7 @@ Le respect d'une demande d'effacement de la mémoire est lui même consigné dan
 
 \section*{Conclusion}
 
-Ce chapitre a présenté la conception de la plateforme. La vue statique a permis d'établir une architecture en ports et adaptateurs, dans laquelle le domaine métier reste indépendant de toute technologie et s'appuie sur des interfaces exprimant ses besoins. Elle met également en évidence un découpage en contextes métier délimités ainsi qu'un modèle de données structuré en schémas, prenant explicitement en compte les différences entre les sources de vérité et les projections. La vue dynamique a décrit le traitement d'un tour de parole, la chaîne conduisant à une action sensible, les deux traitements documentaires et les cycles de vie de la conversation et du ticket.
+Ce chapitre a présenté la conception de la plateforme. La vue statique a permis d'établir une architecture en ports et adaptateurs, dans laquelle le domaine métier reste indépendant de toute technologie et s'appuie sur des interfaces exprimant ses besoins. Elle met également en évidence un découpage en contextes métier délimités. La vue dynamique a décrit le traitement d'un tour de parole, la chaîne conduisant à une action sensible, les deux traitements documentaires et les cycles de vie de la conversation et du ticket.
 
 La conception de la couche agentique a ensuite montré comment la responsabilité est répartie entre cinq agents spécialisés, comment leur contexte est assemblé plutôt qu'accumulé, comment deux mémoires de portée différente coexistent, et comment les garde fous encadrent aussi bien les actions que les énoncés. La conception de la sécurité a enfin distingué deux frontières indépendantes, l'accès à la plateforme et l'exécution des opérations sensibles en son sein.
 
