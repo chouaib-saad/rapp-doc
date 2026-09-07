@@ -162,16 +162,16 @@
 <rect x="360" y="60" width="290" height="190" class="bx green"/>
 <text x="505" y="78" text-anchor="middle" class="cname">SessionVocale</text>
 <line class="sep" x1="360" y1="86" x2="650" y2="86"/>
-<text x="372" y="103" class="feat">identifiant : Texte</text>
-<text x="372" y="119" class="feat">debutLe : Horodatage</text>
-<text x="372" y="135" class="feat">finLe : Horodatage [0..1]</text>
+<text x="372" y="103" class="feat">- identifiant : Texte</text>
+<text x="372" y="119" class="feat">- debutLe : Horodatage</text>
+<text x="372" y="135" class="feat">- finLe : Horodatage [0..1]</text>
 <line class="sep" x1="360" y1="144" x2="650" y2="144"/>
-<text x="372" y="161" class="feat">demarrer()</text>
-<text x="372" y="177" class="feat">traiterTour(tour : TourDeParole)</text>
-<text x="372" y="193" class="feat">activer(agent : AgentDeBase)</text>
-<text x="372" y="209" class="feat">transferer(cible : Domaine, motif) : Transfert</text>
-<text x="372" y="225" class="feat">escalader(motif : MotifEscalade)</text>
-<text x="372" y="241" class="feat">clore(issue : Texte)</text>
+<text x="372" y="161" class="feat">+ demarrer()</text>
+<text x="372" y="177" class="feat">+ traiterTour(tour : TourDeParole)</text>
+<text x="372" y="193" class="feat">+ activer(agent : AgentDeBase)</text>
+<text x="372" y="209" class="feat">+ transferer(cible : Domaine, motif) : Transfert</text>
+<text x="372" y="225" class="feat">+ escalader(motif : MotifEscalade)</text>
+<text x="372" y="241" class="feat">+ clore(issue : Texte)</text>
 
 <!-- RegistreDesAgents -->
 <rect class="shd" x="712.6" y="62.6" width="300" height="110"/>
@@ -179,10 +179,10 @@
 <text x="860" y="78" text-anchor="middle" class="cname">RegistreDesAgents</text>
 <line class="sep" x1="710" y1="86" x2="1010" y2="86"/>
 <line class="sep" x1="710" y1="96" x2="1010" y2="96"/>
-<text x="722" y="113" class="feat">agentInitial() : AgentDeBase</text>
-<text x="722" y="129" class="feat">agentPour(domaine : Domaine) : AgentDeBase</text>
-<text x="722" y="145" class="feat">agentPour(intention : Intention) : AgentDeBase</text>
-<text x="722" y="161" class="feat">creerAgent(domaine : Domaine) : AgentDeBase</text>
+<text x="722" y="113" class="feat">+ agentInitial() : AgentDeBase</text>
+<text x="722" y="129" class="feat">+ agentPour(domaine : Domaine) : AgentDeBase</text>
+<text x="722" y="145" class="feat">+ agentPour(intention : Intention) : AgentDeBase</text>
+<text x="722" y="161" class="feat">+ creerAgent(domaine : Domaine) : AgentDeBase</text>
 
 <!-- GenerateurDInstructions -->
 <rect class="shd" x="1072.6" y="62.6" width="300" height="78"/>
@@ -190,21 +190,21 @@
 <text x="1220" y="78" text-anchor="middle" class="cname">GenerateurDInstructions</text>
 <line class="sep" x1="1070" y1="86" x2="1370" y2="86"/>
 <line class="sep" x1="1070" y1="96" x2="1370" y2="96"/>
-<text x="1082" y="113" class="feat">composer(definition, outils, langue) : Texte</text>
-<text x="1082" y="129" class="feat">adapter(instructions, contexte) : Texte</text>
+<text x="1082" y="113" class="feat">+ composer(definition, outils, langue) : Texte</text>
+<text x="1082" y="129" class="feat">+ adapter(instructions, contexte) : Texte</text>
 
 <!-- ReglesDeSession -->
 <rect class="shd" x="62.6" y="192.6" width="250" height="142"/>
 <rect x="60" y="190" width="250" height="142" class="bx green"/>
 <text x="185" y="208" text-anchor="middle" class="cname">ReglesDeSession</text>
 <line class="sep" x1="60" y1="216" x2="310" y2="216"/>
-<text x="72" y="233" class="feat">maxTransferts : Entier</text>
-<text x="72" y="249" class="feat">maxClarifications : Entier</text>
-<text x="72" y="265" class="feat">seuilMecontentement : Reel</text>
+<text x="72" y="233" class="feat">- maxTransferts : Entier</text>
+<text x="72" y="249" class="feat">- maxClarifications : Entier</text>
+<text x="72" y="265" class="feat">- seuilMecontentement : Reel</text>
 <line class="sep" x1="60" y1="274" x2="310" y2="274"/>
-<text x="72" y="291" class="feat">autoriseTransfert(contexte) : Booleen</text>
-<text x="72" y="307" class="feat">exigeClarification(contexte) : Booleen</text>
-<text x="72" y="323" class="feat">exigeEscalade(contexte) : Booleen</text>
+<text x="72" y="291" class="feat">+ autoriseTransfert(contexte) : Booleen</text>
+<text x="72" y="307" class="feat">+ exigeClarification(contexte) : Booleen</text>
+<text x="72" y="323" class="feat">+ exigeEscalade(contexte) : Booleen</text>
 
 <!-- ============================ INTERFACES ET OUTILS (bleu) ============================ -->
 
@@ -215,9 +215,9 @@
 <text x="185" y="94" text-anchor="middle" class="cname">PipelineVocal</text>
 <line class="sep" x1="60" y1="102" x2="310" y2="102"/>
 <line class="sep" x1="60" y1="112" x2="310" y2="112"/>
-<text x="72" y="129" class="feat">ecouter() : TourDeParole</text>
-<text x="72" y="145" class="feat">repondre(texte : Texte)</text>
-<text x="72" y="161" class="feat">interrompre()</text>
+<text x="72" y="129" class="feat">+ ecouter() : TourDeParole</text>
+<text x="72" y="145" class="feat">+ repondre(texte : Texte)</text>
+<text x="72" y="161" class="feat">+ interrompre()</text>
 
 <!-- Outil (abstraite) -->
 <rect class="shd" x="1162.6" y="382.6" width="230" height="160"/>
@@ -225,27 +225,27 @@
 <text x="1275" y="397" text-anchor="middle" class="cnameA">Outil</text>
 <text x="1275" y="412" text-anchor="middle" class="stereo">{abstract}</text>
 <line class="sep" x1="1160" y1="422" x2="1390" y2="422"/>
-<text x="1172" y="439" class="feat">nom : Texte</text>
-<text x="1172" y="455" class="feat">description : Texte</text>
-<text x="1172" y="471" class="feat">schemaArguments : Document</text>
-<text x="1172" y="487" class="feat">necessiteConfirmation : Booleen</text>
-<text x="1172" y="503" class="feat">niveauVerificationRequis : Entier</text>
+<text x="1172" y="439" class="feat"># nom : Texte</text>
+<text x="1172" y="455" class="feat"># description : Texte</text>
+<text x="1172" y="471" class="feat"># schemaArguments : Document</text>
+<text x="1172" y="487" class="feat"># necessiteConfirmation : Booleen</text>
+<text x="1172" y="503" class="feat"># niveauVerificationRequis : Entier</text>
 <line class="sep" x1="1160" y1="512" x2="1390" y2="512"/>
-<text x="1172" y="529" class="featA">invoquer(arguments, contexte) : Resultat</text>
+<text x="1172" y="529" class="featA"># invoquer(arguments, contexte) : Resultat</text>
 
 <!-- OutilMCP -->
 <rect class="shd" x="1212.6" y="597.6" width="150" height="54"/>
 <rect x="1210" y="595" width="150" height="54" class="bx blue"/>
 <text x="1285" y="613" text-anchor="middle" class="cname">OutilMCP</text>
 <line class="sep" x1="1210" y1="621" x2="1360" y2="621"/>
-<text x="1222" y="638" class="feat">serveur : Serveur</text>
+<text x="1222" y="638" class="feat">- serveur : Serveur</text>
 
 <!-- OutilMetier -->
 <rect class="shd" x="1212.6" y="712.6" width="150" height="54"/>
 <rect x="1210" y="710" width="150" height="54" class="bx blue"/>
 <text x="1285" y="728" text-anchor="middle" class="cname">OutilMetier</text>
 <line class="sep" x1="1210" y1="736" x2="1360" y2="736"/>
-<text x="1222" y="753" class="feat">commande : Commande </text>
+<text x="1222" y="753" class="feat">- commande : Commande</text>
 
 <!-- PortOutilsMCP -->
 <rect class="shd" x="1482.6" y="577.6" width="190" height="94"/>
@@ -254,8 +254,8 @@
 <text x="1575" y="609" text-anchor="middle" class="cname">PortOutilsMCP</text>
 <line class="sep" x1="1480" y1="617" x2="1670" y2="617"/>
 <line class="sep" x1="1480" y1="627" x2="1670" y2="627"/>
-<text x="1492" y="644" class="feat">listerOutils() : Liste&lt;Outil&gt;</text>
-<text x="1492" y="660" class="feat">appeler(nom, arguments) : Resultat</text>
+<text x="1492" y="644" class="feat">+ listerOutils() : Liste&lt;Outil&gt;</text>
+<text x="1492" y="660" class="feat">+ appeler(nom, arguments) : Resultat</text>
 
 <!-- PortMetier -->
 <rect class="shd" x="1482.6" y="692.6" width="190" height="94"/>
@@ -264,8 +264,8 @@
 <text x="1575" y="724" text-anchor="middle" class="cname">PortMetier</text>
 <line class="sep" x1="1480" y1="732" x2="1670" y2="732"/>
 <line class="sep" x1="1480" y1="742" x2="1670" y2="742"/>
-<text x="1492" y="759" class="feat">executer(commande) : Resultat</text>
-<text x="1492" y="775" class="feat">estDisponible() : Booleen</text>
+<text x="1492" y="759" class="feat">+ executer(commande) : Resultat</text>
+<text x="1492" y="775" class="feat">+ estDisponible() : Booleen</text>
 
 <!-- Ports métier spécialisés -->
 <rect class="shd" x="1522.6" y="822.6" width="150" height="44"/>
@@ -300,29 +300,29 @@
 <rect x="60" y="380" width="270" height="222" class="bx yellow"/>
 <text x="195" y="398" text-anchor="middle" class="cname">ContexteDeSession</text>
 <line class="sep" x1="60" y1="406" x2="330" y2="406"/>
-<text x="72" y="423" class="feat">identifiantSession : Texte</text>
-<text x="72" y="439" class="feat">langue : Langue</text>
-<text x="72" y="455" class="feat">niveauVerification : Entier</text>
-<text x="72" y="471" class="feat">sentimentCourant : Sentiment</text>
-<text x="72" y="487" class="feat">resume : Texte</text>
-<text x="72" y="503" class="feat">nbTransferts : Entier</text>
-<text x="72" y="519" class="feat">nbClarifications : Entier</text>
-<text x="72" y="535" class="feat">derniereIntention : Intention [0..1]</text>
+<text x="72" y="423" class="feat">- identifiantSession : Texte</text>
+<text x="72" y="439" class="feat">- langue : Langue</text>
+<text x="72" y="455" class="feat">- niveauVerification : Entier</text>
+<text x="72" y="471" class="feat">- sentimentCourant : Sentiment</text>
+<text x="72" y="487" class="feat">- resume : Texte</text>
+<text x="72" y="503" class="feat">- nbTransferts : Entier</text>
+<text x="72" y="519" class="feat">- nbClarifications : Entier</text>
+<text x="72" y="535" class="feat">- derniereIntention : Intention [0..1]</text>
 <line class="sep" x1="60" y1="544" x2="330" y2="544"/>
-<text x="72" y="561" class="feat">estVerifie() : Booleen</text>
-<text x="72" y="577" class="feat">enregistrerTransfert(transfert : Transfert)</text>
-<text x="72" y="593" class="feat">actualiserSentiment(sentiment : Sentiment)</text>
+<text x="72" y="561" class="feat">+ estVerifie() : Booleen</text>
+<text x="72" y="577" class="feat">+ enregistrerTransfert(transfert : Transfert)</text>
+<text x="72" y="593" class="feat">+ actualiserSentiment(sentiment : Sentiment)</text>
 
 <!-- DefinitionDeDomaine -->
 <rect class="shd" x="882.6" y="342.6" width="260" height="126"/>
 <rect x="880" y="340" width="260" height="126" class="bx yellow"/>
 <text x="1010" y="358" text-anchor="middle" class="cname">DefinitionDeDomaine</text>
 <line class="sep" x1="880" y1="366" x2="1140" y2="366"/>
-<text x="892" y="383" class="feat">domaine : Domaine</text>
-<text x="892" y="399" class="feat">sujetsCouverts : Liste&lt;Texte&gt;</text>
-<text x="892" y="415" class="feat">phraseDeTransition : Table&lt;Langue, Texte&gt;</text>
+<text x="892" y="383" class="feat">- domaine : Domaine</text>
+<text x="892" y="399" class="feat">- sujetsCouverts : Liste&lt;Texte&gt;</text>
+<text x="892" y="415" class="feat">- phraseDeTransition : Table&lt;Langue, Texte&gt;</text>
 <line class="sep" x1="880" y1="424" x2="1140" y2="424"/>
-<text x="892" y="441" class="feat">couvre(sujet : Texte) : Booleen</text>
+<text x="892" y="441" class="feat">+ couvre(sujet : Texte) : Booleen</text>
 
 <!-- Transfert (classe d'association) -->
 <rect class="shd" x="382.6" y="612.6" width="220" height="132"/>
@@ -330,11 +330,11 @@
 <text x="490" y="627" text-anchor="middle" class="stereo">« classe d'association »</text>
 <text x="490" y="644" text-anchor="middle" class="cname">Transfert</text>
 <line class="sep" x1="380" y1="652" x2="600" y2="652"/>
-<text x="392" y="669" class="feat">rang : Entier</text>
-<text x="392" y="685" class="feat">motif : MotifTransfert</text>
-<text x="392" y="701" class="feat">resume : Texte</text>
-<text x="392" y="717" class="feat">horodatage : Horodatage</text>
-<text x="392" y="733" class="feat">accepte : Booleen</text>
+<text x="392" y="669" class="feat">- rang : Entier</text>
+<text x="392" y="685" class="feat">- motif : MotifTransfert</text>
+<text x="392" y="701" class="feat">- resume : Texte</text>
+<text x="392" y="717" class="feat">- horodatage : Horodatage</text>
+<text x="392" y="733" class="feat">- accepte : Booleen</text>
 
 <!-- ============================ AGENTS (rose) ============================ -->
 
@@ -344,75 +344,75 @@
 <text x="650" y="357" text-anchor="middle" class="cnameA">AgentDeBase</text>
 <text x="650" y="372" text-anchor="middle" class="stereo">{abstract}</text>
 <line class="sep" x1="500" y1="382" x2="800" y2="382"/>
-<text x="512" y="399" class="feat">domaine : Domaine</text>
-<text x="512" y="415" class="feat">instructions : Texte</text>
+<text x="512" y="399" class="feat"># domaine : Domaine</text>
+<text x="512" y="415" class="feat"># instructions : Texte</text>
 <line class="sep" x1="500" y1="424" x2="800" y2="424"/>
-<text x="512" y="441" class="feat">sePresenter()</text>
-<text x="512" y="457" class="feat">traiterTour(tour : TourDeParole)</text>
-<text x="512" y="473" class="featA">peutTraiter(intention : Intention) : Booleen</text>
-<text x="512" y="489" class="featA">outilsSpecifiques() : Ensemble&lt;Outil&gt;</text>
-<text x="512" y="505" class="feat">demanderTransfert(cible : Domaine, motif) : Transfert</text>
-<text x="512" y="521" class="feat">journaliser(tour : TourDeParole)</text>
+<text x="512" y="441" class="feat">+ sePresenter()</text>
+<text x="512" y="457" class="feat">+ traiterTour(tour : TourDeParole)</text>
+<text x="512" y="473" class="featA"># peutTraiter(intention : Intention) : Booleen</text>
+<text x="512" y="489" class="featA"># outilsSpecifiques() : Ensemble&lt;Outil&gt;</text>
+<text x="512" y="505" class="feat">+ demanderTransfert(cible : Domaine, motif) : Transfert</text>
+<text x="512" y="521" class="feat">+ journaliser(tour : TourDeParole)</text>
 
 <!-- AgentAccueil -->
 <rect class="shd" x="62.6" y="842.6" width="250" height="126"/>
 <rect x="60" y="840" width="250" height="126" class="bx pink"/>
 <text x="185" y="858" text-anchor="middle" class="cname">AgentAccueil</text>
 <line class="sep" x1="60" y1="866" x2="310" y2="866"/>
-<text x="72" y="883" class="feat">domaine = ACCUEIL</text>
+<text x="72" y="883" class="feat">- domaine = ACCUEIL</text>
 <line class="sep" x1="60" y1="892" x2="310" y2="892"/>
-<text x="72" y="909" class="feat">accueillir()</text>
-<text x="72" y="925" class="feat">verifierIdentite() : Booleen</text>
-<text x="72" y="941" class="feat">qualifierDemande() : Intention</text>
-<text x="72" y="957" class="feat">orienter(intention : Intention) : Transfert</text>
+<text x="72" y="909" class="feat">+ accueillir()</text>
+<text x="72" y="925" class="feat">+ verifierIdentite() : Booleen</text>
+<text x="72" y="941" class="feat">+ qualifierDemande() : Intention</text>
+<text x="72" y="957" class="feat">+ orienter(intention : Intention) : Transfert</text>
 
 <!-- AgentFacturation -->
 <rect class="shd" x="342.6" y="842.6" width="260" height="126"/>
 <rect x="340" y="840" width="260" height="126" class="bx pink"/>
 <text x="470" y="858" text-anchor="middle" class="cname">AgentFacturation</text>
 <line class="sep" x1="340" y1="866" x2="600" y2="866"/>
-<text x="352" y="883" class="feat">domaine = FACTURATION</text>
+<text x="352" y="883" class="feat">- domaine = FACTURATION</text>
 <line class="sep" x1="340" y1="892" x2="600" y2="892"/>
-<text x="352" y="909" class="feat">consulterSolde()</text>
-<text x="352" y="925" class="feat">expliquerFacture()</text>
-<text x="352" y="941" class="feat">reporterEcheance()</text>
-<text x="352" y="957" class="feat">contesterFacture()</text>
+<text x="352" y="909" class="feat">+ consulterSolde()</text>
+<text x="352" y="925" class="feat">+ expliquerFacture()</text>
+<text x="352" y="941" class="feat">+ reporterEcheance()</text>
+<text x="352" y="957" class="feat">+ contesterFacture()</text>
 
 <!-- AgentAbonnement -->
 <rect class="shd" x="632.6" y="842.6" width="260" height="126"/>
 <rect x="630" y="840" width="260" height="126" class="bx pink"/>
 <text x="760" y="858" text-anchor="middle" class="cname">AgentAbonnement</text>
 <line class="sep" x1="630" y1="866" x2="890" y2="866"/>
-<text x="642" y="883" class="feat">domaine = ABONNEMENT</text>
+<text x="642" y="883" class="feat">- domaine = ABONNEMENT</text>
 <line class="sep" x1="630" y1="892" x2="890" y2="892"/>
-<text x="642" y="909" class="feat">consulterForfait()</text>
-<text x="642" y="925" class="feat">changerForfait()</text>
-<text x="642" y="941" class="feat">recharger()</text>
-<text x="642" y="957" class="feat">bloquerLigne()</text>
+<text x="642" y="909" class="feat">+ consulterForfait()</text>
+<text x="642" y="925" class="feat">+ changerForfait()</text>
+<text x="642" y="941" class="feat">+ recharger()</text>
+<text x="642" y="957" class="feat">+ bloquerLigne()</text>
 
 <!-- AgentTechnique -->
 <rect class="shd" x="922.6" y="842.6" width="250" height="126"/>
 <rect x="920" y="840" width="250" height="126" class="bx pink"/>
 <text x="1045" y="858" text-anchor="middle" class="cname">AgentTechnique</text>
 <line class="sep" x1="920" y1="866" x2="1170" y2="866"/>
-<text x="932" y="883" class="feat">domaine = TECHNIQUE</text>
+<text x="932" y="883" class="feat">- domaine = TECHNIQUE</text>
 <line class="sep" x1="920" y1="892" x2="1170" y2="892"/>
-<text x="932" y="909" class="feat">diagnostiquerLigne()</text>
-<text x="932" y="925" class="feat">verifierCouverture()</text>
-<text x="932" y="941" class="feat">reinitialiserSIM()</text>
-<text x="932" y="957" class="feat">signalerIncident()</text>
+<text x="932" y="909" class="feat">+ diagnostiquerLigne()</text>
+<text x="932" y="925" class="feat">+ verifierCouverture()</text>
+<text x="932" y="941" class="feat">+ reinitialiserSIM()</text>
+<text x="932" y="957" class="feat">+ signalerIncident()</text>
 
 <!-- AgentEscalade -->
 <rect class="shd" x="1202.6" y="842.6" width="250" height="126"/>
 <rect x="1200" y="840" width="250" height="126" class="bx pink"/>
 <text x="1325" y="858" text-anchor="middle" class="cname">AgentEscalade</text>
 <line class="sep" x1="1200" y1="866" x2="1450" y2="866"/>
-<text x="1212" y="883" class="feat">domaine = ESCALADE</text>
+<text x="1212" y="883" class="feat">- domaine = ESCALADE</text>
 <line class="sep" x1="1200" y1="892" x2="1450" y2="892"/>
-<text x="1212" y="909" class="feat">constituerDossier() : DossierEscalade</text>
-<text x="1212" y="925" class="feat">transfererAuConseiller()</text>
-<text x="1212" y="941" class="feat">planifierRappel(creneau : Creneau)</text>
-<text x="1212" y="957" class="feat">ouvrirTicket() : Ticket</text>
+<text x="1212" y="909" class="feat">+ constituerDossier() : DossierEscalade</text>
+<text x="1212" y="925" class="feat">+ transfererAuConseiller()</text>
+<text x="1212" y="941" class="feat">+ planifierRappel(creneau : Creneau)</text>
+<text x="1212" y="957" class="feat">+ ouvrirTicket() : Ticket</text>
 
 <!-- ============================ CLASSES DU MODÈLE DU DOMAINE (gris) ============================ -->
 
@@ -421,27 +421,27 @@
 <rect x="1420" y="60" width="240" height="84" class="bx grey"/>
 <text x="1540" y="78" text-anchor="middle" class="cname">ModeleDuDomaine::Conversation</text>
 <line class="sep" x1="1420" y1="86" x2="1660" y2="86"/>
-<text x="1432" y="103" class="feat">identifiant : Texte</text>
-<text x="1432" y="119" class="feat">canal : Texte</text>
-<text x="1432" y="135" class="feat">debutLe : Horodatage</text>
+<text x="1432" y="103" class="feat">- identifiant : Texte</text>
+<text x="1432" y="119" class="feat">- canal : Texte</text>
+<text x="1432" y="135" class="feat">- debutLe : Horodatage</text>
 
 <!-- Client -->
 <rect class="shd" x="62.6" y="682.6" width="230" height="84"/>
 <rect x="60" y="680" width="230" height="84" class="bx grey"/>
 <text x="175" y="698" text-anchor="middle" class="cname">ModeleDuDomaine::Client</text>
 <line class="sep" x1="60" y1="706" x2="290" y2="706"/>
-<text x="72" y="723" class="feat">identifiant : Texte</text>
-<text x="72" y="739" class="feat">nomComplet : Texte</text>
-<text x="72" y="755" class="feat">languePreferee : Langue</text>
+<text x="72" y="723" class="feat">- identifiant : Texte</text>
+<text x="72" y="739" class="feat">- nomComplet : Texte</text>
+<text x="72" y="755" class="feat">- languePreferee : Langue</text>
 
 <!-- DossierEscalade -->
 <rect class="shd" x="1197.6" y="1032.6" width="260" height="84"/>
 <rect x="1195" y="1030" width="260" height="84" class="bx grey"/>
 <text x="1325" y="1048" text-anchor="middle" class="cname">ModeleDuDomaine::DossierEscalade</text>
 <line class="sep" x1="1195" y1="1056" x2="1455" y2="1056"/>
-<text x="1207" y="1073" class="feat">identifiant : Texte</text>
-<text x="1207" y="1089" class="feat">motif : MotifEscalade</text>
-<text x="1207" y="1105" class="feat">synthese : Texte</text>
+<text x="1207" y="1073" class="feat">- identifiant : Texte</text>
+<text x="1207" y="1089" class="feat">- motif : MotifEscalade</text>
+<text x="1207" y="1105" class="feat">- synthese : Texte</text>
 
 <!-- ============================ ÉNUMÉRATIONS (violet) ============================ -->
 
