@@ -1,5 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1780" height="2010" viewBox="0 0 1780 2010">
-<rect width="1780" height="2010" fill="#FFFFFF"/>
+
+<svg xmlns="http://www.w3.org/2000/svg" width="1780" height="2040" viewBox="0 0 1780 2040">
+<rect width="1780" height="2040" fill="#FFFFFF"/>
 <defs>
 <style>
 text{font-family:Arial,Helvetica,sans-serif;}
@@ -33,14 +34,14 @@ text{font-family:Arial,Helvetica,sans-serif;}
 </defs>
 
 <!-- ===================== LIFELINES ===================== -->
-<path d="M100 132 L100 1890" class="life"/>
-<path d="M270 132 L270 1890" class="life"/>
-<path d="M450 132 L450 1890" class="life"/>
-<path d="M690 132 L690 1890" class="life"/>
-<path d="M950 132 L950 1890" class="life"/>
-<path d="M1210 132 L1210 1890" class="life"/>
-<path d="M1450 132 L1450 1890" class="life"/>
-<path d="M1660 132 L1660 1890" class="life"/>
+<path d="M100 132 L100 1910" class="life"/>
+<path d="M270 132 L270 1910" class="life"/>
+<path d="M450 132 L450 1910" class="life"/>
+<path d="M690 132 L690 1910" class="life"/>
+<path d="M950 132 L950 1910" class="life"/>
+<path d="M1210 132 L1210 1910" class="life"/>
+<path d="M1450 132 L1450 1910" class="life"/>
+<path d="M1660 132 L1660 1910" class="life"/>
 
 <!-- ===================== TOP PARTICIPANTS ===================== -->
 <g class="act" filter="url(#ds)">
@@ -78,25 +79,25 @@ text{font-family:Arial,Helvetica,sans-serif;}
 <path d="M1635 50 L1635 82 A25 8 0 0 0 1685 82 L1685 50" class="dbbody"/>
 <ellipse cx="1660" cy="50" rx="25" ry="8" class="dbtop"/>
 </g>
-<text x="1660" y="106" class="plab">Mémoire Contextuelle</text>
+<text x="1660" y="106" class="plab">Mémoire conversationnelle</text>
 <text x="1660" y="120" class="pst">&lt;&lt;Context Store&gt;&gt;</text>
 
 <!-- ===================== ACTIVATION BARS ===================== -->
 <rect x="264" y="152" width="12" height="160" class="actbar"/>
-<rect x="264" y="1302" width="12" height="54" class="actbar"/>
+<rect x="264" y="1306" width="12" height="52" class="actbar"/>
 <rect x="444" y="190" width="12" height="158" class="actbar"/>
 <rect x="444" y="655" width="12" height="43" class="actbar"/>
-<rect x="684" y="226" width="12" height="1614" class="actbar"/>
+<rect x="684" y="226" width="12" height="1636" class="actbar"/>
 <rect x="944" y="488" width="12" height="44" class="actbar"/>
 <rect x="944" y="862" width="12" height="44" class="actbar"/>
 <rect x="944" y="1026" width="12" height="44" class="actbar"/>
 <rect x="1204" y="792" width="12" height="44" class="actbar"/>
 <rect x="1444" y="588" width="12" height="44" class="actbar"/>
 <rect x="1444" y="1190" width="12" height="52" class="actbar"/>
-<rect x="1444" y="1383" width="12" height="50" class="actbar"/>
-<rect x="1444" y="1744" width="12" height="44" class="actbar"/>
+<rect x="1444" y="1386" width="12" height="48" class="actbar"/>
+<rect x="1444" y="1766" width="12" height="44" class="actbar"/>
 <rect x="1654" y="380" width="12" height="44" class="actbar"/>
-<rect x="1654" y="1626" width="12" height="40" class="actbar"/>
+<rect x="1654" y="1648" width="12" height="40" class="actbar"/>
 
 <!-- ============ PHASE 1 : CAPTURE ET DÉTECTION DE FIN DE TOUR ============ -->
 <path d="M100 160 L264 160" class="msg" marker-end="url(#mM)"/>
@@ -189,17 +190,16 @@ text{font-family:Arial,Helvetica,sans-serif;}
 <text x="820" y="1058" class="mlab">Message de confirmation</text>
 
 <!-- ============ PHASE 5 : DIFFUSION ET JOURNALISATION (par) ============ -->
-<rect x="60" y="1120" width="1660" height="558" class="frag"/>
+<rect x="60" y="1120" width="1660" height="580" class="frag"/>
 <path d="M60,1120 L120,1120 L135,1135 L60,1135 Z" class="ftab"/>
 <text x="70" y="1132" class="fword">par</text>
 <rect x="141" y="1122" width="176" height="15" class="bg"/>
 <text x="145" y="1133" class="fcond">[ diffusion vocale du tour ]</text>
-<line x1="60" y1="1530" x2="1720" y2="1530" class="sep"/>
-<rect x="66" y="1537" width="182" height="15" class="bg"/>
-<text x="70" y="1548" class="fcond">[ journalisation asynchrone ]</text>
+<line x1="60" y1="1552" x2="1720" y2="1552" class="sep"/>
+<rect x="66" y="1559" width="182" height="15" class="bg"/>
+<text x="70" y="1570" class="fcond">[ journalisation asynchrone ]</text>
 
-<!-- Inner loop for segments (extended to contain break) -->
-<rect x="80" y="1152" width="1440" height="354" class="frag"/>
+<rect x="80" y="1152" width="1440" height="376" class="frag"/>
 <path d="M80,1152 L155,1152 L170,1167 L80,1167 Z" class="ftab"/>
 <text x="90" y="1164" class="fword">loop</text>
 <rect x="176" y="1154" width="228" height="15" class="bg"/>
@@ -211,93 +211,96 @@ text{font-family:Arial,Helvetica,sans-serif;}
 <path d="M1444 1236 L100 1236" class="msg" marker-end="url(#mM)"/>
 <text x="800" y="1228" class="mlab">Diffuser le fragment audio</text>
 
-<!-- ===================== FRAGMENT break : reprise de parole (barge-in) ===================== -->
-<rect x="100" y="1268" width="1400" height="230" class="frag"/>
-<path d="M100,1268 L175,1268 L190,1283 L100,1283 Z" class="ftab"/>
+<!-- FRAGMENT break : reprise de parole (barge-in) -->
+<rect x="100" y="1268" width="1400" height="248" class="frag"/>
+<path d="M100,1268 L170,1268 L185,1283 L100,1283 Z" class="ftab"/>
 <text x="110" y="1280" class="fword">break</text>
-<rect x="196" y="1270" width="332" height="15" class="bg"/>
-<text x="200" y="1281" class="fcond">[ le client reprend la parole pendant la diffusion ]</text>
+<rect x="191" y="1270" width="358" height="15" class="bg"/>
+<text x="195" y="1281" class="fcond">[ Le client reprend la parole pendant la diffusion ]</text>
 
 <path d="M100 1310 L264 1310" class="msg" marker-end="url(#mM)"/>
 <text x="182" y="1302" class="mlab">Reprise de parole</text>
 
-<path d="M276 1348 L684 1348" class="msg" marker-end="url(#mM)"/>
-<text x="480" y="1340" class="mlab">Signal d'interruption</text>
+<path d="M276 1350 L684 1350" class="msg" marker-end="url(#mM)"/>
+<text x="480" y="1342" class="mlab">Signal d'interruption</text>
 
-<path d="M696 1388 L1444 1388" class="msg" marker-end="url(#mM)"/>
-<text x="1070" y="1380" class="mlab">Interrompre la diffusion en cours</text>
+<path d="M696 1390 L1444 1390" class="msg" marker-end="url(#mM)"/>
+<rect x="940" y="1371" width="260" height="14" class="bg"/>
+<text x="1070" y="1382" class="mlab">Interrompre la diffusion en cours</text>
 
-<path d="M1444 1428 L696 1428" class="msgR" marker-end="url(#mGo)"/>
-<text x="1070" y="1420" class="mlab">Diffusion arrêtée (point de coupure)</text>
+<path d="M1444 1430 L696 1430" class="msgR" marker-end="url(#mGo)"/>
+<rect x="918" y="1411" width="304" height="14" class="bg"/>
+<text x="1070" y="1422" class="mlab">Diffusion arrêtée (point de coupure)</text>
 
-<path d="M696,1470 L790,1470 L790,1494 L696,1494" class="msg" marker-end="url(#mM)"/>
-<text x="705" y="1462" class="mlabL">Aligner le contexte sur le contenu réellement diffusé</text>
+<text x="705" y="1458" class="mlabL">Aligner le contexte sur</text>
+<text x="705" y="1472" class="mlabL">le contenu réellement diffusé</text>
+<path d="M696,1480 L780,1480 L780,1504 L696,1504" class="msg" marker-end="url(#mM)"/>
 
-<!-- Journalisation asynchrone -->
-<path d="M696,1576 L780,1576 L780,1600 L696,1600" class="msg" marker-end="url(#mM)"/>
-<text x="705" y="1568" class="mlabL">Évaluer le sentiment du tour</text>
+<!-- journalisation asynchrone -->
+<path d="M696,1598 L780,1598 L780,1622 L696,1622" class="msg" marker-end="url(#mM)"/>
+<text x="705" y="1590" class="mlabL">Évaluer le sentiment du tour</text>
 
-<path d="M696 1632 L1654 1632" class="msg" marker-end="url(#mM)"/>
-<rect x="1027" y="1613" width="296" height="14" class="bg"/>
-<text x="1175" y="1624" class="mlab">Consigner le tour et le sentiment (asynchrone)</text>
+<path d="M696 1654 L1654 1654" class="msg" marker-end="url(#mM)"/>
+<rect x="1027" y="1635" width="296" height="14" class="bg"/>
+<text x="1175" y="1646" class="mlab">Consigner le tour et le sentiment (asynchrone)</text>
 
-<path d="M1654 1662 L696 1662" class="msgR" marker-end="url(#mGo)"/>
-<rect x="1081" y="1643" width="188" height="14" class="bg"/>
-<text x="1175" y="1654" class="mlab">Confirmation d'enregistrement</text>
+<path d="M1654 1684 L696 1684" class="msgR" marker-end="url(#mGo)"/>
+<rect x="1081" y="1665" width="188" height="14" class="bg"/>
+<text x="1175" y="1676" class="mlab">Confirmation d'enregistrement</text>
 
 <!-- ============ PHASE 6 : CLÔTURE DE LA SESSION (opt) ============ -->
-<rect x="60" y="1708" width="1460" height="150" class="frag"/>
-<path d="M60,1708 L115,1708 L130,1723 L60,1723 Z" class="ftab"/>
-<text x="70" y="1720" class="fword">opt</text>
-<rect x="136" y="1710" width="204" height="15" class="bg"/>
-<text x="140" y="1721" class="fcond">[ intention de clôture confirmée ]</text>
+<rect x="60" y="1730" width="1460" height="150" class="frag"/>
+<path d="M60,1730 L115,1730 L130,1745 L60,1745 Z" class="ftab"/>
+<text x="70" y="1742" class="fword">opt</text>
+<rect x="136" y="1732" width="204" height="15" class="bg"/>
+<text x="140" y="1743" class="fcond">[ intention de clôture confirmée ]</text>
 
-<path d="M696 1750 L1444 1750" class="msg" marker-end="url(#mM)"/>
-<text x="1070" y="1742" class="mlab">Synthétiser la formule de clôture</text>
+<path d="M696 1772 L1444 1772" class="msg" marker-end="url(#mM)"/>
+<text x="1070" y="1764" class="mlab">Synthétiser la formule de clôture</text>
 
-<path d="M1444 1784 L100 1784" class="msg" marker-end="url(#mM)"/>
-<text x="800" y="1776" class="mlab">Diffuser la formule de clôture</text>
+<path d="M1444 1806 L100 1806" class="msg" marker-end="url(#mM)"/>
+<text x="800" y="1798" class="mlab">Diffuser la formule de clôture</text>
 
-<path d="M696,1816 L780,1816 L780,1840 L696,1840" class="msg" marker-end="url(#mM)"/>
-<text x="705" y="1808" class="mlabL">Clôturer la session conversationnelle</text>
+<path d="M696,1838 L780,1838 L780,1862 L696,1862" class="msg" marker-end="url(#mM)"/>
+<text x="705" y="1830" class="mlabL">Clôturer la session Contextuelle</text>
 
 <!-- ===================== BOTTOM PARTICIPANTS ===================== -->
-<text x="100" y="1904" class="plab">Client</text>
-<text x="100" y="1918" class="pst">&lt;&lt;Actor&gt;&gt;</text>
+<text x="100" y="1926" class="plab">Client</text>
+<text x="100" y="1940" class="pst">&lt;&lt;Actor&gt;&gt;</text>
 <g class="act" filter="url(#ds)">
-<circle cx="100" cy="1932" r="8" fill="#FFF6C7"/>
-<path d="M100 1940 L100 1965"/><path d="M86 1947 L114 1947"/><path d="M100 1965 L87 1983"/><path d="M100 1965 L113 1983"/>
+<circle cx="100" cy="1954" r="8" fill="#FFF6C7"/>
+<path d="M100 1962 L100 1987"/><path d="M86 1969 L114 1969"/><path d="M100 1987 L87 2005"/><path d="M100 1987 L113 2005"/>
 </g>
 
-<text x="270" y="1918" class="pst">&lt;&lt;VAD&gt;&gt;</text>
-<rect x="190" y="1932" width="160" height="34" class="pB" filter="url(#ds)"/>
-<text x="270" y="1949" class="bname">Détection d'activité</text>
+<text x="270" y="1940" class="pst">&lt;&lt;VAD&gt;&gt;</text>
+<rect x="190" y="1954" width="160" height="34" class="pB" filter="url(#ds)"/>
+<text x="270" y="1971" class="bname">Détection d'activité</text>
 
-<text x="450" y="1918" class="pst">&lt;&lt;STT&gt;&gt;</text>
-<rect x="370" y="1932" width="160" height="34" class="pB" filter="url(#ds)"/>
-<text x="450" y="1949" class="bname">Transcription</text>
+<text x="450" y="1940" class="pst">&lt;&lt;STT&gt;&gt;</text>
+<rect x="370" y="1954" width="160" height="34" class="pB" filter="url(#ds)"/>
+<text x="450" y="1971" class="bname">Transcription</text>
 
-<text x="690" y="1918" class="pst">&lt;&lt;Orchestrateur&gt;&gt;</text>
-<rect x="610" y="1932" width="160" height="34" class="pG" filter="url(#ds)"/>
-<text x="690" y="1949" class="bname">Agent Spécialisé</text>
+<text x="690" y="1940" class="pst">&lt;&lt;Orchestrateur&gt;&gt;</text>
+<rect x="610" y="1954" width="160" height="34" class="pG" filter="url(#ds)"/>
+<text x="690" y="1971" class="bname">Agent Spécialisé</text>
 
-<text x="950" y="1918" class="pst">&lt;&lt;LLM&gt;&gt;</text>
-<rect x="870" y="1932" width="160" height="34" class="pL" filter="url(#ds)"/>
-<text x="950" y="1949" class="bname">Moteur d'Inférence</text>
+<text x="950" y="1940" class="pst">&lt;&lt;LLM&gt;&gt;</text>
+<rect x="870" y="1954" width="160" height="34" class="pL" filter="url(#ds)"/>
+<text x="950" y="1971" class="bname">Moteur d'Inférence</text>
 
-<text x="1210" y="1918" class="pst">&lt;&lt;Knowledge Service&gt;&gt;</text>
-<rect x="1115" y="1932" width="190" height="34" class="pB" filter="url(#ds)"/>
-<text x="1210" y="1949" class="bname">Capacité documentaire</text>
+<text x="1210" y="1940" class="pst">&lt;&lt;Knowledge Service&gt;&gt;</text>
+<rect x="1115" y="1954" width="190" height="34" class="pB" filter="url(#ds)"/>
+<text x="1210" y="1971" class="bname">Capacité documentaire</text>
 
-<text x="1450" y="1918" class="pst">&lt;&lt;TTS&gt;&gt;</text>
-<rect x="1370" y="1932" width="160" height="34" class="pB" filter="url(#ds)"/>
-<text x="1450" y="1949" class="bname">Synthèse vocale</text>
+<text x="1450" y="1940" class="pst">&lt;&lt;TTS&gt;&gt;</text>
+<rect x="1370" y="1954" width="160" height="34" class="pB" filter="url(#ds)"/>
+<text x="1450" y="1971" class="bname">Synthèse vocale</text>
 
-<text x="1660" y="1904" class="plab">Mémoire Contextuelle</text>
-<text x="1660" y="1918" class="pst">&lt;&lt;Context Store&gt;&gt;</text>
+<text x="1660" y="1926" class="plab">Mémoire Contextuelle</text>
+<text x="1660" y="1940" class="pst">&lt;&lt;Context Store&gt;&gt;</text>
 <g filter="url(#ds)">
-<path d="M1635 1932 L1635 1964 A25 8 0 0 0 1685 1964 L1685 1932" class="dbbody"/>
-<ellipse cx="1660" cy="1932" rx="25" ry="8" class="dbtop"/>
+<path d="M1635 1954 L1635 1986 A25 8 0 0 0 1685 1986 L1685 1954" class="dbbody"/>
+<ellipse cx="1660" cy="1954" rx="25" ry="8" class="dbtop"/>
 </g>
 
 </svg>
