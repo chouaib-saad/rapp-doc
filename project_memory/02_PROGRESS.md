@@ -61,8 +61,10 @@ This file records what has actually been completed.
 ## Removed by user decision
 - [x] §3.1.3 Conception de la base de données (Ch3) removed entirely: Organisation en schémas (table tab:schemas), Modèle entités associations (fig-mcd / figure 13/36 incl. fig-mcd.tex) and Deux asymétries assumées. Ch3 conclusion adapted; no orphan refs remain.
 
+- [ ] Figure 14/36 (`fig-seq-sensible`, Ch3) next: pending per-figure analysis → proposal → generation → validation.
+
 ## Open / Next
-- [ ] Figure 13/36 (`fig-seq-tour`, Ch3) next: pending per-figure analysis → proposal → generation → validation.
+- [x] Figure 13/36: `fig-seq-tour.svg` = EXACT user-supplied sequence diagram SVG (1780×2010, 8 lifelines Client/VAD/STT/Agent Spécialisé/LLM/Capacité documentaire/TTS/Mémoire Contextuelle; 6 phases: capture+fin de tour, chargement contexte, loop intention (opt précision), alt documentaire/opérationnelle, par diffusion (loop segments + break barge-in) / journalisation asynchrone, opt clôture). Ch3 §Déroulement d'un tour de parole rewritten to match; figure placed after intro sentence, interpretation follows. INTEGRATED.
 - [ ] Figures 2–36 (one at a time, per accepted protocol).
 - [ ] Report-wide coherence check across figures/values after all diagrams.
 - [ ] Final read-through and PDF build by the user (sandbox has no LaTeX compiler).

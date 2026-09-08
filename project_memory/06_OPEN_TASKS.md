@@ -19,6 +19,7 @@ Active after Phase 2 + final reading + Phase 5 figure 1. No LaTeX build in sandb
 - [x] **Figure 10:** fig-classes-domaine (Ch3) — EXACT user class diagram; Ch3 §Modèle du domaine adapted to aggregates/value objects/enums. CONFIRMED (b779191). Post-confirm: MSISDN renamed to 'Numéro d'appel' in fig-classes-domaine.svg + fig-mcd.tex.
 - [x] **Figure 11:** fig-classes-agents (Ch3) — EXACT user class diagram (couche agents) integrated verbatim; Ch3 §'Couche des agents conversationnels' rewritten; caption 'Diagramme de classes de la couche agents'; §Décomposition agent d'escalade + domaine Abonnement; §Construction 'Outils disponibles'. SVG has duplicate `y` attrs lines 397/399 (left untouched per rule).
 - [x] **Figure 12:** fig-classes-politique (Ch3) — EXACT user class diagram (moteur de politique) integrated verbatim; Ch3 §Moteur rewritten; Ch2/Ch3 garde-fous updated to 4 verdicts; Ch4 'moteur de règles'→'moteur de politique'.
+- [x] **Figure 13:** fig-seq-tour (Ch3) — EXACT user sequence SVG (8 lifelines, 6 phases, loop/opt/alt/par/break); Ch3 §Déroulement d'un tour de parole rewritten. INTEGRATED.
 - [x] **§3.1.3 Conception de la base de données (Ch3)** removed per user: Organisation en schémas / tab:schemas, Modèle entités associations / fig-mcd.tex (figure 13 suppressed), Deux asymétries assumées. Ch3 conclusion adapted. Next figure after this = fig-seq-tour.
 - [ ] then the remaining figures in the order below (validate each before the next):
       fig-cu-action, fig-cu-escalade, fig-seq-*, fig-classes-*, fig-act-*,

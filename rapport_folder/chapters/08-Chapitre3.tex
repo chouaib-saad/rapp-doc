@@ -164,13 +164,23 @@ La vue statique a décrit les éléments du système. La vue dynamique décrit l
 
 \subsubsection{Déroulement d'un tour de parole}
 
-Le premier diagramme, présenté à la figure \ref{fig:seq-tour}, détaille le traitement complet d'un tour de parole, depuis la fin de l'énoncé du client jusqu'au début de la réponse sonore. Il constitue le chemin le plus fréquemment emprunté du système et celui sur lequel pèse la contrainte de temps.
-
-L'enchaînement se lit ainsi. La détection d'activité vocale constate la fin de l'énoncé et déclenche la clôture du tour. La transcription, alimentée en continu pendant que le client parlait, se stabilise et livre le texte définitif. Ce texte est remis à l'agent actif, qui dispose déjà du contexte de la conversation et de la situation du client. L'agent détermine s'il peut répondre directement ou s'il doit solliciter une capacité, par exemple la recherche documentaire. La réponse formulée est transmise à la synthèse vocale, qui produit et diffuse l'audio par fragments successifs plutôt qu'en un bloc, de sorte que le client entend le début de la réponse avant que sa fin ne soit calculée. En parallèle et hors du chemin de parole, le tour est évalué du point de vue du sentiment puis remis à la couche d'enregistrement.
-
-Ce parallélisme est un choix de conception et non une commodité d'implémentation. L'enregistrement d'un tour est utile mais non essentiel à la conversation ; le placer sur le chemin critique reviendrait à faire dépendre la fluidité de l'échange de la disponibilité du stockage.
+Le premier diagramme, présenté à la figure \ref{fig:seq-tour}, décrit une session complète de la plateforme autour d'un tour de parole. Il met en scène huit participants : le client, la détection d'activité vocale, la transcription, l'agent spécialisé, le moteur d'inférence, la capacité documentaire, la synthèse vocale et la mémoire contextuelle. Le chemin représenté est le plus fréquemment emprunté du système et celui sur lequel pèse la contrainte de temps.
 
 \figureTikz{Diagramme de séquence du traitement d'un tour de parole}{seq-tour}{fig-seq-tour}
+
+L'enchaînement se lit en six phases. La capture d'abord : le client envoie un flux audio temps réel à la détection d'activité vocale, qui transmet les trames de parole à la transcription ; celle ci alimente l'agent en transcription partielle pendant l'énoncé. Un silence prolongé de 250 millisecondes déclenche le signal de fin de tour, et la transcription définitive du tour est alors remise à l'agent.
+
+L'agent charge ensuite le contexte conversationnel auprès de la mémoire contextuelle, qui lui restitue l'historique des tours précédents. Ce chargement précède l'interprétation : l'agent ne dispose jamais seulement de l'énoncé, mais de la conversation telle qu'elle s'est construite jusqu'à cet instant.
+
+La résolution de l'intention est alors parcourue en boucle, avec au plus deux tentatives. L'agent soumet l'énoncé au moteur d'inférence, qui renvoie l'intention et son score de confiance. Si ce score est inférieur au seuil, l'agent fait synthétiser une demande de précision par la synthèse vocale, la diffuse au client, puis reçoit la reformulation et sa transcription ; la boucle se répète avec le nouvel énoncé.
+
+L'intention étant résolue, le diagramme se sépare en deux branches. Pour une intention documentaire, l'agent interroge la capacité documentaire, qui renvoie les extraits et leurs sources, puis demande au moteur d'inférence une réponse ancrée, accompagnée des citations. Pour une intention opérationnelle, l'agent exécute lui même l'action métier demandée, puis fait formuler et renvoyer le message de confirmation. Cette bifurcation traduit la frontière établie dans la conception : la recherche de connaissance passe par le service documentaire, tandis que l'action reste sous le contrôle de l'agent et du moteur de politique.
+
+La diffusion est ensuite menée en parallèle de la journalisation. D'un côté, l'agent fait synthétiser chaque segment de la réponse par la synthèse vocale, qui diffuse le fragment au client ; la diffusion est ainsi fragmentée et non globale, ce qui permet au client d'entendre le début de la réponse avant que sa fin ne soit calculée. Un fragment particulier traite la reprise de parole : si le client reprend la parole pendant la diffusion, la détection d'activité vocale signale l'interruption à l'agent, qui stoppe la diffusion à un point de coupure et réaligne le contexte sur le contenu réellement diffusé. De l'autre côté, hors du chemin de parole, l'agent évalue le sentiment du tour et consigne le tour et ce sentiment dans la mémoire contextuelle, qui confirme l'enregistrement.
+
+La dernière phase est conditionnelle : lorsque l'intention de clôture est confirmée, l'agent fait synthétiser puis diffuser la formule de clôture, et clôture la session conversationnelle.
+
+Ces deux derniers points ne sont pas des commodités d'implémentation. Le découpage de la diffusion en fragments préserve la latence perçue du chemin de parole, et la journalisation parallèle évite de faire dépendre la fluidité de l'échange de la disponibilité du stockage : perdre l'enregistrement d'un tour est regrettable, mais interrompre l'appel parce qu'un journal ne peut pas être écrit serait bien pire. La gestion de la reprise de parole, enfin, garantit que le contexte mémorisé correspond à ce que le client a réellement entendu et non à la réponse intégralement planifiée.
 
 \subsubsection{Déroulement d'une action sensible}
 
