@@ -23,7 +23,7 @@ La figure \ref{fig:logo-amsys} présente l'identité visuelle de la société.
 
 Amsys Consulting s'appuie sur un cadre rigoureux en matière de sécurité de l'information et de qualité de service, ainsi que sur des partenariats stratégiques avec les principaux fournisseurs de services cloud. Ce socle n'est pas resté un élément de contexte : il a directement structuré plusieurs choix techniques du projet. Les frontières de sécurité, les pratiques d'observabilité et l'architecture d'infrastructure décrites dans les chapitres suivants en découlent en grande partie, et plusieurs décisions que nous justifions par la suite ne s'expliquent pleinement qu'à la lumière de ces exigences internes.
 
-\figurePlaceholder{Logo de la société Amsys Consulting}{logo-amsys}{Logo officiel de la société, sur fond blanc, cadré et centré.}
+\figureReport{figures/logo-amsys-consulting.png}{0.72\linewidth}{Logo de la société Amsys Consulting}{logo-amsys}
 
 \section{Présentation du projet}
 
@@ -171,35 +171,49 @@ Auto hébergement possible & Non & Partiel & Non & \textbf{Oui} \\
 
 \section{Chronologie du projet}
 
-Le projet s'est déroulé de mars à août 2026. Nous l'avons organisé en six phases successives, chacune produisant un ensemble cohérent et démontrable plutôt qu'un simple lot de travaux. La figure \ref{fig:gantt} présente le diagramme de Gantt correspondant, et le tableau \ref{tab:phases} précise ce que chaque phase a produit.
+Le projet s'est déroulé de mars à août 2026. Nous l'avons organisé en quatre groupes de travaux — cadrage, réalisation, intégration et livraison — qui se chevauchent partiellement, chacun produisant un ensemble cohérent et démontrable plutôt qu'un simple lot de travaux. La figure \ref{fig:gantt} présente le diagramme de Gantt correspondant, et le tableau \ref{tab:phases} précise chaque tâche, sa période et son résultat.
 
 \figureTikz{Diagramme de Gantt du projet}{gantt}{fig-gantt}
 
 \begin{table}[H]
 \centering
 \renewcommand{\arraystretch}{1.25}
-\begin{tabular}{|p{2.1cm}|p{4.0cm}|p{7.8cm}|}
+\begin{tabular}{|p{2.0cm}|p{2.9cm}|p{3.0cm}|p{6.1cm}|}
 \hline
-\textbf{Période} & \textbf{Phase} & \textbf{Résultat principal} \\
+\textbf{Groupe} & \textbf{Tâche} & \textbf{Période} & \textbf{Résultat principal} \\
 \hline
-Mars & Cadrage et étude & Compréhension du domaine, étude de l'existant, spécification des besoins, choix de l'architecture cible et des principes structurants. \\
+Cadrage & Initialisation & Mars S1--S2 & Lancement, périmètre et étude de l'existant. \\
 \hline
-Avril & Fondations & Mise en place du socle applicatif, du modèle de données, de la séparation en contextes métier et des interfaces entre couches. \\
+Cadrage & Spécification & Mars S2--Avril S1 & Cahier des besoins validé. \\
 \hline
-Mai & Chaîne vocale temps réel & Premier échange parlé de bout en bout, gestion des tours de parole et des interruptions, chaînes de repli entre fournisseurs. \\
+Cadrage & Architecture & Avril S2--Mai S1 & Architecture cible et principes structurants retenus. \\
 \hline
-Juin & Décision et exécution & Services métier, chaîne décision, politique et exécution, exécution idempotente des actions sensibles, registre d'audit. \\
+Réalisation & Fondations & Avril S1--S2 & Socle exécutable, contextes métier, modèle de domaine et interfaces entre couches. \\
 \hline
-Juillet & Connaissance et intégration & Chaîne d'ingestion et de récupération documentaire, intégration au système de gestion de tickets, escalade et planification de rappels. \\
+Réalisation & Chaîne vocale & Mai S1--S2 & VAD, transcription, synthèse, gestion des tours de parole et des interruptions. \\
 \hline
-Août & Interfaces et durcissement & Portail client, console d'administration, observabilité, campagne de vérification, corrections et rédaction du présent rapport. \\
+Réalisation & Agents & Mai S2--Juin S2 & Agent d'accueil puis agents métier spécialisés. \\
+\hline
+Réalisation & Décision & Juin S1--S2 & Moteur de politique, registre d'audit et exécution idempotente des actions sensibles. \\
+\hline
+Intégration & Connaissance & Juillet S1--S2 & Ingestion, index et recherche documentaire ancrée. \\
+\hline
+Intégration & Services métier opérateur & Juin S2--Juillet S2 & Passerelles facturation, abonnement et technique. \\
+\hline
+Intégration & Opérateur & Juillet S1--S2 & Tickets puis escalade et planification de rappels. \\
+\hline
+Livraison & Fiabilisation & Juillet S1--S2 & Tests, validation et optimisations. \\
+\hline
+Livraison & Portail et console & Août S1--S2 & Interfaces client et administration, observabilité. \\
+\hline
+Livraison & Rapport & Avril S1--Août S2 & Rédaction continue et rapport final déposé. \\
 \hline
 \end{tabular}
 \caption{Phases du projet et résultats associés}
 \label{tab:phases}
 \end{table}
 
-Ces phases se recouvrent partiellement. Plusieurs travaux engagés lors d'une phase se sont poursuivis pendant la suivante. L'optimisation de la chaîne vocale, notamment, a fait l'objet d'ajustements jusqu'aux dernières semaines, à mesure que les mesures de latence se précisaient.
+Les groupes se recouvrent partiellement : plusieurs tâches commencent avant la fin de la précédente et certaines se poursuivent au-delà de leur fenêtre nominale. L'architecture cible, par exemple, est arrêtée après le début des fondations, et la rédaction du rapport accompagne l'ensemble du développement avant de culminer en août. L'optimisation de la chaîne vocale, de même, a fait l'objet d'ajustements jusqu'aux dernières semaines, à mesure que les mesures de latence se précisaient.
 
 \section{Processus de développement}
 

@@ -62,6 +62,8 @@ This file records what has actually been completed.
 - [x] §3.1.3 Conception de la base de données (Ch3) removed entirely: Organisation en schémas (table tab:schemas), Modèle entités associations (fig-mcd / figure 13/36 incl. fig-mcd.tex) and Deux asymétries assumées. Ch3 conclusion adapted; no orphan refs remain.
 
 - [ ] Figure 14/36 (`fig-seq-sensible`, Ch3) next: pending per-figure analysis → proposal → generation → validation.
+- [x] Ch1 logo `logo-amsys-consulting.png` (1664×928, user-pushed `cd961bd`) integrated: placeholder → `\figureReport{figures/logo-amsys-consulting.png}{0.72\linewidth}{Logo de la société Amsys Consulting}{logo-amsys}`.
+- [x] Ch1 Gantt `fig-gantt.svg` (915×480) EXACT user SVG saved verbatim; §Chronologie intro + `tab:phases` rewritten to match (4 groupes Cadrage/Réalisation/Intégration/Livraison, 13 tâches, périodes S1/S2, rapport avril→août).
 
 ## Open / Next
 - [x] Figure 13/36: `fig-seq-tour.svg` = EXACT user-supplied sequence diagram SVG (1780×2010, 8 lifelines Client/VAD/STT/Agent Spécialisé/LLM/Capacité documentaire/TTS/Mémoire Contextuelle; 6 phases: capture+fin de tour, chargement contexte, loop intention (opt précision), alt documentaire/opérationnelle, par diffusion (loop segments + break barge-in) / journalisation asynchrone, opt clôture). Ch3 §Déroulement d'un tour de parole rewritten to match; figure placed after intro sentence, interpretation follows. INTEGRATED.

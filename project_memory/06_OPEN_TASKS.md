@@ -31,7 +31,7 @@ Active after Phase 2 + final reading + Phase 5 figure 1. No LaTeX build in sandb
 ## Normal Priority
 - [ ] Captures d'écran placeholders (ui-*) — still placeholders awaiting real screenshots; one
       figure per capture (no side-by-side planches).
-- [ ] Logo Amsys for figure 1.1 if not yet replaced.
+- [x] Logo Amsys (`logo-amsys-consulting.png`, user-pushed `cd961bd`) integrated via `figureReport`.
 
 ## Content / Deferred
 - [ ] Increment count semantic — if re-introduced, must use functional-slice (18) definition, never

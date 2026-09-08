@@ -1,0 +1,171 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="915" height="480" viewBox="35 35 915 480">
+  <rect x="0" y="0" width="1000" height="1000" fill="#FFFFFF"/>
+
+  <!-- HEADER MOIS -->
+  <g>
+    <rect x="192" y="46" width="124" height="26" fill="#D8E5F1"/>
+    <rect x="316" y="46" width="124" height="26" fill="#D8E5F1"/>
+    <rect x="440" y="46" width="124" height="26" fill="#D8E5F1"/>
+    <rect x="564" y="46" width="124" height="26" fill="#D8E5F1"/>
+    <rect x="688" y="46" width="124" height="26" fill="#D8E5F1"/>
+    <rect x="812" y="46" width="124" height="26" fill="#D8E5F1"/>
+    <g text-anchor="middle" dominant-baseline="middle" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="700" fill="#5A6D7E" letter-spacing="0.4">
+      <text x="254" y="59">MARS</text>
+      <text x="378" y="59">AVRIL</text>
+      <text x="502" y="59">MAI</text>
+      <text x="626" y="59">JUIN</text>
+      <text x="750" y="59">JUILLET</text>
+      <text x="874" y="59">AOÛT</text>
+    </g>
+  </g>
+
+  <!-- HEADER S1 / S2 -->
+  <g>
+    <rect x="192" y="73" width="62" height="18" fill="#E8F1F8"/>
+    <rect x="254" y="73" width="62" height="18" fill="#D8E5F1"/>
+    <rect x="316" y="73" width="62" height="18" fill="#E8F1F8"/>
+    <rect x="378" y="73" width="62" height="18" fill="#D8E5F1"/>
+    <rect x="440" y="73" width="62" height="18" fill="#E8F1F8"/>
+    <rect x="502" y="73" width="62" height="18" fill="#D8E5F1"/>
+    <rect x="564" y="73" width="62" height="18" fill="#E8F1F8"/>
+    <rect x="626" y="73" width="62" height="18" fill="#D8E5F1"/>
+    <rect x="688" y="73" width="62" height="18" fill="#E8F1F8"/>
+    <rect x="750" y="73" width="62" height="18" fill="#D8E5F1"/>
+    <rect x="812" y="73" width="62" height="18" fill="#E8F1F8"/>
+    <rect x="874" y="73" width="62" height="18" fill="#D8E5F1"/>
+    <g text-anchor="middle" dominant-baseline="middle" font-family="Arial, Helvetica, sans-serif" font-size="8" font-weight="600" fill="#7A8B9A">
+      <text x="223" y="82">S1</text>
+      <text x="285" y="82">S2</text>
+      <text x="347" y="82">S1</text>
+      <text x="409" y="82">S2</text>
+      <text x="471" y="82">S1</text>
+      <text x="533" y="82">S2</text>
+      <text x="595" y="82">S1</text>
+      <text x="657" y="82">S2</text>
+      <text x="719" y="82">S1</text>
+      <text x="781" y="82">S2</text>
+      <text x="843" y="82">S1</text>
+      <text x="905" y="82">S2</text>
+    </g>
+  </g>
+
+  <!-- LIGNES GRILLE -->
+  <g stroke="#CFCFCF" stroke-width="1">
+    <line x1="192" y1="112" x2="936" y2="112"/>
+    <line x1="192" y1="143" x2="936" y2="143"/>
+    <line x1="192" y1="174" x2="936" y2="174"/>
+    <line x1="192" y1="213" x2="936" y2="213"/>
+    <line x1="192" y1="244" x2="936" y2="244"/>
+    <line x1="192" y1="275" x2="936" y2="275"/>
+    <line x1="192" y1="306" x2="936" y2="306"/>
+    <line x1="192" y1="345" x2="936" y2="345"/>
+    <line x1="192" y1="376" x2="936" y2="376"/>
+    <line x1="192" y1="407" x2="936" y2="407"/>
+    <line x1="192" y1="446" x2="936" y2="446"/>
+    <line x1="192" y1="477" x2="936" y2="477"/>
+  </g>
+
+  <!-- CATEGORIES VERTICALES -->
+  <g font-family="Arial, Helvetica, sans-serif" font-weight="700" fill="#333333">
+    <rect x="50" y="100" width="18" height="86" fill="#E9BDD2"/>
+    <text x="59" y="143" transform="rotate(-90 59 143)" text-anchor="middle" dominant-baseline="middle" font-size="10" letter-spacing="1">CADRAGE</text>
+
+    <rect x="50" y="201" width="18" height="117" fill="#C5D1BE"/>
+    <text x="59" y="259.5" transform="rotate(-90 59 259.5)" text-anchor="middle" dominant-baseline="middle" font-size="8.5" letter-spacing="0.4">RÉALISATION</text>
+
+    <rect x="50" y="333" width="18" height="86" fill="#F5C89B"/>
+    <text x="59" y="376" transform="rotate(-90 59 376)" text-anchor="middle" dominant-baseline="middle" font-size="7" letter-spacing="0.2">INTÉGRATION</text>
+
+    <rect x="50" y="434" width="18" height="55" fill="#A9D7E4"/>
+    <text x="59" y="461.5" transform="rotate(-90 59 461.5)" text-anchor="middle" dominant-baseline="middle" font-size="8" letter-spacing="0.4">LIVRAISON</text>
+  </g>
+
+  <!-- NOMS DE LIGNES -->
+  <g font-family="Arial, Helvetica, sans-serif" font-size="8" font-weight="800" fill="#333333" letter-spacing="0.2">
+    <!-- CADRAGE -->
+    <rect x="70" y="100" width="114" height="24" fill="#F8D9E5"/>
+    <text x="127" y="112" text-anchor="middle" dominant-baseline="middle">INITIALISATION</text>
+    <rect x="70" y="131" width="114" height="24" fill="#F8D9E5"/>
+    <text x="127" y="143" text-anchor="middle" dominant-baseline="middle">SPÉCIFICATION</text>
+    <rect x="70" y="162" width="114" height="24" fill="#F8D9E5"/>
+    <text x="127" y="174" text-anchor="middle" dominant-baseline="middle">ARCHITECTURE</text>
+
+    <!-- RÉALISATION -->
+    <rect x="70" y="201" width="114" height="24" fill="#E1E9DE"/>
+    <text x="127" y="213" text-anchor="middle" dominant-baseline="middle">FONDATIONS</text>
+    <rect x="70" y="232" width="114" height="24" fill="#E1E9DE"/>
+    <text x="127" y="244" text-anchor="middle" dominant-baseline="middle">CHAÎNE VOCALE</text>
+    <rect x="70" y="263" width="114" height="24" fill="#E1E9DE"/>
+    <text x="127" y="275" text-anchor="middle" dominant-baseline="middle">AGENTS</text>
+    <rect x="70" y="294" width="114" height="24" fill="#E1E9DE"/>
+    <text x="127" y="306" text-anchor="middle" dominant-baseline="middle">DÉCISION</text>
+
+    <!-- INTÉGRATION -->
+    <rect x="70" y="333" width="114" height="24" fill="#FDE2C3"/>
+    <text x="127" y="345" text-anchor="middle" dominant-baseline="middle">CONNAISSANCE</text>
+    <rect x="70" y="364" width="114" height="24" fill="#FDE2C3"/>
+    <text x="127" y="376" text-anchor="middle" dominant-baseline="middle">SERVICES MÉTIER</text>
+    <rect x="70" y="395" width="114" height="24" fill="#FDE2C3"/>
+    <text x="127" y="407" text-anchor="middle" dominant-baseline="middle">OPÉRATEUR</text>
+
+    <!-- LIVRAISON -->
+    <rect x="70" y="434" width="114" height="24" fill="#C9E9F3"/>
+    <text x="127" y="446" text-anchor="middle" dominant-baseline="middle">FIABILISATION</text>
+    <rect x="70" y="465" width="114" height="24" fill="#C9E9F3"/>
+    <text x="127" y="477" text-anchor="middle" dominant-baseline="middle">RAPPORT</text>
+  </g>
+
+  <!-- BARRES (textes des bulles en gras léger "bold/700") -->
+  <g font-family="Arial, Helvetica, sans-serif" font-weight="700" fill="#111111" letter-spacing="0.2">
+    <!-- CADRAGE -->
+    <rect x="195" y="102" width="118" height="20" rx="10" fill="#DE8FB4"/>
+    <text x="254" y="112" text-anchor="middle" dominant-baseline="middle" font-size="8">LANCEMENT &amp; CADRAGE</text>
+
+    <rect x="257" y="133" width="118" height="20" rx="10" fill="#DE8FB4"/>
+    <text x="316" y="143" text-anchor="middle" dominant-baseline="middle" font-size="8">CAHIER DES BESOINS</text>
+
+    <rect x="381" y="164" width="118" height="20" rx="10" fill="#DE8FB4"/>
+    <text x="440" y="174" text-anchor="middle" dominant-baseline="middle" font-size="8">ARCHITECTURE CIBLE</text>
+
+    <!-- RÉALISATION -->
+    <rect x="319" y="203" width="118" height="20" rx="10" fill="#B4C7AB"/>
+    <text x="378" y="213" text-anchor="middle" dominant-baseline="middle" font-size="8">SOCLE EXÉCUTABLE</text>
+
+    <rect x="443" y="234" width="118" height="20" rx="10" fill="#B4C7AB"/>
+    <text x="502" y="244" text-anchor="middle" dominant-baseline="middle" font-size="8">VOIX TEMPS RÉEL</text>
+
+    <!-- AGENTS -->
+    <rect x="502" y="265" width="90" height="20" rx="10" fill="#B4C7AB"/>
+    <text x="547" y="275" text-anchor="middle" dominant-baseline="middle" font-size="7.5">AGENT ACCUEIL</text>
+
+    <rect x="598" y="265" width="90" height="20" rx="10" fill="#B4C7AB"/>
+    <text x="643" y="275" text-anchor="middle" dominant-baseline="middle" font-size="7.5">AGENTS MÉTIER</text>
+
+    <rect x="567" y="296" width="118" height="20" rx="10" fill="#B4C7AB"/>
+    <text x="626" y="306" text-anchor="middle" dominant-baseline="middle" font-size="8">POLITIQUE &amp; AUDIT</text>
+
+    <!-- INTÉGRATION -->
+    <rect x="691" y="335" width="118" height="20" rx="10" fill="#F7C188"/>
+    <text x="750" y="345" text-anchor="middle" dominant-baseline="middle" font-size="8">RAG &amp; DOCUMENTS</text>
+
+    <rect x="629" y="366" width="180" height="20" rx="10" fill="#F7C188"/>
+    <text x="719" y="376" text-anchor="middle" dominant-baseline="middle" font-size="8">SERVICES MÉTIER OPÉRATEUR</text>
+
+    <rect x="691" y="397" width="56" height="20" rx="10" fill="#F7C188"/>
+    <text x="719" y="407" text-anchor="middle" dominant-baseline="middle" font-size="7.5">TICKETS</text>
+
+    <rect x="753" y="397" width="56" height="20" rx="10" fill="#F7C188"/>
+    <text x="781" y="407" text-anchor="middle" dominant-baseline="middle" font-size="7.5">ESCALADE</text>
+
+    <!-- LIVRAISON -->
+    <rect x="691" y="436" width="118" height="20" rx="10" fill="#8AC9DB"/>
+    <text x="750" y="446" text-anchor="middle" dominant-baseline="middle" font-size="8">TESTS &amp; VALIDATION</text>
+
+    <rect x="815" y="436" width="118" height="20" rx="10" fill="#8AC9DB"/>
+    <text x="874" y="446" text-anchor="middle" dominant-baseline="middle" font-size="8">PORTAIL &amp; CONSOLE</text>
+
+    <!-- RAPPORT FINAL ÉTENDU -->
+    <rect x="316" y="467" width="620" height="20" rx="10" fill="#8AC9DB"/>
+    <text x="626" y="477" text-anchor="middle" dominant-baseline="middle" font-size="8.5">REDACTION DU RAPPORT</text>
+  </g>
+</svg>
