@@ -2,7 +2,7 @@
 
 ## Current Objective
 Phase 5 — finalize all report figures one at a time, using only the established per-family visual
-patterns. Figures 1–9 validated. Figures 1–12 validated & integrated. §3.1.3 Conception de la base de données removed by user (fig-mcd / figure 13 suppressed; Ch3 conclusion adapted; no orphans). Ch1 logo + Gantt integrated. Figure 13 (fig-seq-tour) integrated. Figure 14 (fig-seq-sensible, Ch3) next.
+patterns. Figures 1–9 validated. Figures 1–12 validated & integrated. §3.1.3 Conception de la base de données removed by user (fig-mcd / figure 13 suppressed; Ch3 conclusion adapted; no orphans). All user-pushed PNG figures (14) placed with explicit figure/includegraphics blocks. Next: figure 14 (fig-seq-sensible, Ch3).
 
 ## Current Chapter / Section
 Ch3 §déroulement d'un tour de parole done. Phase 5 figure 14/36 (fig-seq-sensible) next.

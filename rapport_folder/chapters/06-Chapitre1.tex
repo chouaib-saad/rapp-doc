@@ -23,7 +23,15 @@ La figure \ref{fig:logo-amsys} présente l'identité visuelle de la société.
 
 Amsys Consulting s'appuie sur un cadre rigoureux en matière de sécurité de l'information et de qualité de service, ainsi que sur des partenariats stratégiques avec les principaux fournisseurs de services cloud. Ce socle n'est pas resté un élément de contexte : il a directement structuré plusieurs choix techniques du projet. Les frontières de sécurité, les pratiques d'observabilité et l'architecture d'infrastructure décrites dans les chapitres suivants en découlent en grande partie, et plusieurs décisions que nous justifions par la suite ne s'expliquent pleinement qu'à la lumière de ces exigences internes.
 
-\figureReport{figures/logo-amsys-consulting.png}{0.72\linewidth}{Logo de la société Amsys Consulting}{logo-amsys}
+\begin{figure}[htbp]
+    \centering
+    \setlength{\fboxsep}{0pt}
+    \setlength{\fboxrule}{1pt}
+    \fbox{\includegraphics[width=0.72\linewidth, height=0.42\linewidth, keepaspectratio]{figures/logo-amsys-consulting.png}}
+    \vspace{0.2cm}
+    \caption{Logo de la société Amsys Consulting}
+    \label{fig:logo-amsys}
+\end{figure}
 
 \section{Présentation du projet}
 
@@ -173,7 +181,15 @@ Auto hébergement possible & Non & Partiel & Non & \textbf{Oui} \\
 
 Le projet s'est déroulé de mars à août 2026. Nous l'avons organisé en quatre groupes de travaux — cadrage, réalisation, intégration et livraison — qui se chevauchent partiellement, chacun produisant un ensemble cohérent et démontrable plutôt qu'un simple lot de travaux. La figure \ref{fig:gantt} présente le diagramme de Gantt correspondant, et le tableau \ref{tab:phases} précise chaque tâche, sa période et son résultat.
 
-\figureTikz{Diagramme de Gantt du projet}{gantt}{fig-gantt}
+\begin{figure}[htbp]
+    \centering
+    \setlength{\fboxsep}{0pt}
+    \setlength{\fboxrule}{1pt}
+    \fbox{\includegraphics[width=\linewidth, height=0.82\textheight, keepaspectratio]{figures/fig-gantt.png}}
+    \vspace{0.2cm}
+    \caption{Diagramme de Gantt du projet}
+    \label{fig:gantt}
+\end{figure}
 
 \begin{table}[H]
 \centering
@@ -231,7 +247,15 @@ Cette granularité fine répond à un besoin précis. Un incrément qui isole un
 
 Chaque incrément livré apporte une valeur ajoutée à la version globale du logiciel en ajoutant une fonctionnalité réelle et souhaitée par le client. La figure \ref{fig:cycle-iteratif} illustre le modèle évolutif appliqué au projet : le produit devient utilisable dès le premier incrément, puis sa couverture s'étend au fil des suivants, matérialisée par les jalons de 30 %, 55 %, 80 % et 100 %. Les retours du client, recueillis à partir du premier incrément, orientent l'ajout des fonctionnalités suivantes.
 
-\figureTikz{Cycle de la méthodologie évolutive appliqué au projet}{cycle-iteratif}{fig-cycle-iteratif}
+\begin{figure}[htbp]
+    \centering
+    \setlength{\fboxsep}{0pt}
+    \setlength{\fboxrule}{1pt}
+    \fbox{\includegraphics[width=\linewidth, height=0.82\textheight, keepaspectratio]{figures/fig-cycle-iteratif.png}}
+    \vspace{0.2cm}
+    \caption{Cycle de la méthodologie évolutive appliqué au projet}
+    \label{fig:cycle-iteratif}
+\end{figure}
 
 \subsection{Vérification continue}
 
