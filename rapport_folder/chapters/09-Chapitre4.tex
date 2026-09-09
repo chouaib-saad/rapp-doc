@@ -524,11 +524,7 @@ Systèmes d'entreprise externes & Opérations télécom, plateforme de gestion d
 \label{tab:deploiement}
 \end{table}
 
-La figure \ref{fig:deploiement} présente cette organisation sous la forme d'une lecture par couches. En entrée se trouvent le portail web de l'abonné et la console d'administration, qui couvrent respectivement les usages du client et ceux de l'utilisateur back-office. Une couche périphérique et d'entrée en sépare les accès du cœur applicatif : elle reçoit les requêtes protégées, achemine les flux temps réel et porte la téléphonie.
-
-Au centre, le cluster d'application regroupe les traitements. L'orchestration agentique rassemble les processus qui exécutent les conversations et l'assembleur qui en compose le cycle temps réel. Le plan d'intégration expose les passerelles vers le support, le métier télécom et les notifications. Les services de domaine portent la logique du système : contexte et identité, connaissance et recherche, politique et décision, exécution et audit.
-
-Sous ce cluster, la couche de données et de persistance conserve les états, les documents et les événements. La couche externe représente enfin les systèmes de l'opérateur et les fournisseurs d'intelligence artificielle que la plateforme sollicite.
+La figure \ref{fig:deploiement} présente l'organisation de la plateforme par couches. Les accès client et back-office sont séparés du cœur applicatif par une couche périphérique qui porte la téléphonie et les flux temps réel. Le cluster d'application regroupe l'orchestration agentique, les services de domaine et les passerelles vers les systèmes métier ; il s'appuie sur une couche de données et sur les systèmes et fournisseurs externes.
 
 \begin{figure}[htbp]
     \centering

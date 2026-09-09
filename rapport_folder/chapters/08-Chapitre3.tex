@@ -188,7 +188,7 @@ La vue statique a décrit les éléments du système. La vue dynamique décrit l
 
 \subsubsection{Déroulement d'un tour de parole}
 
-Le premier diagramme, présenté à la figure \ref{fig:seq-tour}, décrit une session complète de la plateforme autour d'un tour de parole. Il met en scène huit participants : le client, la détection d'activité vocale, la transcription, l'agent spécialisé, le moteur d'inférence, la capacité documentaire, la synthèse vocale et la mémoire contextuelle. Le chemin représenté est le plus fréquemment emprunté du système et celui sur lequel pèse la contrainte de temps.
+Le premier diagramme, présenté à la figure \ref{fig:seq-tour}, décrit le déroulement d'un tour de parole entre les huit participants de la chaîne vocale. Il représente le chemin le plus fréquemment emprunté du système, celui sur lequel pèse la contrainte de temps.
 
 \begin{figure}[htbp]
     \centering
@@ -200,23 +200,13 @@ Le premier diagramme, présenté à la figure \ref{fig:seq-tour}, décrit une se
     \label{fig:seq-tour}
 \end{figure}
 
-L'enchaînement se lit en six phases. La capture d'abord : le client envoie un flux audio temps réel à la détection d'activité vocale, qui transmet les trames de parole à la transcription ; celle ci alimente l'agent en transcription partielle pendant l'énoncé. Un silence prolongé de 250 millisecondes déclenche le signal de fin de tour, et la transcription définitive du tour est alors remise à l'agent.
+Le scénario commence par la capture du tour : la détection d'activité vocale transmet la transcription à l'agent, qui charge ensuite le contexte de la conversation. L'agent résout l'intention auprès du moteur d'inférence puis, selon le domaine, interroge la capacité documentaire ou exécute lui même l'action demandée.
 
-L'agent charge ensuite le contexte conversationnel auprès de la mémoire contextuelle, qui lui restitue l'historique des tours précédents. Ce chargement précède l'interprétation : l'agent ne dispose jamais seulement de l'énoncé, mais de la conversation telle qu'elle s'est construite jusqu'à cet instant.
-
-La résolution de l'intention est alors parcourue en boucle, avec au plus deux tentatives. L'agent soumet l'énoncé au moteur d'inférence, qui renvoie l'intention et son score de confiance. Si ce score est inférieur au seuil, l'agent fait synthétiser une demande de précision par la synthèse vocale, la diffuse au client, puis reçoit la reformulation et sa transcription ; la boucle se répète avec le nouvel énoncé.
-
-L'intention étant résolue, le diagramme se sépare en deux branches. Pour une intention documentaire, l'agent interroge la capacité documentaire, qui renvoie les extraits et leurs sources, puis demande au moteur d'inférence une réponse ancrée, accompagnée des citations. Pour une intention opérationnelle, l'agent exécute lui même l'action métier demandée, puis fait formuler et renvoyer le message de confirmation. Cette bifurcation traduit la frontière établie dans la conception : la recherche de connaissance passe par le service documentaire, tandis que l'action reste sous le contrôle de l'agent et du moteur de politique.
-
-La diffusion est ensuite menée en parallèle de la journalisation. D'un côté, l'agent fait synthétiser chaque segment de la réponse par la synthèse vocale, qui diffuse le fragment au client ; la diffusion est ainsi fragmentée et non globale, ce qui permet au client d'entendre le début de la réponse avant que sa fin ne soit calculée. Un fragment particulier traite la reprise de parole : si le client reprend la parole pendant la diffusion, la détection d'activité vocale signale l'interruption à l'agent, qui stoppe la diffusion à un point de coupure et réaligne le contexte sur le contenu réellement diffusé. De l'autre côté, hors du chemin de parole, l'agent évalue le sentiment du tour et consigne le tour et ce sentiment dans la mémoire contextuelle, qui confirme l'enregistrement.
-
-La dernière phase est conditionnelle : lorsque l'intention de clôture est confirmée, l'agent fait synthétiser puis diffuser la formule de clôture, et clôture la session conversationnelle.
-
-Ces deux derniers points ne sont pas des commodités d'implémentation. Le découpage de la diffusion en fragments préserve la latence perçue du chemin de parole, et la journalisation parallèle évite de faire dépendre la fluidité de l'échange de la disponibilité du stockage : perdre l'enregistrement d'un tour est regrettable, mais interrompre l'appel parce qu'un journal ne peut pas être écrit serait bien pire. La gestion de la reprise de parole, enfin, garantit que le contexte mémorisé correspond à ce que le client a réellement entendu et non à la réponse intégralement planifiée.
+La réponse est ensuite diffusée par fragments pendant que le tour et son sentiment sont journalisés. Si le client reprend la parole, la diffusion est interrompue et le contexte est réaligné ; si l'intention de clôture est confirmée, l'agent clôt la session.
 
 \subsubsection{Déroulement d'une action sensible}
 
-Le second diagramme, présenté à la figure \ref{fig:seq-sensible}, détaille la chaîne qui conduit de la demande du client à l'exécution effective d'une opération. Il met en scène huit participants : le client, l'agent spécialisé qui orchestre le déroulement, le service de contexte, le service de décision, le moteur de politique, le service d'exécution, le système métier et le journal d'audit. C'est le chemin le plus contraint du système.
+Le second diagramme, présenté à la figure \ref{fig:seq-sensible}, détaille la chaîne qui conduit de la demande du client à l'exécution effective d'une opération. Il représente le chemin le plus contraint du système.
 
 \begin{figure}[htbp]
     \centering
@@ -228,15 +218,9 @@ Le second diagramme, présenté à la figure \ref{fig:seq-sensible}, détaille l
     \label{fig:seq-sensible}
 \end{figure}
 
-Le déroulement commence par une double précaution à la charge de l'agent spécialisé. Celui-ci ne part pas de la demande seule : il en donne un récapitulatif au client et lui demande une confirmation explicite avant toute progression. Si l'identité du client n'est pas vérifiée ou est expirée, il demande alors les éléments d'identification, les fait vérifier par le service de contexte et n'avance qu'après réception du statut de vérification. Cette étape conditionnelle sépare ce que la conversation a laissé entendre de ce que le système peut attester.
+L'agent confirme la demande puis vérifie l'identité du client si nécessaire. Le contexte de décision est ensuite constitué et le service de décision propose une action avec son degré de confiance ; une confiance insuffisante déclenche une escalade immédiate.
 
-Le contexte de la décision est ensuite constitué auprès du service de contexte à partir de la situation vérifiée du client, et non à partir de ce que la conversation a laissé entendre. Le service de décision propose alors une action candidate assortie d'un degré de confiance. Une confiance insuffisante conduit ici directement à une escalade immédiate plutôt qu'à une tentative : l'agent annonce au client qu'il passe le dossier à un conseiller et le déroulement s'arrête à ce point. Cette ramification est gardée par le même fragment optionnel que la vérification d'identité, mais elle ne laisse aucune seconde chance à une action qui ne devrait pas être tentée.
-
-Lorsque la confiance est suffisante, le moteur de politique est sollicité. Il évalue d'abord les règles métier déterministes, puis persiste le verdict dans le journal d'audit avant de le restituer à l'agent. Le verdict revient motivé et identifié : il porte la trace de la règle appliquée, si bien qu'une décision engageant un compte client demeure reproductible et justifiable. Cette persistance intervient avant toute exécution, ce qui rend structurellement impossible l'exécution d'une action dont aucune trace de l'autorisation n'existerait.
-
-Le verdict ouvre alors trois branches alternatives. S'il est favorable, le service d'exécution exécute l'opération en référence au verdict et non à la demande initiale ; le système métier retourne une référence d'exécution, puis l'acte et son résultat sont inscrits dans le journal d'audit, qui confirme l'enregistrement. Le client reçoit enfin la confirmation orale du résultat. Si le verdict est refusé, le refus et son motif sont consignés dans le journal d'audit, puis le motif est énoncé au client. Si une intervention humaine est requise, l'escalade et son contexte sont consignés, et le client est informé du passage à un conseiller.
-
-L'ordre de ces étapes ne souffre aucune exception. Le verdict est persisté avant l'exécution, et l'exécution opère contre ce verdict persisté : la trace d'autorisation précède donc toujours l'acte qu'elle autorise, et les trois issues du verdict — favorable, refusé ou orienté vers un conseiller — sont chacune consignées dans le journal d'audit avant d'être restituées au client.
+Le moteur de politique évalue ensuite l'action et persiste son verdict. Selon le résultat, l'opération est exécutée, refusée ou transmise à un conseiller ; chaque issue est inscrite dans le journal d'audit.
 
 
 \subsection{Diagrammes d'activités}
