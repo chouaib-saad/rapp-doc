@@ -1,3 +1,4 @@
+- [x] **Figure 14:** fig-seq-sensible (Ch3) — EXACT user SVG (8 participants, opt identité, opt confiance faible, alt 3 verdicts); Ch3 § rewritten. INTEGRATED. (PNG not pushed yet.)
 # Open Tasks
 
 Active after Phase 2 + final reading + Phase 5 figure 1. No LaTeX build in sandbox.

@@ -1,0 +1,275 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1780" height="1610" viewBox="0 0 1780 1610">
+<rect width="1780" height="1610" fill="#FFFFFF"/>
+<defs>
+<style>
+text{font-family:Arial,Helvetica,sans-serif;}
+.plab{font-size:12px;font-weight:bold;fill:#333333;text-anchor:middle;}
+.pst{font-size:10px;font-style:italic;fill:#555555;text-anchor:middle;}
+.bname{font-size:12px;font-weight:bold;fill:#222222;text-anchor:middle;dominant-baseline:middle;}
+.mlab{font-size:12px;fill:#222222;text-anchor:middle;}
+.mlabL{font-size:12px;fill:#222222;}
+.fword{font-size:12px;font-weight:bold;fill:#111111;}
+.fcond{font-size:11px;font-style:italic;fill:#111111;}
+.bg{fill:#FFFFFF;}
+.life{fill:none;stroke:#D02A50;stroke-width:1;stroke-dasharray:5,4;}
+.act{fill:none;stroke:#D02A50;stroke-width:1.7;}
+.pB{fill:#96D5F2;stroke:#D02A50;stroke-width:1.3;}
+.pG{fill:#CDF2CD;stroke:#D02A50;stroke-width:1.3;}
+.pL{fill:#E8D5F5;stroke:#D02A50;stroke-width:1.3;}
+.dbbody{fill:#FFB340;stroke:#C77800;stroke-width:1.3;}
+.dbtop{fill:#FFC466;stroke:#C77800;stroke-width:1.3;}
+.actbar{fill:#d8d8d8;stroke:#333333;stroke-width:1;}
+.msg{fill:none;stroke:#D02A50;stroke-width:1.4;}
+.msgR{fill:none;stroke:#2EA843;stroke-width:1.4;stroke-dasharray:7,5;}
+.frag{fill:none;stroke:#D02A50;stroke-width:1.3;}
+.ftab{fill:#f1a7c1;stroke:#D02A50;stroke-width:1.1;}
+.ftabN{fill:#F0F4F8;stroke:#D02A50;stroke-width:1.1;}
+.sep{stroke:#D02A50;stroke-width:1.1;stroke-dasharray:6,5;}
+</style>
+<filter id="ds" x="-30%" y="-30%" width="160%" height="160%">
+<feDropShadow dx="3" dy="3" stdDeviation="2" flood-color="#8A8A8A" flood-opacity="0.45"/>
+</filter>
+<marker id="mM" markerWidth="9" markerHeight="9" refX="7" refY="3.5" orient="auto"><path d="M0 0 L7 3.5 L0 7 Z" fill="#D02A50"/></marker>
+<marker id="mGo" markerWidth="10" markerHeight="10" refX="8" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8" fill="none" stroke="#2EA843" stroke-width="1.6"/></marker>
+<marker id="mSelf" markerWidth="9" markerHeight="9" refX="7" refY="3.5" orient="auto"><path d="M0 0 L7 3.5 L0 7 Z" fill="#D02A50"/></marker>
+</defs>
+
+<!-- ===================== LIFELINES ===================== -->
+<path d="M90 132 L90 1494" class="life"/>
+<path d="M370 132 L370 1494" class="life"/>
+<path d="M600 132 L600 1494" class="life"/>
+<path d="M820 132 L820 1494" class="life"/>
+<path d="M1040 132 L1040 1494" class="life"/>
+<path d="M1255 132 L1255 1494" class="life"/>
+<path d="M1465 132 L1465 1494" class="life"/>
+<path d="M1675 132 L1675 1494" class="life"/>
+
+<!-- ===================== TOP PARTICIPANTS ===================== -->
+<!-- Client : Actor -->
+<g class="act" filter="url(#ds)">
+<circle cx="90" cy="45" r="8" fill="#FFF6C7"/>
+<path d="M90 53 L90 78"/><path d="M76 60 L104 60"/><path d="M90 78 L77 96"/><path d="M90 78 L103 96"/>
+</g>
+<text x="90" y="112" class="plab">Client</text>
+<text x="90" y="126" class="pst">&lt;&lt;Actor&gt;&gt;</text>
+
+<!-- Agent Spécialisé -->
+<rect x="280" y="48" width="180" height="34" class="pB" filter="url(#ds)"/>
+<text x="370" y="65" class="bname">Agent Spécialisé</text>
+<text x="370" y="106" class="pst">&lt;&lt;Orchestrateur&gt;&gt;</text>
+
+<!-- Service de Contexte -->
+<rect x="510" y="48" width="180" height="34" class="pG" filter="url(#ds)"/>
+<text x="600" y="65" class="bname">Service de Contexte</text>
+<text x="600" y="106" class="pst">&lt;&lt;Context Service&gt;&gt;</text>
+
+<!-- Service de Décision -->
+<rect x="730" y="48" width="180" height="34" class="pG" filter="url(#ds)"/>
+<text x="820" y="65" class="bname">Service de Décision</text>
+<text x="820" y="106" class="pst">&lt;&lt;Decision Service&gt;&gt;</text>
+
+<!-- Moteur de Politique -->
+<rect x="950" y="48" width="180" height="34" class="pL" filter="url(#ds)"/>
+<text x="1040" y="65" class="bname">Moteur de Politique</text>
+<text x="1040" y="106" class="pst">&lt;&lt;Policy Engine&gt;&gt;</text>
+
+<!-- Service d'Exécution -->
+<rect x="1165" y="48" width="180" height="34" class="pB" filter="url(#ds)"/>
+<text x="1255" y="65" class="bname">Service d'Exécution</text>
+<text x="1255" y="106" class="pst">&lt;&lt;Execution Service&gt;&gt;</text>
+
+<!-- Système Métier -->
+<rect x="1375" y="48" width="180" height="34" class="pB" filter="url(#ds)"/>
+<text x="1465" y="65" class="bname">Système Métier</text>
+<text x="1465" y="106" class="pst">&lt;&lt;Business Service&gt;&gt;</text>
+
+<!-- Journal d'Audit -->
+<g filter="url(#ds)">
+<path d="M1650 50 L1650 82 A25 8 0 0 0 1700 82 L1700 50" class="dbbody"/>
+<ellipse cx="1675" cy="50" rx="25" ry="8" class="dbtop"/>
+</g>
+<text x="1675" y="106" class="plab">Journal d'Audit</text>
+<text x="1675" y="120" class="pst">&lt;&lt;Audit Repository&gt;&gt;</text>
+
+<!-- ===================== ACTIVATION BARS ===================== -->
+<rect x="364" y="150" width="12" height="1306" class="actbar"/>
+<rect x="594" y="377" width="12" height="54" class="actbar"/>
+<rect x="594" y="464" width="12" height="56" class="actbar"/>
+<rect x="814" y="554" width="12" height="56" class="actbar"/>
+<rect x="1034" y="730" width="12" height="186" class="actbar"/>
+<rect x="1249" y="980" width="12" height="208" class="actbar"/>
+<rect x="1459" y="1020" width="12" height="54" class="actbar"/>
+<rect x="1669" y="820" width="12" height="54" class="actbar"/>
+<rect x="1669" y="1096" width="12" height="54" class="actbar"/>
+<rect x="1669" y="1286" width="12" height="30" class="actbar"/>
+<rect x="1669" y="1398" width="12" height="30" class="actbar"/>
+
+<!-- ===================== FRAGMENT opt : Vérification d'identité ===================== -->
+<rect x="50" y="262" width="650" height="178" class="frag"/>
+<path d="M50,262 L105,262 L120,277 L50,277 Z" class="ftab"/>
+<text x="60" y="274" class="fword">opt</text>
+<text x="130" y="275" class="fcond">[ Identité non vérifiée ou expirée ]</text>
+
+<!-- ===================== FRAGMENT opt : Confiance insuffisante ===================== -->
+<rect x="50" y="634" width="480" height="68" class="frag"/>
+<path d="M50,634 L105,634 L120,649 L50,649 Z" class="ftabN"/>
+<text x="60" y="646" class="fword">opt</text>
+<text x="130" y="647" class="fcond">[ Confiance insuffisante — escalade immédiate ]</text>
+
+<!-- ===================== MAIN ALT FRAME ===================== -->
+<rect x="50" y="940" width="1690" height="526" class="frag"/>
+<path d="M50,940 L105,940 L120,955 L50,955 Z" class="ftab"/>
+<text x="60" y="952" class="fword">alt</text>
+<text x="130" y="953" class="fcond">[ Verdict favorable ]</text>
+
+<line x1="50" y1="1244" x2="1740" y2="1244" class="sep"/>
+<text x="60" y="1262" class="fcond">[ Verdict refusé ]</text>
+
+<line x1="50" y1="1356" x2="1740" y2="1356" class="sep"/>
+<text x="60" y="1374" class="fcond">[ Intervention humaine requise ]</text>
+
+<!-- ===================== MESSAGES ===================== -->
+<!-- 1. Demande initiale -->
+<path d="M90 150 L364 150" class="msg" marker-end="url(#mM)"/>
+<text x="227" y="140" class="mlab">Demande d'opération</text>
+
+<!-- 2. Récapitulatif -->
+<path d="M364 190 L96 190" class="msgR" marker-end="url(#mGo)"/>
+<text x="227" y="180" class="mlab">Récapitulatif et demande de confirmation</text>
+
+<!-- 3. Confirmation -->
+<path d="M90 230 L364 230" class="msg" marker-end="url(#mM)"/>
+<text x="227" y="220" class="mlab">Confirmation explicite</text>
+
+<!-- ========== OPT : Vérification d'identité ========== -->
+<path d="M364 305 L96 305" class="msgR" marker-end="url(#mGo)"/>
+<text x="227" y="295" class="mlab">Demander les éléments d'identification</text>
+
+<path d="M90 345 L364 345" class="msg" marker-end="url(#mM)"/>
+<text x="227" y="335" class="mlab">Éléments d'identification</text>
+
+<path d="M376 385 L594 385" class="msg" marker-end="url(#mM)"/>
+<text x="485" y="375" class="mlab">Vérifier l'identité</text>
+
+<path d="M594 423 L376 423" class="msgR" marker-end="url(#mGo)"/>
+<text x="485" y="413" class="mlab">Statut de vérification</text>
+
+<!-- ========== Contexte de décision ========== -->
+<path d="M376 472 L594 472" class="msg" marker-end="url(#mM)"/>
+<text x="485" y="462" class="mlab">Constituer le contexte de décision</text>
+
+<path d="M594 512 L376 512" class="msgR" marker-end="url(#mGo)"/>
+<text x="485" y="502" class="mlab">Situation vérifiée du client</text>
+
+<!-- ========== Service de Décision ========== -->
+<path d="M376 562 L814 562" class="msg" marker-end="url(#mM)"/>
+<rect x="502" y="541" width="186" height="15" class="bg"/>
+<text x="595" y="552" class="mlab">Proposer une action candidate</text>
+
+<path d="M814 602 L376 602" class="msgR" marker-end="url(#mGo)"/>
+<rect x="505" y="581" width="180" height="15" class="bg"/>
+<text x="595" y="592" class="mlab">Action et degré de confiance</text>
+
+<!-- ========== OPT : Confiance insuffisante ========== -->
+<path d="M364 682 L96 682" class="msgR" marker-end="url(#mGo)"/>
+<text x="227" y="672" class="mlab">Annonce de l'escalade immédiate</text>
+
+<!-- ========== Moteur de Politique ========== -->
+<path d="M376 738 L1034 738" class="msg" marker-end="url(#mM)"/>
+<text x="705" y="728" class="mlab">Demander le verdict</text>
+
+<path d="M1046,770 L1120,770 L1120,792 L1046,792" fill="none" stroke="#D02A50" stroke-width="1.4" marker-end="url(#mSelf)"/>
+<rect x="1048" y="751" width="230" height="14" class="bg"/>
+<text x="1052" y="762" class="mlabL">Évaluer les règles métier déterministes</text>
+
+<path d="M1046 828 L1669 828" class="msg" marker-end="url(#mM)"/>
+<text x="1357" y="818" class="mlab">Persister le verdict</text>
+
+<path d="M1669 866 L1046 866" class="msgR" marker-end="url(#mGo)"/>
+<text x="1357" y="856" class="mlab">Verdict motivé, identifié</text>
+
+<path d="M1034 906 L376 906" class="msgR" marker-end="url(#mGo)"/>
+<text x="705" y="896" class="mlab">Verdict</text>
+
+<!-- ========== ALT 1 : Verdict favorable ========== -->
+<path d="M376 988 L1249 988" class="msg" marker-end="url(#mM)"/>
+<rect x="718" y="967" width="190" height="15" class="bg"/>
+<text x="813" y="978" class="mlab">Exécuter, référencé au verdict</text>
+
+<path d="M1261 1028 L1459 1028" class="msg" marker-end="url(#mM)"/>
+<text x="1360" y="1018" class="mlab">Opération</text>
+
+<path d="M1459 1066 L1261 1066" class="msgR" marker-end="url(#mGo)"/>
+<text x="1360" y="1056" class="mlab">Référence d'exécution</text>
+
+<path d="M1261 1104 L1669 1104" class="msg" marker-end="url(#mM)"/>
+<rect x="1374" y="1083" width="182" height="15" class="bg"/>
+<text x="1465" y="1094" class="mlab">Inscrire l'acte et le résultat</text>
+
+<path d="M1669 1142 L1261 1142" class="msgR" marker-end="url(#mGo)"/>
+<rect x="1371" y="1121" width="188" height="15" class="bg"/>
+<text x="1465" y="1132" class="mlab">Confirmation d'enregistrement</text>
+
+<path d="M1249 1180 L376 1180" class="msgR" marker-end="url(#mGo)"/>
+<rect x="741" y="1159" width="144" height="15" class="bg"/>
+<text x="813" y="1170" class="mlab">Résultat de l'opération</text>
+
+<path d="M364 1218 L96 1218" class="msgR" marker-end="url(#mGo)"/>
+<text x="227" y="1208" class="mlab">Confirmation orale du résultat</text>
+
+<!-- ========== ALT 2 : Verdict refusé ========== -->
+<path d="M376 1294 L1669 1294" class="msg" marker-end="url(#mM)"/>
+<rect x="923" y="1273" width="200" height="15" class="bg"/>
+<text x="1023" y="1284" class="mlab">Consigner le refus et son motif</text>
+
+<path d="M364 1332 L96 1332" class="msgR" marker-end="url(#mGo)"/>
+<text x="227" y="1322" class="mlab">Énoncer le motif du refus</text>
+
+<!-- ========== ALT 3 : Intervention humaine ========== -->
+<path d="M376 1406 L1669 1406" class="msg" marker-end="url(#mM)"/>
+<rect x="910" y="1385" width="226" height="15" class="bg"/>
+<text x="1023" y="1396" class="mlab">Consigner l'escalade et le contexte</text>
+
+<path d="M364 1444 L96 1444" class="msgR" marker-end="url(#mGo)"/>
+<text x="227" y="1434" class="mlab">Annonce du passage à un conseiller</text>
+
+<!-- ===================== BOTTOM PARTICIPANTS ===================== -->
+<text x="90" y="1510" class="plab">Client</text>
+<text x="90" y="1524" class="pst">&lt;&lt;Actor&gt;&gt;</text>
+<g class="act" filter="url(#ds)">
+<circle cx="90" cy="1538" r="8" fill="#FFF6C7"/>
+<path d="M90 1546 L90 1571"/><path d="M76 1553 L104 1553"/><path d="M90 1571 L77 1587"/><path d="M90 1571 L103 1587"/>
+</g>
+
+<text x="370" y="1524" class="pst">&lt;&lt;Orchestrateur&gt;&gt;</text>
+<rect x="280" y="1538" width="180" height="34" class="pB" filter="url(#ds)"/>
+<text x="370" y="1555" class="bname">Agent Spécialisé</text>
+
+<text x="600" y="1524" class="pst">&lt;&lt;Context Service&gt;&gt;</text>
+<rect x="510" y="1538" width="180" height="34" class="pG" filter="url(#ds)"/>
+<text x="600" y="1555" class="bname">Service de Contexte</text>
+
+<text x="820" y="1524" class="pst">&lt;&lt;Decision Service&gt;&gt;</text>
+<rect x="730" y="1538" width="180" height="34" class="pG" filter="url(#ds)"/>
+<text x="820" y="1555" class="bname">Service de Décision</text>
+
+<text x="1040" y="1524" class="pst">&lt;&lt;Policy Engine&gt;&gt;</text>
+<rect x="950" y="1538" width="180" height="34" class="pL" filter="url(#ds)"/>
+<text x="1040" y="1555" class="bname">Moteur de Politique</text>
+
+<text x="1255" y="1524" class="pst">&lt;&lt;Execution Service&gt;&gt;</text>
+<rect x="1165" y="1538" width="180" height="34" class="pB" filter="url(#ds)"/>
+<text x="1255" y="1555" class="bname">Service d'Exécution</text>
+
+<text x="1465" y="1524" class="pst">&lt;&lt;Business Service&gt;&gt;</text>
+<rect x="1375" y="1538" width="180" height="34" class="pB" filter="url(#ds)"/>
+<text x="1465" y="1555" class="bname">Système Métier</text>
+
+<text x="1675" y="1510" class="plab">Journal d'Audit</text>
+<text x="1675" y="1524" class="pst">&lt;&lt;Audit Repository&gt;&gt;</text>
+<g filter="url(#ds)">
+<path d="M1650 1538 L1650 1570 A25 8 0 0 0 1700 1570 L1700 1538" class="dbbody"/>
+<ellipse cx="1675" cy="1538" rx="25" ry="8" class="dbtop"/>
+</g>
+
+</svg>

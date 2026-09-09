@@ -216,13 +216,28 @@ Ces deux derniers points ne sont pas des commodités d'implémentation. Le déco
 
 \subsubsection{Déroulement d'une action sensible}
 
-Le second diagramme, présenté à la figure \ref{fig:seq-sensible}, détaille la chaîne qui conduit de la demande du client à l'exécution effective d'une opération. C'est le chemin le plus contraint du système.
+Le second diagramme, présenté à la figure \ref{fig:seq-sensible}, détaille la chaîne qui conduit de la demande du client à l'exécution effective d'une opération. Il met en scène huit participants : le client, l'agent spécialisé qui orchestre le déroulement, le service de contexte, le service de décision, le moteur de politique, le service d'exécution, le système métier et le journal d'audit. C'est le chemin le plus contraint du système.
 
-Six étapes s'y succèdent, dans un ordre qui ne souffre aucune exception. Le contexte de la décision est d'abord constitué à partir de la situation vérifiée du client, et non à partir de ce que la conversation a laissé entendre. Le service de décision propose ensuite une action candidate assortie d'un degré de confiance, une confiance insuffisante conduisant directement à une escalade plutôt qu'à une tentative. Le service de politique rend alors un verdict, qui est immédiatement persisté et reçoit un identifiant. Seul un verdict favorable atteint le service d'exécution, lequel opère contre l'identifiant de ce verdict et non contre la demande initiale. L'exécution est protégée par une identité d'opération qui interdit une seconde réalisation. L'opération et son verdict sont enfin inscrits dans le registre d'audit.
+\begin{figure}[htbp]
+    \centering
+    \setlength{\fboxsep}{0pt}
+    \setlength{\fboxrule}{1pt}
+    \fbox{\includegraphics[width=\linewidth, height=0.88\textheight, keepaspectratio]{figures/fig-seq-sensible.png}}
+    \vspace{0.2cm}
+    \caption{Diagramme de séquence d'une action sensible}
+    \label{fig:seq-sensible}
+\end{figure}
 
-L'ordre importe autant que les étapes elles mêmes. Persister le verdict avant l'exécution, et exécuter contre ce verdict persisté, rend structurellement impossible l'exécution d'une action dont aucune trace de l'autorisation n'existerait.
+Le déroulement commence par une double précaution à la charge de l'agent spécialisé. Celui-ci ne part pas de la demande seule : il en donne un récapitulatif au client et lui demande une confirmation explicite avant toute progression. Si l'identité du client n'est pas vérifiée ou est expirée, il demande alors les éléments d'identification, les fait vérifier par le service de contexte et n'avance qu'après réception du statut de vérification. Cette étape conditionnelle sépare ce que la conversation a laissé entendre de ce que le système peut attester.
 
-\figureTikz{Diagramme de séquence d'une action sensible}{seq-sensible}{fig-seq-sensible}
+Le contexte de la décision est ensuite constitué auprès du service de contexte à partir de la situation vérifiée du client, et non à partir de ce que la conversation a laissé entendre. Le service de décision propose alors une action candidate assortie d'un degré de confiance. Une confiance insuffisante conduit ici directement à une escalade immédiate plutôt qu'à une tentative : l'agent annonce au client qu'il passe le dossier à un conseiller et le déroulement s'arrête à ce point. Cette ramification est gardée par le même fragment optionnel que la vérification d'identité, mais elle ne laisse aucune seconde chance à une action qui ne devrait pas être tentée.
+
+Lorsque la confiance est suffisante, le moteur de politique est sollicité. Il évalue d'abord les règles métier déterministes, puis persiste le verdict dans le journal d'audit avant de le restituer à l'agent. Le verdict revient motivé et identifié : il porte la trace de la règle appliquée, si bien qu'une décision engageant un compte client demeure reproductible et justifiable. Cette persistance intervient avant toute exécution, ce qui rend structurellement impossible l'exécution d'une action dont aucune trace de l'autorisation n'existerait.
+
+Le verdict ouvre alors trois branches alternatives. S'il est favorable, le service d'exécution exécute l'opération en référence au verdict et non à la demande initiale ; le système métier retourne une référence d'exécution, puis l'acte et son résultat sont inscrits dans le journal d'audit, qui confirme l'enregistrement. Le client reçoit enfin la confirmation orale du résultat. Si le verdict est refusé, le refus et son motif sont consignés dans le journal d'audit, puis le motif est énoncé au client. Si une intervention humaine est requise, l'escalade et son contexte sont consignés, et le client est informé du passage à un conseiller.
+
+L'ordre de ces étapes ne souffre aucune exception. Le verdict est persisté avant l'exécution, et l'exécution opère contre ce verdict persisté : la trace d'autorisation précède donc toujours l'acte qu'elle autorise, et les trois issues du verdict — favorable, refusé ou orienté vers un conseiller — sont chacune consignées dans le journal d'audit avant d'être restituées au client.
+
 
 \subsection{Diagrammes d'activités}
 

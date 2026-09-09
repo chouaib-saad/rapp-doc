@@ -61,7 +61,8 @@ This file records what has actually been completed.
 ## Removed by user decision
 - [x] §3.1.3 Conception de la base de données (Ch3) removed entirely: Organisation en schémas (table tab:schemas), Modèle entités associations (fig-mcd / figure 13/36 incl. fig-mcd.tex) and Deux asymétries assumées. Ch3 conclusion adapted; no orphan refs remain.
 
-- [ ] Figure 14/36 (`fig-seq-sensible`, Ch3) next: pending per-figure analysis → proposal → generation → validation.
+- [x] Figure 14: `fig-seq-sensible.svg` (1780×1610) EXACT user SVG (8 participants, opt identité, opt confiance insuffisante, alt verdict favorable/refusé/intervention humaine). Ch3 §Déroulement d'une action sensible rewritten + figure placed (includegraphics PNG). NOTE: fig-seq-sensible.png not pushed yet — user must push it.
+- [ ] Figure 15/... (`fig-act-ingestion`, Ch3) next.
 - [x] Ch1 logo `logo-amsys-consulting.png` (1664×928, user-pushed `cd961bd`) integrated: placeholder → `\figureReport{figures/logo-amsys-consulting.png}{0.72\linewidth}{Logo de la société Amsys Consulting}{logo-amsys}`.
 - [x] Ch1 Gantt `fig-gantt.svg` (915×480) EXACT user SVG saved verbatim; §Chronologie intro + `tab:phases` rewritten to match (4 groupes Cadrage/Réalisation/Intégration/Livraison, 13 tâches, périodes S1/S2, rapport avril→août).
 
