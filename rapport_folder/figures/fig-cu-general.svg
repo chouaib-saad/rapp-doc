@@ -1,5 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="2100" height="1900" viewBox="0 0 2100 1900">
-<rect width="2100" height="1900" fill="#FFFFFF"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="1940" height="1900" viewBox="60 0 1940 1900">
+<rect x="60" width="1940" height="1900" fill="#FFFFFF"/>
 
 <defs>
 <style>
@@ -31,8 +31,8 @@ text{font-family:Arial,Helvetica,sans-serif;}
 </marker>
 </defs>
 
-<!-- ===================== SYSTEM BOUNDARY ===================== -->
-<rect x="230" y="40" width="1600" height="1810" class="bound" filter="url(#ds)"/>
+<!-- ===================== SYSTEM BOUNDARY (largeur réduite de 1600 -> 1500) ===================== -->
+<rect x="230" y="40" width="1500" height="1810" class="bound" filter="url(#ds)"/>
 <text x="1030" y="85" class="title">Plateforme Conversationnelle Temps Réel</text>
 
 <!-- ===================== ACTORS ===================== -->
@@ -57,21 +57,21 @@ text{font-family:Arial,Helvetica,sans-serif;}
 <text x="120" y="1610" class="actor">Utilisateur</text>
 <text x="120" y="1628" class="actor">back-office</text>
 
-<!-- Système métier opérateur -->
-<rect x="1860" y="490" width="210" height="60" class="sys" filter="url(#ds)"/>
-<text x="1965" y="515" class="stereo">&lt;&lt;acteur secondaire&gt;&gt;</text>
-<text x="1965" y="535" class="ucname">Système métier opérateur</text>
+<!-- Système métier opérateur (translaté de -100 : x 1860 -> 1760) -->
+<rect x="1760" y="490" width="210" height="60" class="sys" filter="url(#ds)"/>
+<text x="1865" y="515" class="stereo">&lt;&lt;acteur secondaire&gt;&gt;</text>
+<text x="1865" y="535" class="ucname">Système métier opérateur</text>
 
-<!-- Système de gestion des tickets -->
-<rect x="1860" y="1090" width="210" height="75" class="sys" filter="url(#ds)"/>
-<text x="1965" y="1112" class="stereo">&lt;&lt;acteur secondaire&gt;&gt;</text>
-<text x="1965" y="1131" class="ucname">Système de gestion</text>
-<text x="1965" y="1149" class="ucname">des tickets</text>
+<!-- Système de gestion des tickets (translaté de -100) -->
+<rect x="1760" y="1090" width="210" height="75" class="sys" filter="url(#ds)"/>
+<text x="1865" y="1112" class="stereo">&lt;&lt;acteur secondaire&gt;&gt;</text>
+<text x="1865" y="1131" class="ucname">Système de gestion</text>
+<text x="1865" y="1149" class="ucname">des tickets</text>
 
-<!-- Service de notification -->
-<rect x="1860" y="1190" width="210" height="60" class="sys" filter="url(#ds)"/>
-<text x="1965" y="1215" class="stereo">&lt;&lt;acteur secondaire&gt;&gt;</text>
-<text x="1965" y="1235" class="ucname">Service de notification</text>
+<!-- Service de notification (translaté de -100) -->
+<rect x="1760" y="1190" width="210" height="60" class="sys" filter="url(#ds)"/>
+<text x="1865" y="1215" class="stereo">&lt;&lt;acteur secondaire&gt;&gt;</text>
+<text x="1865" y="1235" class="ucname">Service de notification</text>
 
 <!-- ===================== USE CASES (Niveau 1 & 2) ===================== -->
 <ellipse cx="480" cy="310" rx="110" ry="30" class="uc" filter="url(#ds)"/>
@@ -242,22 +242,22 @@ text{font-family:Arial,Helvetica,sans-serif;}
 <path d="M350 520 L270 520" class="lCd"/>
 <text x="310" y="512" class="edge">&#171;include&#187;</text>
 
-<!-- ===================== LIENS VERS SYSTEMES EXTERNES ===================== -->
+<!-- ===================== LIENS VERS SYSTEMES EXTERNES (endpoints translatés de -100) ===================== -->
 <g class="lK" marker-end="url(#aK)">
 <!-- Consulter ses informations client -> Système métier opérateur (entrée bord gauche, y=505) -->
-<path d="M800 488 L800 335 L1780 335 L1780 505 L1860 505"/>
+<path d="M800 488 L800 335 L1680 335 L1680 505 L1760 505"/>
 
 <!-- Gérer ses services -> Système métier opérateur (entrée bord gauche, y=535) -->
-<path d="M800 788 L800 712 L1800 712 L1800 535 L1860 535"/>
+<path d="M800 788 L800 712 L1700 712 L1700 535 L1760 535"/>
 
 <!-- Signaler un problème -> Système de gestion des tickets (entrée bord gauche, y=1110) -->
-<path d="M800 1038 L800 1000 L1780 1000 L1780 1110 L1860 1110"/>
+<path d="M800 1038 L800 1000 L1680 1000 L1680 1110 L1760 1110"/>
 
 <!-- Demander une assistance humaine -> Système de gestion des tickets (entrée bord gauche, y=1145) -->
-<path d="M680 1267 L745 1300 L1800 1300 L1800 1145 L1860 1145"/>
+<path d="M680 1267 L745 1300 L1700 1300 L1700 1145 L1760 1145"/>
 
 <!-- Programmer un rappel -> Service de notification (entrée bord gauche, y=1220) -->
-<path d="M1005 1220 L1860 1220"/>
+<path d="M1005 1220 L1760 1220"/>
 </g>
 
 </svg>
