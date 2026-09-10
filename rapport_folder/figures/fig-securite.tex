@@ -41,8 +41,8 @@
   \draw[flux] (dsens.west) -- node[etiq, above, pos=0.35] {non} (0.8,-2.85) -- (direct.north);
 
   \node[fbox, text width=24mm, align=center] (v1) at (7.3,-3.9) {Vérification d'identité};
-  \node[fbox, text width=24mm, align=center] (v2) at (7.3,-4.7) {Décision};
-  \node[fbox, text width=24mm, align=center] (v3) at (7.3,-5.5) {Décision};
+  \node[fbox, text width=24mm, align=center] (v2) at (7.3,-4.7) {Moteur de décision};
+  \node[fbox, text width=24mm, align=center] (v3) at (7.3,-5.5) {Verdict de décision};
   \node[fbox, text width=24mm, align=center] (v4) at (7.3,-6.3) {Exécution et audit};
 
   \draw[flux] (dsens.east) -- node[etiq, above, pos=0.35] {oui} (7.3,-2.85) -- (v1.north);
