@@ -7,10 +7,10 @@
 .stereo{font-family:Arial,Helvetica,sans-serif;font-size:11px;font-style:italic;fill:#444444;}
 .feat{font-family:Arial,Helvetica,sans-serif;font-size:11.5px;fill:#222222;}
 .featA{font-family:Arial,Helvetica,sans-serif;font-size:11.5px;font-style:italic;fill:#222222;}
-.mult{font-family:Arial,Helvetica,sans-serif;font-size:10.5px;fill:#333333;paint-order:stroke;stroke:#FFFDF7;stroke-width:3.2;stroke-linejoin:round;}
-.role{font-family:Arial,Helvetica,sans-serif;font-size:11px;fill:#333333;paint-order:stroke;stroke:#FFFDF7;stroke-width:3.2;stroke-linejoin:round;}
-.roleI{font-family:Arial,Helvetica,sans-serif;font-size:11px;font-style:italic;fill:#333333;paint-order:stroke;stroke:#FFFDF7;stroke-width:3.2;stroke-linejoin:round;}
-.cons{font-family:Arial,Helvetica,sans-serif;font-size:11px;font-style:italic;fill:#333333;paint-order:stroke;stroke:#FFFDF7;stroke-width:3.2;stroke-linejoin:round;}
+.mult{font-family:Arial,Helvetica,sans-serif;font-size:10.5px;fill:#333333;paint-order:stroke;stroke:#FFFFFF;stroke-width:3.2;stroke-linejoin:round;}
+.role{font-family:Arial,Helvetica,sans-serif;font-size:11px;fill:#333333;paint-order:stroke;stroke:#FFFFFF;stroke-width:3.2;stroke-linejoin:round;}
+.roleI{font-family:Arial,Helvetica,sans-serif;font-size:11px;font-style:italic;fill:#333333;paint-order:stroke;stroke:#FFFFFF;stroke-width:3.2;stroke-linejoin:round;}
+.cons{font-family:Arial,Helvetica,sans-serif;font-size:11px;font-style:italic;fill:#333333;paint-order:stroke;stroke:#FFFFFF;stroke-width:3.2;stroke-linejoin:round;}
 .rel{fill:none;stroke:#333333;stroke-width:1.4;stroke-linejoin:round;}
 .reld{fill:none;stroke:#333333;stroke-width:1.4;stroke-linejoin:round;stroke-dasharray:7,5;}
 .sep{stroke:#333333;stroke-width:1.2;}
@@ -19,14 +19,14 @@
 .pink{fill:#F28E8E;} .green{fill:#A9EFB0;} .yellow{fill:#FFF4A6;} .blue{fill:#A9E5EF;} .purple{fill:#E2D4F5;} .grey{fill:#E3E3E3;}
 ]]></style>
 <defs>
-<marker id="gen" viewBox="0 0 13 12" refX="12.3" refY="6" markerWidth="13" markerHeight="12" orient="auto" markerUnits="userSpaceOnUse"><path d="M0.8,0.9 L12.2,6 L0.8,11.1 Z" fill="#FFFDF7" stroke="#333333" stroke-width="1.2" stroke-linejoin="round"/></marker>
+<marker id="gen" viewBox="0 0 13 12" refX="12.3" refY="6" markerWidth="13" markerHeight="12" orient="auto" markerUnits="userSpaceOnUse"><path d="M0.8,0.9 L12.2,6 L0.8,11.1 Z" fill="#FFFFFF" stroke="#333333" stroke-width="1.2" stroke-linejoin="round"/></marker>
 <marker id="dep" viewBox="0 0 12 12" refX="10.6" refY="6" markerWidth="12" markerHeight="12" orient="auto" markerUnits="userSpaceOnUse"><path d="M1,1.4 L10.4,6 L1,10.6" fill="none" stroke="#333333" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></marker>
 <marker id="nav" viewBox="0 0 12 12" refX="10.6" refY="6" markerWidth="12" markerHeight="12" orient="auto" markerUnits="userSpaceOnUse"><path d="M1,1.4 L10.4,6 L1,10.6" fill="none" stroke="#333333" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></marker>
 <marker id="comp" viewBox="0 0 18 11" refX="1.0" refY="5.5" markerWidth="18" markerHeight="11" orient="auto" markerUnits="userSpaceOnUse"><path d="M1,5.5 L9,1.3 L17,5.5 L9,9.7 Z" fill="#333333" stroke="#333333" stroke-width="1" stroke-linejoin="round"/></marker>
-<marker id="aggr" viewBox="0 0 18 11" refX="1.0" refY="5.5" markerWidth="18" markerHeight="11" orient="auto" markerUnits="userSpaceOnUse"><path d="M1,5.5 L9,1.3 L17,5.5 L9,9.7 Z" fill="#FFFDF7" stroke="#333333" stroke-width="1.2" stroke-linejoin="round"/></marker>
+<marker id="aggr" viewBox="0 0 18 11" refX="1.0" refY="5.5" markerWidth="18" markerHeight="11" orient="auto" markerUnits="userSpaceOnUse"><path d="M1,5.5 L9,1.3 L17,5.5 L9,9.7 Z" fill="#FFFFFF" stroke="#333333" stroke-width="1.2" stroke-linejoin="round"/></marker>
 </defs>
 
-<rect x="0" y="0" width="1700" height="1200" fill="#FFFDF7"/>
+<rect x="0" y="0" width="1700" height="1200" fill="#FFFFFF"/>
 
 <!-- ============================ RELATIONS ============================ -->
 <g id="relations">
