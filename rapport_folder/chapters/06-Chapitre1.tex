@@ -101,13 +101,13 @@ Trois acteurs européens structurent aujourd'hui ce segment. Nous les avons rete
 
 PolyAI est un éditeur britannique d'assistants vocaux destinés à l'automatisation du service client. La plateforme prend en charge les appels entrants et sortants, le débordement de file d'attente, le routage par intention et l'escalade vers un conseiller. Elle offre une prise en charge multilingue étendue et des intégrations vers les systèmes de gestion de la relation client, les plateformes de réservation, les systèmes de paiement et les logiciels de centre de contact \cite{polyai}. Ses points forts reconnus sont la qualité de la voix synthétisée et la gestion des tours de parole, y compris les interruptions et les corrections en cours d'énoncé.
 
-La solution est livrée comme un service géré. Ce choix de distribution simplifie considérablement le déploiement, mais il place la chaîne de raisonnement interne hors du périmètre de l'équipe cliente. La décomposition en agents spécialisés, la stratégie de recherche documentaire et le contrôle granulaire des politiques métier ne constituent pas des surfaces de conception exposées, et l'adaptation à un système d'information particulier passe par une intégration conduite par l'éditeur.
+La solution est livrée comme un service géré. Ce choix de distribution simplifie considérablement le déploiement, mais il place la chaîne de raisonnement interne hors du périmètre de l'équipe cliente. La décomposition en agents spécialisés, la stratégie de recherche documentaire et le contrôle granulaire des règles métier ne constituent pas des surfaces de conception exposées, et l'adaptation à un système d'information particulier passe par une intégration conduite par l'éditeur.
 
 \subsubsection{Cognigy}
 
 Cognigy est une plateforme allemande d'intelligence artificielle conversationnelle pour l'entreprise, qui couvre les canaux voix, dialogue en ligne et messagerie, avec des connecteurs natifs vers les principaux environnements de centre de contact. Le produit a évolué vers des capacités agentiques, avec des agents capables de collaborer et de partager une mémoire contextuelle lors des passages de relais \cite{cognigy}. Son environnement de conception en low-code permet à des profils non techniques de construire et de faire évoluer des parcours, ce qui accélère nettement le déploiement initial.
 
-Ce même choix de conception constitue la contrepartie. Un éditeur visuel définit implicitement l'ensemble des compositions possibles. La profondeur de personnalisation reste donc bornée par ce que l'outil expose, notamment sur la logique d'orchestration, sur la définition fine des agents spécialisés et sur l'articulation entre la couche de raisonnement et des politiques métier maintenues à l'extérieur de la plateforme.
+Ce même choix de conception constitue la contrepartie. Un éditeur visuel définit implicitement l'ensemble des compositions possibles. La profondeur de personnalisation reste donc bornée par ce que l'outil expose, notamment sur la logique d'orchestration, sur la définition fine des agents spécialisés et sur l'articulation entre la couche de raisonnement et des règles métier maintenues à l'extérieur de la plateforme.
 
 \subsubsection{Parloa}
 
@@ -136,7 +136,7 @@ PolyAI
 \hline
 Cognigy
 & Couverture multicanale. Capacités agentiques avec mémoire partagée. Conception en low-code accessible aux profils métier. Déploiement initial rapide.
-& Personnalisation bornée par l'éditeur visuel. Orchestration et politiques métier difficilement externalisables. Contrôle limité sur la couche de récupération documentaire. \\
+& Personnalisation bornée par l'éditeur visuel. Orchestration et règles métier difficilement externalisables. Contrôle limité sur la couche de récupération documentaire. \\
 \hline
 Parloa
 & Conception centrée sur la voix. Gestion du cycle de vie des agents. Gouvernance de production et versionnement. Téléphonie opérée en propre.
@@ -210,7 +210,7 @@ Réalisation & Chaîne vocale & Mai S1--S2 & VAD, transcription, synthèse, gest
 \hline
 Réalisation & Agents & Mai S2--Juin S2 & Agent d'accueil puis agents métier spécialisés. \\
 \hline
-Réalisation & Décision & Juin S1--S2 & Moteur de politique, registre d'audit et exécution idempotente des actions sensibles. \\
+Réalisation & Décision & Juin S1--S2 & Moteur de décision, registre d'audit et exécution idempotente des actions sensibles. \\
 \hline
 Intégration & Connaissance & Juillet S1--S2 & Ingestion, index et recherche documentaire ancrée. \\
 \hline

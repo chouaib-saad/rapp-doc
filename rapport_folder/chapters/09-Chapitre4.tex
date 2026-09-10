@@ -69,7 +69,7 @@ Une précision s'impose au sujet de LiveKit, dont la place dans le système est 
 
 LiveKit est un cadriciel de communication temps réel à code ouvert. Il résout un ensemble de problèmes d'infrastructure difficiles et sans rapport avec le métier traité : l'établissement et le maintien d'une session audio bidirectionnelle à faible latence, la gestion des salles et des participants, la mise en mémoire tampon des flux audio, la distribution des tâches vers des processus de traitement, la gestion des ressources associées à chaque session et la prise en charge de plusieurs interlocuteurs simultanés. Réaliser ces fonctions à partir de zéro représenterait un projet à part entière, sans rapport avec la valeur recherchée ici.
 
-Ce que LiveKit ne fournit pas est précisément ce qui constitue ce travail : la logique des agents et leur orchestration, la construction du contexte, la mémoire, la chaîne de décision et de politique, l'exécution idempotente, les règles métier, les garde fous, la recherche documentaire, l'intégration à la gestion de tickets, le routage vers les conseillers, la piste d'audit, le modèle de sécurité et les interfaces de supervision. La couche temps réel transporte la parole ; elle ne décide de rien.
+Ce que LiveKit ne fournit pas est précisément ce qui constitue ce travail : la logique des agents et leur orchestration, la construction du contexte, la mémoire, la chaîne de décision, l'exécution idempotente, les règles métier, les garde fous, la recherche documentaire, l'intégration à la gestion de tickets, le routage vers les conseillers, la piste d'audit, le modèle de sécurité et les interfaces de supervision. La couche temps réel transporte la parole ; elle ne décide de rien.
 
 Cette séparation est d'ailleurs matérialisée dans le code par une frontière stricte. Les bibliothèques du fournisseur ne sont importées que dans un répertoire dédié, celui qui construit les composants de la chaîne média. Aucune règle métier, aucun service de domaine et aucun agent n'en dépend. C'est cette frontière qui rend le remplacement envisageable et qui garantit que le système n'est pas structuré par les contraintes d'un cadriciel.
 
@@ -464,9 +464,9 @@ Chaque opération sensible reçoit une identité propre, calculée à partir des
 
 La composition de cette identité a fait l'objet d'une correction significative, qui illustre la subtilité du problème.
 
-Certains éléments du contexte transmis au moteur de politique servent au jugement sans définir l'opération. Le montant restant dû, le nombre de reports déjà accordés dans l'année, le nombre de réclamations ouvertes et l'état de la ligne appartiennent à cette catégorie. Or chacune de ces valeurs change entre une première tentative et sa reprise, précisément parce que la première tentative a abouti. Le nombre de réclamations ouvertes passe ainsi de zéro à un dès qu'une réclamation est déposée ; l'état de la ligne passe d'en attente à active dès qu'une activation est réalisée.
+Certains éléments du contexte transmis au moteur de décision servent au jugement sans définir l'opération. Le montant restant dû, le nombre de reports déjà accordés dans l'année, le nombre de réclamations ouvertes et l'état de la ligne appartiennent à cette catégorie. Or chacune de ces valeurs change entre une première tentative et sa reprise, précisément parce que la première tentative a abouti. Le nombre de réclamations ouvertes passe ainsi de zéro à un dès qu'une réclamation est déposée ; l'état de la ligne passe d'en attente à active dès qu'une activation est réalisée.
 
-Inclure ces éléments dans l'identité de l'opération aurait donc produit exactement l'effet inverse de celui recherché. Une reprise aurait présenté une identité différente, aurait été considérée comme une opération nouvelle, et aurait déposé une seconde réclamation ou relancé une activation. Ces éléments sont donc explicitement exclus du calcul de l'identité tout en demeurant transmis au moteur de politique pour le jugement.
+Inclure ces éléments dans l'identité de l'opération aurait donc produit exactement l'effet inverse de celui recherché. Une reprise aurait présenté une identité différente, aurait été considérée comme une opération nouvelle, et aurait déposé une seconde réclamation ou relancé une activation. Ces éléments sont donc explicitement exclus du calcul de l'identité tout en demeurant transmis au moteur de décision pour le jugement.
 
 \subsubsection{Garantie sous concurrence réelle}
 
@@ -513,7 +513,7 @@ Cluster d'application : orchestration agentique & Processus porteurs des session
 \hline
 Cluster d'application : intégration & Passerelles d'accès au support, au métier télécom et aux notifications. \\
 \hline
-Cluster d'application : services de domaine & Contexte et identité ; connaissance et recherche ; politique et décision ; exécution et audit. \\
+Cluster d'application : services de domaine & Contexte et identité ; connaissance et recherche ; décision ; exécution et audit. \\
 \hline
 Couche de données et de persistance & Stockage relationnel, index documentaire, stockage d'objets, cache en mémoire, bus d'événements. \\
 \hline
@@ -952,7 +952,7 @@ La décision fut d'ajouter au démarrage une vérification refusant l'exécution
 
 Le constat s'est manifesté lors de la vérification de la reprise des opérations : une seconde réclamation était déposée alors que le mécanisme d'exécution unique aurait dû l'empêcher.
 
-L'analyse a identifié la cause. L'identité de l'opération incluait des éléments du contexte transmis au moteur de politique, dont le nombre de réclamations ouvertes. Or cette valeur passait de zéro à un précisément parce que la première tentative avait réussi. La reprise présentait donc une identité différente et était traitée comme une opération nouvelle. Le mécanisme fonctionnait exactement comme il était écrit, mais il avait été écrit sur une définition erronée de l'identité.
+L'analyse a identifié la cause. L'identité de l'opération incluait des éléments du contexte transmis au moteur de décision, dont le nombre de réclamations ouvertes. Or cette valeur passait de zéro à un précisément parce que la première tentative avait réussi. La reprise présentait donc une identité différente et était traitée comme une opération nouvelle. Le mécanisme fonctionnait exactement comme il était écrit, mais il avait été écrit sur une définition erronée de l'identité.
 
 La décision fut de distinguer explicitement les éléments qui définissent une opération de ceux qui servent seulement à la juger, et d'exclure les seconds du calcul de l'identité tout en les conservant dans le contexte transmis aux règles. Le résultat est une propriété d'exécution unique effective, y compris lorsque l'état du client évolue entre une tentative et sa reprise.
 

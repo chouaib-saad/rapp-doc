@@ -135,7 +135,7 @@
 
   <rect x="785" y="1140" width="290" height="105" rx="4" class="comp"/>
   <use xlink:href="#cicon" href="#cicon" x="1043" y="1147"/>
-  <text x="930" y="1198" text-anchor="middle" class="cn">Moteur Politique &amp; Décision</text>
+  <text x="930" y="1198" text-anchor="middle" class="cn">Moteur de Décision</text>
 
   <rect x="1115" y="1140" width="290" height="105" rx="4" class="comp"/>
   <use xlink:href="#cicon" href="#cicon" x="1373" y="1147"/>
@@ -225,7 +225,7 @@
     <!-- Support IT → RAG -->
     <path class="link" d="M 755 937 L 700 937 L 700 1140"/>
 
-    <!-- Politique → Exécution -->
+    <!-- Décision → Exécution -->
     <path class="link" d="M 1075 1192 L 1115 1192"/>
 
     <!-- Exécution → Bus d'Événements -->

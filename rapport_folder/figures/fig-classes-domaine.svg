@@ -64,9 +64,9 @@
     <rect x="330" y="510" width="640" height="370" rx="6" class="agg-box"/>
     <text x="334" y="500" class="zone-label">Agrégat Opération · «Template Method»</text>
 
-    <!-- Moteur de politique (Strategy) -->
+    <!-- Moteur de décision (Strategy) -->
     <rect x="1010" y="528" width="650" height="300" rx="6" class="agg-box"/>
-    <text x="1014" y="518" class="zone-label">Moteur de politique · «Strategy»</text>
+    <text x="1014" y="518" class="zone-label">Moteur de décision · «Strategy»</text>
 
     <!-- Paquetage Énumérations -->
     <rect x="40" y="900" width="130" height="14" class="pkg-tab"/>

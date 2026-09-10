@@ -142,7 +142,7 @@
     <text x="643" y="275" text-anchor="middle" dominant-baseline="middle" font-size="7.5">AGENTS MÉTIER</text>
 
     <rect x="567" y="296" width="118" height="20" rx="10" fill="#B4C7AB"/>
-    <text x="626" y="306" text-anchor="middle" dominant-baseline="middle" font-size="8">POLITIQUE &amp; AUDIT</text>
+    <text x="626" y="306" text-anchor="middle" dominant-baseline="middle" font-size="8">DÉCISION &amp; AUDIT</text>
 
     <!-- INTÉGRATION -->
     <rect x="691" y="335" width="118" height="20" rx="10" fill="#F7C188"/>

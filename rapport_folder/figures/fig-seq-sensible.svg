@@ -66,12 +66,12 @@ text{font-family:Arial,Helvetica,sans-serif;}
 <!-- Service de Décision -->
 <rect x="730" y="48" width="180" height="34" class="pG" filter="url(#ds)"/>
 <text x="820" y="65" class="bname">Service de Décision</text>
-<text x="820" y="106" class="pst">&lt;&lt;Decision Service&gt;&gt;</text>
+<text x="820" y="106" class="pst">&lt;&lt;Decision Engine&gt;&gt;</text>
 
-<!-- Moteur de Politique -->
+<!-- Moteur de Décision -->
 <rect x="950" y="48" width="180" height="34" class="pL" filter="url(#ds)"/>
-<text x="1040" y="65" class="bname">Moteur de Politique</text>
-<text x="1040" y="106" class="pst">&lt;&lt;Policy Engine&gt;&gt;</text>
+<text x="1040" y="65" class="bname">Moteur de Décision</text>
+<text x="1040" y="106" class="pst">&lt;&lt;Decision Engine&gt;&gt;</text>
 
 <!-- Service d'Exécution -->
 <rect x="1165" y="48" width="180" height="34" class="pB" filter="url(#ds)"/>
@@ -174,7 +174,7 @@ text{font-family:Arial,Helvetica,sans-serif;}
 <path d="M364 682 L96 682" class="msgR" marker-end="url(#mGo)"/>
 <text x="227" y="672" class="mlab">Annonce de l'escalade immédiate</text>
 
-<!-- ========== Moteur de Politique ========== -->
+<!-- ========== Moteur de Décision ========== -->
 <path d="M376 738 L1034 738" class="msg" marker-end="url(#mM)"/>
 <text x="705" y="728" class="mlab">Demander le verdict</text>
 
@@ -249,13 +249,13 @@ text{font-family:Arial,Helvetica,sans-serif;}
 <rect x="510" y="1538" width="180" height="34" class="pG" filter="url(#ds)"/>
 <text x="600" y="1555" class="bname">Service de Contexte</text>
 
-<text x="820" y="1524" class="pst">&lt;&lt;Decision Service&gt;&gt;</text>
+<text x="820" y="1524" class="pst">&lt;&lt;Decision Engine&gt;&gt;</text>
 <rect x="730" y="1538" width="180" height="34" class="pG" filter="url(#ds)"/>
 <text x="820" y="1555" class="bname">Service de Décision</text>
 
-<text x="1040" y="1524" class="pst">&lt;&lt;Policy Engine&gt;&gt;</text>
+<text x="1040" y="1524" class="pst">&lt;&lt;Decision Engine&gt;&gt;</text>
 <rect x="950" y="1538" width="180" height="34" class="pL" filter="url(#ds)"/>
-<text x="1040" y="1555" class="bname">Moteur de Politique</text>
+<text x="1040" y="1555" class="bname">Moteur de Décision</text>
 
 <text x="1255" y="1524" class="pst">&lt;&lt;Execution Service&gt;&gt;</text>
 <rect x="1165" y="1538" width="180" height="34" class="pB" filter="url(#ds)"/>

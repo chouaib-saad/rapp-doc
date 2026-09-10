@@ -57,10 +57,10 @@ text{font-family:Arial,Helvetica,sans-serif;}
 <text x="380" y="65" class="bname">Agent Spécialisé</text>
 <text x="380" y="106" class="pst">&lt;&lt;Orchestrateur&gt;&gt;</text>
 
-<!-- Moteur de Politique : Control (rectangle vert) -->
+<!-- Moteur de Décision : Control (rectangle vert) -->
 <rect x="575" y="48" width="170" height="34" class="pG" filter="url(#ds)"/>
-<text x="660" y="65" class="bname">Moteur de Politique</text>
-<text x="660" y="106" class="pst">&lt;&lt;Policy Engine&gt;&gt;</text>
+<text x="660" y="65" class="bname">Moteur de Décision</text>
+<text x="660" y="106" class="pst">&lt;&lt;Decision Engine&gt;&gt;</text>
 
 <!-- Système Métier : Control (rectangle bleu) -->
 <rect x="835" y="48" width="170" height="34" class="pB" filter="url(#ds)"/>
@@ -236,10 +236,10 @@ text{font-family:Arial,Helvetica,sans-serif;}
 <rect x="295" y="1584" width="170" height="34" class="pB" filter="url(#ds)"/>
 <text x="380" y="1601" class="bname">Agent Spécialisé</text>
 
-<!-- Moteur de Politique bottom : Rectangle vert -->
-<text x="660" y="1570" class="pst">&lt;&lt;Policy Engine&gt;&gt;</text>
+<!-- Moteur de Décision bottom : Rectangle vert -->
+<text x="660" y="1570" class="pst">&lt;&lt;Decision Engine&gt;&gt;</text>
 <rect x="575" y="1584" width="170" height="34" class="pG" filter="url(#ds)"/>
-<text x="660" y="1601" class="bname">Moteur de Politique</text>
+<text x="660" y="1601" class="bname">Moteur de Décision</text>
 
 <!-- Système Métier bottom : Rectangle bleu -->
 <text x="920" y="1570" class="pst">&lt;&lt;Business Service&gt;&gt;</text>

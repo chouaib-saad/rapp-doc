@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 980" width="1600" height="980">
-  <title>fig-classes-politique — Diagramme de classes du moteur de politique</title>
+  <title>fig-classes-politique — Diagramme de classes du moteur de décision</title>
   
   <style>
     .cname { font-size: 13.5px; font-weight: 700; fill: #111; }
@@ -104,15 +104,15 @@
 
   <path class="shd" d="M462.6 182.6h380v96h-380z"/>
   <path class="bx" style="fill:#f28e8e" d="M460 180h380v96H460z"/>
-  <text x="650" y="198" text-anchor="middle" class="cname">MoteurDePolitique</text>
+  <text x="650" y="198" text-anchor="middle" class="cname">MoteurDeDecision</text>
   <path class="sep" d="M460 206h380m-380 10h380"/>
-  <text x="472" y="233" class="feat">+ evaluer(contexte) : VerdictDePolitique</text>
-  <text x="472" y="249" class="feat">+ ajouterRegle(regle : RegleDePolitique)</text>
-  <text x="472" y="265" class="feat">- consolider(resultats, confiance) : VerdictDePolitique</text>
+  <text x="472" y="233" class="feat">+ evaluer(contexte) : VerdictDeDecision</text>
+  <text x="472" y="249" class="feat">+ ajouterRegle(regle : RegleDeDecision)</text>
+  <text x="472" y="265" class="feat">- consolider(resultats, confiance) : VerdictDeDecision</text>
 
   <path class="shd" d="M942.6 182.6h260v176h-260z"/>
   <path class="bx yellow" d="M940 180h260v176H940z"/>
-  <text x="1070" y="198" text-anchor="middle" class="cname">VerdictDePolitique</text>
+  <text x="1070" y="198" text-anchor="middle" class="cname">VerdictDeDecision</text>
   <path class="sep" d="M940 206h260"/>
   <text x="952" y="223" class="feat">- verdict : Verdict</text>
   <text x="952" y="239" class="feat">- confiance : Reel</text>
@@ -144,7 +144,7 @@
   <path class="shd" d="M502.6 442.6h300v126h-300z"/>
   <path class="bx" style="fill:#a9e5ef" d="M500 440h300v126H500z"/>
   <text x="650" y="457" text-anchor="middle" class="stereo">« interface »</text>
-  <text x="650" y="474" text-anchor="middle" class="cname">RegleDePolitique</text>
+  <text x="650" y="474" text-anchor="middle" class="cname">RegleDeDecision</text>
   <path class="sep" d="M500 482h300m-300 10h300"/>
   <text x="512" y="509" class="feat">+ identifiant() : Texte</text>
   <text x="512" y="525" class="feat">+ rang() : Entier</text>

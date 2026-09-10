@@ -40,9 +40,9 @@ Le domaine déclare treize ports, chacun correspondant à une capacité dont il 
 \hline
 \textbf{Port} & \textbf{Capacité déclarée} \\
 \hline
-Décision & Proposer une action candidate assortie d'un degré de confiance. \\
+Inférence & Proposer une action candidate assortie d'un degré de confiance. \\
 \hline
-Politique & Rendre un verdict motivé sur une action, et contrôler une réponse sortante. \\
+Décision & Rendre un verdict motivé sur une action, et contrôler une réponse sortante. \\
 \hline
 Exécution & Réaliser une action approuvée de manière idempotente. \\
 \hline
@@ -71,7 +71,7 @@ Provisionnement & Agir sur la configuration d'une ligne ou d'une carte SIM. \\
 \label{tab:ports}
 \end{table}
 
-Le port de politique mérite une remarque particulière, car il déclare deux capacités et non une seule. La première évalue une action avant son exécution. La seconde évalue une réponse avant son émission, ce qui permet de contrôler ce que le système s'apprête à dire au client, et non uniquement ce qu'il s'apprête à faire. Cette symétrie est délibérée : une réponse qui divulguerait une donnée personnelle ou formulerait un engagement non fondé constitue un incident au même titre qu'une action non autorisée.
+Le port de décision mérite une remarque particulière, car il déclare deux capacités et non une seule. La première évalue une action avant son exécution. La seconde évalue une réponse avant son émission, ce qui permet de contrôler ce que le système s'apprête à dire au client, et non uniquement ce qu'il s'apprête à faire. Cette symétrie est délibérée : une réponse qui divulguerait une donnée personnelle ou formulerait un engagement non fondé constitue un incident au même titre qu'une action non autorisée.
 
 \subsubsection{Découpage en contextes métier}
 
@@ -80,7 +80,7 @@ Le domaine n'est pas monolithique. Il est découpé en contextes métier délimi
 \begin{itemize}
   \item \textbf{Conversation.} Le déroulement de l'échange, les tours de parole, l'état de la session et l'issue de la conversation.
   \item \textbf{Connaissance.} Les documents, leurs versions, leurs fragments et leur indexation.
-  \item \textbf{Décision et politique.} La proposition d'action, les règles métier et les verdicts rendus.
+  \item \textbf{Décision.} La proposition d'action, les règles métier et les verdicts rendus.
   \item \textbf{Exécution.} Le registre des actions, leur identité d'opération et leur statut.
   \item \textbf{Gestion de tickets.} Les tickets et leur cycle de vie.
   \item \textbf{Routage et escalade.} Les conseillers, leurs disponibilités, les rappels et les dossiers d'escalade.
@@ -161,13 +161,13 @@ La figure \ref{fig:classes-agents} présente cette couche.
 
 \subsubsection{Moteur de décision déterministe}
 
-Le moteur de politique ne juge pas une action directement. Il invoque d'abord un outil de la couche agents, qui construit le contexte de décision — action, arguments, domaine, client, niveau de vérification, sentiment courant, nombre de clarifications et canal. Il évalue ensuite ce contexte contre les règles de politique qu'il agrège, dans l'ordre de leur rang, en s'appuyant sur un calculateur de confiance.
+Le moteur de décision ne juge pas une action directement. Il invoque d'abord un outil de la couche agents, qui construit le contexte de décision — action, arguments, domaine, client, niveau de vérification, sentiment courant, nombre de clarifications et canal. Il évalue ensuite ce contexte contre les règles de décision qu'il agrège, dans l'ordre de leur rang, en s'appuyant sur un calculateur de confiance.
 
-Le contrat d'une règle est porté par l'interface \emph{RegleDePolitique}. Chaque règle expose son identifiant, son rang, la condition qui détermine si elle s'applique au contexte, puis l'évaluation elle-même. Celle-ci produit un objet valeur \emph{ResultatDeRegle} — verdict, justification, règle — ou ne se prononce pas, ce que traduit la multiplicité 0..1. Cette organisation reprend le patron de chaîne de responsabilité \cite{gamma} appliqué aux politiques : le moteur parcourt les règles dans l'ordre de leur rang et chacune s'applique ou s'abstient. Cinq règles concrètes réalisent cette interface, et leur ordre n'est pas arbitraire. \emph{RegleEscaladeObligatoire} porte le rang 1 et couvre l'abus, la menace, la fraude et le caractère juridique. Vient ensuite \emph{RegleVerificationIdentite}, appliquée aux actions sensibles. Les trois règles métier suivantes portent sur la facturation — plafond, échéance, litige —, l'abonnement — forfait, recharge, blocage — et le technique — carte SIM, réseau, incident.
+Le contrat d'une règle est porté par l'interface \emph{RegleDeDecision}. Chaque règle expose son identifiant, son rang, la condition qui détermine si elle s'applique au contexte, puis l'évaluation elle-même. Celle-ci produit un objet valeur \emph{ResultatDeRegle} — verdict, justification, règle — ou ne se prononce pas, ce que traduit la multiplicité 0..1. Cette organisation reprend le patron de chaîne de responsabilité \cite{gamma} appliqué aux règles de décision : le moteur parcourt les règles dans l'ordre de leur rang et chacune s'applique ou s'abstient. Cinq règles concrètes réalisent cette interface, et leur ordre n'est pas arbitraire. \emph{RegleEscaladeObligatoire} porte le rang 1 et couvre l'abus, la menace, la fraude et le caractère juridique. Vient ensuite \emph{RegleVerificationIdentite}, appliquée aux actions sensibles. Les trois règles métier suivantes portent sur la facturation — plafond, échéance, litige —, l'abonnement — forfait, recharge, blocage — et le technique — carte SIM, réseau, incident.
 
-Le moteur consolide les résultats recueillis et la confiance calculée en un \emph{VerdictDePolitique}. Cette classe porte la valeur rendue — autorisé, confirmation requise, refusé ou escalade —, le niveau de confiance, la justification, la règle décisive lorsqu'elle existe, la liste des facteurs de risque et l'horodatage. Elle expose les méthodes \emph{estAutorise()} et \emph{exigeConfirmation()}. Les facteurs de risque sont fermés par une énumération : identité non vérifiée, données manquantes, suspicion de fraude, mécontentement et clarifications répétées. Chaque verdict rendu est enfin consigné dans une entrée d'audit, qui porte l'événement, son contenu et son empreinte ; cette consignation rend le verdict reconstruit après coup, car elle permet de répondre non seulement à la question de savoir ce qui a été décidé, mais aussi à celle de savoir pourquoi.
+Le moteur consolide les résultats recueillis et la confiance calculée en un \emph{VerdictDeDecision}. Cette classe porte la valeur rendue — autorisé, confirmation requise, refusé ou escalade —, le niveau de confiance, la justification, la règle décisive lorsqu'elle existe, la liste des facteurs de risque et l'horodatage. Elle expose les méthodes \emph{estAutorise()} et \emph{exigeConfirmation()}. Les facteurs de risque sont fermés par une énumération : identité non vérifiée, données manquantes, suspicion de fraude, mécontentement et clarifications répétées. Chaque verdict rendu est enfin consigné dans une entrée d'audit, qui porte l'événement, son contenu et son empreinte ; cette consignation rend le verdict reconstruit après coup, car elle permet de répondre non seulement à la question de savoir ce qui a été décidé, mais aussi à celle de savoir pourquoi.
 
-La figure \ref{fig:classes-politique} présente ce moteur.
+La figure \ref{fig:classes-decision} présente ce moteur.
 
 \begin{figure}[htbp]
     \centering
@@ -175,8 +175,8 @@ La figure \ref{fig:classes-politique} présente ce moteur.
     \setlength{\fboxrule}{1pt}
     \fbox{\includegraphics[width=\linewidth, height=0.82\textheight, keepaspectratio]{figures/fig-classes-politique.png}}
     \vspace{0.2cm}
-    \caption{Diagramme de classes du moteur de politique}
-    \label{fig:classes-politique}
+    \caption{Diagramme de classes du moteur de décision}
+    \label{fig:classes-decision}
 \end{figure}
 
 
@@ -220,7 +220,7 @@ Le second diagramme, présenté à la figure \ref{fig:seq-sensible}, détaille l
 
 L'agent confirme la demande puis vérifie l'identité du client si nécessaire. Le contexte de décision est ensuite constitué et le service de décision propose une action avec son degré de confiance ; une confiance insuffisante déclenche une escalade immédiate.
 
-Le moteur de politique évalue ensuite l'action et persiste son verdict. Selon le résultat, l'opération est exécutée, refusée ou transmise à un conseiller ; chaque issue est inscrite dans le journal d'audit.
+Le moteur de décision évalue ensuite l'action et persiste son verdict. Selon le résultat, l'opération est exécutée, refusée ou transmise à un conseiller ; chaque issue est inscrite dans le journal d'audit.
 
 
 \subsection{Diagrammes d'activités}
@@ -393,7 +393,7 @@ Ces règles illustrent une orientation générale de la conception : une capacit
 
 Les garde fous encadrent ce que le système peut décider et ce qu'il peut dire. Ils s'appliquent à deux moments distincts, ce qui constitue une propriété importante de la conception.
 
-Le premier moment précède l'action. Toute opération sensible est soumise au moteur de politique décrit plus haut, qui rend un verdict à quatre valeurs accompagné de la règle décisive, du niveau de confiance et d'une justification. Ce contrôle n'est pas contournable, puisque le chemin qui mène à l'exécution passe par lui.
+Le premier moment précède l'action. Toute opération sensible est soumise au moteur de décision décrit plus haut, qui rend un verdict à quatre valeurs accompagné de la règle décisive, du niveau de confiance et d'une justification. Ce contrôle n'est pas contournable, puisque le chemin qui mène à l'exécution passe par lui.
 
 Le second moment précède la parole. Une réponse sur le point d'être énoncée peut être contrôlée avant son émission, notamment au regard de la divulgation de données personnelles, de la formulation d'engagements ou de la mention de montants. Une plateforme qui contrôlerait ses actions sans contrôler ses paroles laisserait ouverte une voie de préjudice pourtant réelle.
 
