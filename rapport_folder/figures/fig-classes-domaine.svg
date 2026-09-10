@@ -18,7 +18,7 @@
   </defs>
 
   <style>
-    .bg { fill: #fffdf7; }
+    .bg { fill: #FFFFFF; }
     .box { stroke: #333333; stroke-width: 1.2; }
     .layer-yellow { fill: #fff4a6; filter: url(#shadow); }
     .layer-pink { fill: #f28e8e; filter: url(#shadow); }
