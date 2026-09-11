@@ -27,7 +27,19 @@ La conséquence pratique est que la direction des dépendances est inversée par
 
 La figure \ref{fig:archi-hexagonale} présente cette organisation.
 
-\figureTikz{Architecture hexagonale de la plateforme}{archi-hexagonale}{fig-archi-hexagonale}
+\begin{figure}[!htb]
+  \center
+  \setlength{\fboxsep}{6pt}
+  \setlength{\fboxrule}{0.5pt}
+  \fbox{%
+    \adjustbox{max width=\linewidth-18pt,
+               max totalheight=0.82\textheight}{%
+      \includegraphics{figures/fig-archi-hexagonale.png}%
+    }%
+  }
+  \caption{Architecture hexagonale de la plateforme}
+  \label{fig:archi-hexagonale}
+\end{figure}
 
 \subsubsection{Les ports du domaine}
 
