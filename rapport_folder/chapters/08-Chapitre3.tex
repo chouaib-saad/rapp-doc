@@ -103,7 +103,19 @@ Le domaine n'est pas monolithique. Il est découpé en contextes métier délimi
 
 La figure \ref{fig:paquetages} présente ce découpage sous forme de diagramme de paquetages, en faisant apparaître les dépendances autorisées entre contextes.
 
-\figureTikz{Diagramme de paquetages des contextes métier}{paquetages}{fig-paquetages}
+\begin{figure}[!htb]
+  \center
+  \setlength{\fboxsep}{6pt}
+  \setlength{\fboxrule}{0.5pt}
+  \fbox{%
+    \adjustbox{max width=\linewidth-18pt,
+               max totalheight=0.82\textheight}{%
+      \includegraphics{figures/fig-paquetages.png}%
+    }%
+  }
+  \caption{Diagramme de paquetages des contextes métier}
+  \label{fig:paquetages}
+\end{figure}
 
 \subsubsection{Décomposition en composants}
 
