@@ -5,19 +5,19 @@
                       font=\sffamily\scriptsize, align=center}}
 
   % ── Adaptateurs d'entrée ──────────────────────────────────
-  \node[cp] (rt)  at (0, 3.0) {Couche temps réel\\\textit{(assembleur)}};   \iconeComposant{rt}
-  \node[cp] (api) at (0, 0.6) {Interface applicative\\métier};             \iconeComposant{api}
-  \node[cp] (tok) at (0,-1.8) {Service de jetons};                          \iconeComposant{tok}
+  \node[cp] (rt)  at (0, 3.0) {Communication temps réel};   \iconeComposant{rt}
+  \node[cp] (api) at (0, 0.6) {API des services métier};             \iconeComposant{api}
+  \node[cp] (tok) at (0,-1.8) {Service d'accès de session};                          \iconeComposant{tok}
 
   % ── Services de domaine ───────────────────────────────────
-  \node[cp] (ctx) at (5.4, 4.2) {Service de contexte};      \iconeComposant{ctx}
-  \node[cp] (kno) at (5.4, 1.8) {Service de connaissance};  \iconeComposant{kno}
-  \node[cp] (dec) at (5.4,-0.6) {Service de décision};      \iconeComposant{dec}
-  \node[cp] (pol) at (5.4,-3.0) {Moteur de décision};     \iconeComposant{pol}
+  \node[cp] (ctx) at (5.4, 4.2) {Gestion du contexte};      \iconeComposant{ctx}
+  \node[cp] (kno) at (5.4, 1.8) {Recherche de connaissances};  \iconeComposant{kno}
+  \node[cp] (dec) at (5.4,-0.6) {Gestion des décisions};      \iconeComposant{dec}
+  \node[cp] (pol) at (5.4,-3.0) {Évaluation des décisions};     \iconeComposant{pol}
 
-  \node[cp] (exe) at (10.8, 1.8) {Service d'exécution};     \iconeComposant{exe}
-  \node[cp] (not) at (10.8,-0.6) {Service de notification}; \iconeComposant{not}
-  \node[cp] (mcp) at (10.8,-3.0) {Passerelles\\d'intégration}; \iconeComposant{mcp}
+  \node[cp] (exe) at (10.8, 1.8) {Exécution des actions};     \iconeComposant{exe}
+  \node[cp] (not) at (10.8,-0.6) {Gestion des notifications}; \iconeComposant{not}
+  \node[cp] (mcp) at (10.8,-3.0) {Intégration des systèmes externes}; \iconeComposant{mcp}
 
   \node[etiquettezone, anchor=south] at (5.4, 5.15) {Services de domaine};
   \draw[zone] (3.55,-3.75) rectangle (7.25,4.95);
@@ -26,9 +26,9 @@
   \node[fboxg, minimum width=30mm, minimum height=9mm, align=center] (glpi) at (15.6, 1.8)
        {$\ll$ externe $\gg$\\Gestion de tickets};
   \node[fboxg, minimum width=30mm, minimum height=9mm, align=center] (ops) at (15.6,-0.6)
-       {$\ll$ externe $\gg$\\Systèmes de l'opérateur};
+       {$\ll$ externe $\gg$\\Systèmes d'information de l'opérateur};
   \node[fboxg, minimum width=30mm, minimum height=9mm, align=center] (idx) at (15.6,-3.0)
-       {$\ll$ externe $\gg$\\Index documentaire};
+       {$\ll$ externe $\gg$\\Base de connaissances};
 
   % ── Interfaces fournies et requises ───────────────────────
   \draw[dependance] (rt.east)  -- node[etiq, pos=0.55] {contexte} (ctx.west);
@@ -50,8 +50,5 @@
   \draw[fill=white] (2.35,-1.8) circle (1.2mm);
   \node[etiq, anchor=west] at (2.60,-1.8) {jeton d'accès temps réel};
   \draw[dependance] (rt.south) -- ++(0,-0.35) -| (1.2,-1.55) -- (1.2,-1.8);
-
-  \node[note, text width=76mm, anchor=north, align=center] at (7.6,-4.55)
-       {La couche temps réel n'implémente aucune règle : elle assemble les composants et\\appelle les services de domaine au travers d'interfaces typées.};
 
 \end{tikzpicture}
