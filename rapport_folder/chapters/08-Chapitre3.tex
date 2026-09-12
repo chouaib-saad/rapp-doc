@@ -269,7 +269,15 @@ Le document est d'abord extrait de son format d'origine et converti en texte. Se
 
 Deux décisions figurent explicitement dans ce diagramme. La première est le contrôle d'empreinte : un document dont le contenu est inchangé ne produit aucun travail, tandis qu'un contenu modifié engendre une nouvelle version et désactive la précédente. La seconde est le passage par une file d'événements durable plutôt qu'une écriture directe dans l'index. Si l'index est indisponible au moment de l'ingestion, l'événement demeure et sera traité ensuite, sans que la référence et l'index divergent durablement.
 
-\figureTikz{Diagramme d'activités de l'ingestion documentaire}{act-ingestion}{fig-act-ingestion}
+\begin{figure}[H]
+    \centering
+    \setlength{\fboxsep}{0pt}
+    \setlength{\fboxrule}{1pt}
+    \fbox{\includegraphics[width=\linewidth, height=0.88\textheight, keepaspectratio]{figures/fig-act-ingestion.png}}
+    \vspace{0.2cm}
+    \caption{Diagramme d'activités de l'ingestion documentaire}
+    \label{fig:act-ingestion}
+\end{figure}
 
 \subsubsection{Recherche documentaire}
 
@@ -281,7 +289,15 @@ Ce dernier filtre ne s'applique qu'au petit nombre de candidats ayant franchi le
 
 Le point essentiel de ce diagramme est la présence de trois sorties possibles vers un résultat vide. Ce n'est pas une faiblesse du traitement, mais sa propriété recherchée : le système préfère déclarer qu'il ne sait pas plutôt que remettre à l'agent des passages faiblement pertinents, sur lesquels il fonderait une réponse plausible mais infondée.
 
-\figureTikz{Diagramme d'activités de la recherche documentaire}{act-recherche}{fig-act-recherche}
+\begin{figure}[H]
+    \centering
+    \setlength{\fboxsep}{0pt}
+    \setlength{\fboxrule}{1pt}
+    \fbox{\includegraphics[width=\linewidth, height=0.88\textheight, keepaspectratio]{figures/fig-act-recherche.png}}
+    \vspace{0.2cm}
+    \caption{Diagramme d'activités de la recherche documentaire}
+    \label{fig:act-recherche}
+\end{figure}
 
 \subsection{Diagrammes d'états transitions}
 
@@ -291,7 +307,15 @@ Le diagramme de la figure \ref{fig:etats-conversation} décrit les états succes
 
 Un état mérite d'être signalé, celui de vérification d'identité. Il n'est atteint que lorsqu'une opération sensible est envisagée, il est borné en nombre de tentatives et dans le temps, et il possède sa propre sortie en échec. Cette délimitation stricte évite qu'une conversation ne s'enlise dans une boucle de vérification.
 
-\figureTikz{Diagramme d'états transitions d'une conversation}{etats-conversation}{fig-etats-conversation}
+\begin{figure}[H]
+    \centering
+    \setlength{\fboxsep}{0pt}
+    \setlength{\fboxrule}{1pt}
+    \fbox{\includegraphics[width=\linewidth, height=0.88\textheight, keepaspectratio]{figures/fig-etats-conversation.png}}
+    \vspace{0.2cm}
+    \caption{Diagramme d'états transitions d'une conversation}
+    \label{fig:etats-conversation}
+\end{figure}
 
 \subsubsection{Cycle de vie d'un ticket}
 
@@ -299,7 +323,15 @@ Le diagramme de la figure \ref{fig:etats-ticket} décrit les états d'un ticket.
 
 Ce choix de reprendre le vocabulaire du système de référence évite une correspondance approximative entre deux jeux d'états, source classique d'incohérences lorsque les deux systèmes évoluent séparément. La plateforme traduit les codes numériques du système de référence vers ces cinq états, et cette traduction est le seul point où les deux vocabulaires se rencontrent.
 
-\figureTikz{Diagramme d'états transitions d'un ticket}{etats-ticket}{fig-etats-ticket}
+\begin{figure}[H]
+    \centering
+    \setlength{\fboxsep}{0pt}
+    \setlength{\fboxrule}{1pt}
+    \fbox{\includegraphics[width=\linewidth, height=0.88\textheight, keepaspectratio]{figures/fig-etats-ticket.png}}
+    \vspace{0.2cm}
+    \caption{Diagramme d'états transitions d'un ticket}
+    \label{fig:etats-ticket}
+\end{figure}
 
 \section{Conception du système agentique}
 
@@ -313,7 +345,15 @@ Son fonctionnement suit un enchaînement en quatre temps. L'agent interprète d'
 
 La distinction entre le deuxième et le troisième temps est la clé de la conception. Le modèle de langue intervient au deuxième temps, où sa capacité d'interprétation est irremplaçable. Il n'intervient pas au troisième, où c'est un mécanisme déterministe qui statue. Le modèle propose, il ne dispose pas. La figure \ref{fig:pipeline-agent} présente cet enchaînement.
 
-\figureTikz{Pipeline de raisonnement d'un agent}{pipeline-agent}{fig-pipeline-agent}
+\begin{figure}[H]
+    \centering
+    \setlength{\fboxsep}{0pt}
+    \setlength{\fboxrule}{1pt}
+    \fbox{\includegraphics[width=\linewidth, height=0.88\textheight, keepaspectratio]{figures/fig-pipeline-agent.png}}
+    \vspace{0.2cm}
+    \caption{Pipeline de raisonnement d'un agent}
+    \label{fig:pipeline-agent}
+\end{figure}
 
 \subsection{Décomposition en agents spécialisés}
 
@@ -359,7 +399,15 @@ Le passage de relais est par ailleurs encadré par un garde fou contre les boucl
 
 La figure \ref{fig:orchestration} présente l'organisation des agents et les transitions possibles entre eux.
 
-\figureTikz{Orchestration des agents et transitions}{orchestration}{fig-orchestration}
+\begin{figure}[H]
+    \centering
+    \setlength{\fboxsep}{0pt}
+    \setlength{\fboxrule}{1pt}
+    \fbox{\includegraphics[width=\linewidth, height=0.88\textheight, keepaspectratio]{figures/fig-orchestration.png}}
+    \vspace{0.2cm}
+    \caption{Orchestration des agents et transitions}
+    \label{fig:orchestration}
+\end{figure}
 
 \subsection{Construction du contexte}
 
@@ -401,7 +449,15 @@ Outils disponibles & Ensemble des outils exposés par l'agent actif & Détermin�
 
 La figure \ref{fig:contexte} illustre cet assemblage.
 
-\figureTikz{Assemblage du contexte d'un agent}{contexte}{fig-contexte}
+\begin{figure}[H]
+    \centering
+    \setlength{\fboxsep}{0pt}
+    \setlength{\fboxrule}{1pt}
+    \fbox{\includegraphics[width=\linewidth, height=0.88\textheight, keepaspectratio]{figures/fig-contexte.png}}
+    \vspace{0.2cm}
+    \caption{Assemblage du contexte d'un agent}
+    \label{fig:contexte}
+\end{figure}
 
 \subsubsection{Mémoire courte et mémoire longue}
 
@@ -515,7 +571,15 @@ La première frontière contrôle l'accès à la plateforme : qui se connecte, e
 
 Ces deux frontières sont indépendantes. Une session ouverte franchit la première et ne dit rien de la seconde. La figure \ref{fig:securite} présente ce modèle.
 
-\figureTikz{Modèle de sécurité de la plateforme}{securite}{fig-securite}
+\begin{figure}[H]
+    \centering
+    \setlength{\fboxsep}{0pt}
+    \setlength{\fboxrule}{1pt}
+    \fbox{\includegraphics[width=\linewidth, height=0.88\textheight, keepaspectratio]{figures/fig-securite.png}}
+    \vspace{0.2cm}
+    \caption{Modèle de sécurité de la plateforme}
+    \label{fig:securite}
+\end{figure}
 
 \subsection{Authentification et gestion de session}
 
