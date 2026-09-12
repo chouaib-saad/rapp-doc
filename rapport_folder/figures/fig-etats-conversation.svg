@@ -46,8 +46,8 @@
 <text class="nn" x="830" y="352">Vérification</text>
 <text class="nn" x="830" y="368">d'identité</text>
 
-<rect class="nd" x="480" y="330" width="150" height="52" rx="12" ry="12" fill="#96D5F2"/>
-<text class="nn" x="555" y="362">Décision</text>
+<rect class="nd" x="470" y="330" width="150" height="52" rx="12" ry="12" fill="#96D5F2"/>
+<text class="nn" x="545" y="362">Décision</text>
 
 <rect class="nd" x="195" y="330" width="160" height="52" rx="12" ry="12" fill="#96D5F2"/>
 <text class="nn" x="275" y="362">Exécution</text>
@@ -96,19 +96,19 @@
 <polyline class="fl" points="830,142 830,330" marker-end="url(#fa)"/>
 <text class="ed" x="842" y="236" transform="rotate(-90 842 236)">opération sensible</text>
 
-<polyline class="fl" points="735,356 630,356" marker-end="url(#fa)"/>
-<text class="ed" x="682" y="348">identité fraîche</text>
+<polyline class="fl" points="735,356 620,356" marker-end="url(#fa)"/>
+<text class="ed" x="677" y="348">identité fraîche</text>
 
-<polyline class="fl" points="480,356 355,356" marker-end="url(#fa)"/>
-<text class="ed" x="417" y="348">verdict favorable</text>
+<polyline class="fl" points="470,356 355,356" marker-end="url(#fa)"/>
+<text class="ed" x="412" y="348">verdict favorable</text>
 
 <!-- Exécution vers restitution -->
 <polyline class="fl" points="275,382 275,580 440,580 440,620" marker-end="url(#fa)"/>
 <text class="ed" x="330" y="572">résultat</text>
 
 <!-- Décision vers restitution -->
-<polyline class="fl" points="555,382 555,620" marker-end="url(#fa)"/>
-<text class="es" x="563" y="500">réponse</text>
+<polyline class="fl" points="545,382 545,620" marker-end="url(#fa)"/>
+<text class="es" x="553" y="500">réponse</text>
 
 <!-- Reprise : tour suivant -->
 <polyline class="fl" points="390,646 60,646 60,50 420,50 420,110 475,110" marker-end="url(#fa)"/>
