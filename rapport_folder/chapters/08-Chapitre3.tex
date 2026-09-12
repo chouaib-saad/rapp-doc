@@ -121,7 +121,19 @@ La figure \ref{fig:paquetages} présente ce découpage sous forme de diagramme d
 
 À l'exécution, ces contextes se matérialisent sous forme de composants déployables indépendants. Chacun expose une interface de service et n'accède aux autres qu'au travers de celle ci, ce qui garantit que le découpage logique survit au passage à l'exécution. La figure \ref{fig:composants} présente cette décomposition.
 
-\figureTikz{Diagramme de composants de la plateforme}{composants}{fig-composants}
+\begin{figure}[!htb]
+  \center
+  \setlength{\fboxsep}{6pt}
+  \setlength{\fboxrule}{0.5pt}
+  \fbox{%
+    \adjustbox{max width=\linewidth-18pt,
+               max totalheight=0.82\textheight}{%
+      \includegraphics{figures/fig-composants.png}%
+    }%
+  }
+  \caption{Diagramme de composants de la plateforme}
+  \label{fig:composants}
+\end{figure}
 
 Trois règles de construction gouvernent cette décomposition et méritent d'être énoncées, car elles conditionnent la validité de l'ensemble.
 
