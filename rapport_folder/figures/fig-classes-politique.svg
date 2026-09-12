@@ -1,0 +1,228 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 980" width="1600" height="980">
+  <title>fig-classes-politique — Diagramme de classes du moteur de décision</title>
+  
+  <style>
+    .cname { font-size: 13.5px; font-weight: 700; fill: #111; }
+    .cname, .feat, .mult, .stereo { font-family: Arial, Helvetica, sans-serif; }
+    .stereo { font-size: 11px; font-style: italic; fill: #444; }
+    .feat { font-size: 11.5px; fill: #222; }
+    .mult { font-size: 10.5px; fill: #333; paint-order: stroke; stroke: #FFFFFF; stroke-width: 3.2; }
+    .mult, .rel, .reld, .role { stroke-linejoin: round; }
+    .role { font-family: Arial, Helvetica, sans-serif; font-size: 11px; fill: #333; paint-order: stroke; stroke: #FFFFFF; stroke-width: 3.2; }
+    .rel, .reld { fill: none; stroke: #333; stroke-width: 1.4; }
+    .reld { stroke-dasharray: 7, 5; }
+    .sep { stroke: #333; stroke-width: 1.2; }
+    .shd { fill: #c9c9c9; opacity: .45; }
+    .bx { stroke: #333; stroke-width: 1.5; }
+    .green { fill: #a9efb0; }
+    .yellow { fill: #fff4a6; }
+    .purple { fill: #e2d4f5; }
+    .grey { fill: #e3e3e3; }
+  </style>
+
+  <defs>
+    <marker id="gen" viewBox="0 0 13 12" refX="12.3" refY="6" markerWidth="13" markerHeight="12" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M.8.9 12.2 6 .8 11.1Z" fill="#FFFFFF" stroke="#333" stroke-width="1.2" stroke-linejoin="round"/>
+    </marker>
+    <marker id="real" viewBox="0 0 13 12" refX="12.3" refY="6" markerWidth="13" markerHeight="12" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M.8.9 12.2 6 .8 11.1Z" fill="#FFFFFF" stroke="#333" stroke-width="1.2" stroke-linejoin="round"/>
+    </marker>
+    <marker id="dep" viewBox="0 0 12 12" refX="10.6" refY="6" markerWidth="12" markerHeight="12" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M1 1.4 10.4 6 1 10.6" fill="none" stroke="#333" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+    <marker id="aggr" viewBox="0 0 18 11" refX="1" refY="5.5" markerWidth="18" markerHeight="11" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="m1 5.5 8-4.2 8 4.2-8 4.2Z" fill="#FFFFFF" stroke="#333" stroke-width="1.2" stroke-linejoin="round"/>
+    </marker>
+    <marker id="comp" viewBox="0 0 18 11" refX="1" refY="5.5" markerWidth="18" markerHeight="11" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="m1 5.5 8-4.2 8 4.2-8 4.2Z" fill="#333" stroke="#333" stroke-linejoin="round"/>
+    </marker>
+  </defs>
+
+  <path fill="#FFFFFF" d="M0 0h1600v980H0z"/>
+
+  <g id="relations">
+    <path d="M510 83H210v97" class="rel"/>
+    <text x="360" y="75" text-anchor="middle" class="role">construit</text>
+    <text x="492" y="98" text-anchor="middle" class="mult">1</text>
+    <text x="225" y="170" class="mult">1..*</text>
+    
+    <path d="M650 180v-64" class="reld" marker-end="url(#dep)"/>
+    <text x="658" y="150" class="role">« invoque »</text>
+    
+    <path d="M460 230H360" class="rel"/>
+    <text x="410" y="223" text-anchor="middle" class="role">évalue</text>
+    <text x="450" y="245" text-anchor="middle" class="mult">1</text>
+    <text x="370" y="245" text-anchor="middle" class="mult">1</text>
+    
+    <path d="M840 230h100" class="rel"/>
+    <text x="890" y="223" text-anchor="middle" class="role">produit</text>
+    <text x="850" y="245" text-anchor="middle" class="mult">1</text>
+    <text x="925" y="245" text-anchor="middle" class="mult">0..*</text>
+    
+    <path d="M1200 230h110" class="rel"/>
+    <text x="1255" y="223" text-anchor="middle" class="role">consigné dans</text>
+    <text x="1210" y="245" text-anchor="middle" class="mult">1</text>
+    <text x="1300" y="245" text-anchor="middle" class="mult">1</text>
+    
+    <path d="M650 278v162" class="rel" marker-start="url(#aggr)"/>
+    <text x="640" y="298" text-anchor="end" class="mult">1</text>
+    <text x="640" y="432" text-anchor="end" class="mult">1..*</text>
+    <text x="658" y="358" class="role">règles {ordonné par rang}</text>
+    
+    <path d="M840 262h50v225h50" class="rel" marker-start="url(#comp)"/>
+    <text x="898" y="380" class="role">calculateur</text>
+    <text x="884" y="278" text-anchor="end" class="mult">1</text>
+    <text x="932" y="500" text-anchor="middle" class="mult">1</text>
+    
+    <path d="m500 487-80 1" class="rel"/>
+    <text x="460" y="480" text-anchor="middle" class="role">produit</text>
+    <text x="490" y="502" text-anchor="middle" class="mult">1</text>
+    <text x="433" y="502" text-anchor="middle" class="mult">0..1</text>
+    
+    <path d="M200 660v-30h1200v30m-900 0v-30m300 30v-30m300 30v-30" class="reld"/>
+    <path d="M650 630v-62" class="reld" marker-end="url(#real)"/>
+  </g>
+
+  <path class="shd" d="M512.6 52.6h280v66h-280z"/>
+  <path class="bx grey" d="M510 50h280v66H510z"/>
+  <text x="650" y="68" text-anchor="middle" class="cname">CoucheAgents::Outil</text>
+  <path class="sep" d="M510 76h280M510 86h280"/>
+  <text x="522" y="103" class="feat">+ invoquer(arguments, contexte) : Resultat</text>
+
+  <path class="shd" d="M62.6 182.6h300v166h-300z"/>
+  <path class="bx yellow" d="M60 180h300v166H60z"/>
+  <text x="210" y="198" text-anchor="middle" class="cname">ContexteDeDecision</text>
+  <path class="sep" d="M60 206h300"/>
+  <text x="72" y="223" class="feat">- action : Texte</text>
+  <text x="72" y="239" class="feat">- arguments : Table</text>
+  <text x="72" y="255" class="feat">- domaine : Domaine</text>
+  <text x="72" y="271" class="feat">- client : Client [0..1]</text>
+  <text x="72" y="287" class="feat">- niveauVerification : Entier</text>
+  <text x="72" y="303" class="feat">- sentimentCourant : Sentiment</text>
+  <text x="72" y="319" class="feat">- nbClarifications : Entier</text>
+  <text x="72" y="335" class="feat">- canal : Canal</text>
+
+  <path class="shd" d="M462.6 182.6h380v96h-380z"/>
+  <path class="bx" style="fill:#f28e8e" d="M460 180h380v96H460z"/>
+  <text x="650" y="198" text-anchor="middle" class="cname">MoteurDeDecision</text>
+  <path class="sep" d="M460 206h380m-380 10h380"/>
+  <text x="472" y="233" class="feat">+ evaluer(contexte) : VerdictDeDecision</text>
+  <text x="472" y="249" class="feat">+ ajouterRegle(regle : RegleDeDecision)</text>
+  <text x="472" y="265" class="feat">- consolider(resultats, confiance) : VerdictDeDecision</text>
+
+  <path class="shd" d="M942.6 182.6h260v176h-260z"/>
+  <path class="bx yellow" d="M940 180h260v176H940z"/>
+  <text x="1070" y="198" text-anchor="middle" class="cname">VerdictDeDecision</text>
+  <path class="sep" d="M940 206h260"/>
+  <text x="952" y="223" class="feat">- verdict : Verdict</text>
+  <text x="952" y="239" class="feat">- confiance : Reel</text>
+  <text x="952" y="255" class="feat">- justification : Texte</text>
+  <text x="952" y="271" class="feat">- regleDecisive : Texte [0..1]</text>
+  <text x="952" y="287" class="feat">- facteurs : Liste&lt;FacteurDeRisque&gt;</text>
+  <text x="952" y="303" class="feat">- renduLe : Horodatage</text>
+  <path class="sep" d="M940 312h260"/>
+  <text x="952" y="329" class="feat">+ estAutorise() : Booleen</text>
+  <text x="952" y="345" class="feat">+ exigeConfirmation() : Booleen</text>
+
+  <path class="shd" d="M1312.6 182.6h230v84h-230z"/>
+  <path class="bx grey" d="M1310 180h230v84h-230z"/>
+  <text x="1425" y="198" text-anchor="middle" class="cname">ModeleDuDomaine::EntreeAudit</text>
+  <path class="sep" d="M1310 206h230"/>
+  <text x="1322" y="223" class="feat">- evenement : Texte</text>
+  <text x="1322" y="239" class="feat">- contenu : Document</text>
+  <text x="1322" y="255" class="feat">- empreinte : Texte</text>
+
+  <path class="shd" d="M162.6 442.6h260v102h-260z"/>
+  <path class="bx yellow" d="M160 440h260v102H160z"/>
+  <text x="290" y="457" text-anchor="middle" class="stereo">« objet valeur »</text>
+  <text x="290" y="474" text-anchor="middle" class="cname">ResultatDeRegle</text>
+  <path class="sep" d="M160 482h260"/>
+  <text x="172" y="499" class="feat">- verdict : Verdict</text>
+  <text x="172" y="515" class="feat">- justification : Texte</text>
+  <text x="172" y="531" class="feat">- regle : Texte</text>
+
+  <path class="shd" d="M502.6 442.6h300v126h-300z"/>
+  <path class="bx" style="fill:#a9e5ef" d="M500 440h300v126H500z"/>
+  <text x="650" y="457" text-anchor="middle" class="stereo">« interface »</text>
+  <text x="650" y="474" text-anchor="middle" class="cname">RegleDeDecision</text>
+  <path class="sep" d="M500 482h300m-300 10h300"/>
+  <text x="512" y="509" class="feat">+ identifiant() : Texte</text>
+  <text x="512" y="525" class="feat">+ rang() : Entier</text>
+  <text x="512" y="541" class="feat">+ sAppliqueA(contexte) : Booleen</text>
+  <text x="512" y="557" class="feat">+ evaluer(contexte) : ResultatDeRegle [0..1]</text>
+
+  <path class="shd" d="M942.6 442.6h300v94h-300z"/>
+  <path class="bx green" d="M940 440h300v94H940z"/>
+  <text x="1090" y="458" text-anchor="middle" class="cname">CalculateurDeConfiance</text>
+  <path class="sep" d="M940 466h300"/>
+  <text x="952" y="483" class="feat">- confianceInitiale : Reel</text>
+  <path class="sep" d="M940 492h300"/>
+  <text x="952" y="509" class="feat">+ calculer(contexte) : Reel</text>
+  <text x="952" y="525" class="feat">+ facteurs(contexte) : Liste&lt;FacteurDeRisque&gt;</text>
+
+  <path class="shd" d="M62.6 662.6h280v94h-280z"/>
+  <path class="bx green" d="M60 660h280v94H60z"/>
+  <text x="200" y="678" text-anchor="middle" class="cname">RegleEscaladeObligatoire</text>
+  <path class="sep" d="M60 686h280"/>
+  <text x="72" y="703" class="feat">- rang = 1</text>
+  <text x="72" y="719" class="feat">- motifs = abus, menace, fraude, juridique</text>
+  <path class="sep" d="M60 728h280"/>
+  <text x="72" y="745" class="feat">+ evaluer(contexte) : ResultatDeRegle</text>
+
+  <path class="shd" d="M362.6 662.6h280v94h-280z"/>
+  <path class="bx green" d="M360 660h280v94H360z"/>
+  <text x="500" y="678" text-anchor="middle" class="cname">RegleVerificationIdentite</text>
+  <path class="sep" d="M360 686h280"/>
+  <text x="372" y="703" class="feat">- rang = 2</text>
+  <text x="372" y="719" class="feat">- portée = actions sensibles</text>
+  <path class="sep" d="M360 728h280"/>
+  <text x="372" y="745" class="feat">+ evaluer(contexte) : ResultatDeRegle</text>
+
+  <path class="shd" d="M662.6 662.6h280v94h-280z"/>
+  <path class="bx green" d="M660 660h280v94H660z"/>
+  <text x="800" y="678" text-anchor="middle" class="cname">RegleFacturation</text>
+  <path class="sep" d="M660 686h280"/>
+  <text x="672" y="703" class="feat">- rang = 3</text>
+  <text x="672" y="719" class="feat">- portée = plafond, échéance, litige</text>
+  <path class="sep" d="M660 728h280"/>
+  <text x="672" y="745" class="feat">+ evaluer(contexte) : ResultatDeRegle</text>
+
+  <path class="shd" d="M962.6 662.6h280v94h-280z"/>
+  <path class="bx green" d="M960 660h280v94H960z"/>
+  <text x="1100" y="678" text-anchor="middle" class="cname">RegleAbonnement</text>
+  <path class="sep" d="M960 686h280"/>
+  <text x="972" y="703" class="feat">- rang = 4</text>
+  <text x="972" y="719" class="feat">- portée = forfait, recharge, blocage</text>
+  <path class="sep" d="M960 728h280"/>
+  <text x="972" y="745" class="feat">+ evaluer(contexte) : ResultatDeRegle</text>
+
+  <path class="shd" d="M1262.6 662.6h280v94h-280z"/>
+  <path class="bx green" d="M1260 660h280v94h-280z"/>
+  <text x="1400" y="678" text-anchor="middle" class="cname">RegleTechnique</text>
+  <path class="sep" d="M1260 686h280"/>
+  <text x="1272" y="703" class="feat">- rang = 5</text>
+  <text x="1272" y="719" class="feat">- portée = carte SIM, réseau, incident</text>
+  <path class="sep" d="M1260 728h280"/>
+  <text x="1272" y="745" class="feat">+ evaluer(contexte) : ResultatDeRegle</text>
+
+  <path class="shd" d="M522.6 802.6h220v118h-220z"/>
+  <path class="bx purple" d="M520 800h220v118H520z"/>
+  <text x="630" y="817" text-anchor="middle" class="stereo">« énumération »</text>
+  <text x="630" y="834" text-anchor="middle" class="cname">Verdict</text>
+  <path class="sep" d="M520 842h220"/>
+  <text x="532" y="859" class="feat">AUTORISE</text>
+  <text x="532" y="875" class="feat">CONFIRMATION_REQUISE</text>
+  <text x="532" y="891" class="feat">REFUSE</text>
+  <text x="532" y="907" class="feat">ESCALADE</text>
+
+  <path class="shd" d="M792.6 802.6h250v134h-250z"/>
+  <path class="bx purple" d="M790 800h250v134H790z"/>
+  <text x="915" y="817" text-anchor="middle" class="stereo">« énumération »</text>
+  <text x="915" y="834" text-anchor="middle" class="cname">FacteurDeRisque</text>
+  <path class="sep" d="M790 842h250"/>
+  <text x="802" y="859" class="feat">IDENTITE_NON_VERIFIEE</text>
+  <text x="802" y="875" class="feat">DONNEES_MANQUANTES</text>
+  <text x="802" y="891" class="feat">SUSPICION_FRAUDE</text>
+  <text x="802" y="907" class="feat">MECONTENTEMENT</text>
+  <text x="802" y="923" class="feat">CLARIFICATIONS_REPETEES</text>
+</svg>

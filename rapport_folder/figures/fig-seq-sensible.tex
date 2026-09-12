@@ -8,7 +8,7 @@
   \node[entete, minimum width=22mm] (A) at (\xA,0) {: Agent};
   \node[entete, minimum width=24mm] (B) at (\xB,0) {: Contexte};
   \node[entete, minimum width=24mm] (C) at (\xC,0) {: Décision};
-  \node[entete, minimum width=24mm] (D) at (\xD,0) {: Politique};
+  \node[entete, minimum width=24mm] (D) at (\xD,0) {: Décision};
   \node[entete, minimum width=24mm] (E) at (\xE,0) {: Exécution};
   \node[entete, minimum width=24mm] (F) at (\xF,0) {: Système métier};
   \node[entete, minimum width=22mm] (G) at (\xG,0) {: Audit};
@@ -30,7 +30,7 @@
   \node[etiqi, anchor=west, text width=44mm] at (\xC+0.35,-3.55)
        {[confiance insuffisante : escalade immédiate, sans tentative]};
 
-  % 3. Politique
+  % 3. Décision
   \fill[figGrisClair, draw=black] (\xD-0.12,-4.3) rectangle (\xD+0.12,-5.2);
   \draw[message] (\xA,-4.3) -- node[etiq, above] {demander le verdict} (\xD,-4.3);
   \draw[message] (\xD+0.12,-4.75) -- ++(1.0,0) -- ++(0,-0.28) -- (\xD+0.12,-5.03);

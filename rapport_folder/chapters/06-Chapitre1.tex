@@ -23,7 +23,15 @@ La figure \ref{fig:logo-amsys} présente l'identité visuelle de la société.
 
 Amsys Consulting s'appuie sur un cadre rigoureux en matière de sécurité de l'information et de qualité de service, ainsi que sur des partenariats stratégiques avec les principaux fournisseurs de services cloud. Ce socle n'est pas resté un élément de contexte : il a directement structuré plusieurs choix techniques du projet. Les frontières de sécurité, les pratiques d'observabilité et l'architecture d'infrastructure décrites dans les chapitres suivants en découlent en grande partie, et plusieurs décisions que nous justifions par la suite ne s'expliquent pleinement qu'à la lumière de ces exigences internes.
 
-\figurePlaceholder{Logo de la société Amsys Consulting}{logo-amsys}{Logo officiel de la société, sur fond blanc, cadré et centré.}
+\begin{figure}[htbp]
+    \centering
+    \setlength{\fboxsep}{0pt}
+    \setlength{\fboxrule}{1pt}
+    \fbox{\includegraphics[width=0.72\linewidth, height=0.42\linewidth, keepaspectratio]{figures/logo-amsys-consulting.png}}
+    \vspace{0.2cm}
+    \caption{Logo de la société Amsys Consulting}
+    \label{fig:logo-amsys}
+\end{figure}
 
 \section{Présentation du projet}
 
@@ -83,7 +91,7 @@ Avant de concevoir notre solution, nous avons examiné ce qui existe déjà, à 
 
 \subsection{Le dispositif en place chez les opérateurs}
 
-Le dispositif historique combine un serveur vocal interactif, une équipe de conseillers outillée par des scripts, et un système de gestion de tickets pour les demandes qui ne se résolvent pas au premier contact. Sa robustesse tient à sa simplicité : le parcours est entièrement déterminé à l'avance et son comportement est parfaitement prévisible. Cette même propriété constitue sa limite. Une arborescence de menus ne peut couvrir que les cas anticipés lors de sa conception, elle impose au client de traduire son besoin dans le vocabulaire du système, et elle ne transporte pratiquement aucune information d'une étape à la suivante.
+Le dispositif historique combine un serveur vocal interactif, une équipe de conseillers outillée par des scripts, et un système de gestion de tickets pour les demandes qui ne se résolvent pas au premier contact. Sa robustesse tient à sa simplicité : le parcours est entièrement déterminé à l'avance et son comportement est parfaitement prévisible. Cette même propriété constitue sa limite. Une arborescence de menus ne peut couvrir que les cas anticipés lors de sa conception. Elle impose au client de traduire son besoin dans le vocabulaire du système, et ne transporte pratiquement aucune information d'une étape à la suivante.
 
 \subsection{Les plateformes commerciales d'automatisation conversationnelle}
 
@@ -91,15 +99,15 @@ Trois acteurs européens structurent aujourd'hui ce segment. Nous les avons rete
 
 \subsubsection{PolyAI}
 
-PolyAI est un éditeur britannique d'assistants vocaux destinés à l'automatisation du service client. La plateforme prend en charge les appels entrants et sortants, le débordement de file d'attente, le routage par intention et l'escalade vers un conseiller, avec une prise en charge multilingue étendue et des intégrations vers les systèmes de gestion de la relation client, les plateformes de réservation, les systèmes de paiement et les logiciels de centre de contact \cite{polyai}. Ses points forts reconnus sont la qualité de la voix synthétisée et la gestion des tours de parole, y compris les interruptions et les corrections en cours d'énoncé.
+PolyAI est un éditeur britannique d'assistants vocaux destinés à l'automatisation du service client. La plateforme prend en charge les appels entrants et sortants, le débordement de file d'attente, le routage par intention et l'escalade vers un conseiller. Elle offre une prise en charge multilingue étendue et des intégrations vers les systèmes de gestion de la relation client, les plateformes de réservation, les systèmes de paiement et les logiciels de centre de contact \cite{polyai}. Ses points forts reconnus sont la qualité de la voix synthétisée et la gestion des tours de parole, y compris les interruptions et les corrections en cours d'énoncé.
 
-La solution est livrée comme un service géré. Ce choix de distribution simplifie considérablement le déploiement, mais il place la chaîne de raisonnement interne hors du périmètre de l'équipe cliente. La décomposition en agents spécialisés, la stratégie de recherche documentaire et le contrôle granulaire des politiques métier ne constituent pas des surfaces de conception exposées, et l'adaptation à un système d'information particulier passe par une intégration conduite par l'éditeur.
+La solution est livrée comme un service géré. Ce choix de distribution simplifie considérablement le déploiement, mais il place la chaîne de raisonnement interne hors du périmètre de l'équipe cliente. La décomposition en agents spécialisés, la stratégie de recherche documentaire et le contrôle granulaire des règles métier ne constituent pas des surfaces de conception exposées, et l'adaptation à un système d'information particulier passe par une intégration conduite par l'éditeur.
 
 \subsubsection{Cognigy}
 
 Cognigy est une plateforme allemande d'intelligence artificielle conversationnelle pour l'entreprise, qui couvre les canaux voix, dialogue en ligne et messagerie, avec des connecteurs natifs vers les principaux environnements de centre de contact. Le produit a évolué vers des capacités agentiques, avec des agents capables de collaborer et de partager une mémoire contextuelle lors des passages de relais \cite{cognigy}. Son environnement de conception en low-code permet à des profils non techniques de construire et de faire évoluer des parcours, ce qui accélère nettement le déploiement initial.
 
-Ce même choix de conception constitue la contrepartie. Un éditeur visuel définit implicitement l'ensemble des compositions possibles. La profondeur de personnalisation reste donc bornée par ce que l'outil expose, notamment sur la logique d'orchestration, sur la définition fine des agents spécialisés et sur l'articulation entre la couche de raisonnement et des politiques métier maintenues à l'extérieur de la plateforme.
+Ce même choix de conception constitue la contrepartie. Un éditeur visuel définit implicitement l'ensemble des compositions possibles. La profondeur de personnalisation reste donc bornée par ce que l'outil expose, notamment sur la logique d'orchestration, sur la définition fine des agents spécialisés et sur l'articulation entre la couche de raisonnement et des règles métier maintenues à l'extérieur de la plateforme.
 
 \subsubsection{Parloa}
 
@@ -128,7 +136,7 @@ PolyAI
 \hline
 Cognigy
 & Couverture multicanale. Capacités agentiques avec mémoire partagée. Conception en low-code accessible aux profils métier. Déploiement initial rapide.
-& Personnalisation bornée par l'éditeur visuel. Orchestration et politiques métier difficilement externalisables. Contrôle limité sur la couche de récupération documentaire. \\
+& Personnalisation bornée par l'éditeur visuel. Orchestration et règles métier difficilement externalisables. Contrôle limité sur la couche de récupération documentaire. \\
 \hline
 Parloa
 & Conception centrée sur la voix. Gestion du cycle de vie des agents. Gouvernance de production et versionnement. Téléphonie opérée en propre.
@@ -171,57 +179,87 @@ Auto hébergement possible & Non & Partiel & Non & \textbf{Oui} \\
 
 \section{Chronologie du projet}
 
-Le projet s'est déroulé de mars à août 2026. Nous l'avons organisé en six phases successives, chacune produisant un ensemble cohérent et démontrable plutôt qu'un simple lot de travaux. La figure \ref{fig:gantt} présente le diagramme de Gantt correspondant, et le tableau \ref{tab:phases} précise ce que chaque phase a produit.
+Le projet s'est déroulé de mars à août 2026. Nous l'avons organisé en quatre groupes de travaux — cadrage, réalisation, intégration et livraison — qui se chevauchent partiellement, chacun produisant un ensemble cohérent et démontrable plutôt qu'un simple lot de travaux. La figure \ref{fig:gantt} présente le diagramme de Gantt correspondant, et le tableau \ref{tab:phases} précise chaque tâche, sa période et son résultat.
 
-\figureTikz{Diagramme de Gantt du projet}{gantt}{fig-gantt}
+\begin{figure}[htbp]
+    \centering
+    \setlength{\fboxsep}{0pt}
+    \setlength{\fboxrule}{1pt}
+    \fbox{\includegraphics[width=\linewidth, height=0.82\textheight, keepaspectratio]{figures/fig-gantt.png}}
+    \vspace{0.2cm}
+    \caption{Diagramme de Gantt du projet}
+    \label{fig:gantt}
+\end{figure}
 
 \begin{table}[H]
 \centering
 \renewcommand{\arraystretch}{1.25}
-\begin{tabular}{|p{2.1cm}|p{4.0cm}|p{7.8cm}|}
+\begin{tabular}{|p{2.0cm}|p{2.9cm}|p{3.0cm}|p{6.1cm}|}
 \hline
-\textbf{Période} & \textbf{Phase} & \textbf{Résultat principal} \\
+\textbf{Groupe} & \textbf{Tâche} & \textbf{Période} & \textbf{Résultat principal} \\
 \hline
-Mars & Cadrage et étude & Compréhension du domaine, étude de l'existant, spécification des besoins, choix de l'architecture cible et des principes structurants. \\
+Cadrage & Initialisation & Mars S1--S2 & Lancement, périmètre et étude de l'existant. \\
 \hline
-Avril & Fondations & Mise en place du socle applicatif, du modèle de données, de la séparation en contextes métier et des interfaces entre couches. \\
+Cadrage & Spécification & Mars S2--Avril S1 & Cahier des besoins validé. \\
 \hline
-Mai & Chaîne vocale temps réel & Premier échange parlé de bout en bout, gestion des tours de parole et des interruptions, chaînes de repli entre fournisseurs. \\
+Cadrage & Architecture & Avril S2--Mai S1 & Architecture cible et principes structurants retenus. \\
 \hline
-Juin & Décision et exécution & Services métier, chaîne décision, politique et exécution, exécution idempotente des actions sensibles, registre d'audit. \\
+Réalisation & Fondations & Avril S1--S2 & Socle exécutable, contextes métier, modèle de domaine et interfaces entre couches. \\
 \hline
-Juillet & Connaissance et intégration & Chaîne d'ingestion et de récupération documentaire, intégration au système de gestion de tickets, escalade et planification de rappels. \\
+Réalisation & Chaîne vocale & Mai S1--S2 & VAD, transcription, synthèse, gestion des tours de parole et des interruptions. \\
 \hline
-Août & Interfaces et durcissement & Portail client, console d'administration, observabilité, campagne de vérification, corrections et rédaction du présent rapport. \\
+Réalisation & Agents & Mai S2--Juin S2 & Agent d'accueil puis agents métier spécialisés. \\
+\hline
+Réalisation & Décision & Juin S1--S2 & Moteur de décision, registre d'audit et exécution idempotente des actions sensibles. \\
+\hline
+Intégration & Connaissance & Juillet S1--S2 & Ingestion, index et recherche documentaire ancrée. \\
+\hline
+Intégration & Services métier opérateur & Juin S2--Juillet S2 & Passerelles facturation, abonnement et technique. \\
+\hline
+Intégration & Opérateur & Juillet S1--S2 & Tickets puis escalade et planification de rappels. \\
+\hline
+Livraison & Fiabilisation & Juillet S1--S2 & Tests, validation et optimisations. \\
+\hline
+Livraison & Portail et console & Août S1--S2 & Interfaces client et administration, observabilité. \\
+\hline
+Livraison & Rapport & Avril S1--Août S2 & Rédaction continue et rapport final déposé. \\
 \hline
 \end{tabular}
 \caption{Phases du projet et résultats associés}
 \label{tab:phases}
 \end{table}
 
-Ces phases se recouvrent partiellement. Plusieurs travaux engagés lors d'une phase se sont poursuivis pendant la suivante, notamment l'optimisation de la chaîne vocale, qui a fait l'objet d'ajustements jusqu'aux dernières semaines à mesure que les mesures de latence se précisaient.
+Les groupes se recouvrent partiellement : plusieurs tâches commencent avant la fin de la précédente et certaines se poursuivent au-delà de leur fenêtre nominale. L'architecture cible, par exemple, est arrêtée après le début des fondations, et la rédaction du rapport accompagne l'ensemble du développement avant de culminer en août. L'optimisation de la chaîne vocale, de même, a fait l'objet d'ajustements jusqu'aux dernières semaines, à mesure que les mesures de latence se précisaient.
 
 \section{Processus de développement}
 
 \subsection{Le choix d'un cycle itératif et incrémental}
 
-Nous avons conduit ce projet selon un cycle de vie itératif et incrémental. Ce choix ne relève pas d'une préférence méthodologique mais d'une contrainte propre au sujet.
+Nous avons conduit ce projet selon le modèle évolutif \cite{belgacem}, qui repose sur un développement incrémental et itératif. Ce choix ne relève pas d'une préférence méthodologique mais d'une contrainte propre au sujet.
 
-Un cycle séquentiel suppose que le comportement attendu du logiciel puisse être spécifié complètement avant d'être construit. Cette hypothèse ne tenait pas ici. Une part importante des décisions de conception dépendait de grandeurs qui n'existent qu'une fois le composant en fonctionnement : le temps réellement consommé par une étape de la chaîne vocale, la qualité effective d'une recherche documentaire sur un corpus multilingue, le comportement d'un modèle face à une instruction ambiguë. Ces grandeurs ne se déduisent pas d'une étude préalable, elles se mesurent. Le développement devait donc procéder par constructions successives, chacune suffisamment complète pour être mesurée, puis conservée, corrigée ou remplacée selon le résultat obtenu.
+Un cycle séquentiel suppose que le comportement attendu du logiciel puisse être spécifié complètement avant d'être construit. Cette hypothèse ne tenait pas ici. Une part importante des décisions de conception dépendait de grandeurs qui n'existent qu'une fois le composant en fonctionnement : le temps réellement consommé par une étape de la chaîne vocale, la qualité effective d'une recherche documentaire sur un corpus multilingue, le comportement d'un modèle face à une instruction ambiguë. Ces grandeurs ne se déduisent pas d'une étude préalable, elles se mesurent. Le modèle évolutif répond à cette contrainte : il décompose le projet en incréments fonctionnels développés en ordre de priorité, chacun livrant une portion du produit suffisamment complète pour être utilisée et mesurée. Il garantit ainsi une livraison rapide de produits fonctionnels, une collaboration régulière avec le client et une flexibilité face à l'évolution des besoins.
 
 \subsection{La forme concrète des itérations}
 
-Chaque itération a pris la forme d'un incrément numéroté, associé à une branche de développement dédiée et à un document décrivant son contenu, son intention et son résultat. Le projet compte à son terme cent douze incréments de ce type, pour deux cent soixante validations enregistrées dans l'historique du dépôt.
+Chaque itération a pris la forme d'un incrément numéroté, associé à une branche de développement dédiée et à un document décrivant son contenu, son intention et son résultat. Un incrément traverse toujours les mêmes étapes : spécification, conception, développement et tests, intégration, puis validation.
 
 Cette granularité fine répond à un besoin précis. Un incrément qui isole une modification unique reste réversible : si une mesure ultérieure invalide un choix, il est possible de revenir sur ce choix sans défaire ce qui a été construit autour. Nous avons appliqué cette règle avec une rigueur particulière aux mécanismes que nous qualifions de porteurs, ceux dont dépend une garantie du système. Une modification touchant l'un d'eux fait l'objet d'un incrément à part entière, accompagné de la justification du changement.
 
-La figure \ref{fig:cycle-iteratif} illustre le cycle appliqué à chaque incrément.
+Chaque incrément livré apporte une valeur ajoutée à la version globale du logiciel en ajoutant une fonctionnalité réelle et souhaitée par le client. La figure \ref{fig:cycle-iteratif} illustre le modèle évolutif appliqué au projet : le produit devient utilisable dès le premier incrément, puis sa couverture s'étend au fil des suivants, matérialisée par les jalons de 30 %, 55 %, 80 % et 100 %. Les retours du client, recueillis à partir du premier incrément, orientent l'ajout des fonctionnalités suivantes.
 
-\figureTikz{Cycle itératif et incrémental appliqué au projet}{cycle-iteratif}{fig-cycle-iteratif}
+\begin{figure}[htbp]
+    \centering
+    \setlength{\fboxsep}{0pt}
+    \setlength{\fboxrule}{1pt}
+    \fbox{\includegraphics[width=\linewidth, height=0.82\textheight, keepaspectratio]{figures/fig-cycle-iteratif.png}}
+    \vspace{0.2cm}
+    \caption{Cycle de la méthodologie évolutive appliqué au projet}
+    \label{fig:cycle-iteratif}
+\end{figure}
 
 \subsection{Vérification continue}
 
-La mesure occupant une place centrale dans ce cycle, elle devait être disponible en permanence et non à l'issue du développement. Nous avons donc constitué progressivement un ensemble de vérifications automatisées couvrant les comportements que le système doit garantir quelles que soient ses évolutions ultérieures : le caractère déterministe des décisions, l'exécution unique des actions sensibles, le refus de répondre en l'absence de source documentaire, le comportement en cas de défaillance d'un fournisseur externe, et le respect de la langue de l'échange. Le chapitre de réalisation revient en détail sur cet ensemble et sur ce que chaque famille de vérifications protège.
+La mesure occupant une place centrale dans ce cycle, elle devait être disponible en permanence et non à l'issue du développement. Nous avons donc constitué progressivement un ensemble de vérifications automatisées. Elles couvrent les comportements que le système doit garantir quelles que soient ses évolutions ultérieures : le caractère déterministe des décisions, l'exécution unique des actions sensibles, le refus de répondre en l'absence de source documentaire, le comportement en cas de défaillance d'un fournisseur externe, et le respect de la langue de l'échange. Le chapitre de réalisation revient en détail sur cet ensemble et sur ce que chaque famille de vérifications protège.
 
 \section*{Conclusion}
 

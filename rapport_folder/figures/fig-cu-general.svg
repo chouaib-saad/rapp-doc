@@ -1,0 +1,263 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1940" height="1900" viewBox="60 0 1940 1900">
+<rect x="60" width="1940" height="1900" fill="#FFFFFF"/>
+
+<defs>
+<style>
+text{font-family:Arial,Helvetica,sans-serif;}
+.title{font-size:26px;font-weight:bold;fill:#111111;text-anchor:middle;}
+.ucname{font-size:13px;fill:#222222;text-anchor:middle;}
+.actor{font-size:13px;fill:#333333;text-anchor:middle;}
+.edge{font-size:11px;fill:#222222;text-anchor:middle;paint-order:stroke;stroke:#FFFFFF;stroke-width:3px;stroke-linejoin:round;}
+.stereo{font-size:11px;fill:#222222;text-anchor:middle;font-style:italic;}
+.bound{fill:none;stroke:#111111;stroke-width:1.5;}
+.uc{fill:#FFFBCC;stroke:#D02A50;stroke-width:1.3;}
+.act{fill:none;stroke:#D02A50;stroke-width:1.7;}
+.sys{fill:#FFFFFF;stroke:#D02A50;stroke-width:1.3;}
+.lB{fill:none;stroke:#2B3BE0;stroke-width:1.4;}
+.lK{fill:none;stroke:#2B2B2B;stroke-width:1.2;}
+.lCd{fill:none;stroke:#D22B55;stroke-width:1.4;stroke-dasharray:6,4;}
+</style>
+<filter id="ds" x="-20%" y="-20%" width="140%" height="140%">
+<feDropShadow dx="3" dy="3" stdDeviation="2.5" flood-color="#8A8A8A" flood-opacity="0.45"/>
+</filter>
+<marker id="aB" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto">
+<path d="M0 0 L8 4 L0 8" fill="none" stroke="#2B3BE0" stroke-width="1.3"/>
+</marker>
+<marker id="aK" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto">
+<path d="M0 0 L8 4 L0 8" fill="none" stroke="#2B2B2B" stroke-width="1.2"/>
+</marker>
+<marker id="aC" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto">
+<path d="M0 0 L8 4 L0 8" fill="none" stroke="#D22B55" stroke-width="1.3"/>
+</marker>
+</defs>
+
+<!-- ===================== SYSTEM BOUNDARY (largeur réduite de 1600 -> 1500) ===================== -->
+<rect x="230" y="40" width="1500" height="1810" class="bound" filter="url(#ds)"/>
+<text x="1030" y="85" class="title">Plateforme Conversationnelle Temps Réel</text>
+
+<!-- ===================== ACTORS ===================== -->
+<!-- Client -->
+<g class="act" filter="url(#ds)">
+<circle cx="120" cy="430" r="10" fill="#FFF6C7"/>
+<path d="M120 440 L120 475"/>
+<path d="M100 450 L140 450"/>
+<path d="M120 475 L100 505"/>
+<path d="M120 475 L140 505"/>
+</g>
+<text x="120" y="530" class="actor">Client</text>
+
+<!-- Utilisateur back-office -->
+<g class="act" filter="url(#ds)">
+<circle cx="120" cy="1510" r="10" fill="#FFF6C7"/>
+<path d="M120 1520 L120 1555"/>
+<path d="M100 1530 L140 1530"/>
+<path d="M120 1555 L100 1585"/>
+<path d="M120 1555 L140 1585"/>
+</g>
+<text x="120" y="1610" class="actor">Utilisateur</text>
+<text x="120" y="1628" class="actor">back-office</text>
+
+<!-- Système métier opérateur (translaté de -100 : x 1860 -> 1760) -->
+<rect x="1760" y="490" width="210" height="60" class="sys" filter="url(#ds)"/>
+<text x="1865" y="515" class="stereo">&lt;&lt;acteur secondaire&gt;&gt;</text>
+<text x="1865" y="535" class="ucname">Système métier opérateur</text>
+
+<!-- Système de gestion des tickets (translaté de -100) -->
+<rect x="1760" y="1090" width="210" height="75" class="sys" filter="url(#ds)"/>
+<text x="1865" y="1112" class="stereo">&lt;&lt;acteur secondaire&gt;&gt;</text>
+<text x="1865" y="1131" class="ucname">Système de gestion</text>
+<text x="1865" y="1149" class="ucname">des tickets</text>
+
+<!-- Service de notification (translaté de -100) -->
+<rect x="1760" y="1190" width="210" height="60" class="sys" filter="url(#ds)"/>
+<text x="1865" y="1215" class="stereo">&lt;&lt;acteur secondaire&gt;&gt;</text>
+<text x="1865" y="1235" class="ucname">Service de notification</text>
+
+<!-- ===================== USE CASES (Niveau 1 & 2) ===================== -->
+<ellipse cx="480" cy="310" rx="110" ry="30" class="uc" filter="url(#ds)"/>
+<text x="480" y="315" class="ucname">Gérer son profil</text>
+
+<ellipse cx="480" cy="520" rx="130" ry="35" class="uc" filter="url(#ds)"/>
+<text x="480" y="515" class="ucname">Gérer une interaction</text>
+<text x="480" y="535" class="ucname">vocale</text>
+
+<ellipse cx="800" cy="220" rx="140" ry="32" class="uc" filter="url(#ds)"/>
+<text x="800" y="215" class="ucname">Obtenir des informations sur</text>
+<text x="800" y="235" class="ucname">les produits et services</text>
+
+<ellipse cx="800" cy="520" rx="135" ry="32" class="uc" filter="url(#ds)"/>
+<text x="800" y="525" class="ucname">Consulter ses informations client</text>
+
+<ellipse cx="800" cy="820" rx="120" ry="32" class="uc" filter="url(#ds)"/>
+<text x="800" y="825" class="ucname">Gérer ses services</text>
+
+<ellipse cx="800" cy="1070" rx="110" ry="32" class="uc" filter="url(#ds)"/>
+<text x="800" y="1075" class="ucname">Signaler un problème</text>
+
+<!-- Cas renommé et déplacé -->
+<ellipse cx="545" cy="1255" rx="145" ry="32" class="uc" filter="url(#ds)"/>
+<text x="545" y="1260" class="ucname">Demander une assistance humaine</text>
+
+<!-- ===================== USE CASES (Niveau 3) ===================== -->
+<ellipse cx="1150" cy="150" rx="100" ry="28" class="uc" filter="url(#ds)"/>
+<text x="1150" y="155" class="ucname">Consulter les offres</text>
+<ellipse cx="1150" cy="220" rx="110" ry="28" class="uc" filter="url(#ds)"/>
+<text x="1150" y="225" class="ucname">Consulter les abonnements</text>
+<ellipse cx="1150" cy="290" rx="100" ry="28" class="uc" filter="url(#ds)"/>
+<text x="1150" y="295" class="ucname">Consulter les FAQ</text>
+
+<ellipse cx="1150" cy="380" rx="90" ry="28" class="uc" filter="url(#ds)"/>
+<text x="1150" y="385" class="ucname">Consulter son solde</text>
+<ellipse cx="1150" cy="450" rx="100" ry="28" class="uc" filter="url(#ds)"/>
+<text x="1150" y="455" class="ucname">Consulter ses factures</text>
+<ellipse cx="1150" cy="520" rx="110" ry="28" class="uc" filter="url(#ds)"/>
+<text x="1150" y="525" class="ucname">Consulter son abonnement</text>
+<ellipse cx="1150" cy="590" rx="110" ry="28" class="uc" filter="url(#ds)"/>
+<text x="1150" y="595" class="ucname">Consulter sa consommation</text>
+<ellipse cx="1150" cy="660" rx="125" ry="28" class="uc" filter="url(#ds)"/>
+<text x="1150" y="655" class="ucname">Consulter l'état de sa ligne</text>
+<text x="1150" y="675" class="ucname">/ carte SIM</text>
+
+<ellipse cx="1150" cy="750" rx="90" ry="28" class="uc" filter="url(#ds)"/>
+<text x="1150" y="755" class="ucname">Gérer sa ligne</text>
+<ellipse cx="1150" cy="820" rx="105" ry="28" class="uc" filter="url(#ds)"/>
+<text x="1150" y="825" class="ucname">Gérer son abonnement</text>
+<ellipse cx="1150" cy="890" rx="90" ry="28" class="uc" filter="url(#ds)"/>
+<text x="1150" y="895" class="ucname">Gérer son compte</text>
+<ellipse cx="1150" cy="960" rx="100" ry="28" class="uc" filter="url(#ds)"/>
+<text x="1150" y="965" class="ucname">Gérer sa facturation</text>
+
+<ellipse cx="1150" cy="1040" rx="115" ry="28" class="uc" filter="url(#ds)"/>
+<text x="1150" y="1045" class="ucname">Signaler un prob. technique</text>
+<ellipse cx="1150" cy="1110" rx="125" ry="28" class="uc" filter="url(#ds)"/>
+<text x="1150" y="1115" class="ucname">Signaler un prob. facturation</text>
+<ellipse cx="1150" cy="1180" rx="115" ry="28" class="uc" filter="url(#ds)"/>
+<text x="1150" y="1185" class="ucname">Signaler un incident service</text>
+
+<ellipse cx="900" cy="1220" rx="105" ry="28" class="uc" filter="url(#ds)"/>
+<text x="900" y="1225" class="ucname">Programmer un rappel</text>
+
+<!-- ===================== VERIFICATION & AUTHENTIFICATION ===================== -->
+<ellipse cx="1550" cy="670" rx="120" ry="32" class="uc" filter="url(#ds)"/>
+<text x="1550" y="675" class="ucname">Vérifier l'identité client</text>
+
+<ellipse cx="1100" cy="1530" rx="110" ry="32" class="uc" filter="url(#ds)"/>
+<text x="1100" y="1535" class="ucname">S'authentifier</text>
+
+<!-- ===================== BACK-OFFICE ===================== -->
+<ellipse cx="600" cy="1370" rx="125" ry="30" class="uc" filter="url(#ds)"/>
+<text x="600" y="1375" class="ucname">Superviser les interactions</text>
+
+<ellipse cx="600" cy="1450" rx="150" ry="30" class="uc" filter="url(#ds)"/>
+<text x="600" y="1445" class="ucname">Gérer la base de connaissances</text>
+<text x="600" y="1465" class="ucname">et les règles métier</text>
+
+<ellipse cx="600" cy="1530" rx="125" ry="30" class="uc" filter="url(#ds)"/>
+<text x="600" y="1525" class="ucname">Traiter les demandes</text>
+<text x="600" y="1545" class="ucname">escaladées</text>
+
+<ellipse cx="600" cy="1610" rx="100" ry="30" class="uc" filter="url(#ds)"/>
+<text x="600" y="1615" class="ucname">Gérer clients</text>
+
+<ellipse cx="600" cy="1690" rx="145" ry="30" class="uc" filter="url(#ds)"/>
+<text x="600" y="1685" class="ucname">Examiner les traces des</text>
+<text x="600" y="1705" class="ucname">interactions clients</text>
+
+<!-- ===================== LIENS ACTEURS -> CAS ===================== -->
+<path d="M140 445 L375 325" class="lB" marker-end="url(#aB)"/>
+<path d="M140 475 L350 520" class="lB" marker-end="url(#aB)"/>
+
+<path d="M140 1515 L475 1385" class="lK"/>
+<path d="M140 1525 L450 1465" class="lK"/>
+<path d="M140 1535 L475 1535" class="lK"/>
+<path d="M140 1545 L500 1610" class="lK"/>
+<path d="M140 1555 L460 1675" class="lK"/>
+
+<!-- ===================== EXTENDS L2 -> L1 ===================== -->
+<path d="M685 250 L560 485" class="lCd" marker-end="url(#aC)"/>
+<text x="590" y="370" class="edge">&#171;extend&#187;</text>
+
+<path d="M665 520 L615 520" class="lCd" marker-end="url(#aC)"/>
+<text x="640" y="510" class="edge">&#171;extend&#187;</text>
+
+<path d="M720 795 L580 550" class="lCd" marker-end="url(#aC)"/>
+<text x="620" y="690" class="edge">&#171;extend&#187;</text>
+
+<path d="M735 1045 L530 555" class="lCd" marker-end="url(#aC)"/>
+<text x="600" y="810" class="edge">&#171;extend&#187;</text>
+
+<path d="M500 1225 L492 558" class="lCd" marker-end="url(#aC)"/>
+<text x="450" y="900" class="edge">&#171;extend&#187;</text>
+
+<!-- ===================== EXTENDS L3 -> L2 ===================== -->
+<g class="lCd" marker-end="url(#aC)">
+<path d="M1050 150 L920 205"/><text x="980" y="170" class="edge">&#171;extend&#187;</text>
+<path d="M1040 220 L945 220"/><text x="990" y="212" class="edge">&#171;extend&#187;</text>
+<path d="M1050 290 L920 235"/><text x="980" y="272" class="edge">&#171;extend&#187;</text>
+
+<path d="M1065 380 L905 495"/><text x="980" y="430" class="edge">&#171;extend&#187;</text>
+<path d="M1050 450 L935 510"/><text x="990" y="475" class="edge">&#171;extend&#187;</text>
+<path d="M1040 520 L940 520"/><text x="990" y="512" class="edge">&#171;extend&#187;</text>
+<path d="M1040 590 L935 535"/><text x="990" y="572" class="edge">&#171;extend&#187;</text>
+<path d="M1030 660 L905 545"/><text x="965" y="610" class="edge">&#171;extend&#187;</text>
+
+<path d="M1060 750 L910 805"/><text x="985" y="770" class="edge">&#171;extend&#187;</text>
+<path d="M1045 820 L925 820"/><text x="985" y="812" class="edge">&#171;extend&#187;</text>
+<path d="M1060 890 L910 835"/><text x="985" y="872" class="edge">&#171;extend&#187;</text>
+<path d="M1050 960 L885 845"/><text x="965" y="910" class="edge">&#171;extend&#187;</text>
+
+<path d="M1035 1040 L910 1060"/><text x="975" y="1042" class="edge">&#171;extend&#187;</text>
+<path d="M1025 1110 L905 1080"/><text x="965" y="1105" class="edge">&#171;extend&#187;</text>
+<path d="M1040 1180 L895 1095"/><text x="965" y="1150" class="edge">&#171;extend&#187;</text>
+
+<!-- Programmer un rappel ..> Demander une assistance humaine -->
+<path d="M798 1233 L698 1252"/><text x="748" y="1226" class="edge">&#171;extend&#187;</text>
+</g>
+
+<!-- ===================== INCLUDES VERS VERIFIER L'IDENTITE ===================== -->
+<g class="lCd" marker-end="url(#aC)">
+<path d="M1240 380 L1465 645"/><text x="1350" y="515" class="edge">&#171;include&#187;</text>
+<path d="M1250 450 L1455 650"/><text x="1362" y="560" class="edge">&#171;include&#187;</text>
+<path d="M1260 520 L1445 655"/><text x="1372" y="596" class="edge">&#171;include&#187;</text>
+<path d="M1260 590 L1435 660"/><text x="1358" y="632" class="edge">&#171;include&#187;</text>
+<path d="M1275 660 L1430 668"/><text x="1352" y="658" class="edge">&#171;include&#187;</text>
+<path d="M1240 750 L1440 682"/><text x="1348" y="722" class="edge">&#171;include&#187;</text>
+<path d="M1255 820 L1450 688"/><text x="1365" y="762" class="edge">&#171;include&#187;</text>
+<path d="M1240 890 L1460 693"/><text x="1368" y="798" class="edge">&#171;include&#187;</text>
+<path d="M1250 960 L1470 698"/><text x="1378" y="836" class="edge">&#171;include&#187;</text>
+</g>
+
+<!-- ===================== INCLUDES VERS S'AUTHENTIFIER ===================== -->
+<g class="lCd" marker-end="url(#aC)">
+<path d="M725 1370 L1100 1370 L1100 1495"/><text x="915" y="1362" class="edge">&#171;include&#187;</text>
+<path d="M750 1450 L1050 1450 L1050 1500"/><text x="905" y="1442" class="edge">&#171;include&#187;</text>
+<path d="M725 1530 L985 1530"/><text x="855" y="1522" class="edge">&#171;include&#187;</text>
+<path d="M700 1610 L1050 1610 L1050 1560"/><text x="880" y="1602" class="edge">&#171;include&#187;</text>
+<path d="M745 1690 L1100 1690 L1100 1565"/><text x="925" y="1682" class="edge">&#171;include&#187;</text>
+
+<!-- Gouttière décalée à gauche (x = 270) pour dégager les libellés -->
+<path d="M370 310 L270 310 L270 1790 L1150 1790 L1150 1560"/>
+<text x="320" y="302" class="edge">&#171;include&#187;</text>
+</g>
+<path d="M350 520 L270 520" class="lCd"/>
+<text x="310" y="512" class="edge">&#171;include&#187;</text>
+
+<!-- ===================== LIENS VERS SYSTEMES EXTERNES (endpoints translatés de -100) ===================== -->
+<g class="lK" marker-end="url(#aK)">
+<!-- Consulter ses informations client -> Système métier opérateur (entrée bord gauche, y=505) -->
+<path d="M800 488 L800 335 L1680 335 L1680 505 L1760 505"/>
+
+<!-- Gérer ses services -> Système métier opérateur (entrée bord gauche, y=535) -->
+<path d="M800 788 L800 712 L1700 712 L1700 535 L1760 535"/>
+
+<!-- Signaler un problème -> Système de gestion des tickets (entrée bord gauche, y=1110) -->
+<path d="M800 1038 L800 1000 L1680 1000 L1680 1110 L1760 1110"/>
+
+<!-- Demander une assistance humaine -> Système de gestion des tickets (entrée bord gauche, y=1145) -->
+<path d="M680 1267 L745 1300 L1700 1300 L1700 1145 L1760 1145"/>
+
+<!-- Programmer un rappel -> Service de notification (entrée bord gauche, y=1220) -->
+<path d="M1005 1220 L1760 1220"/>
+</g>
+
+</svg>
