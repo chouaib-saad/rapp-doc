@@ -1,129 +1,126 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="40 40 1400 880" width="1400" height="880">
-<style><![CDATA[
-text{font-family:Arial,Helvetica,sans-serif}
-.sn{font-size:12.5px;font-weight:750;fill:#111111;text-anchor:middle}
-.sdc{font-size:11.5px;fill:#222222;text-anchor:middle}
-.gu{font-size:11px;fill:#333333;text-anchor:middle;paint-order:stroke;stroke:#FFFFFF;stroke-width:3.4;stroke-linejoin:round}
-.gs{font-size:11px;fill:#333333;paint-order:stroke;stroke:#FFFFFF;stroke-width:3.4;stroke-linejoin:round}
-.ge{font-size:11px;fill:#333333;text-anchor:end;paint-order:stroke;stroke:#FFFFFF;stroke-width:3.4;stroke-linejoin:round}
-.st{stroke:#333333;stroke-width:1.5}
-.sh{fill:#D0D0D0;opacity:0.55}
-.sep{stroke:#333333;stroke-width:1.3}
-.tr{fill:none;stroke:#333333;stroke-width:1.5}
-.zb{fill:#F8FBFF;stroke:#333333;stroke-width:1.2;stroke-dasharray:7,5}
-.zs{fill:#FBFDF7;stroke:#333333;stroke-width:1.8}
-.zl{font-size:12px;font-style:italic;font-weight:750;fill:#333333}
-.frt{stroke:#A50046;stroke-width:1.6;stroke-dasharray:5,4}
-.acc{font-size:11px;font-weight:700;fill:#A50046;text-anchor:middle}
-.ntb{fill:#F7F7F7;stroke:#333333;stroke-width:1.2;stroke-dasharray:7,5}
-.ntx{font-size:10px;fill:#333333;text-anchor:middle}
-.inp{font-size:11.5px;font-weight:700;fill:#111111;text-anchor:middle}
-]]></style>
-<defs>
-<marker id="ta" viewBox="0 0 10 10" refX="9.6" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse" markerUnits="userSpaceOnUse">
-<path d="M 0 0 L 10 5 L 0 10 z" fill="#333333"/>
-</marker>
-</defs>
-<rect x="40" y="40" width="1400" height="880" fill="#FFFFFF"/>
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" id="fig-pipeline-agent" width="1100" height="500" viewBox="0 0 1100 500" role="img" aria-labelledby="pipeline-title">
+  <title id="pipeline-title">Pipeline de raisonnement d’un agent</title>
+  
+  <defs>
+    <style>
+      text { font-family: Arial, Helvetica, sans-serif; }
+      .layer-title { font-size: 15px; font-weight: 700; fill: #165A2E; text-anchor: middle; }
+      .input-box { fill: #F8F8F8; stroke: #D0D0D0; stroke-width: 1.5; }
+      .input-title { font-size: 13px; font-weight: 700; fill: #000000; text-anchor: middle; }
+      .step { fill: #FFFFFF; stroke: #000000; stroke-width: 1.3; }
+      .validation { fill: #1B6C45; stroke: #165A2E; stroke-width: 1.5; }
+      .step-title { font-size: 15px; font-weight: 700; fill: #000000; text-anchor: middle; }
+      .step-detail { font-size: 12.5px; font-style: italic; fill: #111111; text-anchor: middle; }
+      .inverse { fill: #FFFFFF; }
+      .outcome-title { font-size: 14px; font-weight: 700; fill: #000000; text-anchor: middle; }
+      .flow { fill: none; stroke: #000000; stroke-width: 1.8; stroke-linejoin: round; }
+      .branch { fill: none; stroke: #000000; stroke-width: 1.7; stroke-linejoin: round; }
+      .dependency { fill: none; stroke: #333333; stroke-width: 1.5; stroke-dasharray: 5,4; }
+      .guard { font-size: 12.5px; fill: #000000; text-anchor: middle; }
+      .note-text { font-size: 13px; font-style: italic; fill: #111111; text-anchor: middle; }
+      .note-key { font-size: 16px; font-weight: 700; fill: #165A2E; text-anchor: middle; }
+    </style>
+    
+    <marker id="arrow-end" viewBox="0 0 8 7" refX="8" refY="3.5" markerWidth="10" markerHeight="9" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0 0 L8 3.5 L0 7 Z" fill="#000000"/>
+    </marker>
 
-<!-- ===================== LES DEUX COUCHES ===================== -->
-<rect class="zb" x="90" y="240" width="580" height="280"/>
-<rect class="zs" x="760" y="240" width="590" height="280"/>
-<text class="zl" x="105" y="262">Couche probabiliste</text>
-<text class="zl" x="1335" y="262" text-anchor="end">Couche déterministe</text>
+    <marker id="dependency-end" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="10" markerHeight="10" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M1 1 L8 5 L1 9" fill="none" stroke="#333333" stroke-width="1.4"/>
+    </marker>
+  </defs>
 
-<!-- frontière entre les deux couches -->
-<line class="frt" x1="715" y1="250" x2="715" y2="400"/>
-<text class="acc" x="703" y="330" transform="rotate(-90 703 330)">frontière</text>
+  <rect width="1100" height="500" fill="#FFFFFF"/>
 
-<!-- ===================== ENTRÉE ===================== -->
-<circle cx="75" cy="373" r="11" fill="#111111"/>
-<polyline class="tr" points="86,373 120,373" marker-end="url(#ta)"/>
+  <g id="couches">
+    <rect x="24" y="130" width="484" height="164" fill="#E4F0E3" stroke="#389B88" stroke-width="1.2" stroke-dasharray="7,5"/>
+    <rect x="548" y="130" width="240" height="164" fill="#E4F0E3" stroke="#165A2E" stroke-width="1.5"/>
+    <text x="266" y="276" class="layer-title">Couche probabiliste</text>
+    <text x="668" y="276" class="layer-title">Couche déterministe</text>
+  </g>
 
-<!-- ===================== CE QUI ALIMENTE CHAQUE TEMPS ===================== -->
-<rect class="st" x="120" y="150" width="240" height="48" rx="8" fill="#E8EDF2"/>
-<text class="inp" x="240" y="180">Contexte assemblé</text>
+  <g id="apports" class="dependency" marker-end="url(#dependency-end)">
+    <path d="M140 76 V166"/>
+    <path d="M392 76 V166"/>
+    <path d="M668 76 V166"/>
+  </g>
 
-<rect class="st" x="400" y="150" width="240" height="48" rx="8" fill="#E8EDF2"/>
-<text class="inp" x="520" y="180">Capacités détenues</text>
+  <g id="flux-principal" class="flow" marker-end="url(#arrow-end)">
+    <path d="M236 208 H296"/>
+    <path d="M488 208 H568"/>
+    <path d="M768 208 H884"/>
+  </g>
 
-<rect class="st" x="790" y="150" width="240" height="48" rx="8" fill="#E8EDF2"/>
-<text class="inp" x="910" y="180">Règles et seuils</text>
+  <g id="issues-alternatives" class="branch" marker-end="url(#arrow-end)">
+    <path d="M768 222 H816 Q824 222 824 230 V314 Q824 322 832 322 H884"/>
+    <path d="M768 236 H790 Q798 236 798 244 V428 Q798 436 806 436 H884"/>
+  </g>
 
-<polyline class="tr" points="240,198 240,330" marker-end="url(#ta)"/>
-<polyline class="tr" points="520,198 520,330" marker-end="url(#ta)"/>
-<polyline class="tr" points="910,198 910,330" marker-end="url(#ta)"/>
+  <path d="M668 342 V294" fill="none" stroke="#666666" stroke-width="1" stroke-dasharray="4,4"/>
 
-<!-- ===================== LES QUATRE TEMPS ===================== -->
+  <g id="entrees">
+    <rect x="54" y="34" width="172" height="42" rx="3" class="input-box"/>
+    <text x="140" y="60" class="input-title">Contexte assemblé</text>
+    
+    <rect x="306" y="34" width="172" height="42" rx="3" class="input-box"/>
+    <text x="392" y="60" class="input-title">Capacités détenues</text>
+    
+    <rect x="582" y="34" width="172" height="42" rx="3" class="input-box"/>
+    <text x="668" y="60" class="input-title">Règles et seuils</text>
+  </g>
 
-<!-- Temps 1 -->
-<rect class="sh" x="123" y="333" width="240" height="78" rx="8"/>
-<rect class="st" x="120" y="330" width="240" height="78" rx="8" fill="#96D5F2"/>
-<line class="sep" x1="120" y1="355" x2="360" y2="355"/>
-<text class="sn" x="240" y="349">Interprétation</text>
-<text class="sdc" x="240" y="375">au regard du</text>
-<text class="sdc" x="240" y="391">contexte assemblé</text>
+  <g id="interpretation">
+    <rect x="44" y="166" width="192" height="84" rx="3" class="step"/>
+    <text x="140" y="190" class="step-title">Interprétation</text>
+    <text x="140" y="209" class="step-title">de la demande</text>
+    <text x="140" y="234" class="step-detail">au regard du contexte</text>
+  </g>
 
-<!-- Temps 2 -->
-<rect class="sh" x="403" y="333" width="240" height="78" rx="8"/>
-<rect class="st" x="400" y="330" width="240" height="78" rx="8" fill="#96D5F2"/>
-<line class="sep" x1="400" y1="355" x2="640" y2="355"/>
-<text class="sn" x="520" y="349">Détermination</text>
-<text class="sdc" x="520" y="375">répondre, agir ou transmettre</text>
-<text class="sdc" x="520" y="391">selon le périmètre de l'agent</text>
+  <g id="intention">
+    <rect x="296" y="166" width="192" height="84" rx="3" class="step"/>
+    <text x="392" y="190" class="step-title">Détermination</text>
+    <text x="392" y="209" class="step-title">de l’intention</text>
+    <text x="392" y="234" class="step-detail">répondre, agir, transmettre</text>
+  </g>
 
-<!-- Temps 3 -->
-<rect class="sh" x="793" y="333" width="240" height="78" rx="8"/>
-<rect class="st" x="790" y="330" width="240" height="78" rx="8" fill="#FCFBD9"/>
-<line class="sep" x1="790" y1="355" x2="1030" y2="355"/>
-<text class="sn" x="910" y="349">Validation</text>
-<text class="sdc" x="910" y="375">par les contraintes</text>
-<text class="sdc" x="910" y="391">règles et seuils applicables</text>
+  <g id="validation">
+    <rect x="568" y="166" width="200" height="84" rx="3" class="validation"/>
+    <text x="668" y="190" class="step-title inverse">Validation par</text>
+    <text x="668" y="209" class="step-title inverse">les contraintes</text>
+    <text x="668" y="234" class="step-detail inverse">règles métier</text>
+  </g>
 
-<!-- Temps 4 -->
-<rect class="sh" x="1103" y="333" width="240" height="78" rx="8"/>
-<rect class="st" x="1100" y="330" width="240" height="78" rx="8" fill="#CDF2CD"/>
-<line class="sep" x1="1100" y1="355" x2="1340" y2="355"/>
-<text class="sn" x="1220" y="349">Réalisation</text>
-<text class="sdc" x="1220" y="375">l'action n'est réalisée</text>
-<text class="sdc" x="1220" y="391">qu'après validation</text>
+  <g id="realisation">
+    <rect x="884" y="174" width="192" height="68" rx="3" class="step"/>
+    <text x="980" y="201" class="step-title">Réalisation</text>
+    <text x="980" y="221" class="step-title">et restitution</text>
+  </g>
 
-<!-- ===================== FLUX ENTRE LES TEMPS ===================== -->
-<polyline class="tr" points="360,373 400,373" marker-end="url(#ta)"/>
+  <g id="refus">
+    <rect x="884" y="288" width="192" height="68" rx="3" class="step"/>
+    <text x="980" y="316" class="outcome-title">Refus motivé,</text>
+    <text x="980" y="336" class="outcome-title">énoncé au client</text>
+  </g>
 
-<polyline class="tr" points="640,373 790,373" marker-end="url(#ta)"/>
-<text class="gu" x="715" y="424">intention soumise</text>
-<text class="gu" x="715" y="440">aux contraintes applicables</text>
+  <g id="transmission">
+    <rect x="884" y="402" width="192" height="68" rx="3" class="step"/>
+    <text x="980" y="430" class="outcome-title">Transmission</text>
+    <text x="980" y="450" class="outcome-title">à un conseiller</text>
+  </g>
 
-<polyline class="tr" points="1030,373 1100,373" marker-end="url(#ta)"/>
-<text class="gu" x="1065" y="350">autorisée</text>
+  <g id="verdicts">
+    <text x="826" y="197" class="guard">autorisée</text>
+    <text x="854" y="311" class="guard">refusée</text>
+    <text x="841" y="425" class="guard">à transmettre</text>
+  </g>
 
-<!-- ===================== LES TROIS ISSUES ===================== -->
-
-<!-- refus -->
-<polyline class="tr" points="870,408 870,600" marker-end="url(#ta)"/>
-<text class="gs" x="884" y="500">refusée</text>
-<rect class="sh" x="623" y="603" width="340" height="60" rx="8"/>
-<rect class="st" x="620" y="600" width="340" height="60" rx="8" fill="#F4A6A6"/>
-<text class="sn" x="790" y="635">Refus motivé, énoncé au client</text>
-
-<!-- intervention humaine -->
-<polyline class="tr" points="990,408 990,560 1140,560 1140,600" marker-end="url(#ta)"/>
-<text class="gu" x="1065" y="552">intervention humaine</text>
-<rect class="sh" x="973" y="603" width="340" height="60" rx="8"/>
-<rect class="st" x="970" y="600" width="340" height="60" rx="8" fill="#FCE9A8"/>
-<text class="sn" x="1140" y="635">Transmission à un conseiller</text>
-
-<!-- restitution -->
-<polyline class="tr" points="1340,373 1390,373 1390,760 1220,760" marker-end="url(#ta)"/>
-<rect class="sh" x="883" y="733" width="340" height="60" rx="8"/>
-<rect class="st" x="880" y="730" width="340" height="60" rx="8" fill="#CDF2CD"/>
-<text class="sn" x="1050" y="765">Réponse ou action restituée au client</text>
-
-<!-- ===================== NOTE ===================== -->
-<rect class="ntb" x="300" y="820" width="840" height="64" rx="10"/>
-<text class="ntx" x="720" y="846">Le modèle de langue intervient aux deux premières étapes, où sa capacité d'interprétation est</text>
-<text class="ntx" x="720" y="864">irremplaçable. Il n'intervient pas à la troisième : le modèle propose, il ne dispose pas.</text>
-
+  <g id="note">
+    <rect x="44" y="342" width="724" height="128" rx="3" fill="#FFFFFF" stroke="#333333" stroke-width="1.3"/>
+    <text x="406" y="368" class="note-text">
+      <tspan x="406" y="368">Le modèle de langue intervient aux deux premières étapes, où sa</tspan>
+      <tspan x="406" y="387">capacité d’interprétation est irremplaçable.</tspan>
+      <tspan x="406" y="408">Il n’intervient pas à laa troisième :</tspan>
+    </text>
+    <text x="406" y="445" class="note-key">le modèle propose, il ne dispose pas.</text>
+  </g>
 </svg>
