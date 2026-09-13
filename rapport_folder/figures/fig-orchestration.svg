@@ -1,0 +1,123 @@
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" id="fig-orchestration" width="1180" height="560" viewBox="20 10 1180 560" role="img" aria-labelledby="orchestration-title">
+  <title id="orchestration-title">Orchestration des agents et transitions</title>
+  
+  <defs>
+    <style>
+      text { font-family: Arial, Helvetica, sans-serif; }
+      .column-title { font-size: 18px; font-weight: 700; fill: #333333; text-anchor: middle; }
+      .agent-name { font-size: 18px; font-weight: 700; fill: #1e293b; text-anchor: middle; }
+      .agent-detail { font-size: 15px; fill: #64748b; text-anchor: middle; }
+      .guard { font-size: 16px; fill: #64748b; text-anchor: middle; }
+      .invariant { font-size: 16px; font-weight: 600; fill: #1e293b; text-anchor: middle; }
+      .agent { fill: #FFFFFF; stroke-width: 3; }
+      .flow { fill: none; stroke: #64748b; stroke-width: 2; stroke-linejoin: round; marker-end: url(#arrow); }
+      .flow-double { fill: none; stroke: #64748b; stroke-width: 2; stroke-linejoin: round; marker-start: url(#arrow-rev); marker-end: url(#arrow); }
+      .note-shape { fill: #FFFFFF; stroke: #94a3b8; stroke-width: 1.2; stroke-linejoin: round; }
+      .note-fold { fill: none; stroke: #94a3b8; stroke-width: 1.2; }
+      .note-text { font-size: 15px; font-style: italic; fill: #64748b; text-anchor: middle; }
+      .note-emphasis { font-size: 15px; font-weight: 600; fill: #1e293b; text-anchor: middle; }
+      .note-link { fill: none; stroke: #94a3b8; stroke-width: 1.2; stroke-dasharray: 5,5; stroke-linejoin: round; }
+    </style>
+    <marker id="arrow" viewBox="0 0 8 8" refX="8" refY="4" markerWidth="8" markerHeight="8" orient="auto">
+      <path d="M0 0 L8 4 L0 8 Z" fill="#64748b"/>
+    </marker>
+    <marker id="arrow-rev" viewBox="0 0 8 8" refX="0" refY="4" markerWidth="8" markerHeight="8" orient="auto">
+      <path d="M8 0 L0 4 L8 8 Z" fill="#64748b"/>
+    </marker>
+  </defs>
+
+  <rect x="20" y="10" width="1180" height="560" fill="#FFFFFF"/>
+
+  <g id="reperes">
+    <text x="155" y="32" class="column-title">Routage initial</text>
+    <text x="565" y="32" class="column-title">Agents spécialistes</text>
+    <text x="1065" y="32" class="column-title">Supervision</text>
+  </g>
+
+  <g id="transferts">
+    <path d="M155 252 V294" class="flow"/>
+    <path d="M280 326 H320 V200 H440" class="flow"/>
+    <path d="M280 350 H440" class="flow"/>
+    <path d="M280 374 H320 V500 H440" class="flow"/>
+    <path d="M260 294 V102 H1110 V294" class="flow"/>
+    <path d="M690 200 H880 V326 H940" class="flow"/>
+    <path d="M690 350 H940" class="flow"/>
+    <path d="M690 500 H880 V374 H940" class="flow"/>
+    
+    <path d="M565 256 V294" class="flow-double"/>
+    <path d="M565 406 V444" class="flow-double"/>
+  </g>
+
+  <g id="demande-client">
+    <polygon points="84,212 242,212 226,252 68,252" fill="#FFFFFF" stroke="#a1a1aa" stroke-width="3"/>
+    <text x="155" y="238" class="agent-name" font-size="16">Demande client</text>
+  </g>
+
+  <g id="agent-accueil">
+    <rect x="30" y="294" width="250" height="112" stroke="#ec4899" class="agent"/>
+    <text x="155" y="337" class="agent-name">Agent d’accueil</text>
+    <text x="155" y="367" class="agent-detail">qualification et routage</text>
+  </g>
+
+  <g id="agent-facturation">
+    <rect x="440" y="144" width="250" height="112" stroke="#a855f7" class="agent"/>
+    <text x="565" y="177" class="agent-name">Agent de facturation</text>
+    <text x="565" y="207" class="agent-detail">
+      <tspan x="565" y="207">solde, facture,</tspan>
+      <tspan x="565" y="228">règlement, report</tspan>
+    </text>
+  </g>
+
+  <g id="agent-compte">
+    <rect x="440" y="294" width="250" height="112" stroke="#f97316" class="agent"/>
+    <text x="565" y="320" class="agent-name">
+      <tspan x="565" y="320">Agent de gestion</tspan>
+      <tspan x="565" y="341">de compte</tspan>
+    </text>
+    <text x="565" y="370" class="agent-detail">
+      <tspan x="565" y="370">forfait, recharge,</tspan>
+      <tspan x="565" y="391">itinérance, ligne</tspan>
+    </text>
+  </g>
+
+  <g id="agent-technique">
+    <rect x="440" y="444" width="250" height="112" stroke="#0ea5e9" class="agent"/>
+    <text x="565" y="477" class="agent-name">Agent technique</text>
+    <text x="565" y="507" class="agent-detail">
+      <tspan x="565" y="507">carte SIM, réseau,</tspan>
+      <tspan x="565" y="528">connectivité</tspan>
+    </text>
+  </g>
+
+  <g id="agent-supervision">
+    <rect x="940" y="294" width="250" height="112" stroke="#22c55e" class="agent"/>
+    <text x="1065" y="327" class="agent-name">Agent de supervision</text>
+    <text x="1065" y="357" class="agent-detail">
+      <tspan x="1065" y="357">hors domaine,</tspan>
+      <tspan x="1065" y="378">pilotage des escalades</tspan>
+    </text>
+  </g>
+
+  <g id="gardes-routage" class="guard">
+    <text x="380" y="188">[facturation]</text>
+    <text x="360" y="338">[compte]</text>
+    <text x="380" y="488">[technique]</text>
+    <text x="685" y="90">[hors périmètre]</text>
+  </g>
+
+  <g id="gardes-transfert" class="guard">
+    <text x="790" y="171">
+      <tspan x="790" y="171">[hors périmètre /</tspan>
+      <tspan x="790" y="190">escalade]</tspan>
+    </text>
+    <text x="790" y="321">
+      <tspan x="790" y="321">[hors périmètre /</tspan>
+      <tspan x="790" y="340">escalade]</tspan>
+    </text>
+    <text x="790" y="471">
+      <tspan x="790" y="471">[hors périmètre /</tspan>
+      <tspan x="790" y="490">escalade]</tspan>
+    </text>
+  </g>
+
+</svg>
