@@ -149,7 +149,15 @@ Cette propriété a une conséquence méthodologique qu'il faut énoncer avant d
 
 La figure \ref{fig:chaine-temps-reel} présente la chaîne complète et la contribution de chaque étape.
 
-\figureTikz{Chaîne de traitement temps réel et contribution des étapes}{chaine-temps-reel}{fig-chaine-temps-reel}
+\begin{figure}[H]
+    \centering
+    \setlength{\fboxsep}{0pt}
+    \setlength{\fboxrule}{1pt}
+    \fbox{\includegraphics[width=\linewidth, height=0.88\textheight, keepaspectratio]{figures/fig-chaine-temps-reel.png}}
+    \vspace{0.2cm}
+    \caption{Chaîne de traitement temps réel et contribution des étapes}
+    \label{fig:chaine-temps-reel}
+\end{figure}
 
 Les sept sous sections qui suivent traitent chacune une étape. Elles suivent toutes la même progression : le rôle de l'étape, sa réalisation, la mesure qui la caractérise, les solutions écartées et ce que le choix retenu a coûté.
 
@@ -390,7 +398,15 @@ La collecte du consentement à l'enregistrement, énoncée au début de chaque a
 
 Les trois étapes qui dépendent d'un service externe obéissent au même arbitrage, entre la qualité d'un côté et le respect du budget de temps de l'autre. La figure \ref{fig:positionnement-fournisseurs} en donne une vue d'ensemble. Elle fait apparaître que le fournisseur retenu en tête de chaîne n'est jamais le plus performant dans l'absolu, mais le meilleur parmi ceux qui restent dans la zone compatible avec le temps réel. Les solutions écartées le sont pour une raison structurelle et non pour un écart de qualité : absence de diffusion en continu pour la synthèse de Google, ressources insuffisantes pour l'exécution locale du modèle de raisonnement.
 
-\figureTikz{Positionnement qualitatif des fournisseurs de la chaîne vocale}{positionnement-fournisseurs}{fig-positionnement-fournisseurs}
+\begin{figure}[H]
+    \centering
+    \setlength{\fboxsep}{0pt}
+    \setlength{\fboxrule}{1pt}
+    \fbox{\includegraphics[width=\linewidth, height=0.88\textheight, keepaspectratio]{figures/fig-positionnement-fournisseurs.png}}
+    \vspace{0.2cm}
+    \caption{Positionnement qualitatif des fournisseurs de la chaîne vocale}
+    \label{fig:positionnement-fournisseurs}
+\end{figure}
 
 \subsection{Gestion des interruptions et budget global}
 
@@ -438,7 +454,15 @@ Le total en régime établi est celui d'une conversation ordinaire : c'est le ry
 
 La figure \ref{fig:budget-latence} présente cette répartition sous forme graphique.
 
-\figureTikz{Répartition du budget de latence par étape}{budget-latence}{fig-budget-latence}
+\begin{figure}[H]
+    \centering
+    \setlength{\fboxsep}{0pt}
+    \setlength{\fboxrule}{1pt}
+    \fbox{\includegraphics[width=\linewidth, height=0.88\textheight, keepaspectratio]{figures/fig-budget-latence.png}}
+    \vspace{0.2cm}
+    \caption{Répartition du budget de latence par étape}
+    \label{fig:budget-latence}
+\end{figure}
 
 \section{Concurrence et gestion des ressources}
 
@@ -490,7 +514,15 @@ La conséquence est déterminante : si la base de données devient indisponible,
 
 La figure \ref{fig:concurrence} présente cette organisation.
 
-\figureTikz{Gestion de la concurrence et des ressources}{concurrence}{fig-concurrence}
+\begin{figure}[H]
+    \centering
+    \setlength{\fboxsep}{0pt}
+    \setlength{\fboxrule}{1pt}
+    \fbox{\includegraphics[width=\linewidth, height=0.88\textheight, keepaspectratio]{figures/fig-concurrence.png}}
+    \vspace{0.2cm}
+    \caption{Gestion de la concurrence et des ressources}
+    \label{fig:concurrence}
+\end{figure}
 
 \section{Architecture physique et évolution temporelle}
 
@@ -584,7 +616,15 @@ La figure \ref{fig:chronogramme} présente le chronogramme d'un échange complet
 
 Trois recouvrements y sont visibles. La transcription s'effectue pendant que le client parle et non après. La génération de la réponse débute avant la confirmation de fin de tour, grâce à la génération anticipée. La synthèse vocale émet ses premiers fragments avant que la réponse complète ne soit produite. C'est ce recouvrement qui explique que le délai perçu soit sensiblement inférieur à la somme des durées de traitement.
 
-\figureTikz{Chronogramme d'un échange conversationnel complet}{chronogramme}{fig-chronogramme}
+\begin{figure}[H]
+    \centering
+    \setlength{\fboxsep}{0pt}
+    \setlength{\fboxrule}{1pt}
+    \fbox{\includegraphics[width=\linewidth, height=0.88\textheight, keepaspectratio]{figures/fig-chronogramme.png}}
+    \vspace{0.2cm}
+    \caption{Chronogramme d'un échange conversationnel complet}
+    \label{fig:chronogramme}
+\end{figure}
 
 \section{Interfaces de l'application}
 
@@ -808,7 +848,15 @@ L'explication est structurelle. Une comparaison par représentations indépendan
 
 C'est ce constat, et non une préférence théorique, qui a imposé le filtre conjoint décrit plus haut. La figure \ref{fig:rag-comparaison} présente cette comparaison.
 
-\figureTikz{Séparation entre réponses pertinentes et bruit selon la méthode d'évaluation}{rag-comparaison}{fig-rag-comparaison}
+\begin{figure}[H]
+    \centering
+    \setlength{\fboxsep}{0pt}
+    \setlength{\fboxrule}{1pt}
+    \fbox{\includegraphics[width=\linewidth, height=0.88\textheight, keepaspectratio]{figures/fig-rag-comparaison.png}}
+    \vspace{0.2cm}
+    \caption{Séparation entre réponses pertinentes et bruit selon la méthode d'évaluation}
+    \label{fig:rag-comparaison}
+\end{figure}
 
 \subsubsection{Coût de la solution retenue}
 
