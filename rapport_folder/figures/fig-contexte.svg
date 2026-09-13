@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" id="fig-assemblage-contexte" viewBox="0 0 1500 1390" width="1500" height="1390" role="img" aria-labelledby="diagram-title diagram-desc">
+  
+  <title id="diagram-title">Assemblage du contexte d’un agent</title>
+  <desc id="diagram-desc">Reconstruction du contexte courant à partir du contexte de session, de sources conditionnelles et de capacités dynamiques, avant filtrage, assemblage et contrôle de taille.</desc>
+  
+  <defs>
+    <marker id="arrow" viewBox="0 0 8 8" refX="7.5" refY="4" markerWidth="8" markerHeight="8" orient="auto">
+      <path d="M0 0 L8 4 L0 8 Z" fill="#64748b"/>
+    </marker>
+    <style>
+      <![CDATA[
+      text { font-family: Arial, Helvetica, sans-serif; }
+      .main-title { font-size: 21px; font-weight: 700; fill: #1e293b; text-anchor: middle; }
+      .principle { font-size: 14px; font-style: italic; fill: #64748b; text-anchor: middle; }
+      .zone { fill: #FFFFFF; stroke: #000000; stroke-width: 1.2; stroke-dasharray: 7,5; }
+      .zone-title { font-size: 17px; font-weight: 800; fill: #334155; text-anchor: middle; }
+      .node { fill: #FFFFFF; stroke-width: 2.7; }
+      .node-title { font-size: 15px; font-weight: 750; fill: #1e293b; text-anchor: middle; }
+      .node-detail { font-size: 12.5px; fill: #64748b; text-anchor: middle; }
+      .decision { fill: #FFFFFF; stroke: #0ea5e9; stroke-width: 2.4; }
+      .decision-text { font-size: 11.5px; font-weight: 700; fill: #1e293b; text-anchor: middle; }
+      .guard { font-size: 11px; font-weight: 600; fill: #64748b; text-anchor: middle; paint-order: stroke; stroke: #FFFFFF; stroke-width: 3.2; stroke-linejoin: round; }
+      .skip { fill: #F1F5F9; stroke: #94A3B8; stroke-width: 1.1; stroke-dasharray: 4,3; }
+      .skip-text { font-size: 10px; font-style: italic; fill: #990000; text-anchor: middle; }
+      .flow { fill: none; stroke: #64748b; stroke-width: 2; stroke-linejoin: round; marker-end: url(#arrow); }
+      .merge { fill: none; stroke: #64748b; stroke-width: 2; stroke-linejoin: round; }
+      .collector { fill: #64748b; }
+      .input-title { font-size: 14px; font-weight: 750; fill: #1e293b; text-anchor: middle; }
+      .input-detail { font-size: 11.5px; fill: #64748b; text-anchor: middle; }
+      .process-title { font-size: 15px; font-weight: 700; fill: #1e293b; text-anchor: middle; }
+      .process-detail { font-size: 11.5px; fill: #64748b; text-anchor: middle; }
+      .output-title { font-size: 17px; font-weight: 750; fill: #1e293b; text-anchor: middle; }
+      .output-detail { font-size: 12.5px; font-style: italic; fill: #64748b; text-anchor: middle; }
+      .agent-title { font-size: 17px; font-weight: 750; fill: #1e293b; text-anchor: middle; }
+      .note-shape { fill: #FFFFFF; stroke: #94A3B8; stroke-width: 1.2; stroke-linejoin: round; }
+      .note-fold { fill: none; stroke: #94A3B8; stroke-width: 1.2; }
+      .note-title { font-size: 12px; font-weight: 700; fill: #1e293b; }
+      .note-text { font-size: 11.5px; font-style: italic; fill: #64748b; }
+      .note-link { fill: none; stroke: #94A3B8; stroke-width: 1.2; stroke-dasharray: 5,5; }
+      .collector-label { font-size: 11.5px; font-weight: 600; fill: #64748b; text-anchor: middle; paint-order: stroke; stroke: #FFFFFF; stroke-width: 3; }
+      ]]>
+    </style>
+  </defs>
+
+  <!-- Background -->
+  <rect x="0" y="0" width="1500" height="1390" fill="#FFFFFF"/>
+
+  <!-- Main Titles -->
+
+  <!-- Input : Tour courant -->
+  <polygon points="680,78 840,78 825,118 665,118" fill="#FFFFFF" stroke="#A1A1AA" stroke-width="2.5"/>
+  <text class="input-title" x="752" y="103">Tour courant</text>
+  
+  <path class="flow" d="M752 118 V140"/>
+  
+  <rect class="node" x="595" y="140" width="315" height="54" rx="5" stroke="#EC4899"/>
+  <text class="input-title" x="752" y="163">Sélectionner le contexte</text>
+  <text class="input-detail" x="752" y="181">pertinent pour le tour</text>
+  
+  <path class="merge" d="M752 194 V212 H205"/>
+  <path class="merge" d="M752 212 H1300"/>
+  <path class="flow" d="M205 212 V235"/>
+  <path class="flow" d="M752 212 V235"/>
+  <path class="flow" d="M1300 212 V235"/>
+
+  <!-- Zone : Contexte de session -->
+  <rect class="zone" x="30" y="235" width="350" height="590" rx="6"/>
+  <text class="zone-title" x="205" y="269">Contexte de session</text>
+  
+  <rect class="node" x="55" y="295" width="280" height="104" rx="6" stroke="#EC4899"/>
+  <text class="node-title" x="195" y="322">Identité de session</text>
+  <text class="node-detail" x="195" y="347">identifiant de session</text>
+  <text class="node-detail" x="195" y="365">langue courante · rang du tour</text>
+  <text class="node-detail" x="195" y="384">disponible durant la session</text>
+  
+  <rect class="node" x="55" y="435" width="280" height="132" rx="6" stroke="#EC4899"/>
+  <text class="node-title" x="195" y="462">Profil client</text>
+  <text class="node-detail" x="195" y="487">nom · numéro de ligne</text>
+  <text class="node-detail" x="195" y="505">type d’abonnement</text>
+  <text class="node-detail" x="195" y="523">statut particulier</text>
+  <text class="node-detail" x="195" y="549">chargé à l’ouverture</text>
+  
+  <rect class="node" x="55" y="605" width="280" height="122" rx="6" stroke="#EC4899"/>
+  <text class="node-title" x="195" y="632">Sentiment courant</text>
+  <text class="node-detail" x="195" y="657">score cumulé</text>
+  <text class="node-detail" x="195" y="675">nombre de tours négatifs consécutifs</text>
+  <text class="node-detail" x="195" y="704">traité en arrière-plan</text>
+  
+  <path class="flow" d="M335 347 H360"/>
+  <path class="flow" d="M335 501 H360"/>
+  <path class="flow" d="M335 666 H360"/>
+  <path class="merge" d="M360 347 V825"/>
+
+  <!-- Zone : Contexte conditionnel -->
+  <rect class="zone" x="400" y="235" width="700" height="590" rx="6"/>
+  <text class="zone-title" x="750" y="269">Contexte conditionnel</text>
+  
+  <!-- Décision : Domaine -->
+  <polygon class="decision" points="540,282 630,310 540,338 450,310"/>
+  <text class="decision-text" x="540" y="307">Domaine</text>
+  <text class="decision-text" x="540" y="321">facturation ?</text>
+  
+  <path class="flow" d="M630 310 H690"/>
+  <text class="guard" x="660" y="302">[oui]</text>
+  
+  <path class="flow" d="M540 338 V359"/>
+  <text class="guard" x="568" y="349">[non]</text>
+  
+  <text class="skip-text" x="540" y="372">Source non sollicitée pour ce tour</text>
+  
+  <rect class="node" x="690" y="281" width="315" height="58" rx="6" stroke="#F97316"/>
+  <text class="node-title" x="847.5" y="305">Situation de facturation</text>
+  <text class="node-detail" x="847.5" y="325">montants dus, factures ouvertes</text>
+  
+  <path class="flow" d="M1005 310 H1055"/>
+  
+  <!-- Décision : Demande -->
+  <polygon class="decision" points="540,382 630,410 540,438 450,410"/>
+  <text class="decision-text" x="540" y="407">Demande le</text>
+  <text class="decision-text" x="540" y="421">justifie ?</text>
+  
+  <path class="flow" d="M630 410 H690"/>
+  <text class="guard" x="660" y="402">[oui]</text>
+  
+  <path class="flow" d="M540 438 V459"/>
+  <text class="guard" x="568" y="449">[non]</text>
+  
+  <text class="skip-text" x="540" y="472">Source non sollicitée pour ce tour</text>
+  
+  <rect class="node" x="690" y="381" width="315" height="58" rx="6" stroke="#F97316"/>
+  <text class="node-title" x="847.5" y="405">Historique des demandes</text>
+  <text class="node-detail" x="847.5" y="425">tickets et réclamations en cours</text>
+  
+  <path class="flow" d="M1005 410 H1055"/>
+  
+  <!-- Décision : Client connu -->
+  <polygon class="decision" points="540,482 630,510 540,538 450,510"/>
+  <text class="decision-text" x="540" y="514">Client connu ?</text>
+  
+  <path class="flow" d="M630 510 H690"/>
+  <text class="guard" x="660" y="502">[oui]</text>
+  
+  <path class="flow" d="M540 538 V559"/>
+  <text class="guard" x="568" y="549">[non]</text>
+  
+  <text class="skip-text" x="540" y="572">Source non sollicitée pour ce tour</text>
+  
+  <rect class="node" x="690" y="481" width="315" height="58" rx="6" stroke="#F97316"/>
+  <text class="node-title" x="847.5" y="504">Mémoire d’appels antérieurs</text>
+  <text class="node-detail" x="847.5" y="523">faits structurés issus des échanges précédents</text>
+  
+  <path class="flow" d="M1005 510 H1055"/>
+  
+  <!-- Décision : Opération sensible -->
+  <polygon class="decision" points="540,582 630,610 540,638 450,610"/>
+  <text class="decision-text" x="540" y="607">Opération</text>
+  <text class="decision-text" x="540" y="621">sensible ?</text>
+  
+  <path class="flow" d="M630 610 H690"/>
+  <text class="guard" x="660" y="602">[oui]</text>
+  
+  <path class="flow" d="M540 638 V659"/>
+  <text class="guard" x="568" y="649">[non]</text>
+  
+  <text class="skip-text" x="540" y="672">Source non sollicitée pour ce tour</text>
+  
+  <rect class="node" x="690" y="581" width="315" height="58" rx="6" stroke="#F97316"/>
+  <text class="node-title" x="847.5" y="604">État de vérification</text>
+  <text class="node-detail" x="847.5" y="623">identité vérifiée, niveau, horodatage, échéance</text>
+  
+  <path class="flow" d="M1005 610 H1055"/>
+  
+  <!-- Décision : Question documentaire -->
+  <polygon class="decision" points="540,682 630,710 540,738 450,710"/>
+  <text class="decision-text" x="540" y="707">Question</text>
+  <text class="decision-text" x="540" y="721">documentaire ?</text>
+  
+  <path class="flow" d="M630 710 H690"/>
+  <text class="guard" x="660" y="702">[oui]</text>
+  
+  <path class="flow" d="M540 738 V759"/>
+  <text class="guard" x="568" y="749">[non]</text>
+  
+  <text class="skip-text" x="540" y="772">Source non sollicitée pour ce tour</text>
+  
+  <rect class="node" x="690" y="681" width="315" height="58" rx="6" stroke="#F97316"/>
+  <text class="node-title" x="847.5" y="705">Connaissance documentaire</text>
+  <text class="node-detail" x="847.5" y="725">passages pertinents et leurs sources</text>
+  
+  <path class="flow" d="M1005 710 H1055"/>
+  <path class="merge" d="M1055 310 V825"/>
+
+  <!-- Zone : Capacités dynamiques -->
+  <rect class="zone" x="1130" y="235" width="340" height="590" rx="6"/>
+  <text class="zone-title" x="1300" y="269">Capacités dynamiques</text>
+  
+  <rect class="node" x="1160" y="350" width="280" height="150" rx="6" stroke="#22C55E"/>
+  <text class="node-title" x="1300" y="385">Outils disponibles</text>
+  <text class="node-detail" x="1300" y="417">déterminés à partir de l’Agent actif</text>
+  <text class="node-detail" x="1300" y="439">et sélectionnés selon</text>
+  <text class="node-detail" x="1300" y="457">le contexte courant</text>
+  <text class="node-detail" x="1300" y="483">capacités exposées pour ce tour</text>
+  
+  <path class="merge" d="M1300 500 V825"/>
+
+  <!-- Zone : Composition du contexte -->
+  <rect class="zone" x="30" y="850" width="1440" height="510" rx="6"/>
+  <text class="zone-title" x="789" y="882">Composition du contexte</text>
+  
+  <path class="flow" d="M360 825 V920"/>
+  <path class="flow" d="M1055 825 V920"/>
+  <path class="flow" d="M1300 825 V920"/>
+  
+  <rect class="collector" x="360" y="916" width="940" height="8" rx="3"/>
+  <text class="collector-label" x="798" y="909">Éléments retenus</text>
+  
+  <path class="flow" d="M800 924 V945"/>
+  
+  <rect class="node" x="630" y="945" width="340" height="58" rx="6" stroke="#A855F7"/>
+  <text class="process-title" x="800" y="970">Filtrer et normaliser</text>
+  <text class="process-detail" x="800" y="989">les éléments retenus</text>
+  
+  <path class="flow" d="M800 1003 V1025"/>
+  
+  <rect class="node" x="630" y="1025" width="340" height="58" rx="6" stroke="#F97316"/>
+  <text class="process-title" x="800" y="1060">Assembler le contexte</text>
+  
+  <path class="flow" d="M800 1083 V1105"/>
+  
+  <rect class="node" x="630" y="1105" width="340" height="58" rx="6" stroke="#0EA5E9"/>
+  <text class="process-title" x="800" y="1140">Contrôler la taille du contexte</text>
+  
+  <path class="flow" d="M800 1163 V1185"/>
+  
+  <rect x="625" y="1185" width="350" height="70" rx="7" fill="#FFFFFF" stroke="#22C55E" stroke-width="3"/>
+  <text class="output-title" x="800" y="1215">Contexte assemblé</text>
+  <text class="output-detail" x="800" y="1238">contexte courant du tour</text>
+  
+  <path class="flow" d="M800 1255 V1280"/>
+  
+  <rect class="node" x="675" y="1280" width="250" height="55" rx="6" stroke="#EC4899"/>
+  <text class="agent-title" x="800" y="1314">Agent actif</text>
+
+
+  
+  
+  
+  <path class="note-link" d="M1020 1128 H970"/>
+  
+</svg>
