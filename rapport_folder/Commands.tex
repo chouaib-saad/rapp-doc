@@ -162,3 +162,26 @@
     \label{fig:#2}%
   \end{figure}%
 }
+
+% Figure SVG en pleine page (grand schéma).
+\newcommand{\figureSVGPleine}[3]{%
+  \begin{figure}[!p]%
+    \centering%
+    \IfFileExists{figures/#3.pdf}{%
+      \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{figures/#3.pdf}%
+    }{%
+      \IfFileExists{figures/#3.png}{%
+        \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{figures/#3.png}%
+      }{%
+        \setlength{\fboxsep}{6pt}%
+        \setlength{\fboxrule}{0.5pt}%
+        \fbox{%
+          \adjustbox{max width=\dimexpr\linewidth-18pt\relax,
+                     max totalheight=0.95\textheight}{\input{figures/#3}}%
+        }%
+      }%
+    }%
+    \caption{#1}%
+    \label{fig:#2}%
+  \end{figure}%
+}

@@ -1,0 +1,176 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="680" viewBox="0 0 1200 680">
+<rect width="1200" height="680" fill="#FFFFFF"/>
+<defs>
+<style>
+text { font-family: Arial, Helvetica, sans-serif; }
+.cname { font-size: 14px; font-weight: bold; fill: #111111; text-anchor: middle; }
+.stereo { font-size: 11px; font-weight: bold; fill: #555555; text-anchor: middle; }
+.ilabel { font-size: 12px; font-weight: bold; fill: #333333; text-anchor: start; }
+.layer-label { font-size: 16px; font-weight: bold; text-anchor: start; }
+.comp { stroke: #333333; stroke-width: 1.5; }
+.shadow { fill: #D0D0D0; opacity: 0.55; }
+.wire { fill: none; stroke: #333333; stroke-width: 1.5; stroke-linejoin: round; }
+.ball { fill: #FFFFFF; stroke: #333333; stroke-width: 1.5; }
+.stick { fill: none; stroke: #333333; stroke-width: 1.5; }
+</style>
+</defs>
+
+<rect x="20" y="30" width="1160" height="130" fill="#F0F8FF" opacity="0.4" rx="8"/>
+<rect x="20" y="190" width="1160" height="130" fill="#F0FFF0" opacity="0.4" rx="8"/>
+<rect x="20" y="350" width="1160" height="130" fill="#FFF0F0" opacity="0.4" rx="8"/>
+<rect x="20" y="510" width="1160" height="130" fill="#FFFFF0" opacity="0.4" rx="8"/>
+
+<text x="40" y="37" class="layer-label" fill="#2E86C1">Temps Réel &amp; Entrées</text>
+<text x="40" y="215" class="layer-label" fill="#28B463">Orchestration &amp; Façade</text>
+<text x="40" y="314" class="layer-label" fill="#CB4335">Services Métier</text>
+<text x="40" y="560" class="layer-label" fill="#D4AC0D">Systèmes Externes</text>
+
+<rect x="204" y="64" width="240" height="70" class="shadow"/>
+<rect x="200" y="60" width="240" height="70" fill="#96D5F2" class="comp"/>
+<rect x="194" y="65" width="12" height="9" fill="#96D5F2" class="comp"/>
+<rect x="194" y="79" width="12" height="9" fill="#96D5F2" class="comp"/>
+<text x="320" y="84" class="stereo">&lt;&lt;component&gt;&gt;</text>
+<text x="320" y="104" class="cname">Communication temps réel</text>
+
+<rect x="684" y="64" width="240" height="70" class="shadow"/>
+<rect x="680" y="60" width="240" height="70" fill="#96D5F2" class="comp"/>
+<rect x="674" y="65" width="12" height="9" fill="#96D5F2" class="comp"/>
+<rect x="674" y="79" width="12" height="9" fill="#96D5F2" class="comp"/>
+<text x="800" y="78" class="stereo">&lt;&lt;component&gt;&gt;</text>
+<text x="800" y="94" class="cname">Service d'accès</text>
+<text x="800" y="110" class="cname">de session</text>
+
+<rect x="364" y="234" width="400" height="70" class="shadow"/>
+<rect x="360" y="230" width="400" height="70" fill="#CDF2CD" class="comp"/>
+<rect x="354" y="235" width="12" height="9" fill="#CDF2CD" class="comp"/>
+<rect x="354" y="249" width="12" height="9" fill="#CDF2CD" class="comp"/>
+<text x="560" y="254" class="stereo">&lt;&lt;component&gt;&gt;</text>
+<text x="560" y="270" class="cname">API des services</text>
+<text x="560" y="286" class="cname">métier</text>
+
+<rect x="44" y="404" width="180" height="70" class="shadow"/>
+<rect x="40" y="400" width="180" height="70" fill="#F4A6A6" class="comp"/>
+<rect x="34" y="405" width="12" height="9" fill="#F4A6A6" class="comp"/>
+<rect x="34" y="419" width="12" height="9" fill="#F4A6A6" class="comp"/>
+<text x="130" y="424" class="stereo">&lt;&lt;component&gt;&gt;</text>
+<text x="130" y="444" class="cname">Gestion du contexte</text>
+
+<rect x="264" y="404" width="180" height="70" class="shadow"/>
+<rect x="260" y="400" width="180" height="70" fill="#F4A6A6" class="comp"/>
+<rect x="254" y="405" width="12" height="9" fill="#F4A6A6" class="comp"/>
+<rect x="254" y="419" width="12" height="9" fill="#F4A6A6" class="comp"/>
+<text x="350" y="424" class="stereo">&lt;&lt;component&gt;&gt;</text>
+<text x="350" y="444" class="cname">Recherche de connaissances</text>
+
+<rect x="484" y="404" width="180" height="70" class="shadow"/>
+<rect x="480" y="400" width="180" height="70" fill="#F4A6A6" class="comp"/>
+<rect x="474" y="405" width="12" height="9" fill="#F4A6A6" class="comp"/>
+<rect x="474" y="419" width="12" height="9" fill="#F4A6A6" class="comp"/>
+<text x="570" y="418" class="stereo">&lt;&lt;component&gt;&gt;</text>
+<text x="570" y="434" class="cname">Évaluation des</text>
+<text x="570" y="450" class="cname">décisions</text>
+
+<rect x="704" y="404" width="180" height="70" class="shadow"/>
+<rect x="700" y="400" width="180" height="70" fill="#F4A6A6" class="comp"/>
+<rect x="694" y="405" width="12" height="9" fill="#F4A6A6" class="comp"/>
+<rect x="694" y="419" width="12" height="9" fill="#F4A6A6" class="comp"/>
+<text x="790" y="418" class="stereo">&lt;&lt;component&gt;&gt;</text>
+<text x="790" y="434" class="cname">Exécution des</text>
+<text x="790" y="450" class="cname">actions</text>
+
+<rect x="924" y="404" width="180" height="70" class="shadow"/>
+<rect x="920" y="400" width="180" height="70" fill="#F4A6A6" class="comp"/>
+<rect x="914" y="405" width="12" height="9" fill="#F4A6A6" class="comp"/>
+<rect x="914" y="419" width="12" height="9" fill="#F4A6A6" class="comp"/>
+<text x="1010" y="418" class="stereo">&lt;&lt;component&gt;&gt;</text>
+<text x="1010" y="434" class="cname">Gestion des</text>
+<text x="1010" y="450" class="cname">notifications</text>
+
+<rect x="264" y="574" width="180" height="70" class="shadow"/>
+<rect x="260" y="570" width="180" height="70" fill="#FCFBD9" class="comp"/>
+<rect x="254" y="575" width="12" height="9" fill="#FCFBD9" class="comp"/>
+<rect x="254" y="589" width="12" height="9" fill="#FCFBD9" class="comp"/>
+<text x="350" y="584" class="stereo">&lt;&lt;component&gt;&gt;</text>
+<text x="350" y="596" class="stereo">&lt;&lt;externe&gt;&gt;</text>
+<text x="350" y="614" class="cname">Base de</text>
+<text x="350" y="630" class="cname">connaissances</text>
+
+<rect x="584" y="574" width="180" height="70" class="shadow"/>
+<rect x="580" y="570" width="180" height="70" fill="#FCFBD9" class="comp"/>
+<rect x="574" y="575" width="12" height="9" fill="#FCFBD9" class="comp"/>
+<rect x="574" y="589" width="12" height="9" fill="#FCFBD9" class="comp"/>
+<text x="670" y="584" class="stereo">&lt;&lt;component&gt;&gt;</text>
+<text x="670" y="596" class="stereo">&lt;&lt;externe&gt;&gt;</text>
+<text x="670" y="614" class="cname">Gestion des</text>
+<text x="670" y="630" class="cname">tickets</text>
+
+<rect x="804" y="574" width="220" height="70" class="shadow"/>
+<rect x="800" y="570" width="220" height="70" fill="#FCFBD9" class="comp"/>
+<rect x="794" y="575" width="12" height="9" fill="#FCFBD9" class="comp"/>
+<rect x="794" y="589" width="12" height="9" fill="#FCFBD9" class="comp"/>
+<text x="910" y="584" class="stereo">&lt;&lt;component&gt;&gt;</text>
+<text x="910" y="596" class="stereo">&lt;&lt;externe&gt;&gt;</text>
+<text x="910" y="614" class="cname">Systèmes d'information</text>
+<text x="910" y="630" class="cname">de l'opérateur</text>
+
+<path d="M 320 130 L 320 160 L 460 160 L 460 177" class="wire"/>
+<path d="M 452 180 A 12 12 0 0 1 468 180" class="wire"/>
+<circle cx="460" cy="188" r="7" class="ball"/>
+<path d="M 460 195 L 460 230" class="wire"/>
+<text x="475" y="192" class="ilabel">Services métier</text>
+
+<path d="M 800 130 L 800 160 L 660 160 L 660 177" class="wire"/>
+<path d="M 652 180 A 12 12 0 0 1 668 180" class="wire"/>
+<circle cx="660" cy="188" r="7" class="ball"/>
+<path d="M 660 195 L 660 230" class="wire"/>
+<text x="675" y="192" class="ilabel">Accès temps réel</text>
+
+<path d="M 420 300 L 420 340 L 130 340 L 130 357" class="wire"/>
+<path d="M 122 360 A 12 12 0 0 1 138 360" class="wire"/>
+<circle cx="130" cy="368" r="7" class="ball"/>
+<path d="M 130 375 L 130 400" class="wire"/>
+<text x="145" y="372" class="ilabel">Contexte</text>
+
+<path d="M 500 300 L 500 340 L 350 340 L 350 357" class="wire"/>
+<path d="M 342 360 A 12 12 0 0 1 358 360" class="wire"/>
+<circle cx="350" cy="368" r="7" class="ball"/>
+<path d="M 350 375 L 350 400" class="wire"/>
+<text x="365" y="372" class="ilabel">Connaissance</text>
+
+<path d="M 570 300 L 570 357" class="wire"/>
+<path d="M 562 360 A 12 12 0 0 1 578 360" class="wire"/>
+<circle cx="570" cy="368" r="7" class="ball"/>
+<path d="M 570 375 L 570 400" class="wire"/>
+<text x="585" y="372" class="ilabel">Décision</text>
+
+<path d="M 700 300 L 700 340 L 1010 340 L 1010 357" class="wire"/>
+<path d="M 1002 360 A 12 12 0 0 1 1018 360" class="wire"/>
+<circle cx="1010" cy="368" r="7" class="ball"/>
+<path d="M 1010 375 L 1010 400" class="wire"/>
+<text x="1025" y="372" class="ilabel">Notification</text>
+
+<path d="M 350 470 L 350 526" class="wire"/>
+<path d="M 342 530 A 12 12 0 0 1 358 530" class="wire"/>
+<circle cx="350" cy="538" r="7" class="ball"/>
+<path d="M 350 545 L 350 570" class="wire"/>
+<text x="365" y="542" class="ilabel">Recherche</text>
+
+<path d="M 660 435 L 677 435" class="wire"/>
+<path d="M 680 427 A 12 12 0 0 0 680 443" class="wire"/>
+<circle cx="688" cy="435" r="7" class="ball"/>
+<path d="M 695 435 L 700 435" class="wire"/>
+<text x="688" y="379" class="ilabel" text-anchor="middle">Verdict</text>
+
+<path d="M 790 470 L 790 510 L 670 510 L 670 526" class="wire"/>
+<path d="M 662 530 A 12 12 0 0 1 678 530" class="wire"/>
+<circle cx="670" cy="538" r="7" class="ball"/>
+<path d="M 670 545 L 670 570" class="wire"/>
+<text x="685" y="542" class="ilabel">Tickets</text>
+
+<path d="M 840 470 L 840 510 L 910 510 L 910 526" class="wire"/>
+<path d="M 902 530 A 12 12 0 0 1 918 530" class="wire"/>
+<circle cx="910" cy="538" r="7" class="ball"/>
+<path d="M 910 545 L 910 570" class="wire"/>
+<text x="925" y="542" class="ilabel">Métier</text>
+
+</svg>

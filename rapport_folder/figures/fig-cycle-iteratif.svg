@@ -1,0 +1,106 @@
+<svg viewBox="0 0 996 216" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .title { font-family: Arial, Helvetica, sans-serif; font-size: 16px; font-weight: 700; fill: #21485f; }
+      .phase { font-family: Arial, Helvetica, sans-serif; font-size: 12px; font-weight: 700; fill: #34505d; }
+      .phase-small { font-family: Arial, Helvetica, sans-serif; font-size: 11px; font-weight: 700; fill: #34505d; }
+      .increment { font-family: Arial, Helvetica, sans-serif; font-size: 15px; font-weight: 500; fill: #666666; }
+      .usable { font-family: Arial, Helvetica, sans-serif; font-size: 11px; font-weight: 700; fill: #3f73c7; }
+      .feedback { font-family: Arial, Helvetica, sans-serif; font-size: 12px; font-weight: 500; fill: #4c4c4c; }
+    </style>
+
+    <marker id="timelineArrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M 0,0 L 12,6 L 0,12 Z" fill="#b9b9b9"/>
+    </marker>
+
+    <marker id="upArrow" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="0">
+      <path d="M 0,8 L 4,0 L 8,8 Z" fill="#535353"/>
+    </marker>
+  </defs>
+
+  <rect x="0" y="0" width="996" height="216" fill="#ffffff"/>
+
+  <text x="51" y="31" class="title">Modèle évolutif</text>
+
+  <!-- Increment #1 Bracket -->
+  <line x1="45" y1="49" x2="135" y2="49" stroke="#444444" stroke-width="1.5" stroke-linecap="square"/>
+  <line x1="45" y1="49" x2="45" y2="67" stroke="#444444" stroke-width="1.5" stroke-linecap="square"/>
+  <path d="M 39.5,62 L 45,68 L 50.5,62" fill="none" stroke="#444444" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <line x1="135" y1="49" x2="135" y2="67" stroke="#444444" stroke-width="1.5" stroke-linecap="square"/>
+
+  <!-- Increment #2 Bracket -->
+  <line x1="267" y1="49" x2="358" y2="49" stroke="#444444" stroke-width="1.5" stroke-linecap="square"/>
+  <line x1="267" y1="49" x2="267" y2="67" stroke="#444444" stroke-width="1.5" stroke-linecap="square"/>
+  <path d="M 261.5,62 L 267,68 L 272.5,62" fill="none" stroke="#444444" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <line x1="358" y1="49" x2="358" y2="67" stroke="#444444" stroke-width="1.5" stroke-linecap="square"/>
+
+  <!-- Increment #3 Bracket -->
+  <line x1="488" y1="49" x2="579" y2="49" stroke="#444444" stroke-width="1.5" stroke-linecap="square"/>
+  <line x1="488" y1="49" x2="488" y2="67" stroke="#444444" stroke-width="1.5" stroke-linecap="square"/>
+  <path d="M 482.5,62 L 488,68 L 493.5,62" fill="none" stroke="#444444" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <line x1="579" y1="49" x2="579" y2="67" stroke="#444444" stroke-width="1.5" stroke-linecap="square"/>
+
+  <!-- Increment #4 Bracket -->
+  <line x1="709" y1="49" x2="800" y2="49" stroke="#444444" stroke-width="1.5" stroke-linecap="square"/>
+  <line x1="709" y1="49" x2="709" y2="67" stroke="#444444" stroke-width="1.5" stroke-linecap="square"/>
+  <path d="M 703.5,62 L 709,68 L 714.5,62" fill="none" stroke="#444444" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <line x1="800" y1="49" x2="800" y2="67" stroke="#444444" stroke-width="1.5" stroke-linecap="square"/>
+
+  <!-- Increment #1 Blocks -->
+  <rect x="24" y="69" width="40" height="32" fill="#e8efd9"/><text x="44" y="88" text-anchor="middle" class="phase">Spec.</text>
+  <rect x="64" y="69" width="48" height="32" fill="#edcfcb"/><text x="88" y="88" text-anchor="middle" class="phase">Design</text>
+  <rect x="112" y="69" width="67" height="32" fill="#fff1df"/><text x="145.5" y="81" text-anchor="middle" class="phase-small">Code</text><text x="145.5" y="95" text-anchor="middle" class="phase-small">&amp; Test</text>
+  <rect x="179" y="69" width="40" height="32" fill="#d1c8df"/><text x="199" y="88" text-anchor="middle" class="phase">Intég.</text>
+  <rect x="219" y="69" width="45" height="32" fill="#fff1df"/><text x="241.5" y="88" text-anchor="middle" class="phase">Valid.</text>
+  <text x="144" y="128" text-anchor="middle" class="increment">Incrément #1</text>
+
+  <!-- Increment #2 Blocks -->
+  <rect x="266" y="69" width="40" height="32" fill="#e8efd9"/><text x="286" y="88" text-anchor="middle" class="phase">Spec.</text>
+  <rect x="306" y="69" width="48" height="32" fill="#edcfcb"/><text x="330" y="88" text-anchor="middle" class="phase">Design</text>
+  <rect x="354" y="69" width="67" height="32" fill="#fff1df"/><text x="387.5" y="81" text-anchor="middle" class="phase-small">Code</text><text x="387.5" y="95" text-anchor="middle" class="phase-small">&amp; Test</text>
+  <rect x="421" y="69" width="40" height="32" fill="#d1c8df"/><text x="441" y="88" text-anchor="middle" class="phase">Intég.</text>
+  <rect x="461" y="69" width="45" height="32" fill="#fff1df"/><text x="483.5" y="88" text-anchor="middle" class="phase">Valid.</text>
+  <text x="386" y="128" text-anchor="middle" class="increment">Incrément #2</text>
+
+  <!-- Increment #3 Blocks -->
+  <rect x="488" y="69" width="40" height="32" fill="#e8efd9"/><text x="508" y="88" text-anchor="middle" class="phase">Spec.</text>
+  <rect x="528" y="69" width="48" height="32" fill="#edcfcb"/><text x="552" y="88" text-anchor="middle" class="phase">Design</text>
+  <rect x="576" y="69" width="67" height="32" fill="#fff1df"/><text x="609.5" y="81" text-anchor="middle" class="phase-small">Code</text><text x="609.5" y="95" text-anchor="middle" class="phase-small">&amp; Test</text>
+  <rect x="643" y="69" width="40" height="32" fill="#d1c8df"/><text x="663" y="88" text-anchor="middle" class="phase">Intég.</text>
+  <rect x="683" y="69" width="45" height="32" fill="#fff1df"/><text x="705.5" y="88" text-anchor="middle" class="phase">Valid.</text>
+  <text x="607" y="128" text-anchor="middle" class="increment">Incrément #3</text>
+
+  <!-- Increment #4 Blocks -->
+  <rect x="709" y="69" width="40" height="32" fill="#e8efd9"/><text x="729" y="88" text-anchor="middle" class="phase">Spec.</text>
+  <rect x="749" y="69" width="48" height="32" fill="#edcfcb"/><text x="773" y="88" text-anchor="middle" class="phase">Design</text>
+  <rect x="797" y="69" width="67" height="32" fill="#fff1df"/><text x="830.5" y="81" text-anchor="middle" class="phase-small">Code</text><text x="830.5" y="95" text-anchor="middle" class="phase-small">&amp; Test</text>
+  <rect x="864" y="69" width="40" height="32" fill="#d1c8df"/><text x="884" y="88" text-anchor="middle" class="phase">Intég.</text>
+  <rect x="904" y="69" width="45" height="32" fill="#fff1df"/><text x="926.5" y="88" text-anchor="middle" class="phase">Valid.</text>
+  <text x="829" y="128" text-anchor="middle" class="increment">Incrément #4</text>
+
+  <!-- Timeline Axis -->
+  <line x1="23" y1="101" x2="929" y2="101" stroke="#b9b9b9" stroke-width="3.2" stroke-linecap="round" marker-end="url(#timelineArrow)"/>
+
+  <!-- Milestone 30% -->
+  <line x1="238" y1="144" x2="238" y2="104" stroke="#555555" stroke-width="1.25" marker-end="url(#upArrow)"/>
+  <rect x="199" y="144" width="78" height="20" fill="#ffffff" stroke="#5d5d5d" stroke-width="1"/>
+  <text x="238" y="158" text-anchor="middle" class="usable">Utilisable 30%</text>
+
+  <text x="238" y="179" text-anchor="middle" class="feedback">Customer Feed-</text>
+  <text x="238" y="193" text-anchor="middle" class="feedback">back starts</text>
+
+  <!-- Milestone 55% -->
+  <line x1="459" y1="144" x2="459" y2="104" stroke="#555555" stroke-width="1.25" marker-end="url(#upArrow)"/>
+  <rect x="420" y="144" width="78" height="20" fill="#ffffff" stroke="#5d5d5d" stroke-width="1"/>
+  <text x="459" y="158" text-anchor="middle" class="usable">Utilisable 55%</text>
+
+  <!-- Milestone 80% -->
+  <line x1="680" y1="144" x2="680" y2="104" stroke="#555555" stroke-width="1.25" marker-end="url(#upArrow)"/>
+  <rect x="641" y="144" width="78" height="20" fill="#ffffff" stroke="#5d5d5d" stroke-width="1"/>
+  <text x="680" y="158" text-anchor="middle" class="usable">Utilisable 80%</text>
+
+  <!-- Milestone 100% -->
+  <line x1="900" y1="144" x2="900" y2="104" stroke="#555555" stroke-width="1.25" marker-end="url(#upArrow)"/>
+  <rect x="861" y="144" width="78" height="20" fill="#ffffff" stroke="#5d5d5d" stroke-width="1"/>
+  <text x="900" y="158" text-anchor="middle" class="usable">Utilisable 100%</text>
+</svg>

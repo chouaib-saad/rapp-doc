@@ -45,3 +45,106 @@ Problems found:
 
 Next step:
 Retours de l'utilisateur, puis production des 50 figures et intégration des 18 captures.
+
+## 2026-08-31 — Phase 2 corrections (Units 5–11) + state saved
+
+- Unit 5 (§4.8) applied & approved — 3 categories, Mesures réelles, steady-state budget total,
+  "Ce qui manque encore" with scale/stress-test + schedule + limited test users.
+- Unit 6 (§4.3.5) applied & approved — Réparation contextuelle de la requête.
+- Unit 7 (§4.7) applied & approved — Contrôle d'aptitude des agents + Attachement des services row.
+- A8 (notifications) REJECTED by user as out-of-scope lender problem. No change.
+- Volumétrie applied — screens 21+17=38; endpoints removed; 112/260 removed from table, figure,
+  conclusion générale, §1.5.
+- Unit 9 (§4.6 A3) ui-agents matrix + Unit 10 (§4.5.2 A4) telemetry persona applied & approved.
+- Unit 11 (Ch1 §1.5) Belgacem citation + figure tie-in + bibliography entry applied & approved.
+- Memory state saved: 02_PROGRESS, 03_CURRENT_STATE, 06_OPEN_TASKS updated.
+- Next: report-wide coherence pass (anomalies table, then unit approval), then Phase-5 diagrams.
+
+## 2026-09-01 — Phase 5 figure 1 + final reading stored
+- Final reading/lightening lots 2–4 applied to Ch1–Ch4 (many approved, others kept original).
+- Observability §4.6 descriptions restored to original "Avant" (no 12 services / container names).
+- Phase 5 started. Figure 1/36 `fig-cycle-iteratif.svg` = EXACT byte-identical copy of supervisor
+  "image of itrative cycle.svg" (sha256 dc3b517e…772cf7e, cmp identical). No redraw/adaptation.
+- Ch1 §1.5 text adjusted to support that exact figure (modèle évolutif, 6 steps per increment,
+  30/55/80/100 % milestones, client feedback from first increment).
+- User confirmed figure 1; requested memory save then GitHub save.
+- Memory updated: 02_PROGRESS, 03_CURRENT_STATE, 06_OPEN_TASKS, 09_SESSION_LOG.
+- Next: commit & push all work to `arena/01a052fb-rapp-doc`, then figure 2.
+
+## 2026-09-02 — Phase 5 figures 2 + 3
+- Figure 2 `fig-deploiement.svg`: EXACT user SVG saved (only internal title block removed per instruction); Ch4 table+§4.6 prose adapted to architectural layers; user CONFIRMED.
+- Figure 3 `fig-cu-general.svg`: EXACT user SVG saved UNMODIFIED (full-page 1700×1350); new `\figureSVGPleine` (full-page, SVG→pdf/png, TikZ fallback) added in Commands.tex; Ch2 actors + tab:acteurs + general use-case prose rewritten around unified **Utilisateur back-office**; Ch3 §RBAC now explicit: Administrateur → connaissances & règles, Superviseur → supervision, Conseiller → escalades; Ch4 "profils internes" occurrences aligned to back-office. PENDING user confirmation.
+
+## 2026-09-03 — Phase 5 figure 4
+- Figure 4 `fig-cu-doc.svg`: EXACT user SVG saved (1300×830) with title 'Obtenir une réponse fondée sur les connaissances'; 5 includes (S'authentifier, Interpréter la demande, Prendre en compte le contexte de l'échange, Rechercher dans la base de connaissances, Fonder la réponse sur les connaissances retrouvées), 2 extends (Clarifier la demande, Indiquer l'absence d'information pertinente), 2 notes (contexte conversationnel, réponse sans information fiable). No modification.
+- Ch2 §cas d'utilisation documentaire renamed to 'obtenir une réponse fondée sur les connaissances'; table/scénario/objectif/pre/post-conditions/alternatives + Ch2 conclusion adapted; sequence figure caption renamed. Roles back-office retained. PENDING user confirmation.
+
+## 2026-09-03 — Phase 5 figure 4 CONFIRMED
+- User confirmed figure 4/36 `fig-cu-doc.svg` (exact SVG, renamed use case, Ch2 adapted). Memory saved.
+- Next figure 5/36: fig-cu-action (Ch2, opération sensible).
+
+## 2026-09-03 — Phase 5 figure 5
+- Figure 5 `fig-cu-action.svg`: EXACT user SVG saved (1500×900), title 'Réalisation d'une opération sécurisée'.
+- 4 includes (Vérifier l'identité par CIN, Valider l'opération, Transmettre au système métier, Enregistrer dans le journal d'audit), 3 extends (Restituer résultat existant, Notifier le refus, Transmettre à un conseiller), systèmes métier as secondary actor, 2 notes.
+- Ch2 §cas d'utilisation action adapted: CIN, journal d'audit, issues conditionnelles ('opération déjà traitée', 'conditions non satisfaites', 'non traitable automatiquement'). PENDING confirmation.
+
+## 2026-09-03 — Phase 5 figure 5 CONFIRMED
+- User confirmed figure 5/36 `fig-cu-action.svg` (exact SVG, CIN/journal d'audit/issue conditions aligned in Ch2). Memory saved.
+- Next figure 6/36: fig-cu-escalade (Ch2, escalade vers conseiller).
+
+## 2026-09-03 — Phase 5 figure 6
+- Figure 6 `fig-cu-escalade.svg`: EXACT user SVG saved (1250×700), title 'Gestion d'une demande d'assistance humaine'.
+- 2 actors (Client + Conseiller), 7 UC, 2 external systems (gestion tickets, notification), 4 include, 2 extends, note exclusivité.
+- Ch2 §escalade renamed to 'gestion d'une demande d'assistance humaine'; intro/table/prose adapted (ticket de suivi, notification). PENDING confirmation.
+
+## 2026-09-03 — Phase 5 figure 6 CONFIRMED
+- User confirmed figure 6/36 `fig-cu-escalade.svg` (exact SVG; Ch2 renamed to 'Gestion d'une demande d'assistance humaine'; ticket de suivi + notification added). Memory saved.
+- Ch2 conclusion aligned to new case name (gestion d'une demande d'assistance humaine).
+- Next figure 7/36: fig-seq-doc (Ch2, séquence du cas documentaire).
+
+## 2026-09-04 — Phase 5 figure 7
+- Figure 7 `fig-seq-doc.svg`: EXACT user sequence SVG saved (1250×1080). Lifelines: Client, Agent spécialisé (Orchestrateur), Base de connaissances, Base vectorielle, Moteur d'inférence (LLM). Fragments opt [demande ambiguë], loop [pour chaque requête], alt [pertinence confirmée / aucun passage pertinent]. 2 notes (absence info fiable, continuité conversationnelle).
+- Use case renamed to 'Recherche et génération d'une réponse fondée sur les connaissances' throughout Ch2; fig-cu-doc.svg internal title updated to match (title line only, per user request). Scenario steps + alternatives + seq intro aligned to the sequence diagram. PENDING confirmation.
+
+## 2026-09-04 — Phase 5 figure 7 CONFIRMED
+- User confirmed figure 7/36 `fig-seq-doc.svg` (exact sequence SVG; case renamed + Ch2 adapted).
+- Next figure 8/36: fig-seq-action (Ch2, séquence du cas opération sécurisée).
+
+## 2026-09-04 — Phase 5 figure 8
+- Figure 8 `fig-seq-action.svg`: EXACT user sequence SVG saved (1250×1660). Lifelines: Client, Agent Spécialisé (Orchestrateur), Moteur de Politique (Policy Engine), Système Métier (Business Service), Journal d'Audit (Audit Repository). Fragments: opt [identité non vérifiée], nested opt [vérification échouée], main alt [autorisée/refusée/humain], nested alt idempotence [déjà traitée / 1ère exécution]. Note: vérification avant opération.
+- Ch2 §cas renamed to 'Réalisation d'une opération sécurisée'; sequence intro updated with invariant 'Aucune opération n'atteint le système métier sans un verdict favorable préalable, persisté et identifié.' PENDING confirmation.
+
+## 2026-09-04 — Phase 5 figure 8 CONFIRMED
+- User confirmed figure 8/36 `fig-seq-action.svg` (exact sequence SVG). Case renamed 'Réalisation d'une opération sécurisée'; invariant integrated. Ch2 updated.
+- Next figure 9/36: fig-seq-escalade (Ch2, séquence du cas assistance humaine).
+
+## 2026-09-04 — Phase 5 figure 9
+- Figure 9 `fig-seq-escalade.svg`: EXACT user sequence SVG saved (1250×1210). Lifelines: Client, Agent de Supervision (Orchestrateur), Service de Routage (Availability), Système de Tickets, Service de Notification, Conseiller. Fragment alt [Un conseiller est disponible]/[Aucun ou transfert échoué]. Note: Dossier d'escalade (transmis au conseiller).
+- Ch2 case renamed BACK to 'Escalade vers un conseiller humain'; sequence intro + use-case intro adapted to these 6 participants/ticket de rappel/notification. PENDING confirmation.
+- NOTE: confirmed `fig-cu-escalade.svg` still has internal title 'Gestion d'une demande d'assistance humaine' — ask user whether to update it to 'Escalade vers un conseiller humain' (title line only).
+
+## 2026-09-04 — Phase 5 figure 9 CONFIRMED
+- User confirmed figure 9/36 `fig-seq-escalade.svg` (exact sequence SVG). Ch2 case renamed back to 'Escalade vers un conseiller humain'.
+- `fig-cu-escalade.svg` internal title updated to 'Escalade vers un conseiller humain' (title line only); rest of figure untouched.
+- Next figure 10/36: fig-classes-domaine (Ch3, modèle du domaine).
+
+## 2026-09-04 — Phase 5 figure 10
+- Figure 10 `fig-classes-domaine.svg`: EXACT user class diagram SVG saved (1700×1200). 5 aggregate roots (Client, Conversation, DossierAssistance, Operation Template Method, RegleMetier Strategy), 4 value objects (Msisdn, Montant, IdentifiantOperation, Creneau), entities (Abonnement, Compte, TourDeParole, Intention, EntreeAudit, Ticket, Affectation assoc class, Conseiller, DecisionAutorisation), 6 concrete subclasses (PaiementFacture, Reclamation, GestionAbonnement, RegleSeuil, RegleNiveauVerification), 11 enums (package Énumérations).
+- Ch3 §Modèle du domaine prose adapted to this diagram (aggregates, value objects, enums). CONFIRMED by user; committing/pushing.
+- Figure 11 `fig-classes-agents.svg` DRAFT generated (base abstraite + 5 agents Accueil/Orientation/Facturation/Technique/GestionDeCompte; Capacite agrégée 0..*; DomaineDeSpecialite sur les 3 agents métier; notes contrainte + phrase de transition). Ch3 §Hiérarchie prose adapted (capacités + domaine). PENDING validation. CONFLICT: §Décomposition en agents spécialisés lists accueil+3 métiers+supervision; figure lists accueil+orientation+3 métiers. Next: user decision on canonical taxonomy.
+- Figure 11 taxonomy resolved: user chose §Décomposition taxonomy (accueil + 3 métiers + supervision). Regenerated fig-classes-agents.svg with AgentSupervision replacing AgentOrientation; Ch3 §Hiérarchie prose adapted (accueil/supervision/périmètres, capacités, domaine des 3 métiers). PENDING final figure confirmation.
+- FIGURE 10 CONFIRMED by user; already committed b779191. On user request, code des figures inspecté: toutes les nominations techniques MSISDN remplacées par 'Numéro d'appel' (fig-classes-domaine.svg: classe NumeroAppel, attributs numeroAppel : Numéro d'appel; fig-mcd.tex: colonne numero_appel).
+- FIGURE 11: user instructs NOT to confirm the draft; user will provide the complete SVG. Draft fig-classes-agents.svg removed; awaiting user SVG.
+- Figure 11 `fig-classes-agents.svg`: EXACT user SVG saved verbatim (1700×1200, couche agents). Analyzed: 4 orchestration classes, 5 agents (Accueil, Facturation, Abonnement, Technique, Escalade) with {disjoint, complet}, Outil/ports, ContexteDeSession/DefinitionDeDomaine/Transfert, domain classes, enum Domaine & MotifTransfert.
+- Ch3 §'Hiérarchie des agents conversationnels' renamed to 'Couche des agents conversationnels' and rewritten to the figure; caption 'Diagramme de classes de la couche agents'; §Diagrammes de classes intro aligned. §Décomposition: agent de supervision → agent d'escalade; table 'Gestion de compte' → 'Abonnement'; §Passage de relais links Transfert/ReglesDeSession; table sources 'Capacités disponibles' → 'Outils disponibles'. Bridging note: agent d'escalade = agent de supervision de la vue dynamique (Ch2 fig-seq-escalade).
+- SVG note: lines 397 & 399 duplicate `y` attr (user source, untouched).
+- Figure 12 `fig-classes-politique.svg`: EXACT user SVG saved verbatim (1600×980). Analyzed engine: Outil→ContexteDeDecision (construit), Moteur invoque Outil, Moteur évalue contexte, agrège RegleDePolitique (1..* ordonné), compose CalculateurDeConfiance, produit VerdictDePolitique consigné dans EntreeAudit; 5 règles (rang 1..5); enums Verdict (4) & FacteurDeRisque (5).
+- Ch3 §Moteur de décision déterministe rewritten to figure; garde-fou 'verdict à trois valeurs'→'quatre valeurs'; Ch2 besoin '3 valeurs'→'4 valeurs'; Ch4 'moteur de règles'→'moteur de politique' (3 occurrences).
+- Remote user commit `0cc6b53 'Fix SVG line attributes for AgentTechnique'` merged as base (fig11 duplicate y attr fixed).
+- USER: remove §3.1.3 Conception de la base de données (Ch3) entirely — not necessary, no added value. Removed 3.1.3.1 Organisation en schémas (table tab:schemas), 3.1.3.2 Modèle entités associations (figure fig-mcd / fig-mcd.tex, previously candidate figure 13/36), 3.1.3.3 Deux asymétries assumées. Adapted Ch3 conclusion to drop the schema/projection clause. Verified: no remaining refs to tab:schemas, fig:mcd, 'modèle entités associations', 'schémas centraux'. Ch4 implementation/projection references kept (technical, not conceptual duplicates). Next figure unchanged = fig-seq-tour.
+- Figure 13 `fig-seq-tour.svg`: EXACT user SVG saved verbatim (1780×2010, 8 lifelines). Ch3 §Déroulement d'un tour de parole rewritten to the figure (6 phases, 250 ms end-of-turn, context load, loop 2 tentatives + opt précision, alt documentaire/opérationnelle, par diffusion loop segments + break barge-in / journalisation asynchrone, opt clôture). Figure placed after intro sentence.
+- Ch1 logo `logo-amsys-consulting.png` (user-pushed `cd961bd`) integrated via `figureReport{figures/logo-amsys-consulting.png}{0.72\linewidth}{Logo de la société Amsys Consulting}{logo-amsys}`.
+- Ch1 Gantt `fig-gantt.svg` (915×480) EXACT user SVG saved verbatim. §Chronologie intro rewritten (4 groupes Cadrage/Réalisation/Intégration/Livraison, chevauchements); `tab:phases` rewritten to 13 tasks with S1/S2 periods and rapport avril→août.
+- Integrated user-pushed PNG renderings into report: replaced figureReport/figureTikz/figureSVGPleine with explicit `figure[htbp]`+fbox+`includegraphics[width=...,height=...,keepaspectratio]` for Ch1 logo/gantt/cycle-iteratif, Ch2 cu-general(full page)+cu-doc+seq-doc+cu-action+seq-action+cu-escalade+seq-escalade, Ch3 classes-domaine+classes-agents+classes-politique+seq-tour, Ch4 deploiement. Captions & labels unchanged; used filename fig-cu-doc..png as pushed.
+- Figure 14 `fig-seq-sensible.svg` (1780×1610) saved verbatim. It is a SEQUENCE diagram (not Gantt): Client/Agent Spécialisé/Service de Contexte/Service de Décision/Moteur de Politique/Service d'Exécution/Système Métier/Journal d'Audit, confirm explicite + opt identité + opt confiance insuffisante + alt verdict favorable/refusé/intervention humaine. Ch3 §Déroulement d'une action sensible rewritten and figure placed; `figureTikz` replaced by includegraphics(fig-seq-sensible.png). fig-seq-sensible.png NOT in branch yet.
+- Applied user RÉDACTION DIRECTIVE (saved in project_memory/10_REDACTION_DIRECTIVE.md): short academic diagram descriptions, max ~5 sentences, no AI slop, no line-by-line walkthrough. Rewrote already-integrated diagram descriptions in Ch2 (cu-general, cu-doc, seq-doc, cu-action, seq-action, cu-escalade, seq-escalade), Ch3 (seq-tour, seq-sensible intros+bodies), Ch4 (deploiement). Next diagrams (Ch3 act-*, etats-*, pipeline, orchestration, contexte, securite; Ch4 etc.) MUST follow same rule.

@@ -1,0 +1,152 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="810" height="555" viewBox="60 0 810 555" role="img" aria-label="Diagramme de paquetages des contextes métier">
+  <defs>
+    <style>
+      text { font-family: Arial, Helvetica, sans-serif; }
+      .pname { font-size: 13px; font-weight: bold; fill: #111111; text-anchor: middle; }
+      .presp { font-size: 10px; font-style: italic; fill: #444444; text-anchor: middle; }
+      .edge { font-size: 11px; fill: #444444; text-anchor: middle; }
+      .fold { stroke: #333333; stroke-width: 1.2; }
+      .wire { fill: none; stroke: #333333; stroke-width: 1.3; stroke-dasharray: 5,4; }
+      .arrow { fill: none; stroke: #333333; stroke-width: 1.3; }
+      .shadow { fill: #D0D0D0; opacity: 0.5; }
+      .note { font-size: 11px; font-style: italic; fill: #555555; text-anchor: middle; }
+    </style>
+  </defs>
+
+  <rect x="60" y="0" width="810" height="555" fill="#FFFFFF"/>
+
+  <!-- ============ ROW 1 ============ -->
+
+  <!-- Conversation -->
+  <rect x="79" y="64" width="150" height="80" class="shadow"/>
+  <path d="M75 42 L75 60 L135 60 L135 42 Z" fill="#B8DFF5" class="fold"/>
+  <rect x="75" y="60" width="150" height="80" fill="#96D5F2" class="fold"/>
+  <text x="150" y="93" class="pname">Conversation</text>
+  <text x="150" y="113" class="presp">Déroulement de l'échange</text>
+  <text x="150" y="126" class="presp">et tours de parole</text>
+
+  <!-- Connaissance -->
+  <rect x="359" y="64" width="150" height="80" class="shadow"/>
+  <path d="M355 42 L355 60 L415 60 L415 42 Z" fill="#FFF3B8" class="fold"/>
+  <rect x="355" y="60" width="150" height="80" fill="#ffe697" class="fold"/>
+  <text x="430" y="93" class="pname">Connaissance</text>
+  <text x="430" y="113" class="presp">Documents, fragments</text>
+  <text x="430" y="126" class="presp">et indexation</text>
+
+  <!-- Identité et accès -->
+  <rect x="639" y="64" width="150" height="80" class="shadow"/>
+  <path d="M635 42 L635 60 L695 60 L695 42 Z" fill="#B8DFF5" class="fold"/>
+  <rect x="635" y="60" width="150" height="80" fill="#96D5F2" class="fold"/>
+  <text x="710" y="93" class="pname">Identité et accès</text>
+  <text x="710" y="113" class="presp">Comptes, sessions</text>
+  <text x="710" y="126" class="presp">et droits</text>
+
+  <!-- ============ ROW 2 ============ -->
+
+  <!-- Décision -->
+  <rect x="79" y="264" width="150" height="80" class="shadow"/>
+  <path d="M75 242 L75 260 L135 260 L135 242 Z" fill="#FFF3B8" class="fold"/>
+  <rect x="75" y="260" width="150" height="80" fill="#ffe697" class="fold"/>
+  <text x="150" y="293" class="pname">Décision</text>
+  <text x="150" y="313" class="presp">Proposition d'action</text>
+  <text x="150" y="326" class="presp">et verdicts</text>
+
+  <!-- Exécution -->
+  <rect x="359" y="264" width="150" height="80" class="shadow"/>
+  <path d="M355 242 L355 260 L415 260 L415 242 Z" fill="#FFF3B8" class="fold"/>
+  <rect x="355" y="260" width="150" height="80" fill="#ffe697" class="fold"/>
+  <text x="430" y="293" class="pname">Exécution</text>
+  <text x="430" y="313" class="presp">Registre des actions</text>
+  <text x="430" y="326" class="presp">et statuts</text>
+
+  <!-- Routage et escalade -->
+  <rect x="639" y="264" width="150" height="80" class="shadow"/>
+  <path d="M635 242 L635 260 L695 260 L695 242 Z" fill="#B8DFF5" class="fold"/>
+  <rect x="635" y="260" width="150" height="80" fill="#96D5F2" class="fold"/>
+  <text x="710" y="293" class="pname">Routage et</text>
+  <text x="710" y="309" class="pname">escalade</text>
+  <text x="710" y="326" class="presp">Conseillers et escalades</text>
+
+  <!-- ============ ROW 3 ============ -->
+
+  <!-- Gestion de tickets -->
+  <rect x="79" y="464" width="150" height="80" class="shadow"/>
+  <path d="M75 442 L75 460 L135 460 L135 442 Z" fill="#F2D6E4" class="fold"/>
+  <rect x="75" y="460" width="150" height="80" fill="#e8dbe7" class="fold"/>
+  <text x="150" y="493" class="pname">Gestion de</text>
+  <text x="150" y="509" class="pname">tickets</text>
+  <text x="150" y="526" class="presp">Tickets et cycle de vie</text>
+
+  <!-- Référentiels -->
+  <rect x="359" y="464" width="150" height="80" class="shadow"/>
+  <path d="M355 442 L355 460 L415 460 L415 442 Z" fill="#D4F0D4" class="fold"/>
+  <rect x="355" y="460" width="150" height="80" fill="#CDF2CD" class="fold"/>
+  <text x="430" y="493" class="pname">Référentiels</text>
+  <text x="430" y="513" class="presp">Catalogues de produits</text>
+  <text x="430" y="526" class="presp">et règles</text>
+
+  <!-- Audit -->
+  <rect x="639" y="464" width="150" height="80" class="shadow"/>
+  <path d="M635 442 L635 460 L695 460 L695 442 Z" fill="#D4F0D4" class="fold"/>
+  <rect x="635" y="460" width="150" height="80" fill="#CDF2CD" class="fold"/>
+  <text x="710" y="493" class="pname">Audit</text>
+  <text x="710" y="513" class="presp">Chaîne d'enregistrements</text>
+  <text x="710" y="526" class="presp">et vérification</text>
+
+  <!-- ============ DEPENDENCIES ============ -->
+
+  <!-- Conv → Conn -->
+  <path d="M225 100 L355 100" class="wire"/>
+  <path d="M347 95 L355 100 L347 105" class="arrow"/>
+  <text x="290" y="92" class="edge">«use»</text>
+
+  <!-- Conv → Deci -->
+  <path d="M150 140 L150 260" class="wire"/>
+  <path d="M145 252 L150 260 L155 252" class="arrow"/>
+  <text x="138" y="203" class="edge">«use»</text>
+
+  <!-- Conv → Rout (top route) -->
+  <path d="M150 60 L150 25 L860 25 L860 300 L790 300" class="wire"/>
+  <path d="M798 295 L790 300 L798 305" class="arrow"/>
+  <text x="505" y="17" class="edge">«use»</text>
+
+  <!-- Deci → Exec -->
+  <path d="M225 300 L355 300" class="wire"/>
+  <path d="M347 295 L355 300 L347 305" class="arrow"/>
+  <text x="290" y="292" class="edge">«use»</text>
+
+  <!-- Deci → Tick -->
+  <path d="M150 340 L150 460" class="wire"/>
+  <path d="M145 452 L150 460 L155 452" class="arrow"/>
+  <text x="138" y="403" class="edge">«use»</text>
+
+  <!-- Deci → Refe -->
+  <path d="M225 315 L290 315 L290 480 L355 480" class="wire"/>
+  <path d="M347 475 L355 480 L347 485" class="arrow"/>
+  <text x="290" y="405" class="edge">«use»</text>
+
+  <!-- Exec → Refe -->
+  <path d="M430 340 L430 460" class="wire"/>
+  <path d="M425 452 L430 460 L435 452" class="arrow"/>
+  <text x="418" y="403" class="edge">«use»</text>
+
+  <!-- Exec → Audit -->
+  <path d="M505 315 L570 315 L570 500 L635 500" class="wire"/>
+  <path d="M627 495 L635 500 L627 505" class="arrow"/>
+  <text x="570" y="403" class="edge">«use»</text>
+
+  <!-- Tick → Refe -->
+  <path d="M225 500 L355 500" class="wire"/>
+  <path d="M347 495 L355 500 L347 505" class="arrow"/>
+  <text x="290" y="492" class="edge">«use»</text>
+
+  <!-- Ident → Rout -->
+  <path d="M710 140 L710 260" class="wire"/>
+  <path d="M705 252 L710 260 L715 252" class="arrow"/>
+  <text x="698" y="203" class="edge">«use»</text>
+
+  <!-- Rout → Audit -->
+  <path d="M710 340 L710 460" class="wire"/>
+  <path d="M705 452 L710 460 L715 452" class="arrow"/>
+  <text x="698" y="403" class="edge">«use»</text>
+</svg>

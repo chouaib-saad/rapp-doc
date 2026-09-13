@@ -1,0 +1,198 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1250" height="1080" viewBox="0 0 1250 1080">
+<rect width="1250" height="1080" fill="#FFFFFF"/>
+<defs>
+<style>
+text{font-family:Arial,Helvetica,sans-serif;}
+.plab{font-size:12px;font-weight:bold;fill:#333333;text-anchor:middle;}
+.pst{font-size:10px;font-style:italic;fill:#555555;text-anchor:middle;}
+.bname{font-size:12px;font-weight:bold;fill:#222222;text-anchor:middle;dominant-baseline:middle;}
+.mlab{font-size:12px;fill:#222222;text-anchor:middle;}
+.mlabL{font-size:12px;fill:#222222;}
+.fword{font-size:12px;font-weight:bold;fill:#111111;}
+.fcond{font-size:11px;font-style:italic;fill:#111111;}
+.life{fill:none;stroke:#D02A50;stroke-width:1;stroke-dasharray:5,4;}
+.act{fill:none;stroke:#D02A50;stroke-width:1.7;}
+.pB{fill:#96D5F2;stroke:#D02A50;stroke-width:1.3;}
+.pG{fill:#CDF2CD;stroke:#D02A50;stroke-width:1.3;}
+.dbbody{fill:#FFB340;stroke:#C77800;stroke-width:1.3;}
+.dbtop{fill:#FFC466;stroke:#C77800;stroke-width:1.3;}
+.actbar{fill:#d8d8d8;stroke:#333333;stroke-width:1;}
+.msg{fill:none;stroke:#D02A50;stroke-width:1.4;}
+.msgR{fill:none;stroke:#2EA843;stroke-width:1.4;stroke-dasharray:7,5;}
+.frag{fill:none;stroke:#D02A50;stroke-width:1.3;}
+.ftab{fill:#f1a7c1;stroke:#D02A50;stroke-width:1.1;}
+.sep{stroke:#D02A50;stroke-width:1.1;stroke-dasharray:6,5;}
+.callout{fill:#fff4a6;stroke:#D02A50;stroke-width:1.2;}
+.notefold{fill:none;stroke:#D02A50;stroke-width:1.2;}
+.ct{font-size:10px;font-style:italic;fill:#111111;}
+.ctb{font-size:10px;font-weight:bold;font-style:italic;fill:#111111;}
+</style>
+<filter id="ds" x="-30%" y="-30%" width="160%" height="160%">
+<feDropShadow dx="3" dy="3" stdDeviation="2" flood-color="#8A8A8A" flood-opacity="0.45"/>
+</filter>
+<marker id="mM" markerWidth="9" markerHeight="9" refX="7" refY="3.5" orient="auto"><path d="M0 0 L7 3.5 L0 7 Z" fill="#D02A50"/></marker>
+<marker id="mGo" markerWidth="10" markerHeight="10" refX="8" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8" fill="none" stroke="#2EA843" stroke-width="1.6"/></marker>
+<marker id="mO" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0 0 L6 3 L0 6" fill="none" stroke="#D02A50" stroke-width="1.2"/></marker>
+</defs>
+
+<!-- ===================== LIFELINES ===================== -->
+<path d="M120 132 L120 970" class="life"/>
+<path d="M390 132 L390 970" class="life"/>
+<path d="M650 132 L650 970" class="life"/>
+<path d="M900 132 L900 970" class="life"/>
+<path d="M1130 132 L1130 970" class="life"/>
+
+<!-- ===================== TOP PARTICIPANTS ===================== -->
+<!-- Client : Actor -->
+<g class="act" filter="url(#ds)">
+<circle cx="120" cy="45" r="8" fill="#FFF6C7"/>
+<path d="M120 53 L120 78"/><path d="M106 60 L134 60"/><path d="M120 78 L107 96"/><path d="M120 78 L133 96"/>
+</g>
+<text x="120" y="112" class="plab">Client</text>
+
+<!-- Agent spécialisé : Rectangle bleu (Control) -->
+<rect x="305" y="48" width="170" height="34" class="pB" filter="url(#ds)"/>
+<text x="390" y="65" class="bname">Agent spécialisé</text>
+<text x="390" y="106" class="pst">&lt;&lt;Orchestrateur&gt;&gt;</text>
+
+<!-- Base de connaissances : Database orange -->
+<g filter="url(#ds)">
+<path d="M625 50 L625 82 A25 8 0 0 0 675 82 L675 50" class="dbbody"/>
+<ellipse cx="650" cy="50" rx="25" ry="8" class="dbtop"/>
+</g>
+<text x="650" y="106" class="plab">Base de connaissances</text>
+<text x="650" y="120" class="pst">&lt;&lt;Knowledge Repository&gt;&gt;</text>
+
+<!-- Base vectorielle : Database orange -->
+<g filter="url(#ds)">
+<path d="M875 50 L875 82 A25 8 0 0 0 925 82 L925 50" class="dbbody"/>
+<ellipse cx="900" cy="50" rx="25" ry="8" class="dbtop"/>
+</g>
+<text x="900" y="106" class="plab">Base vectorielle</text>
+<text x="900" y="120" class="pst">&lt;&lt;Semantic Index&gt;&gt;</text>
+
+<!-- Moteur d'inférence : Rectangle vert (Control) -->
+<rect x="1045" y="48" width="170" height="34" class="pG" filter="url(#ds)"/>
+<text x="1130" y="65" class="bname">Moteur d'inférence</text>
+<text x="1130" y="106" class="pst">&lt;&lt;LLM&gt;&gt;</text>
+
+<!-- ===================== ACTIVATION BARS ===================== -->
+<rect x="384" y="150" width="12" height="758" class="actbar"/>
+<rect x="644" y="325" width="12" height="50" class="actbar"/>
+<rect x="894" y="440" width="12" height="45" class="actbar"/>
+<rect x="1124" y="730" width="12" height="50" class="actbar"/>
+
+<!-- ===================== FRAGMENT opt ===================== -->
+<rect x="90" y="185" width="330" height="105" class="frag"/>
+<path d="M90,185 L165,185 L180,200 L90,200 Z" class="ftab"/>
+<text x="100" y="197" class="fword">opt</text>
+<text x="190" y="198" class="fcond">[ demande ambiguë ]</text>
+
+<!-- ===================== FRAGMENT loop ===================== -->
+<rect x="270" y="405" width="740" height="110" class="frag"/>
+<path d="M270,405 L345,405 L360,420 L270,420 Z" class="ftab"/>
+<text x="280" y="417" class="fword">loop</text>
+<text x="370" y="418" class="fcond">[ pour chaque requête associée ]</text>
+
+<!-- ===================== FRAGMENT alt ===================== -->
+<rect x="90" y="615" width="1070" height="310" class="frag"/>
+<path d="M90,615 L165,615 L180,630 L90,630 Z" class="ftab"/>
+<text x="100" y="627" class="fword">alt</text>
+<text x="190" y="628" class="fcond">[ pertinence confirmée ]</text>
+<line x1="90" y1="845" x2="1160" y2="845" class="sep"/>
+<text x="100" y="863" class="fcond">[ aucun passage pertinent ]</text>
+
+<!-- ===================== MESSAGES ===================== -->
+<path d="M120 150 L384 150" class="msg" marker-end="url(#mM)"/>
+<text x="255" y="140" class="mlab">Formuler une demande d'information</text>
+
+<path d="M384 220 L124 220" class="msg" marker-end="url(#mM)"/>
+<text x="255" y="210" class="mlab">Demander une clarification</text>
+
+<path d="M120 260 L384 260" class="msg" marker-end="url(#mM)"/>
+<text x="255" y="250" class="mlab">Fournir la précision demandée</text>
+
+<path d="M396 325 L644 325" class="msg" marker-end="url(#mM)"/>
+<text x="520" y="315" class="mlab">Rechercher les passages pertinents</text>
+
+<path d="M644 375 L396 375" class="msgR" marker-end="url(#mGo)"/>
+<text x="520" y="365" class="mlab">Passages candidats</text>
+
+<path d="M396 440 L894 440" class="msg" marker-end="url(#mM)"/>
+<text x="645" y="430" class="mlab">Récupérer le contexte pertinent</text>
+
+<path d="M894 485 L396 485" class="msgR" marker-end="url(#mGo)"/>
+<text x="645" y="475" class="mlab">Passages les plus similaires</text>
+
+<path d="M396,545 L470,545 L470,585 L400,585" class="msg" marker-end="url(#mM)"/>
+<text x="482" y="570" class="mlabL">Fusionner et évaluer la pertinence</text>
+
+<path d="M396,655 L470,655 L470,695 L400,695" class="msg" marker-end="url(#mM)"/>
+<text x="482" y="680" class="mlabL">Augmenter la requête avec le contexte retenu</text>
+
+<path d="M396 730 L1124 730" class="msg" marker-end="url(#mM)"/>
+<text x="760" y="720" class="mlab">Requête augmentée du contexte</text>
+
+<path d="M1124 780 L396 780" class="msgR" marker-end="url(#mGo)"/>
+<text x="760" y="770" class="mlab">Réponse générée avec références aux sources</text>
+
+<path d="M384 820 L124 820" class="msg" marker-end="url(#mM)"/>
+<text x="255" y="810" class="mlab">Énoncer la réponse au client</text>
+
+<path d="M384 908 L124 908" class="msg" marker-end="url(#mM)"/>
+<text x="255" y="884" class="mlab">Informer de l'absence d'information</text>
+<text x="255" y="900" class="mlab">et proposer une alternative</text>
+
+<!-- ===================== NOTES (forme UML avec coin plié en haut à droite) ===================== -->
+<!-- Note: Absence d'information (en haut, espace vide) -->
+<path d="M665 150 L870 150 L885 165 L885 242 L665 242 Z" class="callout" filter="url(#ds)"/>
+<path d="M870 150 L870 165 L885 165" class="notefold"/>
+<text x="672" y="164" class="ctb">Absence d'information fiable :</text>
+<text x="672" y="178" class="ct">aucune réponse n'est générée</text>
+<text x="672" y="191" class="ct">lorsqu'aucun passage suffisamment</text>
+<text x="672" y="204" class="ct">pertinent n'est retrouvé dans les</text>
+<text x="672" y="217" class="ct">connaissances disponibles.</text>
+
+<!-- Note: Continuité conversationnelle (remontée, dans le bloc alt) -->
+<path d="M920 625 L1125 625 L1140 640 L1140 705 L920 705 Z" class="callout" filter="url(#ds)"/>
+<path d="M1125 625 L1125 640 L1140 640" class="notefold"/>
+<text x="927" y="639" class="ctb">Continuité conversationnelle :</text>
+<text x="927" y="653" class="ct">le contexte des échanges précédents</text>
+<text x="927" y="666" class="ct">est pris en compte pour interpréter</text>
+<text x="927" y="679" class="ct">une demande dépendant du dialogue.</text>
+
+<!-- ===================== BOTTOM PARTICIPANTS ===================== -->
+<!-- Client bottom -->
+<text x="120" y="988" class="plab">Client</text>
+<g class="act" filter="url(#ds)">
+<circle cx="120" cy="1015" r="8" fill="#FFF6C7"/>
+<path d="M120 1023 L120 1048"/><path d="M106 1030 L134 1030"/><path d="M120 1048 L107 1066"/><path d="M120 1048 L133 1066"/>
+</g>
+
+<!-- Agent spécialisé bottom : Rectangle bleu -->
+<text x="390" y="1002" class="pst">&lt;&lt;Orchestrateur&gt;&gt;</text>
+<rect x="305" y="1015" width="170" height="34" class="pB" filter="url(#ds)"/>
+<text x="390" y="1032" class="bname">Agent spécialisé</text>
+
+<!-- Base de connaissances bottom : Database orange -->
+<text x="650" y="988" class="plab">Base de connaissances</text>
+<text x="650" y="1002" class="pst">&lt;&lt;Knowledge Repository&gt;&gt;</text>
+<g filter="url(#ds)">
+<path d="M625 1020 L625 1052 A25 8 0 0 0 675 1052 L675 1020" class="dbbody"/>
+<ellipse cx="650" cy="1020" rx="25" ry="8" class="dbtop"/>
+</g>
+
+<!-- Base vectorielle bottom : Database orange -->
+<text x="900" y="988" class="plab">Base vectorielle</text>
+<text x="900" y="1002" class="pst">&lt;&lt;Semantic Index&gt;&gt;</text>
+<g filter="url(#ds)">
+<path d="M875 1020 L875 1052 A25 8 0 0 0 925 1052 L925 1020" class="dbbody"/>
+<ellipse cx="900" cy="1020" rx="25" ry="8" class="dbtop"/>
+</g>
+
+<!-- Moteur d'inférence bottom : Rectangle vert -->
+<text x="1130" y="1002" class="pst">&lt;&lt;LLM&gt;&gt;</text>
+<rect x="1045" y="1015" width="170" height="34" class="pG" filter="url(#ds)"/>
+<text x="1130" y="1032" class="bname">Moteur d'inférence</text>
+
+</svg>
